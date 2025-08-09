@@ -10,6 +10,5 @@
 # Check if number or not
 
 ```js
-if (isNaN(principal) || isNaN(annualRate)) {
-}
+if (isNaN(principal) || isNaN(annualRate)) 
 ```
