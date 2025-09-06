@@ -1,5 +1,15 @@
 # Contact Form
 
+## Summary
+
+```js
+Text: <input>, value, setState(e.target.value)
+Checkbox: <input>, checked, setState(e.target.checked)
+Radio group: <input>, checked, setState(e.target.value)
+Textarea: <textarea>, value, setState(e.target.value)
+Dropdown: <select>, value, setState(e.tartget.value)
+```
+
 ## Tutorial
 
 - https://www.greatfrontend.com/questions/user-interface/contact-form/react?framework=react
@@ -104,16 +114,6 @@ function SelectExample() {
     </div>
   );
 }
-```
-
-## Summary
-
-```js
-Text: <input>, value, setState(e.target.value)
-Checkbox: <input>, checked, setState(e.target.checked)
-Radio group: <input>, checked, setState(e.target.value)
-Textarea: <textarea>, value, setState(e.target.value)
-Dropdown: <select>, value, setState(e.tartget.value)
 ```
 
 ## nested from structures
