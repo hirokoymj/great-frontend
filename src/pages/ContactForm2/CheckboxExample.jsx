@@ -8,11 +8,9 @@ function CheckboxExample() {
 
   const handleCheckboxChange = (event) => {
     const { value, checked } = event.target;
-    if (checked) {
-      setSelectedOptions((prev) => [...prev, value]);
-    } else {
-      setSelectedOptions((prev) => prev.filter((option) => option !== value));
-    }
+    checked
+      ? setSelectedOptions((prev) => [...prev, value])
+      : setSelectedOptions((prev) => prev.filter((option) => option !== value));
   };
 
   return (

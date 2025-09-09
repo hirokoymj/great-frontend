@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 import LikeBtn from './pages/LikeButton/LikeBtn';
 import Accordion from './pages/Accordion/Accordion';
+import Accordion1 from './pages/Accordion/Accordion1';
 import ContactForm1 from './pages/ContactForm1/ContactForm1';
 import ContactForm2 from './pages/ContactForm2/ContactForm2';
 import RadioGroupExample from './pages/ContactForm2/RadioGroupExample';
@@ -23,6 +24,7 @@ const Home = () => {
         </li>
         <li>
           <Link to="/test2">Accordion</Link>;
+          <Link to="/test2-1">Accordion-1</Link>;
         </li>
         <li>
           {' '}
@@ -51,6 +53,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="test1" element={<LikeBtn />} />
         <Route path="test2" element={<Accordion />} />
+        <Route path="test2-1" element={<Accordion1 />} />
         <Route path="test3" element={<ContactForm1 />} />
         <Route path="test4" element={<ContactForm2 />} />
         <Route path="radio-demo" element={<RadioGroupExample />} />
