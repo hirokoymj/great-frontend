@@ -37,6 +37,13 @@ Select: <select>, value, setState(e.tartget.value)
 ```js
 const [tac, setTac] = useState(false);
 const [selectedOptions, setSelectedOptions] = useState([]);
+
+const handleCheckboxChange = (event) => {
+    const { value, checked } = event.target;
+    checked
+      ? setSelectedOptions((prev) => [...prev, value])
+      : setSelectedOptions((prev) => prev.filter((option) => option !== value));
+}
 <input
   type="checkbox"
   name="tac"
