@@ -41,8 +41,8 @@ const updateUser = async(id) =>{}
 const updateUser = (id) =>{}
 const deleteUser = async(id) =>{}
 const deleteUser = (id) =>{}
-useEffect(()=>{}, [])
-///===
+///===React.j
+// useEffect(()=>{}, [])
 ```
 
 ## Example - GET
@@ -178,7 +178,7 @@ const deleteUser = async () => {
 };
 ```
 
-### Example AI
+## Example AI
 
 ```js
 //async/await
@@ -224,8 +224,6 @@ const generateSummary2 = () => {
 ```
 
 ## Quiz
-
-**Question 1:**
 
 - fetch, GET ===> async/await/try-catch OR then.catch.
 - fetch, POST
@@ -303,30 +301,6 @@ const deleteUser = (id) => {
 		}
 	});
 };
-```
-
-**POST**
-
-```js
-const createUser = async () => {
-  try {
-    const response = await fetch('/users', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email }),
-    });
-    const data = await response.json();
-  } catch (e) {}
-};
-//then.catch.finally
-fetch("/users", {
-	method: POST,
-	headers:{ 'Content-Type': 'application/json'},
-	body: JSON.stringfy({email})})
-.then((response) => return response.json())
-.then((data)=>{})
-.catch(e =>{})
-.finally(()=>{})
 ```
 
 ### Example 1 - GET/POST/DELETE/PUT
