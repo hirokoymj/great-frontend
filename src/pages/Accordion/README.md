@@ -6,6 +6,19 @@
 - How to update an state object
 - How to show/hide div element without CSS
 
+```js
+const [section, setSection] = useState({
+  html: false,
+  css: false,
+  js: false,
+});
+setSection((prev) => ({
+  ...prev,
+  [section]: !prev[section],
+})
+{section['html'] && (<div>a</div>)}
+```
+
 ## useState with an object
 
 ```js
@@ -34,8 +47,8 @@ const handleClick = (section) => {
 - [quiz-template](./quiz-template.jsx)
 - History: 09-09-2025
 
-```
-- useState with an object
-- how to update an state object
-- how to show/hide div element
-```
+Q1:useState with an object
+
+Q2:how to update an state object
+
+Q3:how to show/hide div element

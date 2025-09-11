@@ -13,6 +13,7 @@ import MorgageCalculator from './pages/Morgage/MorgageCalculator';
 import Posts from './pages/Posts/Posts';
 import StopWatch from './pages/StopWatch/Stopwatch';
 import ToDo from './pages/Todo/ToDo';
+import { UsersView } from './pages/Users/UsersView';
 
 const Home = () => {
   return (
@@ -64,6 +65,7 @@ export default function App() {
         <Route path="test8" element={<Posts />} />
         <Route path="test9" element={<StopWatch />} />
         <Route path="test10" element={<ToDo />} />
+        <Route path="test11" element={<UsersView />} />
       </Routes>
     </BrowserRouter>
   );
