@@ -1,14 +1,8 @@
 # RESTful API
 
 ```js
-//=====[Async: then.catch.finally]
-fetch(url, option)
-.then(response=>{ if(response.ok) return response.json()})
-.then(data=>{})
-.catch(e=>{})
-.finally(()=>{})
 //=====[Async: async/await/try-catch]
-const getData = async () => {
+const getUser = async () => {
   try {
     const response = await fetch(url);
     if (!response.ok) throw new Error();
@@ -16,31 +10,39 @@ const getData = async () => {
     setUsers(data);
   } catch (e) {}
 };
+//=====[Async: then.catch]
+const getUser = () =>{
+	fetch(url, option)
+	.then(response=>{ if(response.ok) return response.json()})
+	.then(data=>{})
+	.catch(e=>{})
+	.finally(()=>{})
+}
 //=====[HTTP Options]
 ------------------------------
-method: 'GET'
-------------------------------
-method: 'GET',
-headers: {Authorization: `Bearer ${token}`}
-------------------------------
-method: 'POST',
-headers: {'Content-Type': 'application/json'},
-body: JSON.stringify({ name, email })
-------------------------------
-https://users/${id}
-method: 'PUT',
-headers: { 'Content-Type': 'application/json' },
-body: JSON.stringify({ ...user, name: 'dummy' })
-------------------------------
-https://users/${id}
-method: 'DELETE'
+method: 'GET/POST/PUT/DELETE'
+headers: {
+	'Authorization': `Bearer ${token}`,
+	'Content-Type': 'application/json'
+},
+body: JSON.stringify({ user }) //POST
+body: JSON.stringify({ ...user, name: 'dummy' }) //PUT
 ------------------------------
 //=====[Promise, async function, pending/fullfilled/rejected]
 const promiseA = new Promise((resolve, reject) => {
   resolve(777);
 }).then((val) => console.log(val)); //777
-//=====[REACT.js]
+//=====[QUIZ]
+const getUsers = async() =>{}
+const getUsers = () =>{}
+const createUser = async() =>{}
+const createUser = () =>{}
+const updateUser = async(id) =>{}
+const updateUser = (id) =>{}
+const deleteUser = async(id) =>{}
+const deleteUser = (id) =>{}
 useEffect(()=>{}, [])
+///===
 ```
 
 ## Example - GET
@@ -52,7 +54,7 @@ useEffect(()=>{}, [])
 //===[async/await/try-catch]
 const getUser = async () => {
   try {
-    const response = await fetch('https://jsonplaceholder.typicode.com/users', {
+    const response = await fetch('https://xxx/users', {
       method: 'GET',
     });
     if (!response.ok) throw new Error('Failed to get users data.');
@@ -65,7 +67,7 @@ const getUser = async () => {
 };
 
 //=====[then.catch.finally]
-fetch('https://jsonplaceholder.typicode.com/users', {
+fetch('https://xxx/users', {
   method: 'GET',
   headers: {
     Authorization: `Bearer ${token}`,
@@ -95,7 +97,7 @@ fetch('https://jsonplaceholder.typicode.com/users', {
 //=====[async/await/try-catch]
 const createUser = async () => {
   try {
-    const response = await fetch('https://jsonplaceholder.typicode.com/users', {
+    const response = await fetch('https://xxx/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -113,7 +115,7 @@ const createUser = async () => {
 };
 
 //=====[then.catch.finally]
-fetch('https://jsonplaceholder.typicode.com/users', {
+fetch('https://xxx/users', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -141,7 +143,7 @@ fetch('https://jsonplaceholder.typicode.com/users', {
 
 ```js
 //=====[then.catch.finally]
-fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+fetch(`https://xxx/users/${id}`, {
   method: 'DELETE',
 })
   .then((response) => {
@@ -162,12 +164,9 @@ fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
 //=====[async/await/try-catch]
 const deleteUser = async () => {
   try {
-    const response = await fetch(
-      `https://jsonplaceholder.typicode.com/users/${id}`,
-      {
-        method: 'DELETE',
-      }
-    );
+    const response = await fetch(`https://xxx/users/${id}`, {
+      method: 'DELETE',
+    });
     const data = await response.json();
     setMessage('Item deleted successfully:');
     setUsers((values) => values.filter((item) => item.id !== id));
@@ -228,25 +227,82 @@ const generateSummary2 = () => {
 
 **Question 1:**
 
-- fetch, GET ===> async/await/try-catch OR then.catch.finally
+- fetch, GET ===> async/await/try-catch OR then.catch.
 - fetch, POST
 - fetch, PUT
 - fetch, DELETE
 
-**GET**
+```js
+const getUsers = async () => {};
+const getUsers = () => {};
+const createUser = async () => {};
+const createUser = () => {};
+const updateUser = async (id) => {};
+const updateUser = (id) => {};
+const deleteUser = async (id) => {};
+const deleteUser = (id) => {};
+```
+
+**Answer**
 
 ```js
 const getUser = async () =>{
   try{
-   const response = await fetch("/users", {method: GET})
+   const response = await fetch(url, {method: GET})
    const data = await response.json()
   }catch(e){}
 }
-//
-fetch("/users", {method: GET})
-.then((response) => return response.json())
-.then((data)=>{})
-.catch(e =>{})
+const getUser = () =>{
+	fetch("/users", {method: GET})
+	.then((response) => return response.json())
+	.then((data)=>{})
+	.catch(e =>{})
+}
+const createUser = async () => {
+	try{
+	const response = fetch(url, {
+		method: POST,
+		headers: {
+		'Content-Type': 'application/json',
+		},
+		body:{ JSON.stringify({email})}
+	});
+	const data = await response.json();
+	setUsers([...users, data]);
+	}catch(e){}
+};
+const createUser = () => {
+	fetch(url, {
+		method: POST,
+		headers: {
+		'Content-Type': 'application/json',
+		},
+		body:{ JSON.stringify({email})}
+	})
+	.then((response) => return response.json())
+	.then((data) => setUsers([...users, data]);)
+	.catch((e) => setError(e))
+};
+const deleteUser = async (id) => {
+	try{
+		const response = await fetch(url, {method: DELETE});
+		if(response.ok){
+		const data = await response.json()
+        setUsers((users) => users.filter((user) => user.id !== data.id));
+        setLoading(false);
+		}
+	}catch(e){}
+};
+const deleteUser = (id) => {
+	fetch(url, {method: DELETE})
+	.then((response) => return response.json())
+	.then((data) => {
+		if(response.ok){
+			setUsers((users) => users.filter((user) => user.id !== id));
+			setLoading(false);
+		}
+	});
+};
 ```
 
 **POST**
