@@ -1,4 +1,14 @@
-# Accordion
+# Accordion - Sharing State between Components
+
+- [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components#step-3-add-state-to-the-common-parent)
+- Accordion
+
+  - Panel
+  - Panel
+
+- When you want to coordinate two components, move their state to their common parent.
+- Then pass the information down through props from their common parent.
+- Finally, pass the event handlers down so that the children can change the parent’s state.
 
 **Summary:**
 

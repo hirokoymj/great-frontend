@@ -1,59 +1,34 @@
 import { useState } from 'react';
-import './styles.css';
 
-export default function Accordion() {
-  const [openSection, setOpenSection] = useState({
-    html: false,
-    css: false,
-    js: false,
-  });
-
-  const handleClick = (section) => {
-    setOpenSection((prev) => ({
-      ...prev,
-      [section]: !prev[section],
-    }));
-  };
-
+function Panel({ title, children }) {
+  const [isActive, setIsActive] = useState(false);
   return (
-    <div>
-      <div>
-        <div onClick={() => handleClick('html')}>
-          HTML <span aria-hidden={true} className="accordion-icon" />
-        </div>
-        {openSection.html === true && (
-          <p style={{ margin: '10px' }}>
-            The HyperText Markup Language or HTML is the standard markup
-            language for documents designed to be displayed in a web browser.
-          </p>
-        )}
-      </div>
-      <div>
-        <div onClick={() => handleClick('css')}>
-          CSS <span aria-hidden={true} className="accordion-icon" />
-        </div>
-        {openSection.css === true && (
-          <p style={{ margin: '10px' }}>
-            Cascading Style Sheets is a style sheet language used for describing
-            the presentation of a document written in a markup language such as
-            HTML or XML.
-          </p>
-        )}
-      </div>
-      <div>
-        <div onClick={() => handleClick('js')}>
-          JavaScript <span aria-hidden={true} className="accordion-icon" />
-        </div>
-        {openSection.js === true && (
-          <p style={{ margin: '10px' }}>
-            JavaScript, often abbreviated as JS, is a programming language that
-            is one of the core technologies of the World Wide Web, alongside
-            HTML and CSS.
-          </p>
-        )}
-      </div>
-    </div>
+    <section className="panel">
+      <h3>{title}</h3>
+      {isActive ? (
+        <p>{children}</p>
+      ) : (
+        <button onClick={() => setIsActive(true)}>Show</button>
+      )}
+    </section>
   );
 }
 
-///set function with object
+export default function AccordionNew() {
+  return (
+    <>
+      <h2>Almaty, Kazakhstan</h2>
+      <Panel title="About">
+        With a population of about 2 million, Almaty is Kazakhstan's largest
+        city. From 1929 to 1997, it was its capital city.
+      </Panel>
+      <Panel title="Etymology">
+        The name comes from <span lang="kk-KZ">алма</span>, the Kazakh word for
+        "apple" and is often translated as "full of apples". In fact, the region
+        surrounding Almaty is thought to be the ancestral home of the apple, and
+        the wild <i lang="la">Malus sieversii</i> is considered a likely
+        candidate for the ancestor of the modern domestic apple.
+      </Panel>
+    </>
+  );
+}
