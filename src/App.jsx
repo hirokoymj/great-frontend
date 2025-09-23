@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 import LikeBtn from './pages/LikeButton/LikeBtn';
 import Accordion from './pages/Accordion/Accordion';
-import Accordion1 from './pages/Accordion/Accordion1';
+//import Accordion1 from './pages/Accordion/Accordion1';
 import ContactForm1 from './pages/ContactForm1/ContactForm1';
 import ContactForm2 from './pages/ContactForm2/ContactForm2';
 import RadioGroupExample from './pages/ContactForm2/RadioGroupExample';
@@ -14,6 +14,8 @@ import Posts from './pages/Posts/Posts';
 import StopWatch from './pages/StopWatch/Stopwatch';
 import ToDo from './pages/Todo/ToDo';
 import { UsersView } from './pages/Users/UsersView';
+//Learn React
+import FormWithState from './pages/reacting-input-state/Form';
 
 const Home = () => {
   return (
@@ -43,6 +45,12 @@ const Home = () => {
           <Link to="/checkbox-demo">CheckboxExample</Link>
         </li>
       </ul>
+      <h1>Learn React</h1>
+      <ul>
+        <li>
+          <Link to="/learn-react-1">Form - Reacting to Input with State</Link>
+        </li>
+      </ul>
     </div>
   );
 };
@@ -54,7 +62,6 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="test1" element={<LikeBtn />} />
         <Route path="test2" element={<Accordion />} />
-        <Route path="test2-1" element={<Accordion1 />} />
         <Route path="test3" element={<ContactForm1 />} />
         <Route path="test4" element={<ContactForm2 />} />
         <Route path="radio-demo" element={<RadioGroupExample />} />
@@ -66,6 +73,7 @@ export default function App() {
         <Route path="test9" element={<StopWatch />} />
         <Route path="test10" element={<ToDo />} />
         <Route path="test11" element={<UsersView />} />
+        <Route path="learn-react-1" element={<FormWithState />} />
       </Routes>
     </BrowserRouter>
   );

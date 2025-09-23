@@ -1,11 +1,29 @@
 # Accordion - Sharing State between Components
 
+```js
+const Accordion = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  return (
+      <Panel
+        title="About"
+        isActive={activeIndex === 0}
+        onShow={() => setActiveIndex(0)}>With a population of about 2 million, Almaty is Kazakhstan's largest
+        city. From 1929 to 1997, it was its capital city.
+      </Panel>)
+function Panel({ title, children, isActive, onShow }) {
+  return (
+    <section className="panel">
+      <h3>{title}</h3>
+      {isActive ? <p>{children}</p> : <button onClick={onShow}>Show</button>}
+    </section>
+  );
+}
+```
+
 - [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components#step-3-add-state-to-the-common-parent)
-- Accordion
-
+- Accordion (Parent)
+  - Panel (Child)
   - Panel
-  - Panel
-
 - When you want to coordinate two components, move their state to their common parent.
 - Then pass the information down through props from their common parent.
 - Finally, pass the event handlers down so that the children can change the parent’s state.
