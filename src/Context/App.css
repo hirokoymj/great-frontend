@@ -1,0 +1,10 @@
+.button-dark {
+  background: black;
+  color: #fff;
+  border: 1px solid #fff;
+  width: 30%;
+}
+.panel-dark {
+  background: black;
+  color: #fff;
+}
