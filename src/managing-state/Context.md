@@ -3,36 +3,32 @@
 **Summary (final)**
 
 ```js
-import { createContext, useContext, useState } from 'react';
-const ThemeContext = createContext(null);
-const CurrentUserContext = createContext(null);
-//=============================================
-//Parent - update a context value with state
-<ThemeContext value="dark"></ThemeContext>;
-
-const [theme, setTheme] = useState('light');
-<ThemeContext value={theme}></ThemeContext>
-
+import {createContext, useContext, useState} from "react"
+//==============EX1
+const ThemeContext = createContext(null)
+App
+<ThemeContext value={"dark"}></ThemeContext>
+Panel
+const theme = useContext(ThemeContext)
+const className="panel-" + theme
+//==============EX2
+const ThemeContext = createContext(null)
+App
+const [theme, setTheme] = useState(null);
+<ThemeContext value={{theme, setTheme}}></ThemeContext>
+Button
+const {theme, setTheme} = useContext(ThemeContext)
+const className="button-" + theme
+<Button onClick={() => {setTheme('light');}}>Switch a theme</Button>
+//==============EX3
+const CurrentUserContext = createContext(null)
+MyApp
 const [currentUser, setCurrentUser] = useState(null);
-<CurrentUserContext value={{currentUser, setCurrentUser}}></CurrentUserContext>
-
-//=============================================
-// Child - Usage 1
-function Button({ children }) {
-  const theme = useContext(ThemeContext);
-  const className = 'button-' + theme;
-
-// Child - Usage 2
-function LoginButton() {
-  const {currentUser, setCurrentUser} = useContext(CurrentUserContext);
-  if (currentUser !== null) {
-    return <p>You logged in as {currentUser.name}.</p>;
-  }
-  <Button onClick={() => {setCurrentUser({ name: 'Advika' })}}>Log in as Advika</Button>
-}
-//Usage 3
-// Panel {children}==> value = useContext(ThemeContext)
-// Button {children}==> value = useContext(ThemeContext)
+<CurrentUseContext value={{currentUser, setCurrentUser}}></CurrenUserContext>
+LoginButton
+const {currenUser, setCurrentUser} = useContext(CurrentUserContext);
+(currentUser !== null) && (<p>You logged in as {currentUser.name}.</p>)
+<Button onClick={() => {setCurrentUser({ name: 'Advika' });}}>Log in as Advika</Button>
 ```
 
 # Passing Data Deeply with Context
@@ -314,14 +310,14 @@ function Button({ children, onClick }) {}
 
 <hr />
 
-## Summary (temp)
+## Summary (draft)
 
 ```js
 import { createContext, useContext, useState } from 'react';
 const ThemeContext = createContext(null);
 const CurrentUserContext = createContext(null);
 //=============================================
-//Parent Examples
+//Parent - update a context value with useState hooks.
 <ThemeContext value="dark"></ThemeContext>;
 
 const [theme, setTheme] = useState('light');
@@ -345,13 +341,49 @@ function LoginButton() {
   <Button onClick={() => {setCurrentUser({ name: 'Advika' })}}>Log in as Advika</Button>
 }
 //Usage 3
-// Panel {children}==> value = useContext(ThemeContext)
-// Button {children}==> value = useContext(ThemeContext)
+// Button {children}==> value = useContext(ThemeContext), className="button-" + theme
 ```
 
 ## Quiz
 
 **===Question 1:===**
+
+- Create, update and use context
+
+**Answer**
+
+```js
+import {createContext, useContext, useState} from "react"
+//==============EX1
+const ThemeContext = createContext(null)
+App
+<ThemeContext value={"dark"}></ThemeContext>
+Panel
+const theme = useContext(ThemeContext)
+const className="panel-" + theme
+//==============EX2
+const ThemeContext = createContext(null)
+App
+const [theme, setTheme] = useState(null);
+<ThemeContext value={{theme, setTheme}}></ThemeContext>
+Button
+const {theme, setTheme} = useContext(ThemeContext)
+const className="button-" + theme
+<Button onClick={() => {setTheme('light');}}>Switch a theme</Button>
+//==============EX3
+const CurrentUserContext = createContext(null)
+MyApp
+const [currentUser, setCurrentUser] = useState(null);
+<CurrentUseContext value={{currentUser, setCurrentUser}}></CurrenUserContext>
+LoginButton
+const {currenUser, setCurrentUser} = useContext(CurrentUserContext);
+(currentUser !== null) && (<p>You logged in as {currentUser.name}.</p>)
+<Button onClick={() => {setCurrentUser({ name: 'Advika' });}}>Log in as Advika</Button>
+```
+
+**===Question 2:===**
+
+**===Question 3:===**
 
 ```js
 import { createContext, useContext } from 'react';

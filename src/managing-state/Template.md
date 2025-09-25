@@ -12,6 +12,6 @@
 
 ## Ex.5 - title (short text)
 
-## Summary (Temporary)
+## Summary (DRAFT)
 
 ## Quiz
