@@ -16,6 +16,7 @@ import ToDo from './pages/Todo/ToDo';
 import { UsersView } from './pages/Users/UsersView';
 //Learn React
 import FormWithState from './pages/reacting-input-state/Form';
+import TestForm from './managing-state/TestForm';
 
 const Home = () => {
   return (
@@ -50,6 +51,9 @@ const Home = () => {
         <li>
           <Link to="/learn-react-1">Form - Reacting to Input with State</Link>
         </li>
+        <li>
+          <Link to="/learn-react-2">useReducer</Link>
+        </li>
       </ul>
     </div>
   );
@@ -74,6 +78,7 @@ export default function App() {
         <Route path="test10" element={<ToDo />} />
         <Route path="test11" element={<UsersView />} />
         <Route path="learn-react-1" element={<FormWithState />} />
+        <Route path="learn-react-2" element={<TestForm />} />
       </Routes>
     </BrowserRouter>
   );

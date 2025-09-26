@@ -31,6 +31,14 @@ const {currenUser, setCurrentUser} = useContext(CurrentUserContext);
 <Button onClick={() => {setCurrentUser({ name: 'Advika' });}}>Log in as Advika</Button>
 ```
 
+- Passing data deeply into the tree
+- It doesn’t matter how many layers of components there are between the provider and the Button.
+
+**References:**
+
+- https://react.dev/reference/react/useContext
+- https://react.dev/learn/passing-data-deeply-with-context
+
 # Passing Data Deeply with Context
 
 What “prop drilling” is

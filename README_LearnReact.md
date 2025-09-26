@@ -37,6 +37,8 @@
 <hr />
 
 - [Passing Data Deeply with Context](https://react.dev/learn/passing-data-deeply-with-context)
+- [My Summary](./src/managing-state/Context.md)
+
 <hr />
 
 - [Scaling Up with Reducer and Context](https://react.dev/learn/scaling-up-with-reducer-and-context)
