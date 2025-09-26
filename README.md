@@ -1,59 +1,57 @@
-# Great Frontend
+# Learn React
 
-## React hooks
+## Describing the UI
 
-- https://www.greatfrontend.com/react-interview-playbook/react-hooks
+- [Your First Component](https://react.dev/learn/your-first-component)
+- [Importing and Exporting Components](https://react.dev/learn/importing-and-exporting-components)
+- [Writing Markup with JSX](https://react.dev/learn/writing-markup-with-jsx)
+- [JavaScript in JSX with Curly Braces](https://react.dev/learn/javascript-in-jsx-with-curly-braces)
+- [Passing Props to a Component](https://react.dev/learn/passing-props-to-a-component)
+- [Conditional Rendering](https://react.dev/learn/conditional-rendering)
+- [Rendering Lists](https://react.dev/learn/rendering-lists)
+- [Keeping Components Pure](https://react.dev/learn/keeping-components-pure)
+- [Understanding Your UI as a Tree](https://react.dev/learn/understanding-your-ui-as-a-tree)
 
-## ---------- Final summary ----------
+## Adding Interactivity
 
-## Basic Concept
+- https://react.dev/learn/adding-interactivity
 
-https://www.greatfrontend.com/react-interview-playbook/react-basic-concepts
+## Managing State
 
-## ---------- Final summary ----------
+- [Reacting to Input with State](https://react.dev/learn/reacting-to-input-with-state)
+<hr />
 
-## Data fetching
+- [Choosing the State Structure](https://react.dev/learn/choosing-the-state-structure)
+<hr />
 
-https://www.greatfrontend.com/react-interview-playbook/react-data-fetching
+- [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components)
+- []()
+<hr />
 
-#### Basic data fetching:
+- [Preserving and Resetting State](https://react.dev/learn/preserving-and-resetting-state)
+- [My note](./src/managing-state/Preserving.md)
+<hr />
 
-- Using `useEffect` and `useState` for fetching data in functional components
-- Handling `loading` and `error` states
-- Understanding dependency arrays ([] for on-mount fetch, [query] for fetch-on-change)
-- Avoiding infinite loops due to missing dependencies.
-- Cleaning up side effects (e.g., aborting fetch requests to prevent setting state on unmount)
+- [Extracting State Logic into a Reducer](https://react.dev/learn/reusing-logic-with-custom-hooks)
+- [My note](./src/managing-state/Reducer.md)
 
-Q6: How do you cancel an API request if a component unmounts?
+<hr />
 
-- Using a cleanup function in useEffect to set an isMounted flag to false.
+- [Passing Data Deeply with Context](https://react.dev/learn/passing-data-deeply-with-context)
+- [My Summary](./src/managing-state/Context.md)
 
-```js
-useEffect(() => {
-  let isMounted = true;
+<hr />
 
-  fetch('https://jsonplaceholder.typicode.com/posts/1')
-    .then((response) => response.json())
-    .then((data) => {
-      if (isMounted) {
-        setData(data);
-      }
-    });
+- [Scaling Up with Reducer and Context](https://react.dev/learn/scaling-up-with-reducer-and-context)
+<hr />
 
-  return () => {
-    isMounted = false;
-  };
-}, []);
-```
+## Escape Hatches
 
-#### Coding:
-
-- [Like Button](./src/pages/LikeButton/LikeBtn.jsx)
-
-## ---------- Final summary ----------
-
-## Forms
-
-https://www.greatfrontend.com/react-interview-playbook/react-forms
-
-## ---------- Final summary ----------
+- [Referencing Values with Refs](https://react.dev/learn/referencing-values-with-refs)
+- [Manipulating the DOM with Refs](https://react.dev/learn/manipulating-the-dom-with-refs)
+- [Synchronizing with Effects](https://react.dev/learn/synchronizing-with-effects)
+- [You Might Not Need an Effect](https://react.dev/learn/you-might-not-need-an-effect)
+- [Lifecycle of Reactive Effects](https://react.dev/learn/lifecycle-of-reactive-effects)
+- [Separating Events from Effects](https://react.dev/learn/separating-events-from-effects)
+- [Removing Effect Dependencies](https://react.dev/learn/removing-effect-dependencies)
+- [Reusing Logic with Custom Hooks](https://react.dev/learn/reusing-logic-with-custom-hooks)
