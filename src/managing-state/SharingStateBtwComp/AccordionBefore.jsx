@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './styles.css';
 
-export default function Accordion() {
+export default function AccordionBefore() {
   const [openSection, setOpenSection] = useState({
     html: false,
     css: false,
