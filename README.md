@@ -25,7 +25,7 @@
 <hr />
 
 - [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components)
-- []()
+- [My Summary](./src/managing-state/SharingStateBtwComp.md)
 <hr />
 
 - [Preserving and Resetting State](https://react.dev/learn/preserving-and-resetting-state)
