@@ -48,10 +48,27 @@
 ## Escape Hatches
 
 - [Referencing Values with Refs](https://react.dev/learn/referencing-values-with-refs)
+- [my summary](./src/Escape-Hatches/useState-vs-useRef.md)
+
+<hr />
+
 - [Manipulating the DOM with Refs](https://react.dev/learn/manipulating-the-dom-with-refs)
+<hr />
+
 - [Synchronizing with Effects](https://react.dev/learn/synchronizing-with-effects)
+<hr />
+
 - [You Might Not Need an Effect](https://react.dev/learn/you-might-not-need-an-effect)
+<hr />
+
 - [Lifecycle of Reactive Effects](https://react.dev/learn/lifecycle-of-reactive-effects)
+<hr />
+
 - [Separating Events from Effects](https://react.dev/learn/separating-events-from-effects)
+<hr />
+
 - [Removing Effect Dependencies](https://react.dev/learn/removing-effect-dependencies)
+<hr />
+
 - [Reusing Logic with Custom Hooks](https://react.dev/learn/reusing-logic-with-custom-hooks)
+<hr />
