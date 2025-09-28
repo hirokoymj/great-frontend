@@ -19,7 +19,7 @@
 ## Managing State
 
 - [Reacting to Input with State](https://react.dev/learn/reacting-to-input-with-state)
-- [My Summary](./src/managing-state/Reacting-input-with-state.md)
+- [My Summary](./src/managing-state/Reacting-input-with-state.mdy)
 <hr />
 
 - [Choosing the State Structure](https://react.dev/learn/choosing-the-state-structure)

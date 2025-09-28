@@ -4,19 +4,17 @@
 
 ```js
 //===Form (Ex1)
-const [answer, setAnswer] = useState('');
-const [error, setError] = useState(null);
 const [status, setStatus] = useState('typing'); // 'typing', 'submitting', or 'success'
+const [error, setError] = useState(null);
 <form onSubmit={handleSubmit} />
-<button type="submit" disabled={answer.length === 0 || status === 'submitting'}>Submit</button>
+<textarea value={answer} onChange={handleTextareaChange} disabled={status === 'submitting'} />
+<button type="submit" disabled={answer.length === 0 || status === 'submitting'} />
 
 //=== Form (Q2)
-<input name="fistName" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-<button type="submit">Submit</button>
-<form onSubmit={e => {
-  e.preventDefault();
-  setIsEditing(!isEditing);
-}}/>
+const [isEditing, setIsEditing] = useState(false);
+<input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+<button type="submit" />
+<form onSubmit={e => {e.preventDefault();  setIsEditing(!isEditing)}}/>
 
 //===CSS
 const [isActive, setIsActive] = useState(false);
