@@ -30,7 +30,7 @@ const {currenUser, setCurrentUser} = useContext(CurrentUserContext);
 (currentUser !== null) && (<p>You logged in as {currentUser.name}.</p>)
 <Button onClick={() => {setCurrentUser({ name: 'Advika' });}}>Log in as Advika</Button>
 ```
-
+- Context lets the parent component make some information available to any component in the tree below
 - Passing data deeply into the tree
 - It doesn’t matter how many layers of components there are between the provider and the Button.
 
