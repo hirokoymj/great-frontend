@@ -1,26 +1,269 @@
-# TITLE
+# Choosing the State Structure
 
-## Summary (FINAL)
+**Summary (final)**
+
+```js
+//===========1. Don't mirror props in state.
+// WRONG
+function Message({ messageColor }) {
+  const [color, setColor] = useState(messageColor);
+// CORRECT- use prop directly.
+function Message({ messageColor }) {
+  const color = messageColor;
+
+//===== 2. Save only selected id instead of data.
+const initialItems = [
+  { title: 'pretzels', id: 0 },
+  { title: 'crispy seaweed', id: 1 },
+  { title: 'granola bar', id: 2 },
+];
+const [items, setItems] = useState(initialItems);
+const [selectedId, setSelectedId] = useState(0) //Save id only
+const selectedItem = items.find((item) => item.id === selectedId);
+<p>You picked {selectedItem.title}.</p>
+
+//============3. Form, multiple selections
+const [selectedOptions, setSelectedOptions] = useState([]);
+<input
+  type="checkbox"
+  name="subject"
+  value="english"
+  checked={selectedOptions.includes('english')} //true or false
+  onChange={handleCheckboxChange}
+/>
+```
 
 **References:**
+https://react.dev/learn/choosing-the-state-structure
 
-- url
-- url
+## Group related state.
 
-## Ex.1 - title (short text)
+```js
+// Before
+const [x, setX] = useState(0);
+const [y, setY] = useState(0);
+// After (Grouping)
+const [position, setPosition] = useState({ x: 0, y: 0 });
+```
 
-## Ex.2 - title (short text)
+## Avoid contradictions in state.
 
-## Ex.3 - title (short text)
+- Form, status, 'typing' (initial), 'sending', and 'sent':
 
-## Ex.4 - title (short text)
+## Avoid duplication in state.
 
-## Ex.5 - title (short text)
+- the contents of the selectedItem is the same object as one of the items inside the items list.
 
-## Summary (DRAFT)
+```js
+const initialItems = [
+  { title: 'pretzels', id: 0 },
+  { title: 'crispy seaweed', id: 1 },
+  { title: 'granola bar', id: 2 },
+];
+//===========BEFORE
+export default function Menu() {
+const [items, setItems] = useState(initialItems);
+const [selectedItem, setSelectedItem] = useState(items[0]); //!!!PROBLEM
+//============AFTER
+const [items, setItems] = useState(initialItems);
+const [selectedId, setSelectedId] = useState(0)
+```
+
+**Before**
+
+- `items = [{ id: 0, title: 'pretzels'}, ...]`
+- `selectedItem = {id: 0, title: 'pretzels'}`
+
+**After**
+
+- `items = [{ id: 0, title: 'pretzels'}, ...]`
+- `selectedId = 0`
+
+```js
+export default function Menu() {
+  const [items, setItems] = useState(initialItems);
+  const [selectedId, setSelectedId] = useState(0);
+
+  const selectedItem = items.find((item) => item.id === selectedId);
+
+  function handleItemChange(id, e) {
+    setItems(
+      items.map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            title: e.target.value,
+          };
+        } else {
+          return item;
+        }
+      })
+    );
+  }
+
+  return (
+    <>
+      <h2>What's your travel snack?</h2>
+      <ul>
+        {items.map((item, index) => (
+          <li key={item.id}>
+            <input
+              value={item.title}
+              onChange={(e) => {
+                handleItemChange(item.id, e);
+              }}
+            />{' '}
+            <button
+              onClick={() => {
+                setSelectedId(item.id);
+              }}>
+              Choose
+            </button>
+          </li>
+        ))}
+      </ul>
+      <p>You picked {selectedItem.title}.</p>
+    </>
+  );
+}
+```
+
+## Ex.2 - Don’t mirror props in state
+
+- If the parent component passes a different value of messageColor later (for example, 'red' instead of 'blue'), the color state variable would not be updated!
+
+```js
+//==WRONG
+function Message({ messageColor }) {
+  const [color, setColor] = useState(messageColor);
+//=== CORRECT
+function Message({ messageColor }) {
+  const color = messageColor; // use messageColor directly!!
+```
+
+## Summary (Draft)
 
 ## Quiz
 
 **====Quesiton 1====**
+
+- [Challenge 1 of 4: Fix a component that’s not updating](https://react.dev/learn/choosing-the-state-structure#fix-a-component-thats-not-updating)
+- Don’t mirror props in state.
+- when the color prop changes, this does not affect the state variable! So they get out of sync. Use the color prop **directly**.
+
+  ```js
+  //===BEFORE
+  function Clock(props) {
+    const [color, setColor] = useState(props.color);
+    return <h1 style={{ color: color }}>{props.time}</h1>;
+  }
+  //===After
+  function Clock({ color, time }) {
+    return <h1 style={{ color: color }}>{time}</h1>;
+  }
+  ```
+
+- 9/29
+
 **====Quesiton 2====**
-**====Quesiton 3====**
+
+- [Challenge 2 of 4: Fix a broken packing list ](https://react.dev/learn/choosing-the-state-structure#challenges)
+- 9/29
+
+**====Quesiton 4====**
+
+- [Challenge 4 of 4: Implement multiple selection](https://react.dev/learn/choosing-the-state-structure#implement-multiple-selection)
+- 9/29
+- My Question!!!
+  - Form multiple checkbox, array.include(va)
+  - checked={selectedOptions.includes('english')}
+
+```js
+function handleToggle(toggledId) {
+  // TODO: allow multiple selection / //My QUestion - how to get checked/unchecked???
+  // if (checked) {
+  //   setSelectedId((prev) => [...prev, toggleId]);
+  // } else {
+  //   const filtered = selectedIds.filter((d) => d.id !== toggleId);
+  //   setSelectedId(filtered);
+  // }
+
+  // Answer
+  if (selectedIds.includes(toggledId)) {
+    // Then remove this ID from the array.
+    setSelectedIds(selectedIds.filter((id) => id !== toggledId));
+  } else {
+    // Otherwise, add this ID to the array.
+    setSelectedIds([...selectedIds, toggledId]);
+  }
+}
+<ul>
+  {letters.map((letter) => (
+    <Letter
+      key={letter.id}
+      letter={letter}
+      isSelected={
+        // TODO: !!My Question!!
+        selectedIds.includes(letter.id)
+      }
+      onToggle={() => handleToggle(letter.id)}
+    />
+  ))}
+</ul>;
+```
+
+## Multiple Checkbox
+
+```js
+function CheckboxExample() {
+  const [selectedOptions, setSelectedOptions] = useState([]);
+
+  const handleCheckboxChange = (event) => {
+    const { value, checked } = event.target;
+    checked
+      ? setSelectedOptions((prev) => [...prev, value])
+      : setSelectedOptions((prev) => prev.filter((option) => option !== value));
+  };
+
+  return (
+    <div>
+      <h1>Multiple checkbox</h1>
+      <input
+        type="checkbox"
+        name="subject"
+        id="checkbox-english"
+        value="english"
+        checked={selectedOptions.includes('english')}
+        onChange={handleCheckboxChange}
+      />
+      <label htmlFor="checkbox-english" style={{ display: 'inline' }}>
+        English
+      </label>
+      <input
+        type="checkbox"
+        name="subject"
+        id="checkbox-maths"
+        value="maths"
+        checked={selectedOptions.includes('maths')}
+        onChange={handleCheckboxChange}
+      />
+      <label htmlFor="checkbox-maths" style={{ display: 'inline' }}>
+        Maths
+      </label>
+      <input
+        type="checkbox"
+        name="subject"
+        id="checkbox-physics"
+        value="physics"
+        checked={selectedOptions.includes('physics')}
+        onChange={handleCheckboxChange}
+      />
+      <label htmlFor="checkbox-physics" style={{ display: 'inline' }}>
+        Physics
+      </label>
+
+      <p>{selectedOptions.join(',')}</p>
+    </div>
+  );
+}
+```
