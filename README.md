@@ -24,6 +24,7 @@
 
 - [Choosing the State Structure](https://react.dev/learn/choosing-the-state-structure)
 - [My Summary](./src/managing-state/StateStructure.md)
+- 9/29
 <hr />
 
 - [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components)

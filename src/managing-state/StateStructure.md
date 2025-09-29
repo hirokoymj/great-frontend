@@ -11,7 +11,7 @@ function Message({ messageColor }) {
 function Message({ messageColor }) {
   const color = messageColor;
 
-//===== 2. Save only selected id instead of data.
+//===== 2. Save only an "id" instead of an object.
 const initialItems = [
   { title: 'pretzels', id: 0 },
   { title: 'crispy seaweed', id: 1 },
@@ -34,9 +34,10 @@ const [selectedOptions, setSelectedOptions] = useState([]);
 ```
 
 **References:**
-https://react.dev/learn/choosing-the-state-structure
 
-## Group related state.
+- https://react.dev/learn/choosing-the-state-structure
+
+## ex1. Group related state.
 
 ```js
 // Before
@@ -46,11 +47,11 @@ const [y, setY] = useState(0);
 const [position, setPosition] = useState({ x: 0, y: 0 });
 ```
 
-## Avoid contradictions in state.
+## ex2. Avoid contradictions in state.
 
 - Form, status, 'typing' (initial), 'sending', and 'sent':
 
-## Avoid duplication in state.
+## ex3. Avoid duplication in state.
 
 - the contents of the selectedItem is the same object as one of the items inside the items list.
 
@@ -141,42 +142,36 @@ function Message({ messageColor }) {
   const color = messageColor; // use messageColor directly!!
 ```
 
-## Summary (Draft)
+## Quiz/Challenge
 
-## Quiz
-
-**====Quesiton 1====**
+**===Quesiton 1===(don't mirror props in state)**
 
 - [Challenge 1 of 4: Fix a component that’s not updating](https://react.dev/learn/choosing-the-state-structure#fix-a-component-thats-not-updating)
-- Don’t mirror props in state.
 - when the color prop changes, this does not affect the state variable! So they get out of sync. Use the color prop **directly**.
 
-  ```js
-  //===BEFORE
-  function Clock(props) {
-    const [color, setColor] = useState(props.color);
-    return <h1 style={{ color: color }}>{props.time}</h1>;
-  }
-  //===After
-  function Clock({ color, time }) {
-    return <h1 style={{ color: color }}>{time}</h1>;
-  }
-  ```
+```js
+//===BEFORE
+function Clock(props) {
+  const [color, setColor] = useState(props.color);
+  return <h1 style={{ color: color }}>{props.time}</h1>;
+}
+//===After
+function Clock({ color, time }) {
+  return <h1 style={{ color: color }}>{time}</h1>;
+}
+```
 
-- 9/29
+<hr />
 
-**====Quesiton 2====**
+**===Quesiton 2===(redundant state)**
 
-- [Challenge 2 of 4: Fix a broken packing list ](https://react.dev/learn/choosing-the-state-structure#challenges)
-- 9/29
+- [Challenge 2 of 4: Fix a broken packing list ](https://react.dev/learn/choosing-the-state-structure#fix-a-broken-packing-list)
 
-**====Quesiton 4====**
+**===Quesiton 3===(Form multiple selection)**
 
 - [Challenge 4 of 4: Implement multiple selection](https://react.dev/learn/choosing-the-state-structure#implement-multiple-selection)
-- 9/29
-- My Question!!!
-  - Form multiple checkbox, array.include(va)
-  - checked={selectedOptions.includes('english')}
+- (My wrong point) if checked or not ==> array.include(v)
+- (My wrong point) checked={selectedOptions.includes('english')}
 
 ```js
 function handleToggle(toggledId) {
@@ -212,58 +207,20 @@ function handleToggle(toggledId) {
 </ul>;
 ```
 
-## Multiple Checkbox
+- 9/29
 
-```js
-function CheckboxExample() {
-  const [selectedOptions, setSelectedOptions] = useState([]);
+**===Quesiton 4===(multiple checkbox)**
 
-  const handleCheckboxChange = (event) => {
-    const { value, checked } = event.target;
-    checked
-      ? setSelectedOptions((prev) => [...prev, value])
-      : setSelectedOptions((prev) => prev.filter((option) => option !== value));
-  };
+- [Q4](./State-Structure/Q4-checkbox-multi.jsx)
+- [Q4 answer](./State-Structure/Q4-checkbox-multi.jsx)
+- https://www.greatfrontend.com/react-interview-playbook/react-forms#checkbox-input
 
-  return (
-    <div>
-      <h1>Multiple checkbox</h1>
-      <input
-        type="checkbox"
-        name="subject"
-        id="checkbox-english"
-        value="english"
-        checked={selectedOptions.includes('english')}
-        onChange={handleCheckboxChange}
-      />
-      <label htmlFor="checkbox-english" style={{ display: 'inline' }}>
-        English
-      </label>
-      <input
-        type="checkbox"
-        name="subject"
-        id="checkbox-maths"
-        value="maths"
-        checked={selectedOptions.includes('maths')}
-        onChange={handleCheckboxChange}
-      />
-      <label htmlFor="checkbox-maths" style={{ display: 'inline' }}>
-        Maths
-      </label>
-      <input
-        type="checkbox"
-        name="subject"
-        id="checkbox-physics"
-        value="physics"
-        checked={selectedOptions.includes('physics')}
-        onChange={handleCheckboxChange}
-      />
-      <label htmlFor="checkbox-physics" style={{ display: 'inline' }}>
-        Physics
-      </label>
+<hr />
 
-      <p>{selectedOptions.join(',')}</p>
-    </div>
-  );
-}
-```
+**===Quesiton 5===(Avoid duplicate in state)**
+
+- [Q5](./State-Structure/Q5.jsx)
+- [Q5 answer](./State-Structure/Q5-answer.jsx)
+- Stores the selected item as an id instead of an object.
+- **the contents of the selectedItem is the same object as one of the items inside the items list.**
+- 9/29
