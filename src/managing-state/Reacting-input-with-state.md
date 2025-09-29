@@ -117,48 +117,23 @@ function submitForm(answer) {
 - Remove non-essential state to avoid bugs and paradoxes.
 - Connect the event handlers to set state.
 
-## Quiz/Challenge
+## Challenge
 
-**====Quesiton 1 (CSS)====**
+**Challenge 1 (add/remove CSS)**
 
--[Challenge 1 of 3: Add and remove a CSS class](https://react.dev/learn/reacting-to-input-with-state#add-and-remove-a-css-class)
-
-- [Q1](./Reacting-input-with-state/Q1/App.jsx)
-
-**Solution**
-
-- When the image is active, the CSS classes are background and picture picture--active.
-- When the image is inactive, the CSS classes are background background--active and picture
-- A single boolean state variable is enough to remember whether the image is active
-- Need to stop the propagation so that clicking the image doesn’t register as a click on the background.
-
-```js
-const [isActive, setIsActive] = useState(false);
-
-let backgroundClassName = 'background';
-let pictureClassName = 'picture';
-if (isActive) {
-  pictureClassName += ' picture--active';
-} else {
-  backgroundClassName += ' background--active';
-}
-
-<div className={backgroundClassName} onClick={() => setIsActive(false)}>
-  <img
-    onClick={(e) => {
-      e.stopPropagation();
-      setIsActive(true);
-    }}
-  />
-</div>;
-```
+- [Challenge 1 of 3: Add and remove a CSS class](https://react.dev/learn/reacting-to-input-with-state#add-and-remove-a-css-class)
+- [Fork](https://codesandbox.io/p/sandbox/ymmt45?file=%2Fsrc%2FApp.js)
+- (Hint:) When the image is active, the CSS classes are background and picture picture--active.
+- (Hint:) When the image is inactive, the CSS classes are background background--active and picture
+- `const [isActive, setIsActive] = useState(false)`
 
 <hr />
 
-**====Quesiton 2 (Profile)====**
+**Challenge 2 (Profile)**
 
 - [Challenge 2 of 3: Profile editor](https://react.dev/learn/reacting-to-input-with-state#profile-editor)
-- [Q2](./Reacting-input-with-state/Q2/App.jsx)
+- [Fork](https://codesandbox.io/p/sandbox/2tgl4z?file=%2Fsrc%2Findex.js)
+- **my wrong point**
 
 ```js
 // Wrong
@@ -168,5 +143,7 @@ if (isActive) {
 // Submit
 <form onSubmit={handleSubmit}>
 <button type="submit">Submit</button>
-const handleSubmit = (event) => {event.preventDefault(); };
+const handleSubmit = (event) => {event.preventDefault()};
 ```
+
+<hr />
