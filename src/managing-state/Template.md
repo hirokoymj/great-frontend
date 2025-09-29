@@ -19,8 +19,11 @@
 
 ## Summary (DRAFT)
 
-## Quiz
+## Challenge
 
-**====Quesiton 2====**
-**====Quesiton 2====**
-**====Quesiton 2====**
+**Challenge 2 (a shot title)**
+
+- [Challenge 2 of 4: Fix a broken packing list ]()
+- [Fork]()
+- 9/29
+- (Hint/Wrong point/Solution)

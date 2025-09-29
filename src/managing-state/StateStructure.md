@@ -4,10 +4,11 @@
 
 ```js
 //===========1. Don't mirror props in state.
-// WRONG
+// Not update when prop changes a message color.
+// The state is only initialized during the first render.
 function Message({ messageColor }) {
   const [color, setColor] = useState(messageColor);
-// CORRECT- use prop directly.
+// CORRECT- use a prop variable directly.
 function Message({ messageColor }) {
   const color = messageColor;
 
@@ -131,7 +132,7 @@ export default function Menu() {
 
 ## Ex.2 - Don’t mirror props in state
 
-- If the parent component passes a different value of messageColor later (for example, 'red' instead of 'blue'), the color state variable would not be updated!
+Here, a color state variable is initialized to the messageColor prop. The problem is that if the parent component passes a different value of messageColor later (for example, 'red' instead of 'blue'), the color state variable would not be updated! **The state is only initialized during the first render.**
 
 ```js
 //==WRONG
@@ -142,85 +143,49 @@ function Message({ messageColor }) {
   const color = messageColor; // use messageColor directly!!
 ```
 
-## Quiz/Challenge
+## Challenge/Quiz
 
-**===Quesiton 1===(don't mirror props in state)**
+**Challenge 1 (don't mirror props in state)**
 
 - [Challenge 1 of 4: Fix a component that’s not updating](https://react.dev/learn/choosing-the-state-structure#fix-a-component-thats-not-updating)
-- when the color prop changes, this does not affect the state variable! So they get out of sync. Use the color prop **directly**.
-
-```js
-//===BEFORE
-function Clock(props) {
-  const [color, setColor] = useState(props.color);
-  return <h1 style={{ color: color }}>{props.time}</h1>;
-}
-//===After
-function Clock({ color, time }) {
-  return <h1 style={{ color: color }}>{time}</h1>;
-}
-```
+- [Fork](https://codesandbox.io/p/sandbox/7fcq3m?file=%2Fsrc%2FApp.js)
+- (Solution) when the color prop changes, this does not affect the state variable! So they get out of sync. Use the color prop **directly**.
+- 9/29
 
 <hr />
 
-**===Quesiton 2===(redundant state)**
+**Challenge 2 (redundant state)**
 
 - [Challenge 2 of 4: Fix a broken packing list ](https://react.dev/learn/choosing-the-state-structure#fix-a-broken-packing-list)
+- [Fork](https://codesandbox.io/p/sandbox/2ntwmg)
+- 9/29
+- (Hint/Wrong point/Solution)
 
-**===Quesiton 3===(Form multiple selection)**
+<hr />
+
+**Challenge 4**
 
 - [Challenge 4 of 4: Implement multiple selection](https://react.dev/learn/choosing-the-state-structure#implement-multiple-selection)
-- (My wrong point) if checked or not ==> array.include(v)
-- (My wrong point) checked={selectedOptions.includes('english')}
-
-```js
-function handleToggle(toggledId) {
-  // TODO: allow multiple selection / //My QUestion - how to get checked/unchecked???
-  // if (checked) {
-  //   setSelectedId((prev) => [...prev, toggleId]);
-  // } else {
-  //   const filtered = selectedIds.filter((d) => d.id !== toggleId);
-  //   setSelectedId(filtered);
-  // }
-
-  // Answer
-  if (selectedIds.includes(toggledId)) {
-    // Then remove this ID from the array.
-    setSelectedIds(selectedIds.filter((id) => id !== toggledId));
-  } else {
-    // Otherwise, add this ID to the array.
-    setSelectedIds([...selectedIds, toggledId]);
-  }
-}
-<ul>
-  {letters.map((letter) => (
-    <Letter
-      key={letter.id}
-      letter={letter}
-      isSelected={
-        // TODO: !!My Question!!
-        selectedIds.includes(letter.id)
-      }
-      onToggle={() => handleToggle(letter.id)}
-    />
-  ))}
-</ul>;
-```
-
+- [Fork](https://codesandbox.io/p/sandbox/4vw35r)
+- (Wrong point) if checked or not ==> array.include(v)
+- (Wrong point) checked={selectedOptions.includes('english')}
 - 9/29
 
-**===Quesiton 4===(multiple checkbox)**
+<hr />
+
+**Quesiton 1 (Avoid duplicate in state)**
+
+- [Fork](https://codesandbox.io/p/sandbox/7xsnvf?file=%2Fsrc%2FApp.js)
+- (Hint) Stores the selected item as an id instead of an object.
+  the contents of the selectedItem is the same object as one of the items inside the items list.
+- 9/29
+
+<hr />
+
+**Quesiton 2 (multiple checkbox)**
 
 - [Q4](./State-Structure/Q4-checkbox-multi.jsx)
 - [Q4 answer](./State-Structure/Q4-checkbox-multi.jsx)
 - https://www.greatfrontend.com/react-interview-playbook/react-forms#checkbox-input
 
 <hr />
-
-**===Quesiton 5===(Avoid duplicate in state)**
-
-- [Q5](./State-Structure/Q5.jsx)
-- [Q5 answer](./State-Structure/Q5-answer.jsx)
-- Stores the selected item as an id instead of an object.
-- **the contents of the selectedItem is the same object as one of the items inside the items list.**
-- 9/29
