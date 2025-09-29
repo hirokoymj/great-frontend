@@ -16,7 +16,7 @@
 
 - https://react.dev/learn/adding-interactivity
 
-## Managing State
+## Managing State - !!! 9/29
 
 - [Reacting to Input with State](https://react.dev/learn/reacting-to-input-with-state)
 - [My Summary](./src/managing-state/Reacting-input-with-state.md)

@@ -82,19 +82,18 @@ function Panel({ title, children, isActive, onShow }) {
 - Then pass the information down through props from their parent.
 - Pass **the event handlers** down so that **the children can change the parent’s state.**
 
-## Quiz
+## Challenge
 
-**====Quesiton 1====**
+**Challenge 1 (sync input)**
 
 - [Challenge 1 of 2: Synced inputs](https://react.dev/learn/sharing-state-between-components#synced-inputs) -[Q1 Code](./SharingStateBtwComp/Quiz1/App.js)
-- Solution:
-  Move the text state variable into the parent component along with the handleChange handler. Then pass them down as props to both of the Input components. This will keep them in sync.
+- [Fork](https://codesandbox.io/p/sandbox/g5pgdd?file=%2Fsrc%2FApp.js)
 
 <hr />
 
-**====Quesiton 2====**
+**Challenge 2 (Filter a list)**
 
 - [Challenge 2 of 2: Filtering a list ](https://react.dev/learn/sharing-state-between-components#filtering-a-list)
-- [Q2 Code](./SharingStateBtwComp/Quiz2/App.jsx)
-- Solution:
-  Lift the query state up into the FilterableList component. Call filterItems(foods, query) to get the filtered list and pass it down to the List. Now changing the query input is reflected in the list:
+- [Fork](https://codesandbox.io/p/sandbox/qmyrll?file=%2Fsrc%2FApp.js)
+
+<hr />
