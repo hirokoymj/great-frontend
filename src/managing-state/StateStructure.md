@@ -167,9 +167,36 @@ function Message({ messageColor }) {
 
 - [Challenge 4 of 4: Implement multiple selection](https://react.dev/learn/choosing-the-state-structure#implement-multiple-selection)
 - [Fork](https://codesandbox.io/p/sandbox/4vw35r)
+- [Fork answer](https://codesandbox.io/p/sandbox/react-dev-forked-htg8mp?file=%2Fsrc%2FApp.js%3A7%2C1)
 - (Wrong point) if checked or not ==> array.include(v)
 - (Wrong point) checked={selectedOptions.includes('english')}
-- 9/29
+- 9/29, 9/30 (x)
+
+```js
+//====9/30 TypeError selectedIds.includes is not a
+  function handleToggle(toggledId) {
+    // TODO: allow multiple selection
+    setSelectedIds(toggledId);
+    if (selectedIds.includes(toggledId)) {
+      //true ==> false
+      const filtered = selectedIds.filter((d) => d !== toggledId);
+    } else {}
+    <Letter
+      key={letter.id}
+      letter={letter}
+      isSelected={
+        selectedIds.includes(letter.id)
+      }
+//====Answer
+  function handleToggle(toggledId) {
+    // Was it previously selected?
+    if (selectedIds.includes(toggledId)) {
+      // Then remove this ID from the array.
+      setSelectedIds(selectedIds.filter(id =>
+        id !== toggledId
+      ));
+    } else {}
+```
 
 <hr />
 
