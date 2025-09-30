@@ -175,7 +175,8 @@ export default function TaskApp() {
 
 - [Challenge 1 of 4: Dispatch actions from event handlers](https://react.dev/learn/extracting-state-logic-into-a-reducer#dispatch-actions-from-event-handlers)
 - [Fork](https://codesandbox.io/p/sandbox/pzk8q6)
-- 9/25, 9/29
+- [Fork answer](https://codesandbox.io/p/sandbox/hj93jp?file=%2Fsrc%2FApp.js)
+- 9/25, 9/29, 9/30
 - (My wrong point) button, dispatch({type: xxx, action: xxx}) not working.
 
 <hr />
