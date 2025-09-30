@@ -2,7 +2,7 @@
 
 ## Summary (FINAL)
 
-- useReducer, [state, dispatch], action == object {}, reducer function with switch
+- useReducer, [state, dispatch], action == {type: xxx}, testReducer() switch(action.type){}
 - Convert `useState` with `useReducer`
 
 ```js
