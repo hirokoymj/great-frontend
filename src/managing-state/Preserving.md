@@ -1,8 +1,30 @@
 # Preserving and Resetting State
 
-- https://react.dev/learn/preserving-and-resetting-state#resetting-a-form-with-a-key
+**Summary (FINAL)**
+
+````js
+//====Ex1: a different component
+<div>
+  {counter}
+  {counter}
+</div>
+//===Ex2: same component
+<div>
+  {isFancy ? <Counter isFancy={true} /> : <Counter isFancy={false} />}
+</div>
+//Ex4 - reset a form with a key
+<Chat contact={to} />
+<Chat key={to.id} contact={to} />
+```
+
 
 ## Ex.1
+
+- [State is tied to a position in the render tree ](https://react.dev/learn/preserving-and-resetting-state#state-is-tied-to-a-position-in-the-tree)
+- [Fork](https://codesandbox.io/p/sandbox/dxkt9h?file=%2Fsrc%2FApp.js)
+- div --> Counter (0)
+- div --> Counter (0)
+- These are two separate counters because each is rendered at its own position in the tree.
 
 ```js
 export default function App() {
@@ -14,13 +36,13 @@ export default function App() {
     </div>
   );
 }
-```
-
-- div --> Counter (0)
-- div --> Counter (0)
-- These are two separate counters because each is rendered at its own position in the tree.
+````
 
 ## Ex.2
+
+- [Same component at the same position preserves state](https://react.dev/learn/preserving-and-resetting-state#same-component-at-the-same-position-preserves-state)
+- [Fork](https://codesandbox.io/p/sandbox/wx5rht?file=%2Fsrc%2FApp.js)
+- It’s the same component at the same position, so from React’s perspective, it’s the same counter.
 
 ```js
 const [isFancy, setIsFancy] = useState(false);
@@ -31,99 +53,15 @@ return (
 );
 ```
 
-- It’s the same component at the same position, so from React’s perspective, it’s the same counter.
+## Ex 4 - Resetting a form with a key
 
-## Ex 3 - Resetting state at the same position
-
-**Question**
-
-```js
-isPlayerA ? <Counter person="Taylor" /> : <Counter person="Sarah" />;
-```
-
-**Answer**
-
-Option 1: Rendering a component in different positions
+- [Resetting a form with a key](https://react.dev/learn/preserving-and-resetting-state#resetting-a-form-with-a-key)
+- [Fork](https://codesandbox.io/p/sandbox/vg7zz5?file=%2Fsrc%2FApp.js)
+- [Fork - Answer](https://codesandbox.io/p/sandbox/g2zzyc?file=%2Fsrc%2FApp.js)
+- Note : Remember that keys are not globally unique. They only specify the position within the parent.
 
 ```js
-<div>
-  {isPlayerA &&
-    <Counter person="Taylor" />
-  }
-  {!isPlayerA &&
-    <Counter person="Sarah" />
-  }
-```
-
-<hr />
-
-**Question**
-
-```js
-isPlayerA ? <Counter person="Taylor" /> : <Counter person="Sarah" />;
-```
-
-**Answer**
-
-Option 2: Resetting state with a key
-
-```js
-  return (
-    <div>
-      {isPlayerA ? (
-        <Counter key="Taylor" person="Taylor" />
-      ) : (
-        <Counter key="Sarah" person="Sarah" />
-      )}
-```
-
-# Ex 4 - Resetting a form with a key
-
-- https://react.dev/learn/preserving-and-resetting-state#resetting-a-form-with-a-key
-
-**Question**
-
-```js
-export default function Messenger() {
-  const [to, setTo] = useState(contacts[0]);
-  return (
-    <div>
-      <ContactList
-        contacts={contacts}
-        selectedContact={to}
-        onSelect={contact => setTo(contact)}
-      />
-      <Chat contact={to} />
-    </div>
-  )
-}
-
-const contacts = [
-  { id: 0, name: 'Taylor', email: 'taylor@mail.com' },
-  { id: 1, name: 'Alice', email: 'alice@mail.com' },
-  { id: 2, name: 'Bob', email: 'bob@mail.com' }
-];
-
-//Chat.js
-export default function Chat({ contact }) {
-  const [text, setText] = useState('');
-  return (
-    <section className="chat">
-      <textarea
-        value={text}
-        placeholder={'Chat to ' + contact.name}
-        onChange={e => setText(e.target.value)}
-      />
-      <br />
-      <button>Send to {contact.email}</button>
-    </section>
-  );
-}
-```
-
-**Answer**
-
-```js
+<Chat contact={to} />
 <Chat key={to.id} contact={to} />
 ```
 
@@ -135,133 +73,17 @@ export default function Chat({ contact }) {
 
 ## Challenge
 
-### Challenge 1 of 5: Fix disappearing input text
+**Challenge 1**
 
-https://react.dev/learn/preserving-and-resetting-state#challenges
-
-```js
-export default function App() {
-  const [showHint, setShowHint] = useState(false);
-  if (showHint) {
-    return (
-      <div>
-        <p>
-          <i>Hint: Your favorite city?</i>
-        </p>
-        <Form />
-        <button
-          onClick={() => {
-            setShowHint(false);
-          }}>
-          Hide hint
-        </button>
-      </div>
-    );
-  }
-  return (
-    <div>
-      <Form />
-      <button
-        onClick={() => {
-          setShowHint(true);
-        }}>
-        Show hint
-      </button>
-    </div>
-  );
-}
-
-function Form() {
-  const [text, setText] = useState('');
-  return <textarea value={text} onChange={(e) => setText(e.target.value)} />;
-}
-```
-
-**Answer**
-
-```js
-export default function App() {
-  const [showHint, setShowHint] = useState(false);
-  if (showHint) {
-    return (
-      <div>
-        <p>
-          <i>Hint: Your favorite city?</i>
-        </p>
-        <Form />
-        <button
-          onClick={() => {
-            setShowHint(false);
-          }}>
-          Hide hint
-        </button>
-      </div>
-    );
-  }
-  return (
-    <div>
-      <Form />
-      <button
-        onClick={() => {
-          setShowHint(true);
-        }}>
-        Show hint
-      </button>
-    </div>
-  );
-}
-```
+- [Challenge 1 of 5: Fix disappearing input text](https://react.dev/learn/preserving-and-resetting-state#challenges)
+- [Fork](https://codesandbox.io/p/sandbox/8zzz43?file=%2Fsrc%2FApp.js)
 
 <hr />
 
-### Challenge 2 of 5: Swap two form fields
+**Challenge 2**
 
-```js
-import { useState } from 'react';
+- [Challenge 2 of 5: Swap two form fields](https://react.dev/learn/preserving-and-resetting-state#swap-two-form-fields)
+- [Fork](https://codesandbox.io/p/sandbox/j9tfxk?file=%2Fsrc%2FApp.js)
 
-export default function App() {
-  const [reverse, setReverse] = useState(false);
-  let checkbox = (
-    <label>
-      <input
-        type="checkbox"
-        checked={reverse}
-        onChange={(e) => setReverse(e.target.checked)}
-      />
-      Reverse order
-    </label>
-  );
-  if (reverse) {
-    return (
-      <>
-        <Field label="Last name" />
-        <Field label="First name" />
-        {checkbox}
-      </>
-    );
-  } else {
-    return (
-      <>
-        <Field label="First name" />
-        <Field label="Last name" />
-        {checkbox}
-      </>
-    );
-  }
-}
-
-function Field({ label }) {
-  const [text, setText] = useState('');
-  return (
-    <label>
-      {label}:{' '}
-      <input
-        type="text"
-        value={text}
-        placeholder={label}
-        onChange={(e) => setText(e.target.value)}
-      />
-    </label>
-  );
-}
+<hr />
 ```
