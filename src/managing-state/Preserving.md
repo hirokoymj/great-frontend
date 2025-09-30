@@ -86,4 +86,3 @@ return (
 - [Fork](https://codesandbox.io/p/sandbox/j9tfxk?file=%2Fsrc%2FApp.js)
 
 <hr />
-```

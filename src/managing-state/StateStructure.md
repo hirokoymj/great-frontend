@@ -163,7 +163,7 @@ function Message({ messageColor }) {
 
 <hr />
 
-**Challenge 4**
+**Challenge 4 (multiple selection)**
 
 - [Challenge 4 of 4: Implement multiple selection](https://react.dev/learn/choosing-the-state-structure#implement-multiple-selection)
 - [Fork](https://codesandbox.io/p/sandbox/4vw35r)
