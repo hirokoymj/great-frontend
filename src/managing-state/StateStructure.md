@@ -200,7 +200,7 @@ function Message({ messageColor }) {
 
 <hr />
 
-**Quesiton 1 (Avoid duplicate in state)**
+**Question 1 (Avoid duplicate in state)**
 
 - [Fork](https://codesandbox.io/p/sandbox/7xsnvf?file=%2Fsrc%2FApp.js)
 - (Hint) Stores the selected item as an id instead of an object.
@@ -209,7 +209,7 @@ function Message({ messageColor }) {
 
 <hr />
 
-**Quesiton 2 (multiple checkbox)**
+**Question 2 (multiple checkbox)**
 
 - [Q4](./State-Structure/Q4-checkbox-multi.jsx)
 - [Q4 answer](./State-Structure/Q4-checkbox-multi.jsx)

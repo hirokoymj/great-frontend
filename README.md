@@ -32,11 +32,11 @@
 <hr />
 
 - [Preserving and Resetting State](https://react.dev/learn/preserving-and-resetting-state)
-- [My note](./src/managing-state/Preserving.md)
+- [My Summary](./src/managing-state/Preserving.md)
 <hr />
 
 - [Extracting State Logic into a Reducer](https://react.dev/learn/reusing-logic-with-custom-hooks)
-- [My note](./src/managing-state/Reducer.md)
+- [My Summary](./src/managing-state/Reducer.md)
 
 <hr />
 

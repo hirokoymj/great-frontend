@@ -133,35 +133,35 @@ clearInterval(intervalRef.current);
 
 ```
 
-## Quiz
+## Challenge
 
-**====Quesiton 1====**
+**Challenge 1 (Fix a broken chat input)**
 
-- [Challenge 1 of 4: Fix a broken chat input ](https://react.dev/learn/referencing-values-with-refs#fix-a-broken-chat-input)
-- Solution
-  Whenever your component re-renders (such as when you set state), all local variables get initialized from scratch. This is why you can’t save the timeout ID in a local variable like timeoutID and then expect another event handler to “see” it in the future. Instead, store it in a ref, which React will preserve between renders.
+- [Challenge 1 of 4: Fix a broken chat input](https://react.dev/learn/referencing-values-with-refs#fix-a-broken-chat-input)
+- [Fork](https://codesandbox.io/p/sandbox/hfpc36?file=%2Fsrc%2FApp.js)
+- [Fork Answer](https://codesandbox.io/p/sandbox/w494g9?file=%2Fsrc%2FApp.js)
 - 9/26
 
 <hr />
 
-**====Quesiton 2====**
+**Challenge 2 (Fix a component failing to re-render)**
 
-- [Challenge 2 of 4: Fix a component failing to re-render ](https://react.dev/learn/referencing-values-with-refs#fix-a-component-failing-to-re-render)
-- Solution
-  In this example, the current value of a ref is used to calculate the rendering output: {isOnRef.current ? 'On' : 'Off'}. This is a sign that this information should not be in a ref, and should have instead been put in state. To fix it, remove the ref and use state instead:
+- [Challenge 2 of 4: Fix a component failing to re-render](https://react.dev/learn/referencing-values-with-refs#fix-a-component-failing-to-re-render)
+- [Fork](https://codesandbox.io/p/sandbox/7z2dwh?file=%2Fsrc%2FApp.js)
+- [Fork Answer](https://codesandbox.io/p/sandbox/xvc23k?file=%2Fsrc%2FApp.js)
 - 9/26
 
 <hr />
 
-**====Quesiton 3====**
+**Challenge 3**
 
 <hr />
 
-**====Quesiton 4====**
+**Challenge 4 (Read the latest state)**
 
 - [Challenge 4 of 4: Read the latest state](https://react.dev/learn/referencing-values-with-refs#read-the-latest-state)
-- Solution
-  State works like a snapshot, so you can’t read the latest state from an asynchronous operation like a timeout. However, you can keep the latest input text in a ref. A ref is mutable, so you can read the current property at any time. Since the current text is also used for rendering, in this example, you will need both a state variable (for rendering), and a ref (to read it in the timeout). You will need to update the current ref value manually.
+- [Fork](https://codesandbox.io/p/sandbox/rjcw89?file=%2Fsrc%2FApp.js)
+- [Fork Answer](https://codesandbox.io/p/sandbox/cr92vn?file=%2Fsrc%2FApp.js)
 - 9/26
 
 <hr />
