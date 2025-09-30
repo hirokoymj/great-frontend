@@ -30,6 +30,7 @@ const {currenUser, setCurrentUser} = useContext(CurrentUserContext);
 (currentUser !== null) && (<p>You logged in as {currentUser.name}.</p>)
 <Button onClick={() => {setCurrentUser({ name: 'Advika' });}}>Log in as Advika</Button>
 ```
+
 - Context lets the parent component make some information available to any component in the tree below
 - Passing data deeply into the tree
 - It doesn’t matter how many layers of components there are between the provider and the Button.
@@ -318,66 +319,26 @@ function Button({ children, onClick }) {}
 
 <hr />
 
-## Summary (draft)
+## Challenge
 
-```js
-import { createContext, useContext, useState } from 'react';
-const ThemeContext = createContext(null);
-const CurrentUserContext = createContext(null);
-//=============================================
-//Parent - update a context value with useState hooks.
-<ThemeContext value="dark"></ThemeContext>;
+**Challenge 1:**
 
-const [theme, setTheme] = useState('light');
-<ThemeContext value={theme}></ThemeContext>
+[Challenge 1 of 1: Replace prop drilling with context ](https://react.dev/learn/passing-data-deeply-with-context#replace-prop-drilling-with-context)
 
-const [currentUser, setCurrentUser] = useState(null);
-<CurrentUserContext value={{currentUser, setCurrentUser}}></CurrentUserContext>
+- [Fork](https://codesandbox.io/p/sandbox/qrsw8c?file=%2Fsrc%2FApp.js)
+- [Fork Answer](https://codesandbox.io/p/sandbox/np5lzm?file=%2Fsrc%2FApp.js)
+- 9/28,9/30
 
-//=============================================
-// Child - Usage 1
-function Button({ children }) {
-  const theme = useContext(ThemeContext);
-  const className = 'button-' + theme;
+<hr />
 
-// Child - Usage 2
-function LoginButton() {
-  const {currentUser, setCurrentUser} = useContext(CurrentUserContext);
-  if (currentUser !== null) {
-    return <p>You logged in as {currentUser.name}.</p>;
-  }
-  <Button onClick={() => {setCurrentUser({ name: 'Advika' })}}>Log in as Advika</Button>
-}
-//Usage 3
-// Button {children}==> value = useContext(ThemeContext), className="button-" + theme
-```
+**Question 1:**
 
-## Quiz
-
-**===Question 1:===**
-
-- Create, update and use context
+- Create, update and use context (currentUser, setCurrentUser)
 
 **Answer**
 
 ```js
 import {createContext, useContext, useState} from "react"
-//==============EX1
-const ThemeContext = createContext(null)
-App
-<ThemeContext value={"dark"}></ThemeContext>
-Panel
-const theme = useContext(ThemeContext)
-const className="panel-" + theme
-//==============EX2
-const ThemeContext = createContext(null)
-App
-const [theme, setTheme] = useState(null);
-<ThemeContext value={{theme, setTheme}}></ThemeContext>
-Button
-const {theme, setTheme} = useContext(ThemeContext)
-const className="button-" + theme
-<Button onClick={() => {setTheme('light');}}>Switch a theme</Button>
 //==============EX3
 const CurrentUserContext = createContext(null)
 MyApp
@@ -387,61 +348,6 @@ LoginButton
 const {currenUser, setCurrentUser} = useContext(CurrentUserContext);
 (currentUser !== null) && (<p>You logged in as {currentUser.name}.</p>)
 <Button onClick={() => {setCurrentUser({ name: 'Advika' });}}>Log in as Advika</Button>
-```
-
-**===Question 2:===**
-
-**===Question 3:===**
-
-```js
-import { createContext, useContext } from 'react';
-
-const ThemeContext = createContext(null);
-
-export default function App() {
-  return (
-    <ThemeContext value="dark">
-      <Form />
-    </ThemeContext>
-  )
-}
-
-function Form() {
-  return (
-    <Panel title="Welcome">
-      <Button>Sign up</Button>
-      <Button>Log in</Button>
-    </Panel>
-  );
-}
-
-//className = "panel" + theme
-function Panel({}) {
-  return ()
-}
-//className = "button" + theme
-function Button({}) {
-  return ();
-}
-```
-
-**Answer**
-
-```js
-function Panel({ title, children }) {
-  const theme = useContext(ThemeContext);
-  return (
-    <section className={`panel-${theme}`}>
-      <h1>{title}</h1>
-      {children}
-    </section>
-  );
-}
-function Button({ children }) {
-  const theme = useContext(ThemeContext);
-  const className = 'button-' + theme;
-  return <button className={className}>{children}</button>;
-}
 ```
 
 <hr />
