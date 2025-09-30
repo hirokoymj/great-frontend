@@ -6,20 +6,53 @@
 - Convert `useState` with `useReducer`
 
 ```js
-import { useReducer } from 'react';
-
+// ===
 MyComponent;
 const [state, dispatch] = useReducer(taskReducer, { age: 42 });
-function handleClick() {
-  dispatch({ type: 'incremented_age' });
-}
-//====Reducer function
+dispatch({ type: 'incremented_age' });
 function taskReducer(state, action) {
   switch (action.type) {
     case 'incremented_age': {...}
     case 'changed_name': {...}
   }
 }
+// ===
+//dispatch/action
+dispatch({
+  type: 'changed_selection',
+  contactId: 1,
+});
+dispatch({
+  type: 'edited_message',
+  message: 'Hello!',
+});
+export const initialState = {
+  selectedId: 0,
+  message: 'Hello',
+};
+export function messengerReducer(state, action) {
+  switch (action.type) {
+    case 'changed_selection': {
+      return {
+        ...state,
+        selectedId: action.contactId,
+        message: '',
+      };
+    }
+    case 'edited_message': {
+      return {
+        ...state,
+        message: action.message,
+      };
+    }
+    default: {
+      throw Error('Unknown action: ' + action.type);
+    }
+  }
+}
+
+
+
 ```
 
 **References:**
@@ -138,10 +171,11 @@ export default function TaskApp() {
 - Write a reducer function that returns the next state for a given state and action.
 - Replace useState with useReducer.
 
-## Quiz
+## Challenge
 
 - [Challenge 1 of 4: Dispatch actions from event handlers](https://react.dev/learn/extracting-state-logic-into-a-reducer#dispatch-actions-from-event-handlers)
-  - 9/25
-- Challenge 2 of 4: Clear the input on sending a message
-- Challenge 3 of 4: Restore input values when switching between tabs
-- Challenge 4 of 4: Implement useReducer from scratch
+- [Fork](https://codesandbox.io/p/sandbox/pzk8q6)
+- 9/25, 9/29
+- (My wrong point) button, dispatch({type: xxx, action: xxx}) not working.
+
+<hr />

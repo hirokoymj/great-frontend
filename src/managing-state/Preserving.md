@@ -2,7 +2,7 @@
 
 **Summary (FINAL)**
 
-````js
+```js
 //====Ex1: a different component
 <div>
   {counter}
@@ -16,7 +16,6 @@
 <Chat contact={to} />
 <Chat key={to.id} contact={to} />
 ```
-
 
 ## Ex.1
 
@@ -36,7 +35,7 @@ export default function App() {
     </div>
   );
 }
-````
+```
 
 ## Ex.2
 
@@ -77,6 +76,7 @@ return (
 
 - [Challenge 1 of 5: Fix disappearing input text](https://react.dev/learn/preserving-and-resetting-state#challenges)
 - [Fork](https://codesandbox.io/p/sandbox/8zzz43?file=%2Fsrc%2FApp.js)
+- 9/29
 
 <hr />
 
