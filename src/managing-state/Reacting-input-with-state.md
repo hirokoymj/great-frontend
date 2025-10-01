@@ -3,25 +3,28 @@
 **Summary (FINAL)**
 
 ```js
-//===Form (Ex1)
+//===Form (Ex.1)
 const [status, setStatus] = useState('typing'); // 'typing', 'submitting', or 'success'
 const [error, setError] = useState(null);
 <form onSubmit={handleSubmit} />
 <textarea value={answer} onChange={handleTextareaChange} disabled={status === 'submitting'} />
 <button type="submit" disabled={answer.length === 0 || status === 'submitting'} />
 
-//=== Form (Q2)
+//=== Form (Challenge 2)
 const [isEditing, setIsEditing] = useState(false);
 <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
 <button type="submit" />
 <form onSubmit={e => {e.preventDefault();  setIsEditing(!isEditing)}}/>
+{isEditing ? (<input />): (<label/>)}
 
-//===CSS
+//===CSS (Challenge 1)
 const [isActive, setIsActive] = useState(false);
 let backgroundClassName = 'background';
 let pictureClassName = 'picture';
 if (isActive) pictureClassName += ' picture--active';
-e.stopPropagation();
+<div onClick={() => setIsActive(false)}>
+  <dic onClick={e => e.stopPropagation()} />
+</div>
 ```
 
 **References:**
@@ -30,13 +33,11 @@ e.stopPropagation();
 
 ## Ex.1 - Form (typing/submitting/success status)
 
-**Step 1: Identify your component’s different visual states**
-
-**Step 2: Determine what triggers those state changes**
-
-- Human inputs, like clicking a button, typing in a field, navigating a link.
 - Computer inputs, like a network response arriving, a timeout completing, an image loading.
 - In both cases, you must set state variables to update the UI.
+- Notice that human inputs often require `event handlers`!
+- https://react.dev/learn/reacting-to-input-with-state#step-5-connect-the-event-handlers-to-set-state
+- [Fork](https://codesandbox.io/p/sandbox/4vyzrg?file=%2Fsrc%2FApp.js)
 
 ```js
 const [answer, setAnswer] = useState('');
@@ -123,9 +124,9 @@ function submitForm(answer) {
 
 - [Challenge 1 of 3: Add and remove a CSS class](https://react.dev/learn/reacting-to-input-with-state#add-and-remove-a-css-class)
 - [Fork](https://codesandbox.io/p/sandbox/ymmt45?file=%2Fsrc%2FApp.js)
+- [Fork solution](https://codesandbox.io/p/sandbox/dfydsv?file=%2Fsrc%2FApp.js)
 - (Hint:) When the image is active, the CSS classes are background and picture picture--active.
 - (Hint:) When the image is inactive, the CSS classes are background background--active and picture
-- `const [isActive, setIsActive] = useState(false)`
 
 <hr />
 
@@ -133,6 +134,7 @@ function submitForm(answer) {
 
 - [Challenge 2 of 3: Profile editor](https://react.dev/learn/reacting-to-input-with-state#profile-editor)
 - [Fork](https://codesandbox.io/p/sandbox/2tgl4z?file=%2Fsrc%2Findex.js)
+- [Fork - solution](https://codesandbox.io/p/sandbox/8p2tgt?file=%2Fsrc%2FApp.js)
 - **my wrong point**
 
 ```js
@@ -144,6 +146,10 @@ function submitForm(answer) {
 <form onSubmit={handleSubmit}>
 <button type="submit">Submit</button>
 const handleSubmit = (event) => {event.preventDefault()};
+//e.stopPropagation()
+<div onClick={() => setIsActive(false)}>
+  <dic onClick={e => e.stopPropagation()} />
+</div>
 ```
 
 <hr />
