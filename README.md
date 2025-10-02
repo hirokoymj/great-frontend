@@ -16,6 +16,7 @@
 
 - [Responding to Events](https://react.dev/learn/responding-to-events)
 - [My Summary](./src/Interactivity/Responding-to-events.md)
+- 10/2
 <hr />
 
 - [State: A Component's Memory](https://react.dev/learn/state-a-components-memory)
