@@ -34,13 +34,13 @@
 - [My Summary](./src/Interactivity/Queueing-state.md)
 <hr />
 
-Updating Objects in State
-https://react.dev/learn/updating-objects-in-state
+- [Updating Objects in State](https://react.dev/learn/updating-objects-in-state)
+- [My Summary](./src/Interactivity/Objects-in-state.md)
+<hr />
 
-Updating Arrays in State
-https://react.dev/learn/updating-arrays-in-state
+- [Updating Arrays in State](https://react.dev/learn/updating-arrays-in-state)
+<hr />
 
-- []()
 - []()
 
 ## Managing State - !!! 9/29
