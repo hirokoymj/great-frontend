@@ -1,5 +1,38 @@
 # Updating Arrays in State
 
+**Summary(draft)**
+
+```js
+// Add
+setArtists([
+  ...artists,
+  {id: nextId++,name: name}
+]
+// Remove
+setArtists(artists.filter((a) => a.id !== artist.id));
+// Update
+	setTodos(todos.map(t => {
+	if (t.id === nextTodo.id) {
+		return nextTodo;
+	} else {
+		return t;
+	}
+	}));
+// Paticular index
+const nextArtists = [
+  ...artists.slice(0, 1),
+  { id: nextId++, name: name },
+  ...artists.slice(1),
+];
+// Reverse
+const nextList = [...list];
+nextList.reverse();
+setList(nextList);
+```
+
+**Reference:**
+https://react.dev/learn/updating-arrays-in-state
+
 **prefer (returns a new array)**
 
 - adding: [...arr]
@@ -88,6 +121,38 @@ nextList.reverse();
 setList(nextList);
 ```
 
+## Summary(draft)
+
+```js
+// Add
+setArtists([
+  ...artists,
+  {
+  id: nextId++,
+  name: name,
+}]
+// Remove
+setArtists(artists.filter((a) => a.id !== artist.id));
+// Update
+    setTodos(todos.map(t => {
+      if (t.id === nextTodo.id) {
+        return nextTodo;
+      } else {
+        return t;
+      }
+    }));
+// Paticular index
+const nextArtists = [
+  ...artists.slice(0, 1),
+  { id: nextId++, name: name },
+  ...artists.slice(1),
+];
+// Reverse
+const nextList = [...list];
+nextList.reverse();
+setList(nextList);
+```
+
 ## Challenge
 
 **Challenge 1**
@@ -117,10 +182,75 @@ const updated = products.map((d) => {
 **Challenge 2**
 
 - [Challenge 2 of 4: Remove an item from the shopping cart](https://react.dev/learn/updating-arrays-in-state#remove-an-item-from-the-shopping-cart)
+- 10/2 (x)
+
+```js
+const handleDecreaseClick = (productId) => {
+  const found = products.find((d) => d.id === productId);
+
+  if (found.count === 1) {
+    setProducts(products.filter((d) => d.id !== productId));
+  } else {
+    setProducts(
+      products.map((d) => {
+        if (d.id === productId) {
+          d.count = d.count - 1;
+        }
+        return d;
+      })
+    );
+  }
+};
+//Solution
+function handleDecreaseClick(productId) {
+  let nextProducts = products.map((product) => {
+    if (product.id === productId) {
+      return {
+        ...product,
+        count: product.count - 1,
+      };
+    } else {
+      return product;
+    }
+  });
+  nextProducts = nextProducts.filter((p) => p.count > 0);
+  setProducts(nextProducts);
+}
+```
 
 <hr />
 
 **Challenge 3**
 
 - [Challenge 3 of 4: Fix the mutations using non-mutative methods](https://react.dev/learn/updating-arrays-in-state#fix-the-mutations-using-non-mutative-methods)
+
+```js
+function handleChangeTodo(nextTodo) {
+  const todo = todos.find((t) => t.id === nextTodo.id);
+  todo.title = nextTodo.title;
+  todo.done = nextTodo.done;
+  const updated = todos.map((d) => {
+    if (d.id === todo.id) {
+      return todo;
+    } else {
+      return d;
+    }
+  });
+  setTodos(updated);
+}
+// Solution
+function handleChangeTodo(nextTodo) {
+  setTodos(
+    todos.map((t) => {
+      if (t.id === nextTodo.id) {
+        return nextTodo;
+      } else {
+        return t;
+      }
+    })
+  );
+}
+```
+
+- 10/2 (ok/X)
 <hr />
