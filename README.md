@@ -14,7 +14,34 @@
 
 ## Adding Interactivity
 
-- https://react.dev/learn/adding-interactivity
+- [Responding to Events](https://react.dev/learn/responding-to-events)
+- [My Summary](./src/Interactivity/Responding-to-events.md)
+<hr />
+
+- [State: A Component's Memory](https://react.dev/learn/state-a-components-memory)
+- [My Summary](./src/Interactivity/ComponentMemory.md)
+<hr />
+
+- [Render and Commit](https://react.dev/learn/render-and-commit)
+- [My Summary](./src/Interactivity/Render-and-commit.md)
+<hr />
+
+- [State as a Snapshot](https://react.dev/learn/state-as-a-snapshot)
+- [My Summary](./src/Interactivity/Snapshot.md)
+<hr />
+
+- [Queueing a Series of State Updates](https://react.dev/learn/queueing-a-series-of-state-updates)
+- [My Summary](./src/Interactivity/Queueing-state.md)
+<hr />
+
+Updating Objects in State
+https://react.dev/learn/updating-objects-in-state
+
+Updating Arrays in State
+https://react.dev/learn/updating-arrays-in-state
+
+- []()
+- []()
 
 ## Managing State - !!! 9/29
 

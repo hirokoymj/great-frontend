@@ -1,14 +1,14 @@
 # Choosing the State Structure
 
-**Summary (final)**
-
 ```js
 //===========1. Don't mirror props in state.
-// Not update when prop changes a message color.
 // The state is only initialized during the first render.
-function Message({ messageColor }) {
+// When props changes from Parents, UI doesn't be updated.
+// Props==read-only
+function Message({ messageColor }) { //Wrong!!
   const [color, setColor] = useState(messageColor);
-// CORRECT- use a prop variable directly.
+
+// CORRECT- Use the prop directly.
 function Message({ messageColor }) {
   const color = messageColor;
 
@@ -23,20 +23,48 @@ const [selectedId, setSelectedId] = useState(0) //Save id only
 const selectedItem = items.find((item) => item.id === selectedId);
 <p>You picked {selectedItem.title}.</p>
 
-//============3. Form, multiple selections
+//============3. Form: checkbox
+const [tac, setTac] = useState(false);
+<input type="checkbox" checked={tac} onChange={(e) => setTac(e.target.checked)} />
+
+//============4. Form: checkbox(multi)
 const [selectedOptions, setSelectedOptions] = useState([]);
 <input
-  type="checkbox"
-  name="subject"
-  value="english"
-  checked={selectedOptions.includes('english')} //true or false
-  onChange={handleCheckboxChange}
+	type="checkbox"
+	name="subject"
+	value="math"
+	checked={selectedOptions.includes('math')}
+	onChange={(e) => {
+	const { value, checked } = e.target;
+	checked
+		? setSelectedOptions((prev) => [...prev, value])
+		: setSelectedOptions((prev) =>
+			prev.filter((option) => option !== value)
+		);
+	}}
 />
 ```
+
+**Form**
+
+- Text `<input>`, value, `setState(e.target.value)`
+- Checkbox `<input>`, checked, `setState(e.target.checked), useState(false)`
+- Checkbox (multi) `<input>`, value=v, checked, `selectedOptions.includes(v), useState([]), value=xxx`
+- Radio `<input>`, value=v, checked, `setState(e.target.value)`
+- Textarea `<textarea>`, value, `setState(e.target.value)`
+- Dropdown `<select>`, value, `setState(e.target.value)`
+
+**Props vs State**
+
+| Feature    | Props           | State                      |
+| ---------- | --------------- | -------------------------- |
+| Mutability | read-only       | Mutable                    |
+| Data Flow  | Parent to child | Internal to the component. |
 
 **References:**
 
 - https://react.dev/learn/choosing-the-state-structure
+- https://www.greatfrontend.com/react-interview-playbook/react-forms#summary
 
 ## ex1. Group related state.
 

@@ -6,20 +6,19 @@ function CheckboxExample() {
   const [tac, setTac] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
 
-  const handleCheckboxChange = (event) => {
-    const { value, checked } = event.target;
-    checked
-      ? setSelectedOptions((prev) => [...prev, value])
-      : setSelectedOptions((prev) => prev.filter((option) => option !== value));
-  };
+  //   const handleCheckboxChange = (event) => {
+  //     const { value, checked } = event.target;
+  //     checked
+  //       ? setSelectedOptions((prev) => [...prev, value])
+  //       : setSelectedOptions((prev) => prev.filter((option) => option !== value));
+  //   };
 
   return (
     <div>
       <input
         type="checkbox"
-        name="tac"
         checked={tac}
-        onChange={(event) => setTac(event.target.checked)}
+        onChange={(e) => setTac(e.target.checked)}
       />
       <label htmlFor="checkbox-input">Agree to terms and conditions</label>
       <p>Agree: {tac ? 'checked' : 'unchecked'}</p>
@@ -30,7 +29,14 @@ function CheckboxExample() {
         id="checkbox-english"
         value="english"
         checked={selectedOptions.includes('english')}
-        onChange={handleCheckboxChange}
+        onChange={(event) => {
+          const { value, checked } = event.target;
+          checked
+            ? setSelectedOptions((prev) => [...prev, value])
+            : setSelectedOptions((prev) =>
+                prev.filter((option) => option !== value)
+              );
+        }}
       />
       <label htmlFor="checkbox-english" style={{ display: 'inline' }}>
         English
