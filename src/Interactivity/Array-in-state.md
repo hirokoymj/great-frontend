@@ -5,19 +5,19 @@
 ```js
 // Add
 setArtists([
-  ...artists,
-  {id: nextId++,name: name}
+	...artists,
+	{id: nextId++, name}
 ]
 // Remove
 setArtists(artists.filter((a) => a.id !== artist.id));
-// Update
-	setTodos(todos.map(t => {
-	if (t.id === nextTodo.id) {
-		return nextTodo;
-	} else {
-		return t;
-	}
-	}));
+// Change
+setTodos(todos.map(t => {
+if (t.id === nextTodo.id) {
+	return nextTodo;
+} else {
+	return t;
+}
+}));
 // Paticular index
 const nextArtists = [
   ...artists.slice(0, 1),
@@ -30,22 +30,37 @@ nextList.reverse();
 setList(nextList);
 ```
 
+**prefer (returns a new array)**
+
+- adding: `[...arr]`
+- removing: `filter`
+- replacing: `map`
+- insert at a paticular position: `slice`
+- reverse: `reverse`
+
 **Reference:**
 https://react.dev/learn/updating-arrays-in-state
 
-**prefer (returns a new array)**
-
-- adding: [...arr]
-- removing: filter, slice
-- replacing: map
-- sorting: copy the array first and then reverse/sort
-
 ## Pitfall
 
-- slice lets you copy an array or a part of it.
+- slice == shallow copy.
 - splice **mutates** the array (to insert or delete items).
 
-## Ex1.Adding to an array
+```js
+//=== Slice
+const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+console.log(animals.slice(2));
+// ["camel", "duck", "elephant"]
+```
+
+```js
+const myFish = ['angel', 'clown', 'drum', 'mandarin', 'sturgeon'];
+const removed = myFish.splice(3, 1);
+// myFish is ["angel", "clown", "drum", "sturgeon"]
+// removed is ["mandarin"]
+```
+
+## Ex1. Adding
 
 - https://react.dev/learn/updating-arrays-in-state#adding-to-an-array
 - [fork](https://codesandbox.io/p/sandbox/6v33nx)
@@ -59,7 +74,7 @@ setArtists([
 }]
 ```
 
-## Ex2. Remove from an array
+## Ex2. Removing
 
 - https://react.dev/learn/updating-arrays-in-state#removing-from-an-array
 - [Fork](https://codesandbox.io/p/sandbox/gyy8t8)
@@ -68,28 +83,29 @@ setArtists([
 setArtists(artists.filter((a) => a.id !== artist.id));
 ```
 
-## Transforming an array
+## Ex3. Replacing
 
-- https://react.dev/learn/updating-arrays-in-state#transforming-an-array
+- https://react.dev/learn/updating-arrays-in-state#replacing-items-in-an-array
 
 ```js
-const nextShapes = shapes.map((shape) => {
-  if (shape.type === 'square') {
-    return shape;
+const [counters, setCounters] = useState(initialCounters);
+const nextCounters = counters.map((c, i) => {
+  if (i === index) {
+    return c + 1;
   } else {
-    return {
-      ...shape,
-      y: shape.y + 50,
-    };
+    return c;
   }
 });
+setCounters(nextCounters);
 ```
 
-## Ex3. Inserting into an array at a paticular position
+## Ex4. Inserting at a paticular position
 
+- https://react.dev/learn/updating-arrays-in-state#inserting-into-an-array
 - `... array` spread syntax together with the `slice()` method
 
 ```js
+//Ex.1
 const artists = [
   { id: 0, name: 'Marta Colvin Andrade' },
   { id: 1, name: 'Lamidi Olonade Fakeye' },
@@ -100,6 +116,13 @@ const nextArtists = [
   { id: nextId++, name: name },
   ...artists.slice(1),
 ];
+// Ex.2
+const insertAt = 2; //Could be any index
+const nextArtists = [
+  ...artists.slice(0, insertAt),
+  { id: nextId++, name: name },
+  ...artists.slice(insertAt),
+];
 ```
 
 ```js
@@ -108,12 +131,9 @@ console.log(animals.slice(0, 1)); //[ant]
 console.log(animals.slice(1)); //["bison", "camel", "duck", "elephant"]
 ```
 
-## Ex4. Reverse
+## Ex5. Reversing
 
 - https://react.dev/learn/updating-arrays-in-state#making-other-changes-to-an-array
-
-1. copy the original array using [...]
-2. array.reverse()
 
 ```js
 const nextList = [...list];
@@ -121,10 +141,16 @@ nextList.reverse();
 setList(nextList);
 ```
 
+## Recap
+
+- create a new version of it, and update the state to it.
+- You can use the [...arr, newItem] array spread syntax to create arrays with new items.
+- You can use filter() and map() to create new arrays with filtered or transformed items.
+
 ## Summary(draft)
 
 ```js
-// Add
+//add
 setArtists([
   ...artists,
   {
@@ -133,24 +159,25 @@ setArtists([
 }]
 // Remove
 setArtists(artists.filter((a) => a.id !== artist.id));
-// Update
-    setTodos(todos.map(t => {
-      if (t.id === nextTodo.id) {
-        return nextTodo;
-      } else {
-        return t;
-      }
-    }));
-// Paticular index
+// Change
+  setTodos(todos.map(t => {
+    if (t.id === nextTodo.id) {
+      return nextTodo;
+    } else {
+      return t;
+    }
+  }));
+// A paticular index
+const index = 2;
 const nextArtists = [
-  ...artists.slice(0, 1),
+  ...artists.slice(0, index),
   { id: nextId++, name: name },
-  ...artists.slice(1),
+  ...artists.slice(index),
 ];
 // Reverse
-const nextList = [...list];
-nextList.reverse();
-setList(nextList);
+const nextList = [...list]; //Copy
+nextList.reverse(); //Reverse
+setList(nextList); //Setter
 ```
 
 ## Challenge
@@ -252,5 +279,6 @@ function handleChangeTodo(nextTodo) {
 }
 ```
 
-- 10/2 (ok/X)
+- 10/2 (X)
+
 <hr />

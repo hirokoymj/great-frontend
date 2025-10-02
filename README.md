@@ -39,9 +39,9 @@
 <hr />
 
 - [Updating Arrays in State](https://react.dev/learn/updating-arrays-in-state)
+- [My Summary](./src/Interactivity/Array-in-state.md)
+- 10/2
 <hr />
-
-- []()
 
 ## Managing State - !!! 9/29
 
