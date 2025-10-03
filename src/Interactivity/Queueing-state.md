@@ -1,83 +1,90 @@
 # Queueing a Series of State Updates
 
-The primary difference between setState(n) and setState(n => n + 1) is how React handles the state update when multiple updates are queued in the same render cycle.
-
-- passing the next state value like setNumber(number + 1)
-- n => n + 1 is called an updater function.
-
 **References:**
 
 - https://react.dev/learn/queueing-a-series-of-state-updates
-- https://react.dev/reference/react/useState#examples-updater
 
-- You might expect that clicking the “+3” button will increment the counter three times because it calls setNumber(number + 1) three times:
-
-```js
-export default function Counter() {
-  const [number, setNumber] = useState(0);
-
-  return (
-    <>
-      <h1>{number}</h1>
-      <button
-        onClick={() => {
-          setNumber(number + 1);
-          setNumber(number + 1);
-          setNumber(number + 1);
-        }}>
-        +3
-      </button>
-    </>
-  );
-}
-//
-setNumber(0 + 1);
-setNumber(0 + 1);
-setNumber(0 + 1);
-```
-
-- However, as you might recall from the previous section, each render’s state values are fixed, so the value of number inside the first render’s event handler is always 0, no matter how many times you call setNumber(1):
-
-- But there is one other factor at play here. React waits until all code in the event handlers has run before processing your state updates. **This is why the re-render only happens after all these setNumber() calls.**
-
-- This might remind you of a waiter taking an order at the restaurant. A waiter doesn’t run to the kitchen at the mention of your first dish! Instead, they let you finish your order, let you make changes to it, and even take orders from other people at the table.
-
-## Updating the same state multiple times before the next render
+## Ex.1
 
 ```js
-setNumber((n) => n + 1);
-setNumber((n) => n + 1);
-setNumber((n) => n + 1);
+const [number, setNumber] = useState(0);
+<button
+  onClick={() => {
+    setNumber(number + 1);
+    setNumber(number + 1);
+    setNumber(number + 1);
+  }}>
+  +3
+</button>;
+// setNumber(0 + 1);
+// setNumber(0 + 1);
+// setNumber(0 + 1);
+// Result: 1 -> 2 -> 3 -> 4
 ```
 
-- Here, n => n + 1 is called an **updater function**. When you pass it to a state setter:
-- React queues this function to be processed after all the other code in the event handler has run.
-- During the next render, React goes through the queue and gives you the final updated state.
+| queued update | n   | returns   |
+| ------------- | --- | --------- |
+| number + 1    | 0   | 0 + 1 = 1 |
+| number + 1    | 0   | 0 + 1 = 1 |
+| number + 1    | 0   | 0 + 1 = 1 |
 
-|     |     |     |
-| --- | --- | --- |
-|     |     |     |
-|     |     |     |
-|     |     |     |
+- **Result**: Each render’s state values are fixed, so the value of number inside the first render’s event handler is always 0, no matter how many times you call setNumber(1):
 
-## What happens if you update state after replacing it
+## Ex.2
+
+- [Updating the same state multiple times before the next render](https://react.dev/learn/queueing-a-series-of-state-updates#updating-the-same-state-multiple-times-before-the-next-render)
 
 ```js
-<button onClick={() => {
-  setNumber(number + 5);
-  setNumber(n => n + 1);
-}}>
+const [number, setNumber] = useState(0);
+<button
+  onClick={() => {
+    setNumber((n) => n + 1);
+    setNumber((n) => n + 1);
+    setNumber((n) => n + 1);
+  }}>
+  +3
+</button>;
 ```
 
-## Note:
+| queued update | n   | returns   |
+| ------------- | --- | --------- |
+| n => n + 1    | 0   | 0 + 1 = 1 |
+| n => n + 1    | 1   | 1 + 1 = 2 |
+| n => n + 1    | 2   | 2 + 1 = 3 |
 
-```text
-You may have noticed that setState(5) actually works like setState(n => 5), but n is unused!
-```
+- `n => n + 1` is called an updater function
+- React stores 3 as the final result and returns it from useState.
 
-## What happens if you replace state after updating it
+## Ex.3
+
+- [What happens if you update state after replacing it](https://react.dev/learn/queueing-a-series-of-state-updates#what-happens-if-you-update-state-after-replacing-it)
 
 ```js
+const [number, setNumber] = useState(0);
+
+<button
+  onClick={() => {
+    setNumber(number + 5);
+    setNumber((n) => n + 1);
+  }}>
+  Increase the number
+</button>;
+```
+
+| queued update    | n         | returns   |
+| ---------------- | --------- | --------- |
+| ”replace with 5” | 0(unused) | 5         |
+| n => n + 1       | 5         | 5 + 1 = 6 |
+
+**Result:**
+React stores 6 as the final result and returns it from useState.
+
+## Ex.4
+
+- [What happens if you replace state after updating it](https://react.dev/learn/queueing-a-series-of-state-updates#what-happens-if-you-replace-state-after-updating-it)
+
+```js
+const [number, setNumber] = useState(0);
 <button onClick={() => {
   setNumber(number + 5);
   setNumber(n => n + 1);
@@ -85,17 +92,19 @@ You may have noticed that setState(5) actually works like setState(n => 5), but 
 }}>
 ```
 
-1. `setNumber(number + 5)`: number is 0, so setNumber(0 + 5). React adds “replace with 5” to its queue.
-2. `setNumber(n => n + 1)`: n => n + 1 is an **updater function**. React adds that function to its queue.
-3. `setNumber(42)`: React adds “replace with 42” to its queue
+| queued update     | n          | returns   |
+| ----------------- | ---------- | --------- |
+| ”replace with 5”  | 0(unused)  | 5         |
+| n => n + 1        | 5          | 5 + 1 = 6 |
+| ”replace with 42” | 6 (unused) | 42        |
 
-|     |     |     |
-| --- | --- | --- |
-|     |     |     |
-|     |     |     |
-|     |     |     |
+- Result: Then React stores 42 as the final result and returns it from useState.
 
-Then React stores 42 as the final result and returns it from useState.
+## Note:
+
+```text
+You may have noticed that setState(5) actually works like setState(n => 5), but n is unused!
+```
 
 ## Summary
 

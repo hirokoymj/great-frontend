@@ -35,6 +35,7 @@
 
 - [Queueing a Series of State Updates](https://react.dev/learn/queueing-a-series-of-state-updates)
 - [My Summary](./src/Interactivity/Queueing-state.md)
+- 10/3
 <hr />
 
 - [Updating Objects in State](https://react.dev/learn/updating-objects-in-state)
