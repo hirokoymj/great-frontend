@@ -21,14 +21,14 @@ const {theme, setTheme} = useContext(ThemeContext)
 const className="button-" + theme
 <Button onClick={() => {setTheme('light');}}>Switch a theme</Button>
 //==============EX3
-const CurrentUserContext = createContext(null)
+const UserContext = createContext(null)
 MyApp
-const [currentUser, setCurrentUser] = useState(null);
-<CurrentUseContext value={{currentUser, setCurrentUser}}></CurrenUserContext>
+const [user, setUser] = useState(null);
+<UserContext value={{user, setUser}}></UserContext>
 LoginButton
-const {currenUser, setCurrentUser} = useContext(CurrentUserContext);
-(currentUser !== null) && (<p>You logged in as {currentUser.name}.</p>)
-<Button onClick={() => {setCurrentUser({ name: 'Advika' });}}>Log in as Advika</Button>
+const {user, setUser} = useContext(UserContext);
+(user !== null) && (<p>You logged in as {user.name}.</p>)
+<Button onClick={() => {setUser({ name: 'Advika' });}}>Log in as Advika</Button>
 ```
 
 - Context lets the parent component make some information available to any component in the tree below
