@@ -1,14 +1,60 @@
 # State as a Snapshot
 
-### When React re-renders a component:
+https://react.dev/learn/state-as-a-snapshot
 
-React calls your function again.
-Your function returns a new JSX snapshot.
-React then updates the screen to match the snapshot your function returned.
+## Rendering takes a snapshot in time
+
+“Rendering” means that React is calling your component, which is a function. The JSX you return from that function is like a snapshot of the UI in time. Its props, event handlers, and local variables were all calculated using its state at the time of the render.
+
+```js
+export default function Counter() {
+  const [number, setNumber] = useState(0);
+
+  return (
+    <>
+      <h1>{number}</h1>
+      <button
+        onClick={() => {
+          setNumber(number + 1);
+          setNumber(number + 1);
+          setNumber(number + 1);
+        }}>
+        +3
+      </button>
+    </>
+  );
+}
+```
+
+**Setting state only changes it for the next render**. During the first render, number was 0. This is why, in that render’s onClick handler, the value of number is still 0 even after setNumber(number + 1) was called:
+
+```js
+<button
+  onClick={() => {
+    setNumber(0 + 1);
+    setNumber(0 + 1);
+    setNumber(0 + 1);
+  }}>
+  +3
+</button>
+```
+
+For the next render, number is 1
+
+```js
+<button
+  onClick={() => {
+    setNumber(1 + 1);
+    setNumber(1 + 1);
+    setNumber(1 + 1);
+  }}>
+  +3
+</button>
+```
 
 ## Recap
 
-- you saw that setting state requests a re-render from React.
+- that setting state requests a re-render from React.
 - Setting state requests a new render.
 - When you call useState, React gives you a snapshot of the state for that render.
 

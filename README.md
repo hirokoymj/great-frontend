@@ -21,10 +21,12 @@
 
 - [State: A Component's Memory](https://react.dev/learn/state-a-components-memory)
 - [My Summary](./src/Interactivity/ComponentMemory.md)
+- 10/2
 <hr />
 
 - [Render and Commit](https://react.dev/learn/render-and-commit)
 - [My Summary](./src/Interactivity/Render-and-commit.md)
+- 10/2
 <hr />
 
 - [State as a Snapshot](https://react.dev/learn/state-as-a-snapshot)

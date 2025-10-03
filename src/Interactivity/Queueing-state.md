@@ -1,4 +1,14 @@
-# bQueueing a Series of State Updates
+# Queueing a Series of State Updates
+
+The primary difference between setState(n) and setState(n => n + 1) is how React handles the state update when multiple updates are queued in the same render cycle.
+
+- passing the next state value like setNumber(number + 1)
+- n => n + 1 is called an updater function.
+
+**References:**
+
+- https://react.dev/learn/queueing-a-series-of-state-updates
+- https://react.dev/reference/react/useState#examples-updater
 
 - You might expect that clicking the “+3” button will increment the counter three times because it calls setNumber(number + 1) three times:
 
@@ -113,4 +123,62 @@ setPending((pending) => pending + 1);
 await delay(3000);
 setPending((pending) => pending - 1);
 setCompleted((completed) => completed + 1);
+```
+
+# useState
+https://react.dev/reference/react/useState#examples-updater
+
+## The difference between passing an updater and passing the next state directly
+
+**Example 1 of 2: Passing the updater function** 
+[]()
+
+```js
+export default function Counter() {
+  const [age, setAge] = useState(42);
+
+  function increment() {
+    setAge(a => a + 1);
+  }
+
+  return (
+    <>
+      <h1>Your age: {age}</h1>
+      <button onClick={() => {
+        increment();
+        increment();
+        increment();
+      }}>+3</button>
+      <button onClick={() => {
+        increment();
+      }}>+1</button>
+    </>
+  );
+}
+```
+
+[Example 2 of 2: Passing the next state directly](https://react.dev/reference/react/useState#passing-the-next-state-directly) 
+
+```js
+export default function Counter() {
+  const [age, setAge] = useState(42);
+
+  function increment() {
+    setAge(age + 1);
+  }
+
+  return (
+    <>
+      <h1>Your age: {age}</h1>
+      <button onClick={() => {
+        increment();
+        increment();
+        increment();
+      }}>+3</button>
+      <button onClick={() => {
+        increment();
+      }}>+1</button>
+    </>
+  );
+}
 ```
