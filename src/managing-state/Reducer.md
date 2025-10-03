@@ -2,7 +2,10 @@
 
 ## Summary (FINAL)
 
-- useReducer, [state, dispatch], action == {type: xxx}, testReducer() switch(action.type){}
+- [state, dispatch] = useReducer()
+- action == {type: xxx}
+- dispatch(action)
+- taskReducer(switch, action.type)
 - Convert `useState` with `useReducer`
 
 ```js
@@ -46,13 +49,10 @@ export function messengerReducer(state, action) {
       };
     }
     default: {
-      throw Error('Unknown action: ' + action.type);
+      throw Error("");
     }
   }
 }
-
-
-
 ```
 
 **References:**
@@ -170,6 +170,12 @@ export default function TaskApp() {
 - Dispatch actions from event handlers.
 - Write a reducer function that returns the next state for a given state and action.
 - Replace useState with useReducer.
+
+## Summary (draft)
+
+```js
+
+```
 
 ## Challenge
 

@@ -70,7 +70,7 @@
 
 - [Extracting State Logic into a Reducer](https://react.dev/learn/reusing-logic-with-custom-hooks)
 - [My Summary](./src/managing-state/Reducer.md)
-
+- 10/3
 <hr />
 
 - [Passing Data Deeply with Context](https://react.dev/learn/passing-data-deeply-with-context)
