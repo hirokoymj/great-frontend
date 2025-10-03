@@ -7,6 +7,10 @@
 | Value Access | Accessed directly (e.g., count).    | Accessed via .current property (e.g., inputRef.current)   |
 | Mutability   | setter function                     | Ref.current property                                      |
 
+**useRef vs regular variable(let, const)**
+
+- Regular variables like `let timeoutID` don’t “survive” between re-renders because every render runs your component (and initializes its variables) from scratch.
+
 **Summary (FINAL)**
 
 ```text
@@ -14,7 +18,7 @@ useState - Trigger re-render on value change, Affect UI
 useRef - Does NOT trigger re-render on value change, Not affect UI using non-UI data (clearTimer)
 Access: state, myRef.current,
 Update: setter function, Ref.current
-clearInterval(intervalRef.current);
+Ex. clearInterval(intervalRef.current);
 ```
 
 **References:**
@@ -122,6 +126,11 @@ export default function Counter() {
 
 **When to use refs**
 
+- Storing **timeout IDs**
+- Storing and manipulating **DOM elements**, which we cover on the next page
+- Storing other objects that aren’t necessary to calculate the JSX.
+- If your component needs to store some value, but it doesn’t impact the rendering logic, choose refs.
+
 ## Summary (DRAFT)
 
 ```text
@@ -140,7 +149,8 @@ clearInterval(intervalRef.current);
 - [Challenge 1 of 4: Fix a broken chat input](https://react.dev/learn/referencing-values-with-refs#fix-a-broken-chat-input)
 - [Fork](https://codesandbox.io/p/sandbox/hfpc36?file=%2Fsrc%2FApp.js)
 - [Fork Answer](https://codesandbox.io/p/sandbox/w494g9?file=%2Fsrc%2FApp.js)
-- 9/26
+- Hint: Regular variables like `let timeoutID` don’t “survive” between re-renders because every render runs your component (and initializes its variables) from scratch. Should you keep the timeout ID somewhere else?
+- 9/26, 10/3 (ok)
 
 <hr />
 
