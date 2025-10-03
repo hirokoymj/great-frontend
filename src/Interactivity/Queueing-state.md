@@ -126,11 +126,12 @@ setCompleted((completed) => completed + 1);
 ```
 
 # useState
+
 https://react.dev/reference/react/useState#examples-updater
 
 ## The difference between passing an updater and passing the next state directly
 
-**Example 1 of 2: Passing the updater function** 
+**Example 1 of 2: Passing the updater function**
 []()
 
 ```js
@@ -138,26 +139,32 @@ export default function Counter() {
   const [age, setAge] = useState(42);
 
   function increment() {
-    setAge(a => a + 1);
+    setAge((a) => a + 1);
   }
 
   return (
     <>
       <h1>Your age: {age}</h1>
-      <button onClick={() => {
-        increment();
-        increment();
-        increment();
-      }}>+3</button>
-      <button onClick={() => {
-        increment();
-      }}>+1</button>
+      <button
+        onClick={() => {
+          increment();
+          increment();
+          increment();
+        }}>
+        +3
+      </button>
+      <button
+        onClick={() => {
+          increment();
+        }}>
+        +1
+      </button>
     </>
   );
 }
 ```
 
-[Example 2 of 2: Passing the next state directly](https://react.dev/reference/react/useState#passing-the-next-state-directly) 
+[Example 2 of 2: Passing the next state directly](https://react.dev/reference/react/useState#passing-the-next-state-directly)
 
 ```js
 export default function Counter() {
@@ -170,14 +177,20 @@ export default function Counter() {
   return (
     <>
       <h1>Your age: {age}</h1>
-      <button onClick={() => {
-        increment();
-        increment();
-        increment();
-      }}>+3</button>
-      <button onClick={() => {
-        increment();
-      }}>+1</button>
+      <button
+        onClick={() => {
+          increment();
+          increment();
+          increment();
+        }}>
+        +3
+      </button>
+      <button
+        onClick={() => {
+          increment();
+        }}>
+        +1
+      </button>
     </>
   );
 }

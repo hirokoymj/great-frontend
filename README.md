@@ -39,6 +39,7 @@
 
 - [Updating Objects in State](https://react.dev/learn/updating-objects-in-state)
 - [My Summary](./src/Interactivity/Objects-in-state.md)
+- 10/3
 <hr />
 
 - [Updating Arrays in State](https://react.dev/learn/updating-arrays-in-state)
@@ -50,6 +51,7 @@
 
 - [Reacting to Input with State](https://react.dev/learn/reacting-to-input-with-state)
 - [My Summary](./src/managing-state/Reacting-input-with-state.md)
+- 10/1
 <hr />
 
 - [Choosing the State Structure](https://react.dev/learn/choosing-the-state-structure)
@@ -59,6 +61,7 @@
 
 - [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components)
 - [My Summary](./src/managing-state/SharingStateBtwComp.md)
+- 10/3
 <hr />
 
 - [Preserving and Resetting State](https://react.dev/learn/preserving-and-resetting-state)

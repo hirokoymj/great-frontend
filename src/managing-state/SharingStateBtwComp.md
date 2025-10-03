@@ -1,11 +1,12 @@
 # Sharing State Between Components
 
-## Summary (FINAL)
+**Summary (FINAL)**
 
 - Two components(Parent/Children) -> state and eventHander ==Parent.
 - Pass **the event handlers** down so that **the children can change the parent’s state.**
 
 ```js
+//===Ex1. Parent=<Accordion>, Children=<Panel>
 Accordion;
 const [activeIndex, setActiveIndex] = useState(0);
 <Panel
@@ -14,22 +15,15 @@ const [activeIndex, setActiveIndex] = useState(0);
   onShow={() => setActiveIndex(0)}>
   aaa
 </Panel>;
-///
-SyncedInputs;
-const [text, setText] = useState('');
-function handleChange(e) {
-  setText(e.target.value);
-}
-<Input label="First input" value={text} onChange={handleChange} />;
-///
-FilterableList; //Parent
+
+//=== Ex2. Parent=FilterableList, Children=SearchBar
+FilterableList;
 const [query, setQuery] = useState('');
 const results = filterItems(foods, query);
-
 function handleChange(e) {
   setQuery(e.target.value);
 }
-<SearchBar query={query} onChange={handleChange} />; //Children
+<SearchBar query={query} onChange={handleChange} />;
 ```
 
 **References:**
@@ -95,5 +89,6 @@ function Panel({ title, children, isActive, onShow }) {
 
 - [Challenge 2 of 2: Filtering a list ](https://react.dev/learn/sharing-state-between-components#filtering-a-list)
 - [Fork](https://codesandbox.io/p/sandbox/qmyrll?file=%2Fsrc%2FApp.js)
-
+- [Fork solution](https://codesandbox.io/p/sandbox/58kfgp)
+- 10/3 (x)
 <hr />

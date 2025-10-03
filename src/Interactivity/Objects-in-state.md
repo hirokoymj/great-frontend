@@ -1,6 +1,28 @@
 # Updating Objects in State
 
 ```js
+//=== Update object
+{...obj, firstName: 'xxx'}
+
+//===Using a single event handler for multiple fields: []
+const [person, setPerson] = useState({
+  firstName: 'Barbara',
+  lastName: 'Hepworth',
+});
+
+function handleChange(e) {
+  setPerson({
+    ...person,
+    [e.target.name]: e.target.value,
+  });
+}
+```
+
+**Reference:**
+
+https://react.dev/learn/updating-objects-in-state
+
+```js
 const [person, setPerson] = useState({
   firstName: 'Barbara',
   lastName: 'Hepworth',
@@ -55,6 +77,26 @@ setPerson({
 ## Recap
 
 - You can use the {...obj, something: 'newValue'} object spread syntax to create copies of objects.
+
+## Summary (draft)
+
+```js
+//=== Update object
+{...obj, something: 'newValue'}
+
+//===Using a single event handler for multiple fields: []
+const [person, setPerson] = useState({
+  firstName: 'Barbara',
+  lastName: 'Hepworth',
+});
+
+function handleChange(e) {
+  setPerson({
+    ...person,
+    [e.target.name]: e.target.value,
+  });
+}
+```
 
 ## Challenge
 
