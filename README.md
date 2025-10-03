@@ -31,6 +31,7 @@
 
 - [State as a Snapshot](https://react.dev/learn/state-as-a-snapshot)
 - [My Summary](./src/Interactivity/Snapshot.md)
+- 10/3
 <hr />
 
 - [Queueing a Series of State Updates](https://react.dev/learn/queueing-a-series-of-state-updates)
@@ -76,6 +77,7 @@
 
 - [Passing Data Deeply with Context](https://react.dev/learn/passing-data-deeply-with-context)
 - [My Summary](./src/managing-state/Context.md)
+- 10/3
 
 <hr />
 
