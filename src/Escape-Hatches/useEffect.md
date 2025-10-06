@@ -5,7 +5,12 @@
 ```js
 useEffect(() => {}); //========== Runs after every render.
 useEffect(() => {}, []); //====== Runs only on mount.
-useEffect(() => {}, [a, b]); //== Runs on mount and if either a or b have changed
+useEffect(() => {}, [a]); //== Runs on mount AND "a" have changed.
+//=====Infinate loop (State setter triggers render, useEffect runs after every render)
+const [count, setCount] = useState(0);
+useEffect(() => {
+  setCount(count + 1);
+});
 //=====A clean up function - runs on unmount.
 useEffect(() => {
   const connection = createConnection();
@@ -24,7 +29,16 @@ useEffect(() => {
   const intervalId = setInterval(onTick, 1000);
   return () => clearInterval(intervalId);
 }, []);
-//=====No cache -> Consider using ReactQuery to fetch data.
+//=====race condition, but we can’t “undo” a network request. Use if condition
+useEffect(() => {
+  let ignore = false;
+  setBio(null);
+  fetchBio(person).then((result) => {
+    if (!ignore) setBio(result);
+  });
+  return () => (ignore = true);
+}, [person]);
+//=====No cache/race condition -> Consider using ReactQuery to fetch data.
 ```
 
 **References:**
