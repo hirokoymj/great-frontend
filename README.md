@@ -97,6 +97,7 @@
 
 - [Synchronizing with Effects](https://react.dev/learn/synchronizing-with-effects)
 - [My Summary](./src/Escape-Hatches/useEffect.md)
+- 10/6
 <hr />
 
 - [You Might Not Need an Effect](https://react.dev/learn/you-might-not-need-an-effect)
