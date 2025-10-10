@@ -114,3 +114,104 @@
 
 - [Reusing Logic with Custom Hooks](https://react.dev/learn/reusing-logic-with-custom-hooks)
 <hr />
+
+## JavaScript
+
+**Q1**
+
+```js
+const imageUrl = '/images/airport-board.png';
+const imageName = imageUrl.split('/').pop();
+```
+
+<hr />
+
+**Q2**
+
+```js
+const data = [
+  {
+    time: '10:50',
+    city: 'MOSCOW/SVO',
+  },
+  {
+    time: '11:05',
+    city: 'EDINBURGH',
+  },
+  {
+    time: '11:05',
+    city: 'LONDON/LHR',
+  },
+  {
+    time: '11:10',
+    city: 'BUCHAREST/OTP',
+  },
+  {
+    time: '11:30',
+    city: 'KIEV/BORISPOL',
+  },
+  {
+    time: '11:35',
+    city: 'DUBLIN',
+  },
+  {
+    time: '11:45',
+    city: 'EAST MIDLANDS',
+  },
+  {
+    time: '12:15',
+    city: 'SOFIA',
+  },
+  {
+    time: '12:30',
+    city: 'LONDON/LGW',
+  },
+  {
+    time: '12:30',
+    city: 'NEWCASTLE',
+  },
+  {
+    time: '12:40',
+    city: 'ST PETERSBURG',
+  },
+  {
+    time: '12:40',
+    city: 'LONDON/LGW',
+  },
+  {
+    time: '12:45',
+    city: 'MANCHESTER',
+  },
+];
+//display: list: 12:40, LONDON/LGW
+//=====Ex.1 - Array or not
+Array.isArray();
+const myArray = [1, 2, 3];
+const myObject = { a: 1, b: 2 };
+const myString = 'hello';
+console.log(Array.isArray(myArray)); // true
+console.log(Array.isArray(myObject)); // false
+console.log(Array.isArray(myString)); // false
+//======Ex.2
+const displayData = (data) => {
+  if (Array.isArray(data)) {
+    return (
+      <ul>
+        {data.map((item, i) => (
+          <li key={i}>{Object.values(item).join(', ')}</li>
+        ))}
+      </ul>
+    );
+  }
+  return data;
+};
+//=====Ex.3
+const object = {
+  a: 'some string',
+  b: 42,
+  c: false,
+};
+
+console.log(Object.values(object));
+// Expected output: Array ["some string", 42, false]
+```

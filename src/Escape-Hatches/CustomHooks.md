@@ -4,10 +4,39 @@
 
 **References:**
 
-- url
-- url
+- https://react.dev/learn/reusing-logic-with-custom-hooks
 
 ## Ex.1 - title (short text)
+
+- [When to use custom Hooks](https://react.dev/learn/reusing-logic-with-custom-hooks#when-to-use-custom-hooks)
+
+```js
+// Custom Hook
+function useData(url) {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    if (url) {
+      let ignore = false;
+      fetch(url)
+        .then((response) => response.json())
+        .then((json) => {
+          if (!ignore) {
+            setData(json);
+          }
+        });
+      return () => {
+        ignore = true;
+      };
+    }
+  }, [url]);
+  return data;
+}
+//
+function ShippingForm({ country }) {
+  const cities = useData(`/api/cities?country=${country}`);
+  const [city, setCity] = useState(null);
+  const areas = useData(city ? `/api/areas?city=${city}` : null);
+```
 
 ## Summary (DRAFT)
 
@@ -22,41 +51,66 @@ Wrap event handlers received by custom Hooks into Effect Events.
 Don’t create custom Hooks like useMount. Keep their purpose specific.
 It’s up to you how and where to choose the boundaries of your code.
 
-## Quiz
+## Challenge
 
-**====Quesiton 1====**
+**Challenge 1 ()**
 
 - [Challenge 1 of 5: Extract a useCounter Hook ](https://react.dev/learn/reusing-logic-with-custom-hooks#extract-a-usecounter-hook)
-- Solution: Notice that App.js doesn’t need to import useState or useEffect anymore.
-
-<hr />
-
-**====Quesiton 2====**
-
-- [Challenge 2 of 5: Make the counter delay configurable ](https://react.dev/learn/reusing-logic-with-custom-hooks#make-the-counter-delay-configurable)
-- Solution
-  Pass the delay to your Hook with useCounter(delay). Then, inside the Hook, use delay instead of the hardcoded 1000 value. You’ll need to add delay to your Effect’s dependencies. This ensures that a change in delay will reset the interval.
+- [Fork](https://codesandbox.io/p/sandbox/wf49lm?file=%2Fsrc%2FApp.js)
+- [Fork solution](https://codesandbox.io/p/sandbox/779q4z?file=%2Fsrc%2FApp.js)
 
 ```js
-<input
-  type="range"
-  value={delay}
-  min="10"
-  max="2000"
-  onChange={(e) => setDelay(Number(e.target.value))}
-/>;
-useEffect(() => {
-  const id = setInterval(() => {
-    setCount((c) => c + 1);
-  }, 1000);
-  return () => clearInterval(id);
-}, []);
+export default function Counter() {
+  const count = useCounter();
+  return <h1>Seconds passed: {count}</h1>;
+}
 ```
+
+- 10/9 (ok)
 
 <hr />
 
-**====Quesiton 2====**
+**Challenge 2**
 
-- [Challenge 3 of 5: Extract useInterval out of useCounter](https://react.dev/learn/reusing-logic-with-custom-hooks#extract-useinterval-out-of-usecounter)
+- [Challenge 2 of 5: Make the counter delay configurable](https://react.dev/learn/reusing-logic-with-custom-hooks#make-the-counter-delay-configurable)
+- [Fork](https://codesandbox.io/p/sandbox/w6cdfc?file=%2Fsrc%2FApp.js)
+- [Fork solution](https://codesandbox.io/p/sandbox/q55v6y)
+- 10/9 (ok)
+<hr />
 
-**====Quesiton 3====**
+**Challenge 3**
+
+[Challenge 3 of 5: Extract useInterval out of useCounter](https://react.dev/learn/reusing-logic-with-custom-hooks#extract-useinterval-out-of-usecounter)
+
+```js
+export function useCounter(delay) {
+  const [count, setCount] = useState(0);
+  useInterval(() => {
+    setCount((c) => c + 1);
+  }, delay);
+  return count;
+}
+
+export function useInterval(onTick, delay) {
+  useEffect(() => {
+    const id = setInterval(onTick, delay);
+    return () => clearInterval(id);
+  }, [onTick, delay]);
+}
+```
+
+- 10/9 (x)
+
+<hr />
+
+**Challenge 4**
+
+- [Challenge 4 of 5: Fix a resetting interval](https://react.dev/learn/reusing-logic-with-custom-hooks#fix-a-resetting-interval)
+- [Fork](https://codesandbox.io/p/sandbox/zyymtm)
+- (Hint): It looks like your useInterval Hook accepts an event listener as an argument. Can you think of some way to wrap that event listener so that it doesn’t need to be a dependency of your Effect?
+- [Fork solution](https://codesandbox.io/p/sandbox/fml87k)
+- (Solution) Inside useInterval, wrap the tick callback into an Effect Event, as you did earlier on this page.
+
+This will allow you to omit onTick from dependencies of your Effect. The Effect won’t re-synchronize on every re-render of the component, so the page background color change interval won’t get reset every second before it has a chance to fire.
+
+<hr />
