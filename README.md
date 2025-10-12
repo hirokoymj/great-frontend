@@ -101,6 +101,8 @@
 <hr />
 
 - [You Might Not Need an Effect](https://react.dev/learn/you-might-not-need-an-effect)
+- [My Summary](./src/Escape-Hatches/not-need-useEffect.md)
+- 10/11(useMemo, todoList, checkbox)
 <hr />
 
 - [Lifecycle of Reactive Effects](https://react.dev/learn/lifecycle-of-reactive-effects)
