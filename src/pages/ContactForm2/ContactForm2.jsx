@@ -1,5 +1,5 @@
 import { useState } from 'react';
-//import './form.css';
+import './form.css';
 
 function ContactForm2() {
   const [firstName, setFirstName] = useState('');
@@ -62,7 +62,7 @@ function ContactForm2() {
     <div className="App">
       <h1>Form in React</h1>
       <fieldset>
-        <form action="#" method="get">
+        <form action="#" method="get" id="contactForm">
           <label for="firstname">First Name*</label>
           <input
             type="text"
