@@ -16,6 +16,15 @@ function handleChange(e) {
     [e.target.name]: e.target.value,
   });
 }
+// Add/Update/Delete
+const person = {  name: 'Bob', age: 25, country: 'Canada'};
+person.city = 'Los Angeles';
+const result1 = { ...person, age: 30 };
+delete person.age;
+
+Object.values(person); //[ 'Bob', 25, 'Canada' ]
+Object.keys(person); //[ 'name', 'age', 'country' ]
+Object.entries(person); //[ [ 'name', 'Bob' ], [ 'age', 25 ], [ 'country', 'Canada' ] ]
 ```
 
 **Reference:**
@@ -116,3 +125,25 @@ function handleChange(e) {
 - 10/2 (ok)
 
 <hr />
+
+## 10/13
+
+```js
+const person = {
+  name: 'Bob',
+  age: 25,
+  country: 'Canada',
+};
+//Add
+person.city = 'los Angeles';
+
+//Update
+const result1 = { ...person, age: 30 };
+
+//Delete a property
+delete person.age;
+
+Object.values(person); //[ 'Bob', 25, 'Canada' ]
+Object.keys(person); //[ 'name', 'age', 'country' ]
+Object.entries(person); //[ [ 'name', 'Bob' ], [ 'age', 25 ], [ 'country', 'Canada' ] ]
+```
