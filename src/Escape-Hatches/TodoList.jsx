@@ -29,13 +29,13 @@ export function createTodo(text, completed = false) {
 export default function TodoList() {
   const [todos, setTodos] = useState(initialTodos);
   const [showActive, setShowActive] = useState(false);
-  const visibleTodos = showActive
-    ? todos.filter((todo) => !todo.completed)
-    : todos;
-  //   const visibleTodos = useMemo(() => {
-  //     const result = showActive ? todos.filter((todo) => !todo.completed) : todos;
-  //     return result;
-  //   }, [todos, showActive]);
+  //   const visibleTodos = showActive
+  //     ? todos.filter((todo) => !todo.completed)
+  //     : todos;
+  const visibleTodos = useMemo(
+    () => (showActive ? todos.filter((todo) => !todo.completed) : todos),
+    [todos, showActive]
+  );
   return (
     <>
       <label>

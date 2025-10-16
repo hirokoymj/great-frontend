@@ -1,35 +1,25 @@
 # You Might Not Need an Effect
 
-**Summary (FINAL)**
-
-- useMemo, todoList, checkbox
+**Summary (useMemo, todoList, checkbox)**
 
 ```js
+const [todos, setTodos] = useState(initialTodos);
+const [showActive, setShowActive] = useState(false);
 const visibleTodos = showActive
   ? todos.filter((todo) => !todo.completed)
   : todos;
 //===useMemo
+const result = useMemo(() => {}, []);
 const visibleTodos = useMemo(() => {
   const result = showActive ? todos.filter((todo) => !todo.completed) : todos;
   return result;
 }, [todos, showActive]);
-//==all code
-export function TodoList() {
-  const [todos, setTodos] = useState(initialTodos);
-  const [showActive, setShowActive] = useState(false);
-  const visibleTodos = showActive
-    ? todos.filter((todo) => !todo.completed)
-    : todos;
-  const visibleTodos = useMemo(() => {
-    const result = showActive ? todos.filter((todo) => !todo.completed) : todos;
-    return result;
-  }, [todos, showActive]);
-return (
+//==checkbox
 <input
   type="checkbox"
   checked={showActive}
-  onChange={e => setShowActive(e.target.checked)}
-/>)
+  onChange={(e) => setShowActive(e.target.checked)}
+/>;
 ```
 
 **References:**
@@ -37,6 +27,7 @@ return (
 - https://react.dev/learn/you-might-not-need-an-effect
 - [useMemo](https://react.dev/reference/react/useMemo)
 - `const cachedValue = useMemo(calculateValue, dependencies)`
+- [React.memo](https://react.dev/reference/react/memo)
 
 ## Challenge 1 (todo, checkbox)
 
@@ -87,3 +78,7 @@ const visibleTodos = useMemo(
 - Challenge 3 of 4: Reset state without Effects
 - 10/11 complecated solution. skipped.
 <hr />
+
+## React.memo
+
+React.memo is a higher-order component (HOC) used to memoize functional components. It prevents a component from re-rendering if its props have not changed.

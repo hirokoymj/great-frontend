@@ -106,12 +106,10 @@
 <hr />
 
 - [Lifecycle of Reactive Effects](https://react.dev/learn/lifecycle-of-reactive-effects)
-<hr />
-
 - [Separating Events from Effects](https://react.dev/learn/separating-events-from-effects)
-<hr />
-
 - [Removing Effect Dependencies](https://react.dev/learn/removing-effect-dependencies)
+- [My Summary](./src/Escape-Hatches/lifecycle.md)
+
 <hr />
 
 - [Reusing Logic with Custom Hooks](https://react.dev/learn/reusing-logic-with-custom-hooks)
