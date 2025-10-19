@@ -4,8 +4,8 @@
 
 ```js
 useEffect(() => {}); //========== Runs after every render.
-useEffect(() => {}, []); //====== Runs only on mount.
-useEffect(() => {}, [a]); //== Runs on mount AND "a" have changed.
+useEffect(() => {}, []); //====== Runs only on mount (when the component appears).
+useEffect(() => {}, [a]); //== Runs on mount AND "a" have changed since the last render.
 //=====Infinate loop (State setter triggers render, useEffect runs after every render)
 const [count, setCount] = useState(0);
 useEffect(() => {
@@ -13,21 +13,7 @@ useEffect(() => {
 });
 //=====A clean up function - runs on unmount.
 useEffect(() => {
-  const connection = createConnection();
-  connection.connect();
-  return () => connection.disconnect();
-}, []);
-//===== Focus a field on mount.
-useEffect(() => {
-  ref.current.focus();
-}, []);
-//===== Clear an interval
-useEffect(() => {
-  function onTick() {
-    setCount((c) => c + 1);
-  }
-  const intervalId = setInterval(onTick, 1000);
-  return () => clearInterval(intervalId);
+  return () => clearInterval(intervalId));
 }, []);
 //=====race condition, but we can’t “undo” a network request. Use if condition
 useEffect(() => {
@@ -38,7 +24,9 @@ useEffect(() => {
   });
   return () => (ignore = true);
 }, [person]);
-//=====No cache/race condition -> Consider using ReactQuery to fetch data.
+//=====No cache/race condition -> Consider using 3rd parthy tools(ReactQuery/GraphQL) to fetch data.
+const {data, loading, error} = useQuery(GraphQL)
+const [createData, {data, loading, error}] = useMutation(GraphQL)
 ```
 
 **References:**
@@ -210,7 +198,7 @@ useEffect(() => {
 
 **Challenge 2 (useEffect with condition)**
 
-- [Challenge 2 of 4: Fix a broken packing list ]()
+- [Challenge 2 of 4: Focus a field conditionally](https://react.dev/learn/synchronizing-with-effects#focus-a-field-conditionally)
 - [Fork](https://codesandbox.io/p/sandbox/pd22pr)
 - [Fork solution](https://codesandbox.io/p/sandbox/3mg9sq?file=%2Fsrc%2FApp.js)
 
