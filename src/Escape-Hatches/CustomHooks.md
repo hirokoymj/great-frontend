@@ -136,7 +136,23 @@ export function useInterval(onTick, delay) {
 }
 ```
 
-- 10/9 (x), challenge 4 is the complete solution.
+- 10/9 (x), challenge 4 is the complete solution.,
+- 10/20(x) - I didn't understand what value the `useInterval` custom hook should return.
+
+```js
+// My wrong code
+import { useState, useEffect } from 'react';
+
+const useInterval = (callback, delay) => {
+  useEffect(() => {
+    const id = setInterval(callback, delay);
+    return () => clearInterval(id);
+  }, [delay]);
+};
+///Answer
+import { useEffect } from 'react';
+[delay, callback];
+```
 
 <hr />
 
