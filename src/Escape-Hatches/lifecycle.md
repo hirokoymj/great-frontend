@@ -5,7 +5,8 @@
 **Summary (final)**
 
 ```js
-//=====Q1
+//=====Q1, dependency, roomId only, why?
+const serverUrl = 'https://localhost:1234';
 function ChatRoom({ roomId }) {
   const [message, setMessage] = useState('');
 
@@ -14,7 +15,7 @@ function ChatRoom({ roomId }) {
     connection.connect();
     return () => connection.disconnect();
   }, [roomId]);
-//=====Q4
+//=====Q4: `createConnection` is a prop, so it’s a reactive value. It can change over time!
 export default function ChatRoom({ roomId, createConnection }) {
   useEffect(() => {
     const connection = createConnection(roomId);
@@ -64,11 +65,15 @@ useEffect(() => {
 
 ```js
 //BEFORE
+
+const serverUrl = 'https://localhost:1234';
+function ChatRoom({ roomId }) {
   useEffect(() => {
     const connection = createConnection(serverUrl, roomId);
     connection.connect();
     return () => connection.disconnect();
   });
+}
 //AFTER
 function ChatRoom({ roomId }) {
   const [message, setMessage] = useState('');
