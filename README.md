@@ -84,10 +84,13 @@
 - [Scaling Up with Reducer and Context](https://react.dev/learn/scaling-up-with-reducer-and-context)
 <hr />
 
-## Escape Hatches
+# Escape Hatches
 
-- [Referencing Values with Refs](https://react.dev/learn/referencing-values-with-refs)
+- [==Referencing Values with Refs==](https://react.dev/learn/referencing-values-with-refs)
 - [my summary](./src/Escape-Hatches/useState-vs-useRef.md)
+- [Challenge 1](https://react.dev/learn/referencing-values-with-refs#fix-a-broken-chat-input)
+- [Challenge 2](https://react.dev/learn/referencing-values-with-refs#fix-a-component-failing-to-re-render)
+- [Challenge 4](https://react.dev/learn/referencing-values-with-refs#read-the-latest-state)
 - 10/3
 
 <hr />
@@ -95,25 +98,54 @@
 - [Manipulating the DOM with Refs](https://react.dev/learn/manipulating-the-dom-with-refs)
 <hr />
 
-- [Synchronizing with Effects](https://react.dev/learn/synchronizing-with-effects)
+- [==Synchronizing with Effects==](https://react.dev/learn/synchronizing-with-effects)
 - [My Summary](./src/Escape-Hatches/useEffect.md)
+- [Challenge 1:](https://react.dev/learn/synchronizing-with-effects#focus-a-field-on-mount)
+- [Challenge 2](https://react.dev/learn/synchronizing-with-effects#focus-a-field-conditionally)
+- [Challenge 3](https://react.dev/learn/synchronizing-with-effects#fix-an-interval-that-fires-twice)
+- [Challenge 4](https://react.dev/learn/synchronizing-with-effects#fix-fetching-inside-an-effect) ===>XO
+- race conditions because two asynchronous operations are “racing”, Clean-up function
 - 10/6
+
 <hr />
 
-- [You Might Not Need an Effect](https://react.dev/learn/you-might-not-need-an-effect)
+- [==You Might Not Need an Effect==](https://react.dev/learn/you-might-not-need-an-effect)
 - [My Summary](./src/Escape-Hatches/not-need-useEffect.md)
-- 10/11(useMemo, calculate todoList, checkbox, without useMemo)
+- [Challenge 1](https://react.dev/learn/you-might-not-need-an-effect#transform-data-without-effects)
+- [Challenge 2](https://react.dev/learn/you-might-not-need-an-effect#cache-a-calculation-without-effects) ===>XX
+- 10/11, 10/20
+
 <hr />
 
-- [Lifecycle of Reactive Effects](https://react.dev/learn/lifecycle-of-reactive-effects)
-- [Separating Events from Effects](https://react.dev/learn/separating-events-from-effects)
-- [Removing Effect Dependencies](https://react.dev/learn/removing-effect-dependencies)
+- [==Lifecycle of Reactive Effects==](https://react.dev/learn/lifecycle-of-reactive-effects)
+- [Challenge 1](https://react.dev/learn/lifecycle-of-reactive-effects#fix-reconnecting-on-every-keystroke) ===> XO
+- [Challenge 4](https://react.dev/learn/lifecycle-of-reactive-effects#fix-a-connection-switch) ==> XO
+- [Challenge 5:two selectbox](https://react.dev/learn/lifecycle-of-reactive-effects#populate-a-chain-of-select-boxes)
+
+<hr />
+
+- [==Separating Events from Effects==](https://react.dev/learn/separating-events-from-effects)
+- [Challenge 1]()
+- [Challenge 2](https://react.dev/learn/separating-events-from-effects#fix-a-freezing-counter) ===> XX
+- Const onEvent = useEffectEvent(callback)
+- `[increment]` -> `[]` -> OK
+- `useEffectEven`t` ->OK
+- `setInterval()`
+- The first version creates a new anonymous arrow function that, when executed, calls onTick. The second version passes the onTick function directly to setInterval. Since onTick is a function that takes no arguments, passing it directly is a more concise and common way to write this.
+<hr />
+
+- [==Removing Effect Dependencies==](https://react.dev/learn/removing-effect-dependencies)
 - [My Summary](./src/Escape-Hatches/lifecycle.md)
+- [Challenge 1:Fix a variable that doesn’t update](https://react.dev/learn/removing-effect-dependencies#fix-a-resetting-interval)
+- [Challenge 3:Chat, avoid using object as dependency](https://react.dev/learn/removing-effect-dependencies#fix-a-reconnecting-chat)
 
 <hr />
 
-- [Reusing Logic with Custom Hooks](https://react.dev/learn/reusing-logic-with-custom-hooks)
+- [==Reusing Logic with Custom Hooks==](https://react.dev/learn/reusing-logic-with-custom-hooks)
 - [My Sunmary](./src/Escape-Hatches/CustomHooks.md)
+- [Challenge 1](https://react.dev/learn/reusing-logic-with-custom-hooks#extract-a-usecounter-hook)
+- [Challenge 2](https://react.dev/learn/reusing-logic-with-custom-hooks#make-the-counter-delay-configurable)
+- [Challenge 3](https://react.dev/learn/reusing-logic-with-custom-hooks#extract-useinterval-out-of-usecounter) ===> XO
 - 10/9, 10/10
 <hr />
 
