@@ -118,6 +118,7 @@
 <hr />
 
 - [==Lifecycle of Reactive Effects==](https://react.dev/learn/lifecycle-of-reactive-effects)
+- [My Summary](./src/Escape-Hatches/lifecycle.md)
 - [Challenge 1](https://react.dev/learn/lifecycle-of-reactive-effects#fix-reconnecting-on-every-keystroke) ===> XO
 - [Challenge 4](https://react.dev/learn/lifecycle-of-reactive-effects#fix-a-connection-switch) ==> XO
 - [Challenge 5:two selectbox](https://react.dev/learn/lifecycle-of-reactive-effects#populate-a-chain-of-select-boxes)
@@ -125,7 +126,8 @@
 <hr />
 
 - [==Separating Events from Effects==](https://react.dev/learn/separating-events-from-effects)
-- [Challenge 1]()
+- [My Summary](./src/Escape-Hatches/Separating-events-from-effect.md)
+- [Challenge 1](https://react.dev/learn/separating-events-from-effects#fix-a-variable-that-doesnt-update)
 - [Challenge 2](https://react.dev/learn/separating-events-from-effects#fix-a-freezing-counter) ===> XX
 - Const onEvent = useEffectEvent(callback)
 - `[increment]` -> `[]` -> OK
