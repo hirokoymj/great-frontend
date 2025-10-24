@@ -113,7 +113,7 @@
 - (C4) mounts” means a component appears on the screen for the first time.
 - (C4) React will call your cleanup function each time before the Effect runs again, and one final time when the component unmounts.
 - (C4) Add cleanup if needed. Some Effects need to specify how to stop, undo, or clean up whatever they were doing. e.g, "connect/disconnect, “subscribe/unsubscribe”, and “fetch/cancel(ignore)
-- 10/6, 10/23
+- 10/6, 10/24
 
 <hr />
 
@@ -133,7 +133,10 @@
 - [Challenge 1](https://react.dev/learn/lifecycle-of-reactive-effects#fix-reconnecting-on-every-keystroke) ===> XO
 - [Challenge 4](https://react.dev/learn/lifecycle-of-reactive-effects#fix-a-connection-switch) ==> XO
 - [Challenge 5:two selectbox](https://react.dev/learn/lifecycle-of-reactive-effects#populate-a-chain-of-select-boxes)
-
+- (C1) no a dependency array == runs after every re-render.
+- (C1) selectbox
+- (C4) createConnection is a prop, so it’s a reactive value. It can change over time!
+- (C4) two async, fetch
 <hr />
 
 - [==Separating Events from Effects==](https://react.dev/learn/separating-events-from-effects)
