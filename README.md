@@ -89,8 +89,8 @@
 - [==Referencing Values with Refs==](https://react.dev/learn/referencing-values-with-refs)
 - [my summary](./src/Escape-Hatches/ReferencingValue-with-Refs.md)
 - [Challenge 1](https://react.dev/learn/referencing-values-with-refs#fix-a-broken-chat-input) ===>X
-- [Challenge 2](https://react.dev/learn/referencing-values-with-refs#fix-a-component-failing-to-re-render)
-- [Challenge 4](https://react.dev/learn/referencing-values-with-refs#read-the-latest-state)
+- [Challenge 2](https://react.dev/learn/referencing-values-with-refs#fix-a-component-failing-to-re-render) ===> O
+- [Challenge 4](https://react.dev/learn/referencing-values-with-refs#read-the-latest-state) ===>O
 - 10/3, 10/23
 
 <hr />
