@@ -136,7 +136,7 @@
 - (C1) no a dependency array == runs after every re-render.
 - (C1) selectbox
 - (C4) createConnection is a prop, so it’s a reactive value. It can change over time!
-- (C4) two async, fetch
+- (C5) two async, two dropdown, fetch
 <hr />
 
 - [==Separating Events from Effects==](https://react.dev/learn/separating-events-from-effects)
