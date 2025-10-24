@@ -1,5 +1,7 @@
 # useState vs useRef
 
+`const ref = useRef(v)`
+
 | Feature      | useState                            | useRef                                                    |
 | ------------ | ----------------------------------- | --------------------------------------------------------- |
 | Re-render    | Triggers re-render on value change. | Does not trigger re-render on value change.               |
