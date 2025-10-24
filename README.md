@@ -119,7 +119,7 @@
 
 - [==You Might Not Need an Effect==](https://react.dev/learn/you-might-not-need-an-effect)
 - [My Summary](./src/Escape-Hatches/not-need-useEffect.md)
-- [Challenge 1](https://react.dev/learn/you-might-not-need-an-effect#transform-data-without-effects) ==>O
+- [Challenge 1](https://react.dev/learn/you-might-not-need-an-effect#transform-data-without-effects) ===>O
 - [Challenge 2](https://react.dev/learn/you-might-not-need-an-effect#cache-a-calculation-without-effects) ===>XXO
 - useMemo, todoList, checkbox
 - (C1)redundant state
@@ -131,8 +131,8 @@
 - [==Lifecycle of Reactive Effects==](https://react.dev/learn/lifecycle-of-reactive-effects)
 - [My Summary](./src/Escape-Hatches/lifecycle.md)
 - [Challenge 1](https://react.dev/learn/lifecycle-of-reactive-effects#fix-reconnecting-on-every-keystroke) ===> XO
-- [Challenge 4](https://react.dev/learn/lifecycle-of-reactive-effects#fix-a-connection-switch) ==> XO
-- [Challenge 5:two selectbox](https://react.dev/learn/lifecycle-of-reactive-effects#populate-a-chain-of-select-boxes)
+- [Challenge 4](https://react.dev/learn/lifecycle-of-reactive-effects#fix-a-connection-switch) ===> XO
+- [Challenge 5](https://react.dev/learn/lifecycle-of-reactive-effects#populate-a-chain-of-select-boxes) ===>O
 - (C1) no a dependency array == runs after every re-render.
 - (C1) selectbox
 - (C4) createConnection is a prop, so it’s a reactive value. It can change over time!
