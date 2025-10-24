@@ -89,7 +89,7 @@
 - [==Referencing Values with Refs==](https://react.dev/learn/referencing-values-with-refs)
 - [my summary](./src/Escape-Hatches/ReferencingValue-with-Refs.md)
 - [Challenge 1](https://react.dev/learn/referencing-values-with-refs#fix-a-broken-chat-input) ===>X
-- [Challenge 2](https://react.dev/learn/referencing-values-with-refs#fix-a-component-failing-to-re-render) ===> O
+- [Challenge 2](https://react.dev/learn/referencing-values-with-refs#fix-a-component-failing-to-re-render) ===>O
 - [Challenge 4](https://react.dev/learn/referencing-values-with-refs#read-the-latest-state) ===>O
 - 10/3, 10/23
 
@@ -100,12 +100,20 @@
 
 - [==Synchronizing with Effects==](https://react.dev/learn/synchronizing-with-effects)
 - [My Summary](./src/Escape-Hatches/useEffect.md)
-- [Challenge 1:](https://react.dev/learn/synchronizing-with-effects#focus-a-field-on-mount)
-- [Challenge 2](https://react.dev/learn/synchronizing-with-effects#focus-a-field-conditionally)
-- [Challenge 3](https://react.dev/learn/synchronizing-with-effects#fix-an-interval-that-fires-twice)
+- [Challenge 1:](https://react.dev/learn/synchronizing-with-effects#focus-a-field-on-mount) ===>O
+- [Challenge 2](https://react.dev/learn/synchronizing-with-effects#focus-a-field-conditionally) ===>O
+- [Challenge 3](https://react.dev/learn/synchronizing-with-effects#fix-an-interval-that-fires-twice) ===>O
 - [Challenge 4](https://react.dev/learn/synchronizing-with-effects#fix-fetching-inside-an-effect) ===>XO
 - race conditions because two asynchronous operations are “racing”, Clean-up function
-- 10/6
+- (C1) Calling ref.current.focus() during render is wrong.
+- (C1) this Effect runs only on mount rather than after every render.
+- (C2) A conditional logic can include inside useEffect.
+- (C3) setInverval should be clearInteval(id) in a cleanup function.
+- (C4) fech, async
+- (C4) mounts” means a component appears on the screen for the first time.
+- (C4) React will call your cleanup function each time before the Effect runs again, and one final time when the component unmounts.
+- (C4) Add cleanup if needed. Some Effects need to specify how to stop, undo, or clean up whatever they were doing. e.g, "connect/disconnect, “subscribe/unsubscribe”, and “fetch/cancel(ignore)
+- 10/6, 10/23
 
 <hr />
 
