@@ -104,12 +104,12 @@
 - [Challenge 2](https://react.dev/learn/synchronizing-with-effects#focus-a-field-conditionally) ===>O
 - [Challenge 3](https://react.dev/learn/synchronizing-with-effects#fix-an-interval-that-fires-twice) ===>O
 - [Challenge 4](https://react.dev/learn/synchronizing-with-effects#fix-fetching-inside-an-effect) ===>XO
-- race conditions because two asynchronous operations are “racing”, Clean-up function
 - (C1) Calling ref.current.focus() during render is wrong.
 - (C1) this Effect runs only on mount rather than after every render.
 - (C2) A conditional logic can include inside useEffect.
 - (C3) setInverval should be clearInteval(id) in a cleanup function.
 - (C4) fech, async
+- (C4) race conditions because two asynchronous operations are “racing”, Clean-up function
 - (C4) mounts” means a component appears on the screen for the first time.
 - (C4) React will call your cleanup function each time before the Effect runs again, and one final time when the component unmounts.
 - (C4) Add cleanup if needed. Some Effects need to specify how to stop, undo, or clean up whatever they were doing. e.g, "connect/disconnect, “subscribe/unsubscribe”, and “fetch/cancel(ignore)
