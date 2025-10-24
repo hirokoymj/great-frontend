@@ -87,7 +87,7 @@
 # Escape Hatches
 
 - [==Referencing Values with Refs==](https://react.dev/learn/referencing-values-with-refs)
-- [my summary](./src/Escape-Hatches/useState-vs-useRef.md)
+- [my summary](./src/Escape-Hatches/ReferencingValue-with-Refs.md)
 - [Challenge 1](https://react.dev/learn/referencing-values-with-refs#fix-a-broken-chat-input)
 - [Challenge 2](https://react.dev/learn/referencing-values-with-refs#fix-a-component-failing-to-re-render)
 - [Challenge 4](https://react.dev/learn/referencing-values-with-refs#read-the-latest-state)
@@ -112,8 +112,8 @@
 - [==You Might Not Need an Effect==](https://react.dev/learn/you-might-not-need-an-effect)
 - [My Summary](./src/Escape-Hatches/not-need-useEffect.md)
 - [Challenge 1](https://react.dev/learn/you-might-not-need-an-effect#transform-data-without-effects)
-- [Challenge 2](https://react.dev/learn/you-might-not-need-an-effect#cache-a-calculation-without-effects) ===>XX
-- 10/11, 10/20
+- [Challenge 2](https://react.dev/learn/you-might-not-need-an-effect#cache-a-calculation-without-effects) ===>XXO
+- 10/11, 10/20, 10/24
 
 <hr />
 
@@ -128,12 +128,13 @@
 - [==Separating Events from Effects==](https://react.dev/learn/separating-events-from-effects)
 - [My Summary](./src/Escape-Hatches/Separating-events-from-effect.md)
 - [Challenge 1](https://react.dev/learn/separating-events-from-effects#fix-a-variable-that-doesnt-update)
-- [Challenge 2](https://react.dev/learn/separating-events-from-effects#fix-a-freezing-counter) ===> XX
+- [Challenge 2](https://react.dev/learn/separating-events-from-effects#fix-a-freezing-counter) ===> XXX
 - Const onEvent = useEffectEvent(callback)
 - `[increment]` -> `[]` -> OK
 - `useEffectEven`t` ->OK
 - `setInterval()`
 - The first version creates a new anonymous arrow function that, when executed, calls onTick. The second version passes the onTick function directly to setInterval. Since onTick is a function that takes no arguments, passing it directly is a more concise and common way to write this.
+- 10/23 (challenge 2 x)
 <hr />
 
 - [==Removing Effect Dependencies==](https://react.dev/learn/removing-effect-dependencies)
