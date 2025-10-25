@@ -137,33 +137,42 @@
 - (C1) selectbox
 - (C4) createConnection is a prop, so it’s a reactive value. It can change over time!
 - (C5) two async, two dropdown, fetch
+- 10/25
 <hr />
 
 - [==Separating Events from Effects==](https://react.dev/learn/separating-events-from-effects)
 - [My Summary](./src/Escape-Hatches/Separating-events-from-effect.md)
-- [Challenge 1](https://react.dev/learn/separating-events-from-effects#fix-a-variable-that-doesnt-update)
-- [Challenge 2](https://react.dev/learn/separating-events-from-effects#fix-a-freezing-counter) ===> XXX
-- Const onEvent = useEffectEvent(callback)
-- `[increment]` -> `[]` -> OK
-- `useEffectEven`t` ->OK
-- `setInterval()`
-- The first version creates a new anonymous arrow function that, when executed, calls onTick. The second version passes the onTick function directly to setInterval. Since onTick is a function that takes no arguments, passing it directly is a more concise and common way to write this.
-- 10/23 (challenge 2 x)
+- [Challenge 1](https://react.dev/learn/separating-events-from-effects#fix-a-variable-that-doesnt-update) ===>O
+- [Challenge 2](https://react.dev/learn/separating-events-from-effects#fix-a-freezing-counter) ===> XXXO
+- (C1) missing dependency. [] -> [increment], []/runs onmount -> [increment]/onMount and increment is changed.
+- (C2) const onEvent = useEffectEvent(callback)
+- (C2) Effect uses the increment state variable, which is the dependency of Effect.
+- (C2) Every change to increment causes the Effect to re-synchronize, which causes the interval to clear.
+- (C2) Use EffectEvent and remove increment dependency, so the increment does not trigger any Effects.
+- 10/23, 10/25
+
 <hr />
 
 - [==Removing Effect Dependencies==](https://react.dev/learn/removing-effect-dependencies)
 - [My Summary](./src/Escape-Hatches/lifecycle.md)
-- [Challenge 1:Fix a variable that doesn’t update](https://react.dev/learn/removing-effect-dependencies#fix-a-resetting-interval)
-- [Challenge 3:Chat, avoid using object as dependency](https://react.dev/learn/removing-effect-dependencies#fix-a-reconnecting-chat)
-
+- [Challenge 1:Fix a variable that doesn’t update](https://react.dev/learn/removing-effect-dependencies#fix-a-resetting-interval) ===>X
+- [Challenge 3:Chat, avoid using object as dependency](https://react.dev/learn/removing-effect-dependencies#fix-a-reconnecting-chat) ===>0
+- (C1) To remove count state dependency, use a updater function.
+- (C1) `setCount(c => c + 1)` instead of `setCount(count + 1)`:
+- (C1) avoid using an object as Effect dependency.
+- 10/25
 <hr />
 
 - [==Reusing Logic with Custom Hooks==](https://react.dev/learn/reusing-logic-with-custom-hooks)
 - [My Sunmary](./src/Escape-Hatches/CustomHooks.md)
-- [Challenge 1](https://react.dev/learn/reusing-logic-with-custom-hooks#extract-a-usecounter-hook)
-- [Challenge 2](https://react.dev/learn/reusing-logic-with-custom-hooks#make-the-counter-delay-configurable)
-- [Challenge 3](https://react.dev/learn/reusing-logic-with-custom-hooks#extract-useinterval-out-of-usecounter) ===> XO
-- 10/9, 10/10
+- [Challenge 1](https://react.dev/learn/reusing-logic-with-custom-hooks#extract-a-usecounter-hook) ===>O
+- [Challenge 2](https://react.dev/learn/reusing-logic-with-custom-hooks#make-the-counter-delay-configurable) ===>O
+- [Challenge 3](https://react.dev/learn/reusing-logic-with-custom-hooks#extract-useinterval-out-of-usecounter) ===> XOX
+- (C1) App.js doesn’t need to import useState or useEffect.
+- (C2) Pass the delay to the Hook with `useCounter(delay)`.
+- (C2) `<input type=range value=delay min=10 max=2000 onChange={e => setDelay(Number(e.target.value))}/>`
+- (C3) Move the Effect to useInterval including a clear function.
+- 10/9, 10/10, 10/25
 <hr />
 
 ## JavaScript
