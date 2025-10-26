@@ -16,10 +16,8 @@
 - [My Summary](./src/managing-state/StateStructure.md)
 - [Challenge 1](https://react.dev/learn/choosing-the-state-structure#fix-a-component-thats-not-updating) ===>O
 - [Challenge 2](https://react.dev/learn/choosing-the-state-structure#fix-a-broken-packing-list) ===>X
-- [Challenge 3]
 - [Challenge 4](https://react.dev/learn/choosing-the-state-structure#implement-multiple-selection) ===>X
-- [Q1:Avoid duplication in state](https://react.dev/learn/choosing-the-state-structure#avoid-duplication-in-state)===>X
-  - [Q1:fork](https://codesandbox.io/p/sandbox/q832nk)
+- [Q1:Avoid duplication in state](https://react.dev/learn/choosing-the-state-structure#avoid-duplication-in-state), [Q1:fork](https://codesandbox.io/p/sandbox/q832nk) ===>X
 - [Q2: multiple checkbox](http://localhost:5173/checkbox-demo)
 - (C1) use the color prop directly.===> O
 - (C2) redundant state variable, list, checkbox
@@ -47,7 +45,7 @@ function handleToggle(toggledId) {
 }
 ```
 
-- 9/29
+- 9/29, 10/26
 <hr />
 
 - [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components)
