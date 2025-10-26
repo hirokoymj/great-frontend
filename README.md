@@ -14,12 +14,39 @@
 
 - [Choosing the State Structure](https://react.dev/learn/choosing-the-state-structure)
 - [My Summary](./src/managing-state/StateStructure.md)
-- [Challenge 1](https://react.dev/learn/choosing-the-state-structure#fix-a-component-thats-not-updating)
-- [Challenge 2](https://react.dev/learn/choosing-the-state-structure#fix-a-broken-packing-list)
+- [Challenge 1](https://react.dev/learn/choosing-the-state-structure#fix-a-component-thats-not-updating) ===>O
+- [Challenge 2](https://react.dev/learn/choosing-the-state-structure#fix-a-broken-packing-list) ===>X
 - [Challenge 3]
-- [Challenge 4](https://react.dev/learn/choosing-the-state-structure#implement-multiple-selection)
-- [Q1:Avoid duplication in state](https://react.dev/learn/choosing-the-state-structure#avoid-duplication-in-state)
-- [Q2](multiple checkbox)
+- [Challenge 4](https://react.dev/learn/choosing-the-state-structure#implement-multiple-selection) ===>X
+- [Q1:Avoid duplication in state](https://react.dev/learn/choosing-the-state-structure#avoid-duplication-in-state)===>X
+  - [Q1:fork](https://codesandbox.io/p/sandbox/q832nk)
+- [Q2: multiple checkbox](http://localhost:5173/checkbox-demo)
+- (C1) use the color prop directly.===> O
+- (C2) redundant state variable, list, checkbox
+- (C4) Wrong, selectedIds array[0, 3]
+- (Q1) stores only selected item ID.
+- (Q2)
+
+```js
+//MY CODE didn't work
+function handleToggle(toggledId) {
+  if (selectedIds.includes(toggledId)) {
+    const removed = selectedIds.filter((d) => d.id !== toggledId); // THIS IS WRONG!! d.id ==> id
+    setSelectedIds([...removed]);
+  } else {
+    setSelectedIds([...selectedIds, toggledId]);
+  }
+}
+///ANSWER
+function handleToggle(toggledId) {
+  if (selectedIds.includes(toggledId)) {
+    setSelectedIds(selectedIds.filter((id) => id !== toggledId));
+  } else {
+    setSelectedIds([...selectedIds, toggledId]);
+  }
+}
+```
+
 - 9/29
 <hr />
 

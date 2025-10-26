@@ -198,7 +198,8 @@ function Message({ messageColor }) {
 - [Fork answer](https://codesandbox.io/p/sandbox/react-dev-forked-htg8mp?file=%2Fsrc%2FApp.js%3A7%2C1)
 - (Wrong point) if checked or not ==> array.include(v)
 - (Wrong point) checked={selectedOptions.includes('english')}
-- 9/29, 9/30 (x)
+- http://localhost:5173/checkbox-demo
+- 9/29, 9/30 (x), 10/26
 
 ```js
 //====9/30 TypeError selectedIds.includes is not a

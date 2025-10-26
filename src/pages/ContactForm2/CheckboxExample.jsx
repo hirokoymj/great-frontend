@@ -6,12 +6,12 @@ function CheckboxExample() {
   const [tac, setTac] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
 
-  //   const handleCheckboxChange = (event) => {
-  //     const { value, checked } = event.target;
-  //     checked
-  //       ? setSelectedOptions((prev) => [...prev, value])
-  //       : setSelectedOptions((prev) => prev.filter((option) => option !== value));
-  //   };
+  const handleCheckboxChange = (event) => {
+    const { value, checked } = event.target;
+    checked
+      ? setSelectedOptions((prev) => [...prev, value])
+      : setSelectedOptions((prev) => prev.filter((option) => option !== value));
+  };
 
   return (
     <div>

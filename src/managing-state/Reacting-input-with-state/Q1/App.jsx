@@ -17,12 +17,12 @@ export default function Picture() {
   }
 
   return (
-    <div className={backgroundClass}>
+    <div className={backgroundClass} onClick={()=> }>
       <img
         className={pictureClass}
         alt="Rainbow houses in Kampung Pelangi, Indonesia"
         src="https://i.imgur.com/5qwVYb1.jpeg"
-        onClick={() => setToggle((toggle) => !toggle)}
+        onClick={(e) => setToggle((toggle) => !toggle)}
       />
     </div>
   );
