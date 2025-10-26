@@ -14,25 +14,38 @@
 
 - [Choosing the State Structure](https://react.dev/learn/choosing-the-state-structure)
 - [My Summary](./src/managing-state/StateStructure.md)
+- [Challenge 1](https://react.dev/learn/choosing-the-state-structure#fix-a-component-thats-not-updating)
+- [Challenge 2](https://react.dev/learn/choosing-the-state-structure#fix-a-broken-packing-list)
+- [Challenge 3]
+- [Challenge 4](https://react.dev/learn/choosing-the-state-structure#implement-multiple-selection)
+- [Q1:Avoid duplication in state](https://react.dev/learn/choosing-the-state-structure#avoid-duplication-in-state)
+- [Q2](multiple checkbox)
 - 9/29
 <hr />
 
 - [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components)
 - [My Summary](./src/managing-state/SharingStateBtwComp.md)
+- [Challenge 1](https://react.dev/learn/sharing-state-between-components#synced-inputs)
+- [Challenge 2](https://react.dev/learn/sharing-state-between-components#filtering-a-list)
 - 10/3
 <hr />
 
 - [Preserving and Resetting State](https://react.dev/learn/preserving-and-resetting-state)
 - [My Summary](./src/managing-state/Preserving.md)
+- [Challenge 1](https://react.dev/learn/preserving-and-resetting-state#fix-disappearing-input-text)
+- [Challenge 2](https://react.dev/learn/preserving-and-resetting-state#swap-two-form-fields)
 <hr />
 
 - [Extracting State Logic into a Reducer](https://react.dev/learn/reusing-logic-with-custom-hooks)
 - [My Summary](./src/managing-state/Reducer.md)
+- [Challenge 1](https://react.dev/learn/extracting-state-logic-into-a-reducer#dispatch-actions-from-event-handlers)
 - 10/3
 <hr />
 
 - [Passing Data Deeply with Context](https://react.dev/learn/passing-data-deeply-with-context)
 - [My Summary](./src/managing-state/Context.md)
+- [Challenge 1](https://react.dev/learn/passing-data-deeply-with-context#replace-prop-drilling-with-context)
+- [Q1](https://github.com/hirokoymj/great-frontend/blob/main/src/managing-state/Context.md#ex3---updating-a-context-value-object)
 - 10/3
 
 <hr />
