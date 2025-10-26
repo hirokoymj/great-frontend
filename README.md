@@ -53,8 +53,7 @@ function handleToggle(toggledId) {
 - [Challenge 1](https://react.dev/learn/sharing-state-between-components#synced-inputs) ===>X
 - [Challenge 2](https://react.dev/learn/sharing-state-between-components#filtering-a-list) ===>X
 - (C1) lift state up into the parent component.
-- (C2) lift state up into the parent component.
-- (Recap) When you want to coordinate two components, move their state to their common parent.
+- (C2) A single source of true == Lifting state up.
 - 9/29, 10/3, 10/26
 <hr />
 

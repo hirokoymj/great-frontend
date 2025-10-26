@@ -1,6 +1,6 @@
 # Sharing State Between Components
 
-Lifting states **up** a parent component, then pass them down.
+**Lifting state up to a parent component**
 
 ```js
 //===Ex1. Parent=<Accordion>, Children=<Panel>
@@ -26,6 +26,10 @@ function handleChange(e) {
 **References:**
 
 - https://react.dev/learn/sharing-state-between-components
+- A single source of truth
+
+1. Lifting state up
+   The standard practice for sharing state between components is to "lift" it up to their closest common parent. The parent component then becomes the single source of truth for that piece of state and passes the data down to its children via props. When the state changes, the parent component re-renders, and the changes flow down to all the child components that need that information.
 
 ## Ex.1 - Accordion
 
