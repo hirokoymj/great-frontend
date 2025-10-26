@@ -50,28 +50,32 @@ function handleToggle(toggledId) {
 
 - [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components)
 - [My Summary](./src/managing-state/SharingStateBtwComp.md)
-- [Challenge 1](https://react.dev/learn/sharing-state-between-components#synced-inputs)
-- [Challenge 2](https://react.dev/learn/sharing-state-between-components#filtering-a-list)
-- 10/3
+- [Challenge 1](https://react.dev/learn/sharing-state-between-components#synced-inputs) ===>X
+- [Challenge 2](https://react.dev/learn/sharing-state-between-components#filtering-a-list) ===>X
+- (C1) lift state up into the parent component.
+- (C2) lift state up into the parent component.
+- (Recap) When you want to coordinate two components, move their state to their common parent.
+- 9/29, 10/3, 10/26
 <hr />
 
 - [Preserving and Resetting State](https://react.dev/learn/preserving-and-resetting-state)
 - [My Summary](./src/managing-state/Preserving.md)
 - [Challenge 1](https://react.dev/learn/preserving-and-resetting-state#fix-disappearing-input-text)
 - [Challenge 2](https://react.dev/learn/preserving-and-resetting-state#swap-two-form-fields)
+- 9/29
 <hr />
 
 - [Extracting State Logic into a Reducer](https://react.dev/learn/reusing-logic-with-custom-hooks)
 - [My Summary](./src/managing-state/Reducer.md)
 - [Challenge 1](https://react.dev/learn/extracting-state-logic-into-a-reducer#dispatch-actions-from-event-handlers)
-- 10/3
+- 9/29, 10/3
 <hr />
 
 - [Passing Data Deeply with Context](https://react.dev/learn/passing-data-deeply-with-context)
 - [My Summary](./src/managing-state/Context.md)
 - [Challenge 1](https://react.dev/learn/passing-data-deeply-with-context#replace-prop-drilling-with-context)
 - [Q1](https://github.com/hirokoymj/great-frontend/blob/main/src/managing-state/Context.md#ex3---updating-a-context-value-object)
-- 10/3
+- 9/29, 10/3
 
 <hr />
 

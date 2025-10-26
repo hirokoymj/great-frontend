@@ -1,9 +1,6 @@
 # Sharing State Between Components
 
-**Summary (FINAL)**
-
-- Two components(Parent/Children) -> state and eventHander ==Parent.
-- Pass **the event handlers** down so that **the children can change the parent’s state.**
+Lifting states **up** a parent component, then pass them down.
 
 ```js
 //===Ex1. Parent=<Accordion>, Children=<Panel>
