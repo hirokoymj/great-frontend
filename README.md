@@ -1,5 +1,45 @@
 # Learn React
 
+## Managing State - !!! 9/29
+
+- [Reacting to Input with State](https://react.dev/learn/reacting-to-input-with-state)
+- [My Summary](./src/managing-state/Reacting-input-with-state.md)
+- [Challenge 1](https://react.dev/learn/reacting-to-input-with-state#add-and-remove-a-css-class) ===> X
+- [Challenge 2](https://react.dev/learn/reacting-to-input-with-state#profile-editor)===>X
+- (C1) `<div onclick><div onClick={(e) => e.stopPropergation()}>`
+- (C2) XX cannnot see inputs.<button type=submit><form onSubmit={handleSubmit}>
+- (C2) two state variable (first/last), and Edit state variable that holds whether to display the inputs or not.
+- 10/1, 10/25
+<hr />
+
+- [Choosing the State Structure](https://react.dev/learn/choosing-the-state-structure)
+- [My Summary](./src/managing-state/StateStructure.md)
+- 9/29
+<hr />
+
+- [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components)
+- [My Summary](./src/managing-state/SharingStateBtwComp.md)
+- 10/3
+<hr />
+
+- [Preserving and Resetting State](https://react.dev/learn/preserving-and-resetting-state)
+- [My Summary](./src/managing-state/Preserving.md)
+<hr />
+
+- [Extracting State Logic into a Reducer](https://react.dev/learn/reusing-logic-with-custom-hooks)
+- [My Summary](./src/managing-state/Reducer.md)
+- 10/3
+<hr />
+
+- [Passing Data Deeply with Context](https://react.dev/learn/passing-data-deeply-with-context)
+- [My Summary](./src/managing-state/Context.md)
+- 10/3
+
+<hr />
+
+- [Scaling Up with Reducer and Context](https://react.dev/learn/scaling-up-with-reducer-and-context)
+<hr />
+
 ## Describing the UI
 
 - [Your First Component](https://react.dev/learn/your-first-component)
@@ -47,41 +87,6 @@
 - [Updating Arrays in State](https://react.dev/learn/updating-arrays-in-state)
 - [My Summary](./src/Interactivity/Array-in-state.md)
 - 10/2
-<hr />
-
-## Managing State - !!! 9/29
-
-- [Reacting to Input with State](https://react.dev/learn/reacting-to-input-with-state)
-- [My Summary](./src/managing-state/Reacting-input-with-state.md)
-- 10/1
-<hr />
-
-- [Choosing the State Structure](https://react.dev/learn/choosing-the-state-structure)
-- [My Summary](./src/managing-state/StateStructure.md)
-- 9/29
-<hr />
-
-- [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components)
-- [My Summary](./src/managing-state/SharingStateBtwComp.md)
-- 10/3
-<hr />
-
-- [Preserving and Resetting State](https://react.dev/learn/preserving-and-resetting-state)
-- [My Summary](./src/managing-state/Preserving.md)
-<hr />
-
-- [Extracting State Logic into a Reducer](https://react.dev/learn/reusing-logic-with-custom-hooks)
-- [My Summary](./src/managing-state/Reducer.md)
-- 10/3
-<hr />
-
-- [Passing Data Deeply with Context](https://react.dev/learn/passing-data-deeply-with-context)
-- [My Summary](./src/managing-state/Context.md)
-- 10/3
-
-<hr />
-
-- [Scaling Up with Reducer and Context](https://react.dev/learn/scaling-up-with-reducer-and-context)
 <hr />
 
 # Escape Hatches
