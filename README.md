@@ -59,9 +59,10 @@ function handleToggle(toggledId) {
 
 - [Preserving and Resetting State](https://react.dev/learn/preserving-and-resetting-state)
 - [My Summary](./src/managing-state/Preserving.md)
-- [Challenge 1](https://react.dev/learn/preserving-and-resetting-state#fix-disappearing-input-text)
-- [Challenge 2](https://react.dev/learn/preserving-and-resetting-state#swap-two-form-fields)
-- 9/29
+- [Challenge 1](https://react.dev/learn/preserving-and-resetting-state#fix-disappearing-input-text) ===>O
+- [Challenge 2](https://react.dev/learn/preserving-and-resetting-state#swap-two-form-fields) ===>X
+- (C2)
+- 9/29, 10/26
 <hr />
 
 - [Extracting State Logic into a Reducer](https://react.dev/learn/reusing-logic-with-custom-hooks)
