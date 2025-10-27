@@ -61,13 +61,34 @@ function handleToggle(toggledId) {
 - [My Summary](./src/managing-state/Preserving.md)
 - [Challenge 1](https://react.dev/learn/preserving-and-resetting-state#fix-disappearing-input-text) ===>O
 - [Challenge 2](https://react.dev/learn/preserving-and-resetting-state#swap-two-form-fields) ===>X
-- (C2)
+- (C2) Give a key to both <Field> components in both if and else branches. This tells React how to “match up” the correct state for either <Field> even if their order within the parent changes:
 - 9/29, 10/26
 <hr />
 
 - [Extracting State Logic into a Reducer](https://react.dev/learn/reusing-logic-with-custom-hooks)
 - [My Summary](./src/managing-state/Reducer.md)
-- [Challenge 1](https://react.dev/learn/extracting-state-logic-into-a-reducer#dispatch-actions-from-event-handlers)
+- [Challenge 1](https://react.dev/learn/extracting-state-logic-into-a-reducer#dispatch-actions-from-event-handlers) ===>X
+- (C1) `action == {type: xxx}`, `dispatch(action)`
+
+```js
+case 'changed_selection': {
+  return {
+    ...state,
+    selectedId: action.contactId,
+    message: '',
+  };
+}
+dispatch({ type: "changed_selection", selectedId: contact.id });//WRONG
+dispatch({ type: "changed_selection", contactId: contact.id });//CORRECT
+case 'edited_message': {
+  return {
+    ...state,
+    message: action.message,
+  };
+}
+dispatch({ type: "edited_message", message: e.target.value });
+```
+
 - 9/29, 10/3
 <hr />
 
