@@ -333,9 +333,77 @@ function Button({ children, onClick }) {}
 
 **Question 1:**
 
-- Create, update and use context (currentUser, setCurrentUser)
+- [Example 2 of 5: Updating an object via context](https://react.dev/reference/react/useContext#updating-an-object-via-context)
+- Create, update and use context. Pass a currentUser state variables. `const [currentUser, setCurrentUser] = useState(null)`
+
+**Quiz**
+
+```js
+import { createContext, useContext, useState } from 'react';
+//TODO 1.create CurrentUserContext
+export default function MyApp() {
+  const [currentUser, setCurrentUser] = useState(null);
+  return (
+    //TODO 2.
+    <CurrentUserContext>
+      <Form />
+    </CurrentUserContext>
+  );
+}
+
+function LoginButton() {
+  //TODO 3: use the context here
+  if (currentUser !== null) {
+    return <p>You logged in as {currentUser.name}.</p>;
+  }
+
+  return (
+    <Button
+      onClick={() => {
+        //TODO 4: Update a context value "Advika"
+      }}>
+      Log in as Advika
+    </Button>
+  );
+}
+```
 
 **Answer**
+https://react.dev/reference/react/useContext#updating-an-object-via-context
+
+```js
+import { createContext, useContext, useState } from 'react';
+const CurrentUserContext = createContext(null);
+
+export default function MyApp() {
+  const [currentUser, setCurrentUser] = useState(null);
+  return (
+    <CurrentUserContext
+      value={{
+        currentUser,
+        setCurrentUser,
+      }}>
+      <Form />
+    </CurrentUserContext>
+  );
+}
+function LoginButton() {
+  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
+
+  if (currentUser !== null) {
+    return <p>You logged in as {currentUser.name}.</p>;
+  }
+
+  return (
+    <Button
+      onClick={() => {
+        setCurrentUser({ name: 'Advika' });
+      }}>
+      Log in as Advika
+    </Button>
+  );
+}
+```
 
 ```js
 import {createContext, useContext, useState} from "react"

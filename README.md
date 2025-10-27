@@ -89,18 +89,17 @@ case 'edited_message': {
 dispatch({ type: "edited_message", message: e.target.value });
 ```
 
-- 9/29, 10/3
+- 9/29, 10/3, 10/26
 <hr />
 
 - [Passing Data Deeply with Context](https://react.dev/learn/passing-data-deeply-with-context)
 - [My Summary](./src/managing-state/Context.md)
-- [Challenge 1](https://react.dev/learn/passing-data-deeply-with-context#replace-prop-drilling-with-context)
-- [Q1](https://github.com/hirokoymj/great-frontend/blob/main/src/managing-state/Context.md#ex3---updating-a-context-value-object)
-- 9/29, 10/3
+- [Challenge 1](https://react.dev/learn/passing-data-deeply-with-context#replace-prop-drilling-with-context) ===>X🔺
+- [Q1](https://github.com/hirokoymj/great-frontend/blob/main/src/managing-state/Context.md#ex3---updating-a-context-value-object) ===>🔺
+- (C1) useContext, createContext, value, Place the context on the top of the render.
+- (Q1) how to update a context value. => uses a state value and a setter function.
+- 9/29, 10/3, 10/27🔺✅❌
 
-<hr />
-
-- [Scaling Up with Reducer and Context](https://react.dev/learn/scaling-up-with-reducer-and-context)
 <hr />
 
 ## Describing the UI
