@@ -4,9 +4,12 @@
 
 - [Reacting to Input with State](https://react.dev/learn/reacting-to-input-with-state)
 - [My Summary](./src/managing-state/Reacting-input-with-state.md)
-- [Challenge 1](https://react.dev/learn/reacting-to-input-with-state#add-and-remove-a-css-class) ===> X
+- [Challenge 1](https://react.dev/learn/reacting-to-input-with-state#add-and-remove-a-css-class) ===> XX
 - [Challenge 2](https://react.dev/learn/reacting-to-input-with-state#profile-editor)===>X
-- (C1) `<div onclick><div onClick={(e) => e.stopPropergation()}>`
+- (C1) `<div onclick><img onClick={(e) => e.stopPropergation()}>`
+- (C1) two class name ==> space ex. className="bg bg--active"
+- (C1) `const [isActive, setActive] = useState(false)`
+- (C1) Need to calculate both CSS classes based on the current state.
 - (C2) XX cannnot see inputs.<button type=submit><form onSubmit={handleSubmit}>
 - (C2) two state variable (first/last), and Edit state variable that holds whether to display the inputs or not.
 - 10/1, 10/25
