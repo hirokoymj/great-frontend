@@ -15,6 +15,7 @@ import StopWatch from './pages/StopWatch/Stopwatch';
 import ToDo from './pages/Todo/ToDo';
 import { UsersView } from './pages/Users/UsersView';
 import TodoList from './Escape-Hatches/TodoList';
+import PackingMyList from './managing-state/PackingList/PackingMyList';
 
 const Home = () => {
   return (
@@ -46,6 +47,9 @@ const Home = () => {
         <li>
           <Link to="/test12">TodoList</Link>
         </li>
+        <li>
+          <Link to="/test13">Packing My List(generating checkboxes)</Link>
+        </li>
       </ul>
     </div>
   );
@@ -70,6 +74,7 @@ export default function App() {
         <Route path="test10" element={<ToDo />} />
         <Route path="test11" element={<UsersView />} />
         <Route path="test12" element={<TodoList />} />
+        <Route path="test13" element={<PackingMyList />} />
       </Routes>
     </BrowserRouter>
   );

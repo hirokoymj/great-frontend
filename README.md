@@ -18,33 +18,81 @@
 - [Choosing the State Structure](https://react.dev/learn/choosing-the-state-structure)
 - [My Summary](./src/managing-state/StateStructure.md)
 - [Challenge 1](https://react.dev/learn/choosing-the-state-structure#fix-a-component-thats-not-updating) ===>O
-- [Challenge 2](https://react.dev/learn/choosing-the-state-structure#fix-a-broken-packing-list) ===>XO
-- [Challenge 4](https://react.dev/learn/choosing-the-state-structure#implement-multiple-selection) ===>X
-- [Q1:Avoid duplication in state](https://react.dev/learn/choosing-the-state-structure#avoid-duplication-in-state), [Q1:fork](https://codesandbox.io/p/sandbox/q832nk) ===>X
+- [Challenge 2](https://react.dev/learn/choosing-the-state-structure#fix-a-broken-packing-list) ===>X,X(11/1)
+- [Challenge 4](https://react.dev/learn/choosing-the-state-structure#implement-multiple-selection) ===>X,O(11/1)
+- [Q1:Avoid duplication in state](https://react.dev/learn/choosing-the-state-structure#avoid-duplication-in-state), [Q1:fork](https://codesandbox.io/p/sandbox/q832nk) ===>XO
 - [Q2: multiple checkbox](http://localhost:5173/checkbox-demo)
 - (C1) use the color prop directly.===> O
-- (C2) redundant state variable, list, checkbox
+- (!!C2!!) redundant state variable, listItems, checkboxes
 - (C4) Wrong, selectedIds array[0, 3]
 - (Q1) stores only selected item ID.
-- (Q2)
 
 ```js
-//MY CODE didn't work
-function handleToggle(toggledId) {
-  if (selectedIds.includes(toggledId)) {
-    const removed = selectedIds.filter((d) => d.id !== toggledId); // THIS IS WRONG!! d.id ==> id
-    setSelectedIds([...removed]);
-  } else {
-    setSelectedIds([...selectedIds, toggledId]);
-  }
-}
-///ANSWER
-function handleToggle(toggledId) {
-  if (selectedIds.includes(toggledId)) {
-    setSelectedIds(selectedIds.filter((id) => id !== toggledId));
-  } else {
-    setSelectedIds([...selectedIds, toggledId]);
-  }
+//Generating checkboxes, Add, Edit, delete, Input
+//Add - setItems([...prev, newItem]
+//Edit -
+const updated = items.map((item) =>
+  item.id === id ? { ...item, packed: checked } : item
+);
+//Delete - setItems(items.filter((item) => item.id !== id));
+const initialItems = [
+  { id: 0, title: 'Warm socks', packed: true },
+  { id: 1, title: 'Travel journal', packed: false },
+  { id: 2, title: 'Watercolors', packed: false },
+];
+const nextId = 3;
+export default function PackingMyList() {
+  const [items, setItems] = useState(initialItems);
+  const [text, setText] = useState('');
+
+  const onDeleteItem = (id) => {
+    setItems(items.filter((item) => item.id !== id));
+  };
+
+  const handleAddItem = () => {
+    if (text.trim() === '') return;
+    const newItem = {
+      id: nextId,
+      title: text,
+      packed: false,
+    };
+    setItems((prev) => [...prev, newItem]);
+    setText('');
+  };
+
+  const handleTogglePacked = (id, checked) => {
+    const updated = items.map((item) =>
+      item.id === id ? { ...item, packed: checked } : item
+    );
+    setItems(updated);
+  };
+
+  return (
+    <div>
+      <h1>Packing List</h1>
+      <input
+        type="text"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
+      <button onClick={handleAddItem}>Add</button>
+      <ul>
+        {items.map((item) => (
+          <li key={item.id}>
+            <label>
+              <input
+                type="checkbox"
+                checked={item.packed}
+                onChange={(e) => handleTogglePacked(item.id, e.target.checked)}
+              />{' '}
+              {item.title}
+            </label>
+            <button onClick={() => onDeleteItem(item.id)}>Delete</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 ```
 
