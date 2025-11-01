@@ -5,11 +5,11 @@
 - [Reacting to Input with State](https://react.dev/learn/reacting-to-input-with-state)
 - [My Summary](./src/managing-state/Reacting-input-with-state.md)
 - [Challenge 1](https://react.dev/learn/reacting-to-input-with-state#add-and-remove-a-css-class) ===> XX
-- [Challenge 2](https://react.dev/learn/reacting-to-input-with-state#profile-editor)===>X
+- [Challenge 2](https://react.dev/learn/reacting-to-input-with-state#profile-editor)===>XO
 - (C1) `<div onclick><img onClick={(e) => e.stopPropergation()}>`
 - (C1) two class name ==> space ex. className="bg bg--active"
 - (C1) `const [isActive, setActive] = useState(false)`
-- (C1) Need to calculate both CSS classes based on the current state.
+- (C1) calculate CSS classes based on the state. ex. bg bg--active, pic pic--active
 - (C2) XX cannnot see inputs.<button type=submit><form onSubmit={handleSubmit}>
 - (C2) two state variable (first/last), and Edit state variable that holds whether to display the inputs or not.
 - 10/1, 10/25
@@ -18,7 +18,7 @@
 - [Choosing the State Structure](https://react.dev/learn/choosing-the-state-structure)
 - [My Summary](./src/managing-state/StateStructure.md)
 - [Challenge 1](https://react.dev/learn/choosing-the-state-structure#fix-a-component-thats-not-updating) ===>O
-- [Challenge 2](https://react.dev/learn/choosing-the-state-structure#fix-a-broken-packing-list) ===>X
+- [Challenge 2](https://react.dev/learn/choosing-the-state-structure#fix-a-broken-packing-list) ===>XO
 - [Challenge 4](https://react.dev/learn/choosing-the-state-structure#implement-multiple-selection) ===>X
 - [Q1:Avoid duplication in state](https://react.dev/learn/choosing-the-state-structure#avoid-duplication-in-state), [Q1:fork](https://codesandbox.io/p/sandbox/q832nk) ===>X
 - [Q2: multiple checkbox](http://localhost:5173/checkbox-demo)
@@ -48,7 +48,7 @@ function handleToggle(toggledId) {
 }
 ```
 
-- 9/29, 10/26
+- 9/29, 10/26, 11/1
 <hr />
 
 - [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components)
