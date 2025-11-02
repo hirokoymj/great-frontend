@@ -1,8 +1,9 @@
 # Learn React
 
-## Managing State - !!! 9/29
+## Managing State
 
-- [Reacting to Input with State](https://react.dev/learn/reacting-to-input-with-state)
+### [Reacting to Input with State](https://react.dev/learn/reacting-to-input-with-state)
+
 - [My Summary](./src/managing-state/Reacting-input-with-state.md)
 - [Challenge 1](https://react.dev/learn/reacting-to-input-with-state#add-and-remove-a-css-class) ===> XX
 - [Challenge 2](https://react.dev/learn/reacting-to-input-with-state#profile-editor)===>XO
@@ -15,7 +16,8 @@
 - 10/1, 10/25
 <hr />
 
-- [Choosing the State Structure](https://react.dev/learn/choosing-the-state-structure)
+### [Choosing the State Structure](https://react.dev/learn/choosing-the-state-structure)
+
 - [My Summary](./src/managing-state/StateStructure.md)
 - [Challenge 1](https://react.dev/learn/choosing-the-state-structure#fix-a-component-thats-not-updating) ===>O
 - [Challenge 2](https://react.dev/learn/choosing-the-state-structure#fix-a-broken-packing-list) ===>X,X(11/1)
@@ -99,12 +101,13 @@ export default function PackingMyList() {
 - 9/29, 10/26, 11/1
 <hr />
 
-- [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components)
+### [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components)
+
 - [My Summary](./src/managing-state/SharingStateBtwComp.md)
 - [Challenge 1](https://react.dev/learn/sharing-state-between-components#synced-inputs) ===>X,XO(11/2)
 - [Challenge 2](https://react.dev/learn/sharing-state-between-components#filtering-a-list) ===>XO(11/2)
 - (C1) lift state up into the parent component.
-- (C2) A single source of true == Lifting state up.
+- (C2) A single source of true
 - (C2) Pass donw the event hander (handleChange=setQuery) so the children can change the parent's state.
 - (ALL) Parent/Children: SyncedInputs/Input, Accordion/Panel, FilterabeList/SearchBar
 - 9/29, 10/3, 10/26, 11/2
@@ -118,7 +121,8 @@ export default function PackingMyList() {
 - 9/29, 10/26
 <hr />
 
-- [Extracting State Logic into a Reducer](https://react.dev/learn/reusing-logic-with-custom-hooks)
+### [Extracting State Logic into a Reducer](https://react.dev/learn/reusing-logic-with-custom-hooks)
+
 - [My Summary](./src/managing-state/Reducer.md)
 - [Challenge 1](https://react.dev/learn/extracting-state-logic-into-a-reducer#dispatch-actions-from-event-handlers) ===>X🔺
 - (C1) `action == {type: xxx}`, `dispatch(action)`
@@ -126,7 +130,8 @@ export default function PackingMyList() {
 - 9/29, 10/3, 10/26, 11/2
 <hr />
 
-- [Passing Data Deeply with Context](https://react.dev/learn/passing-data-deeply-with-context)
+### [Passing Data Deeply with Context](https://react.dev/learn/passing-data-deeply-with-context)
+
 - [My Summary](./src/managing-state/Context.md)
 - [Challenge 1](https://react.dev/learn/passing-data-deeply-with-context#replace-prop-drilling-with-context) ===>X🔺✅
 - [Q1](https://github.com/hirokoymj/great-frontend/blob/main/src/managing-state/Context.md#ex3---updating-a-context-value-object) ===>🔺✅
