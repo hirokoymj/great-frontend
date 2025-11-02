@@ -101,7 +101,7 @@ export default function PackingMyList() {
 
 - [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components)
 - [My Summary](./src/managing-state/SharingStateBtwComp.md)
-- [Challenge 1](https://react.dev/learn/sharing-state-between-components#synced-inputs) ===>X,X(11/2)
+- [Challenge 1](https://react.dev/learn/sharing-state-between-components#synced-inputs) ===>X,XO(11/2)
 - [Challenge 2](https://react.dev/learn/sharing-state-between-components#filtering-a-list) ===>XO(11/2)
 - (C1) lift state up into the parent component.
 - (C2) A single source of true == Lifting state up.
@@ -120,37 +120,19 @@ export default function PackingMyList() {
 
 - [Extracting State Logic into a Reducer](https://react.dev/learn/reusing-logic-with-custom-hooks)
 - [My Summary](./src/managing-state/Reducer.md)
-- [Challenge 1](https://react.dev/learn/extracting-state-logic-into-a-reducer#dispatch-actions-from-event-handlers) ===>X
+- [Challenge 1](https://react.dev/learn/extracting-state-logic-into-a-reducer#dispatch-actions-from-event-handlers) ===>X🔺
 - (C1) `action == {type: xxx}`, `dispatch(action)`
 
-```js
-case 'changed_selection': {
-  return {
-    ...state,
-    selectedId: action.contactId,
-    message: '',
-  };
-}
-dispatch({ type: "changed_selection", selectedId: contact.id });//WRONG
-dispatch({ type: "changed_selection", contactId: contact.id });//CORRECT
-case 'edited_message': {
-  return {
-    ...state,
-    message: action.message,
-  };
-}
-dispatch({ type: "edited_message", message: e.target.value });
-```
-
-- 9/29, 10/3, 10/26
+- 9/29, 10/3, 10/26, 11/2
 <hr />
 
 - [Passing Data Deeply with Context](https://react.dev/learn/passing-data-deeply-with-context)
 - [My Summary](./src/managing-state/Context.md)
-- [Challenge 1](https://react.dev/learn/passing-data-deeply-with-context#replace-prop-drilling-with-context) ===>X🔺
-- [Q1](https://github.com/hirokoymj/great-frontend/blob/main/src/managing-state/Context.md#ex3---updating-a-context-value-object) ===>🔺
+- [Challenge 1](https://react.dev/learn/passing-data-deeply-with-context#replace-prop-drilling-with-context) ===>X🔺✅
+- [Q1](https://github.com/hirokoymj/great-frontend/blob/main/src/managing-state/Context.md#ex3---updating-a-context-value-object) ===>🔺✅
 - (C1) useContext, createContext, value, Place the context on the top of the render.
 - (Q1) how to update a context value. => uses a state value and a setter function.
+- (Q1) http://localhost:5173/context-example
 - 9/29, 10/3, 10/27🔺✅❌
 
 <hr />

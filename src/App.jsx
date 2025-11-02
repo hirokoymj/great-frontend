@@ -16,6 +16,7 @@ import ToDo from './pages/Todo/ToDo';
 import { UsersView } from './pages/Users/UsersView';
 import TodoList from './Escape-Hatches/TodoList';
 import PackingMyList from './managing-state/PackingList/PackingMyList';
+import ContextExamplePage from './managing-state/Context/ContextExamplePage';
 
 const Home = () => {
   return (
@@ -50,6 +51,9 @@ const Home = () => {
         <li>
           <Link to="/test13">Packing My List(generating checkboxes)</Link>
         </li>
+        <li>
+          <Link to="/context-example">Context Example Page</Link>
+        </li>
       </ul>
     </div>
   );
@@ -75,6 +79,7 @@ export default function App() {
         <Route path="test11" element={<UsersView />} />
         <Route path="test12" element={<TodoList />} />
         <Route path="test13" element={<PackingMyList />} />
+        <Route path="context-example" element={<ContextExamplePage />} />
       </Routes>
     </BrowserRouter>
   );
