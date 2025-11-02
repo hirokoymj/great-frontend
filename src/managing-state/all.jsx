@@ -130,3 +130,72 @@ setItems([
   },
 ]);
 //delete
+
+///============<WRONG>Sharing state btw components (C1)</WRONG>
+// lift the state up to the parent
+//
+import { useState } from 'react';
+
+export default function SyncedInputs() {
+	const [text, setText] = useState('');
+	
+  return (
+    <>
+      <Input label="First input" setText={setText} text={text}/> ///WRONG
+      <Input label="Second input" setText={setText} text={text} /> ////WRONG 
+    </>
+  );
+}
+
+function Input({ label, setText, text }) {
+  const [text, setText] = useState('');
+
+  function handleChange(e) {
+    setText(e.target.value);
+  }
+
+  return (
+    <label>
+      {label}
+      {' '}
+      <input
+        value={text}
+        onChange={handleChange}
+      />
+    </label>
+  );
+}
+
+///============<Fixed>Sharing state btw components (C1)</Fixed>
+// Move the text state variable into the parent component along with the handleChange handler. 
+//
+import { useState } from 'react';
+
+export default function SyncedInputs() {
+	const [text, setText] = useState('');
+
+	function handleChange(e) {
+		setText(e.target.value);
+	}
+	
+  return (
+    <>
+		  <Input label="First input" handleChange={handleChange} text={text} /> 
+		  <Input label="Second input" handleChange={handleChange} text={text} />
+    </>
+  );
+}
+
+function Input({ label, handleChange }) {
+
+  return (
+    <label>
+      {label}
+      {' '}
+      <input
+        value={text}
+        onChange={handleChange}
+      />
+    </label>
+  );
+}

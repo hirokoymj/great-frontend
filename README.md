@@ -101,11 +101,13 @@ export default function PackingMyList() {
 
 - [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components)
 - [My Summary](./src/managing-state/SharingStateBtwComp.md)
-- [Challenge 1](https://react.dev/learn/sharing-state-between-components#synced-inputs) ===>X
-- [Challenge 2](https://react.dev/learn/sharing-state-between-components#filtering-a-list) ===>X
+- [Challenge 1](https://react.dev/learn/sharing-state-between-components#synced-inputs) ===>X,X(11/2)
+- [Challenge 2](https://react.dev/learn/sharing-state-between-components#filtering-a-list) ===>XO(11/2)
 - (C1) lift state up into the parent component.
 - (C2) A single source of true == Lifting state up.
-- 9/29, 10/3, 10/26
+- (C2) Pass donw the event hander (handleChange=setQuery) so the children can change the parent's state.
+- (ALL) Parent/Children: SyncedInputs/Input, Accordion/Panel, FilterabeList/SearchBar
+- 9/29, 10/3, 10/26, 11/2
 <hr />
 
 - [Preserving and Resetting State](https://react.dev/learn/preserving-and-resetting-state)

@@ -1,9 +1,13 @@
 # Sharing State Between Components
 
-**Lifting state up to a parent component**
+- Lifting state up to a parent component == "Single source of true"
+- Two components ==> move their state to a parent.
+- Pass the event handlers down so that the children can change the parent’s state.
 
 ```js
-//===Ex1. Parent=<Accordion>, Children=<Panel>
+//===Ex1.
+// Parent (Accordion), Children (Panel)
+// Pass donw the event hander (setActiveIndex) so the children can change the parent's state.
 Accordion;
 const [activeIndex, setActiveIndex] = useState(0);
 <Panel
@@ -13,10 +17,13 @@ const [activeIndex, setActiveIndex] = useState(0);
   aaa
 </Panel>;
 
-//=== Ex2. Parent=FilterableList, Children=SearchBar
+//=== Ex2. (C2)
+// Parent (FilterableList), Children (SearchBar)
+// Pass donw the event hander (handleChange=setQuery)
 FilterableList;
 const [query, setQuery] = useState('');
 const results = filterItems(foods, query);
+
 function handleChange(e) {
   setQuery(e.target.value);
 }
@@ -30,6 +37,8 @@ function handleChange(e) {
 
 1. Lifting state up
    The standard practice for sharing state between components is to "lift" it up to their closest common parent. The parent component then becomes the single source of truth for that piece of state and passes the data down to its children via props. When the state changes, the parent component re-renders, and the changes flow down to all the child components that need that information.
+
+## Lifting state up by example
 
 ## Ex.1 - Accordion
 
@@ -67,6 +76,82 @@ function Panel({ title, children, isActive, onShow }) {
       <h3>{title}</h3>
       {isActive ? <p>{children}</p> : <button onClick={onShow}>Show</button>}
     </section>
+  );
+}
+```
+
+## Ex2 -
+
+```js
+import { useState } from 'react';
+
+export default function SyncedInputs() {
+  const [text, setText] = useState('');
+
+  function handleChange(e) {
+    setText(e.target.value);
+  }
+
+  return (
+    <>
+      <Input label="First input" value={text} onChange={handleChange} />
+      <Input label="Second input" value={text} onChange={handleChange} />
+    </>
+  );
+}
+
+function Input({ label, value, onChange }) {
+  return (
+    <label>
+      {label} <input value={value} onChange={onChange} />
+    </label>
+  );
+}
+```
+
+## Ex3 - Search
+
+```js
+import { useState } from 'react';
+import { foods, filterItems } from './data.js';
+
+export default function FilterableList() {
+  const [query, setQuery] = useState('');
+  const results = filterItems(foods, query);
+
+  function handleChange(e) {
+    setQuery(e.target.value);
+  }
+
+  return (
+    <>
+      <SearchBar query={query} onChange={handleChange} />
+      <hr />
+      <List items={results} />
+    </>
+  );
+}
+
+function SearchBar({ query, onChange }) {
+  return (
+    <label>
+      Search: <input value={query} onChange={onChange} />
+    </label>
+  );
+}
+
+function List({ items }) {
+  return (
+    <table>
+      <tbody>
+        {items.map((food) => (
+          <tr key={food.id}>
+            <td>{food.name}</td>
+            <td>{food.description}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 }
 ```
