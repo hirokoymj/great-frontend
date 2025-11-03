@@ -1,3 +1,5 @@
+// Managing State -> Choosing -> C2
+// Point: Generate checkboxes (Add, Edit Delete a list)
 import { useState } from 'react';
 
 const initialItems = [
@@ -6,7 +8,8 @@ const initialItems = [
   { id: 2, title: 'Watercolors', packed: false },
 ];
 const nextId = 3;
-export default function PackingMyList() {
+
+export default function PackingList() {
   const [items, setItems] = useState(initialItems);
   const [text, setText] = useState('');
 

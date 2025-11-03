@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from 'react';
 
 const CurrentUserContext = createContext(null);
 
-export default function ContextExamplePage() {
+export default function UserContextDemo() {
   const [currentUser, setCurrentUser] = useState(null);
   return (
     <CurrentUserContext

@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import './styles.css';
 
-export default function Picture() {
+export default function PicturePage() {
   const [isActive, setIsActive] = useState(false);
 
   let backgroundClassName = 'background';

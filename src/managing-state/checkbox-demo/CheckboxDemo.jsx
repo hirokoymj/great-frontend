@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 //const options = ['english', 'maths', 'physics'];
 
-function CheckboxExample() {
+export default function CheckboxDemo() {
   const [tac, setTac] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
 
@@ -17,9 +17,8 @@ function CheckboxExample() {
     <div>
       <input
         type="checkbox"
-        name="tac"
         checked={tac}
-        onChange={(event) => setTac(event.target.checked)}
+        onChange={(e) => setTac(e.target.checked)}
       />
       <label htmlFor="checkbox-input">Agree to terms and conditions</label>
       <p>Agree: {tac ? 'checked' : 'unchecked'}</p>
@@ -27,9 +26,17 @@ function CheckboxExample() {
       <input
         type="checkbox"
         name="subject"
+        id="checkbox-english"
         value="english"
         checked={selectedOptions.includes('english')}
-        onChange={handleCheckboxChange}
+        onChange={(event) => {
+          const { value, checked } = event.target;
+          checked
+            ? setSelectedOptions((prev) => [...prev, value])
+            : setSelectedOptions((prev) =>
+                prev.filter((option) => option !== value)
+              );
+        }}
       />
       <label htmlFor="checkbox-english" style={{ display: 'inline' }}>
         English
@@ -37,6 +44,7 @@ function CheckboxExample() {
       <input
         type="checkbox"
         name="subject"
+        id="checkbox-maths"
         value="maths"
         checked={selectedOptions.includes('maths')}
         onChange={handleCheckboxChange}
@@ -47,6 +55,7 @@ function CheckboxExample() {
       <input
         type="checkbox"
         name="subject"
+        id="checkbox-physics"
         value="physics"
         checked={selectedOptions.includes('physics')}
         onChange={handleCheckboxChange}
@@ -59,7 +68,7 @@ function CheckboxExample() {
     </div>
   );
 }
-export default CheckboxExample;
+
 //=======Reference #1 Great Frontend
 //https://www.greatfrontend.com/react-interview-playbook/react-forms#checkbox-input
 //A checkbox is a boolean value (checked or unchecked).
