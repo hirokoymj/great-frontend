@@ -1,11 +1,16 @@
 import { useState } from 'react';
 
-//const options = ['english', 'maths', 'physics'];
+// 1
+//const labels = ['english', 'maths', 'physics'];
+//const [options, setOptions] = useState([]);
+
+// 2
 // const initialItems = [
 //   { id: 0, title: 'Warm socks', packed: true },
 //   { id: 1, title: 'Travel journal', packed: false },
 //   { id: 2, title: 'Watercolors', packed: false },
-// ];
+// ]
+//  const [items, setItems] = useState(initialItems);
 
 export default function CheckboxDemo() {
   const [tac, setTac] = useState(false);
@@ -69,8 +74,8 @@ export default function CheckboxDemo() {
 */
 
 const CreateCheckbox1 = () => {
-  const [selectedOptions, setSelectedOptions] = useState(['english']);
-  const options = ['english', 'maths', 'physics'];
+  const [options, setOptions] = useState([]);
+  const labels = ['english', 'maths', 'physics'];
 
   const handleChange = (e) => {
     const checked = e.target.checked;
@@ -84,19 +89,19 @@ const CreateCheckbox1 = () => {
 
   return (
     <div>
-      {options.map((option) => (
-        <label key={option}>
+      {labels.map((label) => (
+        <label key={label}>
           <input
             type="checkbox"
-            value={option}
+            value={label}
+            checked={options.includes(label)}
             onChange={handleChange}
-            checked={selectedOptions.includes(option)}
           />
-          {option}
+          {label}
         </label>
       ))}
       <hr />
-      Output: {selectedOptions.join(', ')}
+      Output: {options.join(', ')}
     </div>
   );
 };

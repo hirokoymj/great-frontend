@@ -23,26 +23,51 @@ const [selectedId, setSelectedId] = useState(0) //Save id only
 const selectedItem = items.find((item) => item.id === selectedId);
 <p>You picked {selectedItem.title}.</p>
 
-//============3. Form: checkbox
-const [tac, setTac] = useState(false);
-<input type="checkbox" checked={tac} onChange={(e) => setTac(e.target.checked)} />
+//============3. checkbox
+//===1===
+const labels = ['english', 'maths', 'physics'];
+const [options, setOptions] = useState([]);
 
-//============4. Form: checkbox(multi)
-const [selectedOptions, setSelectedOptions] = useState([]);
+ const handleChange = (e) => {
+    const checked = e.target.checked;
+    const value = e.target.value;
+    if (checked) {
+      setSelectedOptions((prev) => [...prev, value]);
+    } else {
+      setSelectedOptions((prev) => prev.filter((d) => d !== value));
+    }
+  };
+<label>
 <input
 	type="checkbox"
-	name="subject"
-	value="math"
-	checked={selectedOptions.includes('math')}
-	onChange={(e) => {
-	const { value, checked } = e.target;
-	checked
-		? setSelectedOptions((prev) => [...prev, value])
-		: setSelectedOptions((prev) =>
-			prev.filter((option) => option !== value)
-		);
-	}}
+	value={label}
+	checked={options.includes(label)}
+	onChange={handleChange}
 />
+{label}</label>
+
+
+// ===2===
+const initialItems = [
+  { id: 0, title: 'Warm socks', packed: true },
+  { id: 1, title: 'Travel journal', packed: false },
+  { id: 2, title: 'Watercolors', packed: false },
+]
+ const [items, setItems] = useState(initialItems);
+  const handleTogglePacked = (id, checked) => {
+    const updated = items.map((item) =>
+      item.id === id ? { ...item, packed: checked } : item
+    );
+    setItems(updated);
+  };
+<label>
+<input
+	type="checkbox"
+	checked={item.packed}
+	onChange={(e) => handleTogglePacked(item.id, e.target.checked)}
+/>{' '}
+{item.title}
+</label>
 ```
 
 **Form**
