@@ -22,12 +22,16 @@ import FilterableList from './managing-state/filtering-list/FilterableList';
 import Messenger from './managing-state/reducer-demo/Messanger';
 import ImageSizeContextDemo from './managing-state/context-demo2/ImageSizeContextDemo';
 import UserContextDemo from './managing-state/context-demo1/UserContextDemo';
+import Accordion from './managing-state/accordion/Accordion';
+import EditProfile from './managing-state/edit-profile/EditProfile';
+import ClockDemo from './managing-state/clock/ClockDemo';
+import MailClient from './managing-state/multi-selection/MailClient';
+import Menu from './managing-state/menu/Menu';
 
 const Home = () => {
   return (
     <div>
-      <h1>Home</h1>
-      <ul>
+      {/* <ul>
         <li>
           <Link to="/test1">Like Button</Link>
         </li>
@@ -46,30 +50,59 @@ const Home = () => {
         <li>
           <Link to="/test12">TodoList</Link>
         </li>
-      </ul>
+      </ul> */}
+      <h2>Managing State</h2>
+      <p style={{ fontWeight: 'bold' }}>Reacting</p>
       <ul>
-        <h2>Managing State</h2>
-        <li>
-          <Link to="/packing-list">Packing List(generating checkboxes)</Link>
-        </li>
-
         <li>
           <Link to="/picture">Picture (add/remove css)</Link>
         </li>
         <li>
-          <Link to="/checkbox-demo">Checkbox Demo</Link>
+          <Link to="/edit-profile">Edit Profile</Link>
         </li>
+      </ul>
+      <p style={{ fontWeight: 'bold' }}>Choosing state</p>
+      <ul>
+        <li>
+          <Link to="/clock-demo">(C1) Clock</Link>
+        </li>
+        <li>
+          <Link to="/packing-list">
+            (C2) Packing List(generating checkboxes)
+          </Link>
+        </li>
+        <li>
+          <Link to="/multi-selection">(C4) Multi selection</Link>
+        </li>
+        <li>
+          <Link to="/menu">(Q1) Menu</Link>
+        </li>
+        <li>
+          <Link to="/checkbox-demo">(Q2) Multi checkboxes</Link>
+        </li>
+      </ul>
+      <p style={{ fontWeight: 'bold' }}>Sharing state</p>
+      <ul>
         <li>
           <Link to="/synced-input">
             Synced Input (lifting a state up to a parent comp.)
           </Link>
         </li>
         <li>
+          <Link to="/accordion">Accordion (ex1)</Link>
+        </li>
+        <li>
           <Link to="/filterable-list">Filterable List</Link>
         </li>
+      </ul>
+      <p style={{ fontWeight: 'bold' }}>Reducer</p>
+      <ul>
         <li>
           <Link to="/reducer-demo">Reducer</Link>
         </li>
+      </ul>
+      <p style={{ fontWeight: 'bold' }}>Context</p>
+      <ul>
         <li>
           <Link to="/image-context-demo">Image Context demo</Link>
         </li>
@@ -106,6 +139,11 @@ export default function App() {
         <Route path="reducer-demo" element={<Messenger />} />
         <Route path="image-context-demo" element={<ImageSizeContextDemo />} />
         <Route path="user-context-demo" element={<UserContextDemo />} />
+        <Route path="accordion" element={<Accordion />} />
+        <Route path="edit-profile" element={<EditProfile />} />
+        <Route path="clock-demo" element={<ClockDemo />} />
+        <Route path="multi-selection" element={<MailClient />} />
+        <Route path="multi-selection" element={<Menu />} />
       </Routes>
     </BrowserRouter>
   );

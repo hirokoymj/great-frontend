@@ -4,7 +4,7 @@
 
 ### [Reacting to Input with State](https://react.dev/learn/reacting-to-input-with-state)
 
-- [My Summary](./src/managing-state/Reacting-input-with-state.md)
+- [My Summary](./src/managing-state/Reacting-state.md)
 - [Challenge 1](https://react.dev/learn/reacting-to-input-with-state#add-and-remove-a-css-class) ===> XX
 - [Challenge 2](https://react.dev/learn/reacting-to-input-with-state#profile-editor)===>XO
 - (C1) `<div onclick><img onClick={(e) => e.stopPropergation()}>`
@@ -18,11 +18,13 @@
 
 ### [Choosing the State Structure](https://react.dev/learn/choosing-the-state-structure)
 
-- [My Summary](./src/managing-state/StateStructure.md)
+- [My Summary](./src/managing-state/Choosing-state.md)
 - [Challenge 1](https://react.dev/learn/choosing-the-state-structure#fix-a-component-thats-not-updating) ===>O
 - [Challenge 2](https://react.dev/learn/choosing-the-state-structure#fix-a-broken-packing-list) ===>X,X(11/1)
 - [Challenge 4](https://react.dev/learn/choosing-the-state-structure#implement-multiple-selection) ===>X,O(11/1)
-- [Q1:Avoid duplication in state](https://react.dev/learn/choosing-the-state-structure#avoid-duplication-in-state), [Q1:fork](https://codesandbox.io/p/sandbox/q832nk) ===>XO
+- [Q1:Avoid duplication in state](https://react.dev/learn/choosing-the-state-structure#avoid-duplication-in-state)
+  - [Q1:fork](https://codesandbox.io/p/sandbox/q832nk)
+  - [A1:fork](https://codesandbox.io/p/sandbox/ql4dp7?file=%2Fsrc%2FApp.js) ===>XO
 - [Q2: multiple checkbox](http://localhost:5173/checkbox-demo)
 - (C1) use the color prop directly.===> O
 - (!!C2!!) redundant state variable, listItems, checkboxes,
@@ -34,7 +36,7 @@
 
 ### [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components)
 
-- [My Summary](./src/managing-state/SharingStateBtwComp.md)
+- [My Summary](./src/managing-state/Sharing-state.md)
 - [Challenge 1](https://react.dev/learn/sharing-state-between-components#synced-inputs) ===>X,XO(11/2)
 - [Challenge 2](https://react.dev/learn/sharing-state-between-components#filtering-a-list) ===>XO(11/2)
 - (C1) lift state up into the parent component.
@@ -45,7 +47,7 @@
 <hr />
 
 - [Preserving and Resetting State](https://react.dev/learn/preserving-and-resetting-state)
-- [My Summary](./src/managing-state/Preserving.md)
+- [My Summary](./src/managing-state/Preserving-state.md)
 - [Challenge 1](https://react.dev/learn/preserving-and-resetting-state#fix-disappearing-input-text) ===>O
 - [Challenge 2](https://react.dev/learn/preserving-and-resetting-state#swap-two-form-fields) ===>X
 - (C2) Give a key to both <Field> components in both if and else branches. This tells React how to “match up” the correct state for either <Field> even if their order within the parent changes:
