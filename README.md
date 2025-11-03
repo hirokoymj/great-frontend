@@ -57,7 +57,7 @@
 ### [Extracting State Logic into a Reducer](https://react.dev/learn/reusing-logic-with-custom-hooks)
 
 - [My Summary](./src/managing-state/Reducer.md)
-- [Challenge 1](https://react.dev/learn/extracting-state-logic-into-a-reducer#dispatch-actions-from-event-handlers) ===>X🔺
+- [Challenge 1](https://react.dev/learn/extracting-state-logic-into-a-reducer#dispatch-actions-from-event-handlers) ===>XX
 - (C1) `action == {type: xxx}`, `dispatch(action)`
 - 9/29, 10/3, 10/26, 11/2
 <hr />
@@ -65,12 +65,12 @@
 ### [Passing Data Deeply with Context](https://react.dev/learn/passing-data-deeply-with-context)
 
 - [My Summary](./src/managing-state/Context.md)
-- [Challenge 1](https://react.dev/learn/passing-data-deeply-with-context#replace-prop-drilling-with-context) ===>X🔺✅
-- [Q1](https://github.com/hirokoymj/great-frontend/blob/main/src/managing-state/Context.md#ex3---updating-a-context-value-object) ===>🔺✅
+- [Challenge 1](https://react.dev/learn/passing-data-deeply-with-context#replace-prop-drilling-with-context) ===>XXO
+- [Q1](https://github.com/hirokoymj/great-frontend/blob/main/src/managing-state/Context.md#ex3---updating-a-context-value-object) ===>XO
 - (C1) useContext, createContext, value, Place the context on the top of the render.
 - (Q1) how to update a context value. => uses a state value and a setter function.
 - (Q1) http://localhost:5173/context-example
-- 9/29, 10/3, 10/27🔺✅❌
+- 9/29, 10/3, 10/27
 
 <hr />
 

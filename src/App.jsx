@@ -14,9 +14,9 @@ import ToDo from './pages/Todo/ToDo';
 import { UsersView } from './pages/Users/UsersView';
 import TodoList from './Escape-Hatches/TodoList';
 //Managing State
-import PackingMyList from './managing-state/packing-list/PackingList';
-import PicturePage from './managing-state/picture-demo/Picture';
+import PackingMyList from './managing-state/checkbox-demo2/PackingList';
 import CheckboxDemo from './managing-state/checkbox-demo/CheckboxDemo';
+import PicturePage from './managing-state/picture-demo/Picture';
 import SyncedInputs from './managing-state/synced-input/SyncedInput';
 import FilterableList from './managing-state/filtering-list/FilterableList';
 import Messenger from './managing-state/reducer-demo/Messanger';
@@ -67,9 +67,7 @@ const Home = () => {
           <Link to="/clock-demo">(C1) Clock</Link>
         </li>
         <li>
-          <Link to="/packing-list">
-            (C2) Packing List(generating checkboxes)
-          </Link>
+          <Link to="/packing-list">(C2) Generating checkboxes</Link>
         </li>
         <li>
           <Link to="/multi-selection">(C4) Multi selection</Link>

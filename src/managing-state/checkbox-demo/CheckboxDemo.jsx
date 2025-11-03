@@ -1,6 +1,11 @@
 import { useState } from 'react';
 
 //const options = ['english', 'maths', 'physics'];
+// const initialItems = [
+//   { id: 0, title: 'Warm socks', packed: true },
+//   { id: 1, title: 'Travel journal', packed: false },
+//   { id: 2, title: 'Watercolors', packed: false },
+// ];
 
 export default function CheckboxDemo() {
   const [tac, setTac] = useState(false);
@@ -23,44 +28,31 @@ export default function CheckboxDemo() {
       <label htmlFor="checkbox-input">Agree to terms and conditions</label>
       <p>Agree: {tac ? 'checked' : 'unchecked'}</p>
       <hr />
-      <input
-        type="checkbox"
-        name="subject"
-        id="checkbox-english"
-        value="english"
-        checked={selectedOptions.includes('english')}
-        onChange={(event) => {
-          const { value, checked } = event.target;
-          checked
-            ? setSelectedOptions((prev) => [...prev, value])
-            : setSelectedOptions((prev) =>
-                prev.filter((option) => option !== value)
-              );
-        }}
-      />
-      <label htmlFor="checkbox-english" style={{ display: 'inline' }}>
+      <label>
+        <input
+          type="checkbox"
+          value="english"
+          checked={selectedOptions.includes('english')}
+          onChange={handleCheckboxChange}
+        />
         English
       </label>
-      <input
-        type="checkbox"
-        name="subject"
-        id="checkbox-maths"
-        value="maths"
-        checked={selectedOptions.includes('maths')}
-        onChange={handleCheckboxChange}
-      />
-      <label htmlFor="checkbox-maths" style={{ display: 'inline' }}>
+      <label>
+        <input
+          type="checkbox"
+          value="maths"
+          checked={selectedOptions.includes('maths')}
+          onChange={handleCheckboxChange}
+        />
         Maths
       </label>
-      <input
-        type="checkbox"
-        name="subject"
-        id="checkbox-physics"
-        value="physics"
-        checked={selectedOptions.includes('physics')}
-        onChange={handleCheckboxChange}
-      />
-      <label htmlFor="checkbox-physics" style={{ display: 'inline' }}>
+      <label>
+        <input
+          type="checkbox"
+          value="physics"
+          checked={selectedOptions.includes('physics')}
+          onChange={handleCheckboxChange}
+        />
         Physics
       </label>
 
@@ -68,52 +60,43 @@ export default function CheckboxDemo() {
     </div>
   );
 }
+/**
+- In React, when you write onChange={handleCheckboxChange}, React automatically passes the event object to your handler.
+- Writing onChange={(e) => handleCheckboxChange(e)} does the same thing but adds an unnecessary wrapper function — it’s only needed if you want to:
+- Pass extra arguments (onChange={(e) => handleCheckboxChange(e, 'maths')}), or
+- Perform inline logic before calling the handler.
+- You don’t have to manually write (e) => handleCheckboxChange(e) unless you want to add custom arguments or extra logic inline.
+*/
 
-//=======Reference #1 Great Frontend
-//https://www.greatfrontend.com/react-interview-playbook/react-forms#checkbox-input
-//A checkbox is a boolean value (checked or unchecked).
-//=======Reference #2: AI
-// import React, { useState } from 'react';
-// const options = ['Option A', 'Option B', 'Option C', 'Option D'];
-// function MultipleCheckboxExample() {
-//   const [selectedOptions, setSelectedOptions] = useState([]);
-//   const handleCheckboxChange = (event) => {
-//     const { value, checked } = event.target;
-//     if (checked) {
-//       setSelectedOptions((prevSelectedOptions) => [...prevSelectedOptions, value]);
-//     } else {
-//       setSelectedOptions((prevSelectedOptions) =>
-//         prevSelectedOptions.filter((option) => option !== value)
-//       );
-//     }
-//   };
+const CreateCheckbox1 = () => {
+  const [selectedOptions, setSelectedOptions] = useState(['english']);
+  const options = ['english', 'maths', 'physics'];
 
-//   return (
-//     <div>
-//       <h2>Select your options:</h2>
-//       {options.map((option, index) => (
-//         <div key={index}>
-//           <input
-//             type="checkbox"
-//             id={`checkbox-${index}`}
-//             value={option}
-//             checked={selectedOptions.includes(option)} // Check if option is in selectedOptions
-//             onChange={handleCheckboxChange}
-//           />
-//           <label htmlFor={`checkbox-${index}`}>{option}</label>
-//         </div>
-//       ))}
+  const handleChange = (e) => {
+    const checked = e.target.checked;
+    const value = e.target.value;
+    if (checked) {
+      setSelectedOptions((prev) => [...prev, value]);
+    } else {
+      setSelectedOptions((prev) => prev.filter((d) => d !== value));
+    }
+  };
 
-//       <h3>Selected Options:</h3>
-//       {selectedOptions.length > 0 ? (
-//         <ul>
-//           {selectedOptions.map((selected, index) => (
-//             <li key={index}>{selected}</li>
-//           ))}
-//         </ul>
-//       ) : (
-//         <p>No options selected.</p>
-//       )}
-//     </div>
-//   );
-//}
+  return (
+    <div>
+      {options.map((option) => (
+        <label key={option}>
+          <input
+            type="checkbox"
+            value={option}
+            onChange={handleChange}
+            checked={selectedOptions.includes(option)}
+          />
+          {option}
+        </label>
+      ))}
+      <hr />
+      Output: {selectedOptions.join(', ')}
+    </div>
+  );
+};
