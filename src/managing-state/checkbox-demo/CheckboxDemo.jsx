@@ -105,3 +105,35 @@ const CreateCheckbox1 = () => {
     </div>
   );
 };
+
+const MultiCheckBox = () => {
+  const [items, setItems] = useState([
+    { id: 0, title: 'Warm socks', packed: true },
+    { id: 1, title: 'Travel journal', packed: false },
+    { id: 2, title: 'Watercolors', packed: false },
+  ]);
+
+  const handleChange = (e, id) => {
+    const checked = e.target.checked;
+    const updated = items.map((item) =>
+      item.id === id ? { ...item, packed: checked } : item
+    );
+    setItems(updated);
+  };
+
+  render(
+    <div>
+      <h1>Multi checkboxes</h1>
+      {items.map((item) => (
+        <label key={item.id}>
+          <input
+            type="checkbox"
+            checke={item.packed}
+            onChange={(e) => handleChange(item.id)}
+          />
+          item.title
+        </label>
+      ))}
+    </div>
+  );
+};

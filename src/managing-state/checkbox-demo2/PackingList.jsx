@@ -28,16 +28,16 @@ export default function PackingList() {
     setText('');
   };
 
-  const handleTogglePacked = (id, checked) => {
-    const updated = items.map((item) =>
-      item.id === id ? { ...item, packed: checked } : item
+  const handleTogglePacked = (e, id) => {
+    const checked = e.target.checked;
+    setItems((prev) =>
+      prev.map((item) => (item.id === id ? { ...item, packed: checked } : item))
     );
-    setItems(updated);
   };
 
   return (
     <div>
-      <h1>Packing List</h1>
+      <h1>Packing List 11/3</h1>
       <input
         type="text"
         value={text}
@@ -51,7 +51,7 @@ export default function PackingList() {
               <input
                 type="checkbox"
                 checked={item.packed}
-                onChange={(e) => handleTogglePacked(item.id, e.target.checked)}
+                onChange={(e) => handleTogglePacked(e, item.id)}
               />{' '}
               {item.title}
             </label>

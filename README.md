@@ -5,7 +5,7 @@
 ### [Reacting to Input with State](https://react.dev/learn/reacting-to-input-with-state)
 
 - [My Summary](./src/managing-state/Reacting-state.md)
-- [Challenge 1](https://react.dev/learn/reacting-to-input-with-state#add-and-remove-a-css-class) ===> XX
+- [Challenge 1](https://react.dev/learn/reacting-to-input-with-state#add-and-remove-a-css-class) ===> XXO
 - [Challenge 2](https://react.dev/learn/reacting-to-input-with-state#profile-editor)===>XO
 - (C1) `<div onclick><img onClick={(e) => e.stopPropergation()}>`
 - (C1) two class name ==> space ex. className="bg bg--active"
@@ -13,14 +13,14 @@
 - (C1) calculate CSS classes based on the state. ex. bg bg--active, pic pic--active
 - (C2) XX cannnot see inputs.<button type=submit><form onSubmit={handleSubmit}>
 - (C2) two state variable (first/last), and Edit state variable that holds whether to display the inputs or not.
-- 10/1, 10/25
+- 10/1, 10/25, 11/3
 <hr />
 
 ### [Choosing the State Structure](https://react.dev/learn/choosing-the-state-structure)
 
 - [My Summary](./src/managing-state/Choosing-state.md)
 - [Challenge 1](https://react.dev/learn/choosing-the-state-structure#fix-a-component-thats-not-updating) ===>O
-- [Challenge 2](https://react.dev/learn/choosing-the-state-structure#fix-a-broken-packing-list) ===>X,X(11/1)
+- [Challenge 2](https://react.dev/learn/choosing-the-state-structure#fix-a-broken-packing-list) ===>X,X,O
 - [Challenge 4](https://react.dev/learn/choosing-the-state-structure#implement-multiple-selection) ===>X,O(11/1)
 - [Q1:Avoid duplication in state](https://react.dev/learn/choosing-the-state-structure#avoid-duplication-in-state)
   - [Q1:fork](https://codesandbox.io/p/sandbox/q832nk)
@@ -31,7 +31,10 @@
 - (!!C2!!) generating checkboxes Add (...), Edit(Map id, checked), Delete(filter), [PackingList.jsx](./src/managing-state/packing-list/PackingList.jsx)
 - (C4) Wrong, selectedIds array[0, 3]
 - (Q1) stores only selected item ID.
-- 9/29, 10/26, 11/1
+- `onChange={handleChange}` vs `onChange={(e) => handleChange(e, 'maths')}`
+  - `onChange={handleChange}` - React automatically passes the event object to an hander.
+  - `onChange={(e) => handleChange(e, 'maths')}`- Extra arguments == inline: (onChange={(e) => handleCheckboxChange(e, 'maths')})
+- 9/29, 10/26, 11/1, 11/4
 <hr />
 
 ### [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components)
