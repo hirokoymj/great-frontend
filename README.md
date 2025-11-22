@@ -1,5 +1,48 @@
 # Learn React
 
+## Adding Interactivity
+
+- [Responding to Events](https://react.dev/learn/responding-to-events)
+- [My Summary](./src/Interactivity/Responding-to-events.md)
+
+- 10/2,
+<hr />
+
+- [State: A Component's Memory](https://react.dev/learn/state-a-components-memory)
+- [My Summary](./src/Interactivity/ComponentMemory.md)
+- 10/2
+<hr />
+
+- [Render and Commit](https://react.dev/learn/render-and-commit)
+- [My Summary](./src/Interactivity/Render-and-commit.md)
+- 10/2
+<hr />
+
+- [State as a Snapshot](https://react.dev/learn/state-as-a-snapshot)
+- [My Summary](./src/Interactivity/Snapshot.md)
+- 10/3
+<hr />
+
+- [Queueing a Series of State Updates](https://react.dev/learn/queueing-a-series-of-state-updates)
+- [My Summary](./src/Interactivity/Queueing-state.md)
+- [C1](https://react.dev/learn/responding-to-events#fix-an-event-handler) - O(11/22)
+- (C1) onClick={handleClick} - an event handler must be passed or inline.
+- (C1) onClicke={() => handleClick()}
+- [C2](https://react.dev/learn/responding-to-events#wire-up-the-events) - X(11/22)
+- (C2) this event propagates up, and some handler above does it. -> e.stopPropergation()
+- 10/3, 11/22
+<hr />
+
+- [Updating Objects in State](https://react.dev/learn/updating-objects-in-state)
+- [My Summary](./src/Interactivity/Objects-in-state.md)
+- 10/3
+<hr />
+
+- [Updating Arrays in State](https://react.dev/learn/updating-arrays-in-state)
+- [My Summary](./src/Interactivity/Array-in-state.md)
+- 10/2
+<hr />
+
 ## Managing State
 
 ### [Reacting to Input with State](https://react.dev/learn/reacting-to-input-with-state)
@@ -88,43 +131,6 @@
 - [Rendering Lists](https://react.dev/learn/rendering-lists)
 - [Keeping Components Pure](https://react.dev/learn/keeping-components-pure)
 - [Understanding Your UI as a Tree](https://react.dev/learn/understanding-your-ui-as-a-tree)
-
-## Adding Interactivity
-
-- [Responding to Events](https://react.dev/learn/responding-to-events)
-- [My Summary](./src/Interactivity/Responding-to-events.md)
-- 10/2
-<hr />
-
-- [State: A Component's Memory](https://react.dev/learn/state-a-components-memory)
-- [My Summary](./src/Interactivity/ComponentMemory.md)
-- 10/2
-<hr />
-
-- [Render and Commit](https://react.dev/learn/render-and-commit)
-- [My Summary](./src/Interactivity/Render-and-commit.md)
-- 10/2
-<hr />
-
-- [State as a Snapshot](https://react.dev/learn/state-as-a-snapshot)
-- [My Summary](./src/Interactivity/Snapshot.md)
-- 10/3
-<hr />
-
-- [Queueing a Series of State Updates](https://react.dev/learn/queueing-a-series-of-state-updates)
-- [My Summary](./src/Interactivity/Queueing-state.md)
-- 10/3
-<hr />
-
-- [Updating Objects in State](https://react.dev/learn/updating-objects-in-state)
-- [My Summary](./src/Interactivity/Objects-in-state.md)
-- 10/3
-<hr />
-
-- [Updating Arrays in State](https://react.dev/learn/updating-arrays-in-state)
-- [My Summary](./src/Interactivity/Array-in-state.md)
-- 10/2
-<hr />
 
 # Escape Hatches
 

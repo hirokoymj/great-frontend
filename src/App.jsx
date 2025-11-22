@@ -31,7 +31,7 @@ import Menu from './managing-state/menu/Menu';
 const Home = () => {
   return (
     <div>
-      {/* <ul>
+      <ul>
         <li>
           <Link to="/test1">Like Button</Link>
         </li>
@@ -50,7 +50,10 @@ const Home = () => {
         <li>
           <Link to="/test12">TodoList</Link>
         </li>
-      </ul> */}
+        <li>
+          <Link to="/test11">User View</Link>
+        </li>
+      </ul>
       <h2>Managing State</h2>
       <p style={{ fontWeight: 'bold' }}>Reacting</p>
       <ul>

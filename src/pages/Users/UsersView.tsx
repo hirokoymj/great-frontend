@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './users.css';
+//import './users.css';
 
 interface User {
   id: number;
@@ -14,86 +14,43 @@ export const UsersView = () => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
 
-  //   useEffect(() => {
-  //     setLoading(true);
-  //     fetch('https://jsonplaceholder.typicode.com/users')
-  //       .then((response) => {
-  //         if (!response.ok) throw new Error('Failed to get users data.');
-  //         return response.json();
-  //       })
-  //       .then((data) => {
-  //         setUsers(data);
-  //       })
-  //       .catch((e) => {
-  //         setError(e);
-  //       })
-  //       .finally(() => {
-  //         setLoading(false);
-  //       });
-  //   }, []);
-
   useEffect(() => {
-    //===========then.catch.finally
     setLoading(true);
-    // const token = 'aaa';
-    // fetch('https://jsonplaceholder.typicode.com/users', {
-    //   method: 'GET',
-    //   headers: {
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    // })
-    //   .then((response) => {
-    //     if (!response.ok) throw new Error('Failed to get users data.');
-    //     return response.json();
-    //   })
-    //   .then((data) => {
-    //     setUsers(data);
-    //   })
-    //   .catch((e) => {
-    //     setError(e);
-    //   })
-    //   .finally(() => {
-    //     setLoading(false);
-    //   });
-    //===========async/await/try-catch
-    const getUser = async () => {
-      try {
-        const response = await fetch(
-          'https://jsonplaceholder.typicode.com/users',
-          {
-            method: 'GET',
-          }
-        );
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((response) => {
         if (!response.ok) throw new Error('Failed to get users data.');
-        const data = await response.json();
+        return response.json();
+      })
+      .then((data) => {
         setUsers(data);
-        setLoading(false);
-      } catch (e) {
+      })
+      .catch((e) => {
         setError(e);
-      }
-    };
-    getUser();
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   const handleDelete = (id: number) => {
-    // fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
-    //   method: 'DELETE',
-    // })
-    //   .then((response) => {
-    //     if (!response.ok) throw new Error('');
-    //     return response.json();
-    //   })
-    //   .then((_) => {
-    //     setMessage('Item deleted successfully:');
-    //     setUsers((values) => values.filter((item) => item.id !== id));
-    //   })
-    //   .catch((e) => {
-    //     setError('Delete failed');
-    //     console.log(e);
-    //   })
-    //   .finally(() => {
-    //     setLoading(false);
-    //   });
+    fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+      method: 'DELETE',
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error('');
+        return response.json();
+      })
+      .then((_) => {
+        setMessage('Item deleted successfully:');
+        setUsers((values) => values.filter((item) => item.id !== id));
+      })
+      .catch((e) => {
+        setError('Delete failed');
+        console.log(e);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
 
     const deleteUser = async () => {
       try {
@@ -118,48 +75,25 @@ export const UsersView = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    // fetch('https://jsonplaceholder.typicode.com/users', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({ name, email }),
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     setUsers([...users, data]);
-    //   })
-    //   .catch((error) => {
-    //     setError(error);
-    //   })
-    //   .finally(() => {
-    //     setName('');
-    //     setEmail('');
-    //     setLoading(false);
-    //   });
-
-    const createUser = async () => {
-      try {
-        const response = await fetch(
-          'https://jsonplaceholder.typicode.com/users',
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ name, email }),
-          }
-        );
-        const data = await response.json();
+    fetch('https://jsonplaceholder.typicode.com/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name, email }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
         setUsers([...users, data]);
+      })
+      .catch((error) => {
+        setError(error);
+      })
+      .finally(() => {
         setName('');
         setEmail('');
         setLoading(false);
-      } catch (e) {
-        setError(error);
-      }
-    };
-    createUser();
+      });
   };
 
   const handleUpdate = (id: number) => {
