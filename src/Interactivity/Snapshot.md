@@ -1,5 +1,13 @@
 # State as a Snapshot
 
+**summary (draft)**
+
+```js
+- setting state requests a re-render from React
+- `setIsSent(true)` tells React to re-render the UI:
+- “Rendering” means that React is calling your component, which is a function.
+```
+
 https://react.dev/learn/state-as-a-snapshot
 
 ## Rendering takes a snapshot in time

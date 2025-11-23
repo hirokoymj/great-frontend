@@ -1,6 +1,6 @@
 # Render and Commit
 
-**Summary(Final)**
+**Summary**
 
 ```js
 1. Initial render: createRoot
@@ -38,11 +38,3 @@ Any screen update in a React app happens in three steps:
 - Trigger
 - Render
 - Commit
-
-## Summary(draft)
-
-```js
-1. Initial render - createRoot
-const root = createRoot(document.getElementById('root'));
-2. Trigger a render - The component state has been updated.
-```
