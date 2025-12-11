@@ -1,6 +1,6 @@
 # Next.js
 
-## Summary
+#### Summary (final)
 
 **Next.js Rendering Strategies**
 
@@ -24,20 +24,23 @@ npm run build
 Route (app)
 ┌ ○ /
 ├ ○ /_not-found
-├ ƒ /api/chat
-├ ƒ /api/image_generator
-├ ƒ /api/recipe
-├ ƒ /api/summary
 ├ ƒ /api/users
 ├ ƒ /api/users/[id]
-├ ○ /chat
-├ ○ /image_generator
-├ ○ /recipe
-├ ○ /summary
 ├ ○ /users
 ├ ƒ /users/[id]/edit
 └ ○ /users/new
+
+○: Indicates a Statically Generated (SSG) page(default).
+ƒ: Client-side rendering only.
 ```
+
+## Server component vs Client component
+
+- The default is a server component.
+- `use client` => a client component.
+- A Server Component - Fetch data from DB or API
+- A Server Component - Reduce the amount of JavaScript sent to the browser.
+- A Client Component - useState, useEffect, event handlers (onClick, onChange), Custom hooks.
 
 <hr />
 
@@ -68,6 +71,14 @@ With Static Rendering, routes are rendered at build time or in the background af
 
 **Dynamic Rendering**
 With Dynamic Rendering, routes are rendered at request time. This happens when your route uses request-specific information like cookies, headers, or search params.
+
+## Server component vs Client component
+
+- Next.js v16, Server component is default.
+- Adding `use client` on the top of the page, it becomes a client component.
+- Client Component - useState, useEffect, event handlers (onClick, onChange), Custom hooks.
+- Server Components - Fetch data from DB or API
+- Server Components - Reduce the amount of JavaScript sent to the browser.
 
 <hr />
 
