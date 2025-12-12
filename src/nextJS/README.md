@@ -154,3 +154,18 @@ export default async function Page({
   );
 }
 ```
+
+## React
+
+**React Hooks**
+
+- React Hooks are functions that allow developers to "hook into" React features like state and lifecycle methods from within functional components.
+- Introduced in React 16.8, they enable the use of state and side effects without writing class components.
+- useState, useEffect, useRef, useContext, useReducer
+- Hooks are just JavaScript functions
+- Only call Hooks at the top level of your component. Do not call inside a function.
+
+
+**Microservices Architecture**
+
+https://cloud.google.com/learn/what-is-microservices-architecture?hl=en
