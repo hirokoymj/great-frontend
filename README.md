@@ -18,16 +18,16 @@
 
 - [My Summary](./src/Interactivity/ComponentMemory.md)
 - [Challenge 1](https://react.dev/learn/state-a-components-memory#complete-the-gallery) - O,O
-- [Challenge 2](https://react.dev/learn/state-a-components-memory#fix-stuck-form-inputs) - O, O
-- [Challenge 3](https://react.dev/learn/state-a-components-memory#fix-a-crash) - O, O
+- [Challenge 2](https://react.dev/learn/state-a-components-memory#fix-stuck-form-inputs) - O,O
+- [Challenge 3](https://react.dev/learn/state-a-components-memory#fix-a-crash) - O,O
 - 10/2, 11/22, 12/16(OOO)
 <hr />
 
 ### [Render and Commit](https://react.dev/learn/render-and-commit)
 
 - [My Summary](./src/Interactivity/Render-and-commit.md)
-- Initial render
-- 10/2, 11/22
+- Initial render ==> what is the function name?
+- 10/2, 11/22, 12/16(X)
 <hr />
 
 ### [State as a Snapshot](https://react.dev/learn/state-as-a-snapshot)
@@ -35,13 +35,13 @@
 - [My Summary](./src/Interactivity/Snapshot.md)
 - [Challenge 1](https://react.dev/learn/state-as-a-snapshot#implement-a-traffic-light) - O
 - (C1), Final summary
-- 10/3, 11/21
+- 10/3, 11/21, 12/16(O)
 <hr />
 
 ### [Queueing a Series of State Updates](https://react.dev/learn/queueing-a-series-of-state-updates)
 
 - [My Summary](./src/Interactivity/Queueing-state.md)
-- 10/3, 11/22
+- 10/3, 11/22, 12/16(O)
 <hr />
 
 ### [Updating Objects in State](https://react.dev/learn/updating-objects-in-state)
