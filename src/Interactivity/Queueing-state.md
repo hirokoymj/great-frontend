@@ -19,7 +19,6 @@ const [number, setNumber] = useState(0);
 // setNumber(0 + 1);
 // setNumber(0 + 1);
 // setNumber(0 + 1);
-// Result: 1 -> 2 -> 3 -> 4
 ```
 
 | queued update | n   | returns   |
