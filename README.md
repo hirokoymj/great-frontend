@@ -47,9 +47,8 @@
 ### [Updating Objects in State](https://react.dev/learn/updating-objects-in-state)
 
 - [My Summary](./src/Interactivity/Objects-in-state.md)
-- [Challenge 1]()
-- [Challenge 2]()
-- 10/3
+- [Challenge 1](https://react.dev/learn/updating-objects-in-state#fix-incorrect-state-updates) - X
+- 10/3, 12/16
 <hr />
 
 ### [Updating Arrays in State](https://react.dev/learn/updating-arrays-in-state)
