@@ -5,12 +5,12 @@
 ### [Responding to Events](https://react.dev/learn/responding-to-events)
 
 - [My Summary](./src/Interactivity/Responding-to-events.md)
-- [Challenge 1](https://react.dev/learn/responding-to-events#fix-an-event-handler) - O(11/22)
-- [Challenge 2](https://react.dev/learn/responding-to-events#wire-up-the-events) - X(11/22)
+- [Challenge 1](https://react.dev/learn/responding-to-events#fix-an-event-handler) - O, O
+- [Challenge 2](https://react.dev/learn/responding-to-events#wire-up-the-events) - X, X
 - (C1) onClick={handleClick} - an event handler must be passed or inline.
 - (C1) onClicke={() => handleClick()}
-- (C2) The event propagates up, and some handler above does it. -> `e.stopPropergation()`
-- 10/2,11/22
+- (C2) The event propagates up, and some handler above does it. -> `e.stopPropagation()`
+- 10/2,11/22, 12/16
 
 <hr />
 
