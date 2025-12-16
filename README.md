@@ -17,10 +17,10 @@
 ### [State: A Component's Memory](https://react.dev/learn/state-a-components-memory)
 
 - [My Summary](./src/Interactivity/ComponentMemory.md)
-- [Challenge 1](https://react.dev/learn/state-a-components-memory#complete-the-gallery) - O
-- [Challenge 2](https://react.dev/learn/state-a-components-memory#fix-stuck-form-inputs) - O
-- [Challenge 3](https://react.dev/learn/state-a-components-memory#fix-a-crash) - O
-- 10/2, 11/22
+- [Challenge 1](https://react.dev/learn/state-a-components-memory#complete-the-gallery) - O,O
+- [Challenge 2](https://react.dev/learn/state-a-components-memory#fix-stuck-form-inputs) - O, O
+- [Challenge 3](https://react.dev/learn/state-a-components-memory#fix-a-crash) - O, O
+- 10/2, 11/22, 12/16(OOO)
 <hr />
 
 ### [Render and Commit](https://react.dev/learn/render-and-commit)
