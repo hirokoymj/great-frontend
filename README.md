@@ -237,12 +237,26 @@ const [products, setProducts] = useState(initialProducts);
 
 - [==You Might Not Need an Effect==](https://react.dev/learn/you-might-not-need-an-effect)
 - [My Summary](./src/Escape-Hatches/not-need-useEffect.md)
-- [Challenge 1](https://react.dev/learn/you-might-not-need-an-effect#transform-data-without-effects) ===>O
+- [Challenge 1](https://react.dev/learn/you-might-not-need-an-effect#transform-data-without-effects) ===>OO
 - [Challenge 2](https://react.dev/learn/you-might-not-need-an-effect#cache-a-calculation-without-effects) ===>XXO
 - useMemo, todoList, checkbox
 - (C1)redundant state
 - (C2) useMemo, getVisibleTodos() will be called only if todos or showActive change. Typing into the input only changes the text state variable.
-- 10/11, 10/20, 10/24
+- (C2) `const cachedValue = useMemo(calculateValue, dependencies)`
+
+```js
+//Syntax Error
+// const visibleTodos = useMemo(() => {
+//   getVisibleTodos(todos, showActive);
+// }, [todos, showActive]);
+
+const visibleTodos = useMemo(
+  () => getVisibleTodos(todos, showActive),
+  [todos, showActive]
+);
+```
+
+- 10/11, 10/20, 10/24, 12/17(OX)
 
 <hr />
 
