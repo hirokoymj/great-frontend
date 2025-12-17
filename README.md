@@ -57,33 +57,19 @@
 - [Challenge 1](https://react.dev/learn/updating-arrays-in-state#update-an-item-in-the-shopping-cart) - 0
 - [Challenge 2](https://react.dev/learn/updating-arrays-in-state#remove-an-item-from-the-shopping-cart) - X
 - [Challenge 3](https://react.dev/learn/updating-arrays-in-state#fix-the-mutations-using-non-mutative-methods) - X
+- (C1) Shopping cart Update
+- (C1) map to produce a new array, and then filter to remove products with a count set to 0:
+- (C2) Shopping cart Delete
+- (C3) Shopping cart - Add/Update/Delete
+- Arrow functions implicitly return the expression when:
+  - You **omit** {}
+  - You return a **single expression**
+  - Block body {} → needs **return**
 - 10/2, 12/16(0XX)
 
 ```js
 //WRONG CODE
-const handleDecrement = (productId) => {
-  const found = products.filter((d) => d.id === productId);
-
-  if (found.count === 1) {
-    setProducts(products.filter((d) => d.id !== productId));
-    return;
-  } else {
-    setProducts(
-      products.map((product) => {
-        if (product.id === productId) {
-          return {
-            ...product,
-            count: product.count - 1,
-          };
-        } else {
-          return product;
-        }
-      })
-    );
-  }
-};
-
-//ANSWER
+//ANSWER 1
 //Hint: map to produce a new array, and then filter to remove products with a count set to 0:
 const handleDecreaseClick = (productId) => {
   const output = products.map((product) => {
@@ -99,7 +85,7 @@ const handleDecreaseClick = (productId) => {
   setProducts(filtered);
 };
 
-///
+//ANSWER 2
 const handleDecreaseClick = (productId) => {
   setProducts(
     products
