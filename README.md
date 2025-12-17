@@ -288,12 +288,12 @@ const visibleTodos = useMemo(
 
 - [==Removing Effect Dependencies==](https://react.dev/learn/removing-effect-dependencies)
 - [My Summary](./src/Escape-Hatches/lifecycle.md)
-- [Challenge 1:Fix a variable that doesn’t update](https://react.dev/learn/removing-effect-dependencies#fix-a-resetting-interval) ===>X
-- [Challenge 3:Chat, avoid using object as dependency](https://react.dev/learn/removing-effect-dependencies#fix-a-reconnecting-chat) ===>0
+- [Challenge 1:Fix a variable that doesn’t update](https://react.dev/learn/removing-effect-dependencies#fix-a-resetting-interval) ===>XO
+- [Challenge 3:Chat](https://react.dev/learn/removing-effect-dependencies#fix-a-reconnecting-chat) ===>OO
 - (C1) To remove count state dependency, use a updater function.
 - (C1) `setCount(c => c + 1)` instead of `setCount(count + 1)`:
-- (C1) avoid using an object as Effect dependency.
-- 10/25
+- (C3) avoid using **an object as Effect dependency**.
+- 10/25, 12/17(OO)
 <hr />
 
 - [==Reusing Logic with Custom Hooks==](https://react.dev/learn/reusing-logic-with-custom-hooks)
