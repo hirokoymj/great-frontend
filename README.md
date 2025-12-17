@@ -118,36 +118,37 @@ const [products, setProducts] = useState(initialProducts);
 ### [Reacting to Input with State](https://react.dev/learn/reacting-to-input-with-state)
 
 - [My Summary](./src/managing-state/Reacting-state.md)
-- [Challenge 1](https://react.dev/learn/reacting-to-input-with-state#add-and-remove-a-css-class) ===> XXO
-- [Challenge 2](https://react.dev/learn/reacting-to-input-with-state#profile-editor)===>XO
-- (C1) `<div onclick><img onClick={(e) => e.stopPropergation()}>`
+- [Challenge 1](https://react.dev/learn/reacting-to-input-with-state#add-and-remove-a-css-class) ===> XXOO
+- [Challenge 2](https://react.dev/learn/reacting-to-input-with-state#profile-editor)===>XOO
+- (C1) `<div onclick><img onClick={(e) => e.stopPropagation()}>`
 - (C1) two class name ==> space ex. className="bg bg--active"
 - (C1) `const [isActive, setActive] = useState(false)`
 - (C1) calculate CSS classes based on the state. ex. bg bg--active, pic pic--active
 - (C2) XX cannnot see inputs.<button type=submit><form onSubmit={handleSubmit}>
 - (C2) two state variable (first/last), and Edit state variable that holds whether to display the inputs or not.
-- 10/1, 10/25, 11/3
+- 10/1, 10/25, 11/3, 12/17(OO)
 <hr />
 
 ### [Choosing the State Structure](https://react.dev/learn/choosing-the-state-structure)
 
 - [My Summary](./src/managing-state/Choosing-state.md)
-- [Challenge 1](https://react.dev/learn/choosing-the-state-structure#fix-a-component-thats-not-updating) ===>O
-- [Challenge 2](https://react.dev/learn/choosing-the-state-structure#fix-a-broken-packing-list) ===>X,X,O
-- [Challenge 4](https://react.dev/learn/choosing-the-state-structure#implement-multiple-selection) ===>X,O(11/1)
+- [Challenge 1](https://react.dev/learn/choosing-the-state-structure#fix-a-component-thats-not-updating) ===>OO
+- [Challenge 2](https://react.dev/learn/choosing-the-state-structure#fix-a-broken-packing-list) ===>XXOO
+- [Challenge 4](https://react.dev/learn/choosing-the-state-structure#implement-multiple-selection) ===>XOX
 - [Q1:Avoid duplication in state](https://react.dev/learn/choosing-the-state-structure#avoid-duplication-in-state)
   - [Q1:fork](https://codesandbox.io/p/sandbox/q832nk)
   - [A1:fork](https://codesandbox.io/p/sandbox/ql4dp7?file=%2Fsrc%2FApp.js) ===>XO
 - [Q2: multiple checkbox](http://localhost:5173/checkbox-demo)
+- [Q4:fork](https://codesandbox.io/p/sandbox/6txrkg)
 - (C1) use the color prop directly.===> O
 - (!!C2!!) redundant state variable, listItems, checkboxes,
 - (!!C2!!) generating checkboxes Add (...), Edit(Map id, checked), Delete(filter), [PackingList.jsx](./src/managing-state/packing-list/PackingList.jsx)
-- (C4) Wrong, selectedIds array[0, 3]
-- (Q1) stores only selected item ID.
+- (C4) Wrong, selectedIds `[0, 3]`
+- (C4) stores only selected item ID. `selectedIds.filter((id) => id !== toggledId)`
 - `onChange={handleChange}` vs `onChange={(e) => handleChange(e, 'maths')}`
   - `onChange={handleChange}` - React automatically passes the event object to an hander.
   - `onChange={(e) => handleChange(e, 'maths')}`- Extra arguments == inline: (onChange={(e) => handleCheckboxChange(e, 'maths')})
-- 9/29, 10/26, 11/1, 11/4
+- 9/29, 10/26, 11/1, 11/4, 12/17(OOX - uncheck did't work)
 <hr />
 
 ### [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components)
