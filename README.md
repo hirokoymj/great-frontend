@@ -148,19 +148,19 @@ const [products, setProducts] = useState(initialProducts);
 - `onChange={handleChange}` vs `onChange={(e) => handleChange(e, 'maths')}`
   - `onChange={handleChange}` - React automatically passes the event object to an hander.
   - `onChange={(e) => handleChange(e, 'maths')}`- Extra arguments == inline: (onChange={(e) => handleCheckboxChange(e, 'maths')})
-- 9/29, 10/26, 11/1, 11/4, 12/17(OOX - uncheck did't work)
+- 9/29, 10/26, 11/1, 11/4, 12/17(OOX - C4,uncheck did't work)
 <hr />
 
 ### [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components)
 
 - [My Summary](./src/managing-state/Sharing-state.md)
-- [Challenge 1](https://react.dev/learn/sharing-state-between-components#synced-inputs) ===>X,XO(11/2)
-- [Challenge 2](https://react.dev/learn/sharing-state-between-components#filtering-a-list) ===>XO(11/2)
+- [Challenge 1](https://react.dev/learn/sharing-state-between-components#synced-inputs) ===>X,XO(11/2)O(12/17)
+- [Challenge 2](https://react.dev/learn/sharing-state-between-components#filtering-a-list) ===>XO(11/2)O(12/17)
 - (C1) lift state up into the parent component.
 - (C2) A single source of true
 - (C2) Pass donw the event hander (handleChange=setQuery) so the children can change the parent's state.
 - (ALL) Parent/Children: SyncedInputs/Input, Accordion/Panel, FilterabeList/SearchBar
-- 9/29, 10/3, 10/26, 11/2
+- 9/29, 10/3, 10/26, 11/2, 12/17(OO)
 <hr />
 
 - [Preserving and Resetting State](https://react.dev/learn/preserving-and-resetting-state)
