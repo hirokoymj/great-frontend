@@ -190,8 +190,8 @@ const [products, setProducts] = useState(initialProducts);
 - (Q1) http://localhost:5173/context-example
 
   ```js
-  <ImageSizeContext value={imageSize} />
-  <UserContext value={{user, setUser}} />
+  <ImageSizeContext value={imageSize}></ImageSizeContext>
+  <UserContext value={{user, setUser}}></UserContext>
   ```
 
 - 9/29, 10/3, 10/27, 12/17(XO)
