@@ -1,5 +1,26 @@
 # Updating Objects in State
 
+**Summary (final)**
+
+```js
+//====spread operator(...), []
+const [person, setPerson] = useState({
+  firstName: 'Barbara',
+  lastName: 'Hepworth',
+});
+
+function handleChange(e) {
+  setPerson({
+    ...person,
+    [e.target.name]: e.target.value,
+  });
+}
+```
+
+<hr />
+
+**Summary (draft)**
+
 ```js
 //=== Update object
 {...obj, firstName: 'xxx'}

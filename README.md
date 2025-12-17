@@ -47,25 +47,30 @@
 ### [Updating Objects in State](https://react.dev/learn/updating-objects-in-state)
 
 - [My Summary](./src/Interactivity/Objects-in-state.md)
-- [Challenge 1](https://react.dev/learn/updating-objects-in-state#fix-incorrect-state-updates) - X
-- 10/3, 12/16
+- [Challenge 1](https://react.dev/learn/updating-objects-in-state#fix-incorrect-state-updates) - XO
+- (C1) - state value is an object. Update state object using a setter function.
+- 10/3, 12/16(X), 12/17(O)
 <hr />
 
 ### [Updating Arrays in State](https://react.dev/learn/updating-arrays-in-state)
 
 - [My Summary](./src/Interactivity/Array-in-state.md)
-- [Challenge 1](https://react.dev/learn/updating-arrays-in-state#update-an-item-in-the-shopping-cart) - 0
-- [Challenge 2](https://react.dev/learn/updating-arrays-in-state#remove-an-item-from-the-shopping-cart) - X
-- [Challenge 3](https://react.dev/learn/updating-arrays-in-state#fix-the-mutations-using-non-mutative-methods) - X
-- (C1) Shopping cart Update
-- (C1) map to produce a new array, and then filter to remove products with a count set to 0:
-- (C2) Shopping cart Delete
-- (C3) Shopping cart - Add/Update/Delete
+- [Challenge 1](https://react.dev/learn/updating-arrays-in-state#update-an-item-in-the-shopping-cart) - OO
+- [Challenge 2](https://react.dev/learn/updating-arrays-in-state#remove-an-item-from-the-shopping-cart) - XO
+- [Challenge 3](https://react.dev/learn/updating-arrays-in-state#fix-the-mutations-using-non-mutative-methods) - XO
+- (C1) Shopping cart, state is an array of object, Update a count. --> Array.map
+- (C1) [Fork](https://codesandbox.io/p/sandbox/6glq6s)
+- (C2) Shopping cart +(add) -(decrease and delete)
+- (C2) [Fork](https://codesandbox.io/p/sandbox/ztdx3l)
+- (C2) map to produce a new array, and then filter to remove products with a count set to 0:
+- (C3) Todos, array of object, add/delete/edit
+- (C3) Array of object => add(array spread operator + newObj), delete(filter), edit(array spread operator + map)
+- (C3) [fork](https://codesandbox.io/p/sandbox/pj3rfc?file=%2Fsrc%2FApp.js)
 - Arrow functions implicitly return the expression when:
   - You **omit** {}
   - You return a **single expression**
   - Block body {} → needs **return**
-- 10/2, 12/16(0XX)
+- 10/2, 12/16(0XX), 12/17(OOO)
 
 ```js
 //WRONG CODE
@@ -96,50 +101,32 @@ const handleDecreaseClick = (productId) => {
 ```
 
 ```js
-//Q3 - Wrong Answer
-export default function TaskApp() {
-  const [todos, setTodos] = useState(initialTodos);
-
-  function handleAddTodo(title) {
-    setTodos((todos) => {
-      return {
-        id: nextId++,
-        title: title,
-        done: false,
-      };
-    });
-  }
-
-  function handleChangeTodo(nextTodo) {
-    setTodos((todos) =>
-      todos.map((todo) => {
-        if (todo.id === nextTodo.id) {
-          return {
-            ...todo,
-            title: todo.title,
-            done: nextTodo.done,
-          };
-        }
-        return todo;
-      })
-    );
-  }
-
-  function handleDeleteTodo(todoId) {
-    setTodos((todos) => todos.filter((todo) => todo.id !== todoId));
-  }
-
-  return (
-    <>
-      <AddTodo onAddTodo={handleAddTodo} />
-      <TaskList
-        todos={todos}
-        onChangeTodo={handleChangeTodo}
-        onDeleteTodo={handleDeleteTodo}
-      />
-    </>
-  );
-}
+//Todos
+const initialTodos = [
+  { id: 0, title: 'Buy milk', done: true },
+  { id: 1, title: 'Eat tacos', done: false },
+  { id: 2, title: 'Brew tea', done: false },
+];
+const [todos, setTodos] = useState(initialTodos);
+//==Shopping cart
+const initialProducts = [
+  {
+    id: 0,
+    name: 'Baklava',
+    count: 1,
+  },
+  {
+    id: 1,
+    name: 'Cheese',
+    count: 5,
+  },
+  {
+    id: 2,
+    name: 'Spaghetti',
+    count: 2,
+  },
+];
+const [products, setProducts] = useState(initialProducts);
 ```
 
 <hr />
