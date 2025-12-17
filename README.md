@@ -54,10 +54,108 @@
 ### [Updating Arrays in State](https://react.dev/learn/updating-arrays-in-state)
 
 - [My Summary](./src/Interactivity/Array-in-state.md)
-- [Challenge 1]()
-- [Challenge 2]()
-- [Challenge 3]()
-- 10/2
+- [Challenge 1](https://react.dev/learn/updating-arrays-in-state#update-an-item-in-the-shopping-cart) - 0
+- [Challenge 2](https://react.dev/learn/updating-arrays-in-state#remove-an-item-from-the-shopping-cart) - X
+- [Challenge 3](https://react.dev/learn/updating-arrays-in-state#fix-the-mutations-using-non-mutative-methods) - X
+- 10/2, 12/16(0XX)
+
+```js
+//WRONG CODE
+const handleDecrement = (productId) => {
+  const found = products.filter((d) => d.id === productId);
+
+  if (found.count === 1) {
+    setProducts(products.filter((d) => d.id !== productId));
+    return;
+  } else {
+    setProducts(
+      products.map((product) => {
+        if (product.id === productId) {
+          return {
+            ...product,
+            count: product.count - 1,
+          };
+        } else {
+          return product;
+        }
+      })
+    );
+  }
+};
+
+//ANSWER
+//Hint: map to produce a new array, and then filter to remove products with a count set to 0:
+const handleDecreaseClick = (productId) => {
+  const output = products.map((product) => {
+    if (product.id === productId) {
+      return {
+        ...product,
+        count: product.count - 1,
+      };
+    }
+    return product;
+  });
+  const filtered = output.filter((d) => d.count !== 0);
+  setProducts(filtered);
+};
+
+///
+const handleDecreaseClick = (productId) => {
+  setProducts(
+    products
+      .map((p) => (p.id === productId ? { ...p, count: p.count - 1 } : p))
+      .filter((p) => p.count !== 0)
+  );
+};
+```
+
+```js
+//Q3 - Wrong Answer
+export default function TaskApp() {
+  const [todos, setTodos] = useState(initialTodos);
+
+  function handleAddTodo(title) {
+    setTodos((todos) => {
+      return {
+        id: nextId++,
+        title: title,
+        done: false,
+      };
+    });
+  }
+
+  function handleChangeTodo(nextTodo) {
+    setTodos((todos) =>
+      todos.map((todo) => {
+        if (todo.id === nextTodo.id) {
+          return {
+            ...todo,
+            title: todo.title,
+            done: nextTodo.done,
+          };
+        }
+        return todo;
+      })
+    );
+  }
+
+  function handleDeleteTodo(todoId) {
+    setTodos((todos) => todos.filter((todo) => todo.id !== todoId));
+  }
+
+  return (
+    <>
+      <AddTodo onAddTodo={handleAddTodo} />
+      <TaskList
+        todos={todos}
+        onChangeTodo={handleChangeTodo}
+        onDeleteTodo={handleDeleteTodo}
+      />
+    </>
+  );
+}
+```
+
 <hr />
 
 ## Managing State
