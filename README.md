@@ -174,9 +174,9 @@ const [products, setProducts] = useState(initialProducts);
 ### [Extracting State Logic into a Reducer](https://react.dev/learn/reusing-logic-with-custom-hooks)
 
 - [My Summary](./src/managing-state/Reducer.md)
-- [Challenge 1](https://react.dev/learn/extracting-state-logic-into-a-reducer#dispatch-actions-from-event-handlers) ===>XX
+- [Challenge 1](https://react.dev/learn/extracting-state-logic-into-a-reducer#dispatch-actions-from-event-handlers) ===>XX0
 - (C1) `action == {type: xxx}`, `dispatch(action)`
-- 9/29, 10/3, 10/26, 11/2
+- 9/29, 10/3, 10/26, 11/2, 12/17(O)
 <hr />
 
 ### [Passing Data Deeply with Context](https://react.dev/learn/passing-data-deeply-with-context)
