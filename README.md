@@ -262,14 +262,14 @@ const visibleTodos = useMemo(
 
 - [==Lifecycle of Reactive Effects==](https://react.dev/learn/lifecycle-of-reactive-effects)
 - [My Summary](./src/Escape-Hatches/lifecycle.md)
-- [Challenge 1](https://react.dev/learn/lifecycle-of-reactive-effects#fix-reconnecting-on-every-keystroke) ===> XO
-- [Challenge 4](https://react.dev/learn/lifecycle-of-reactive-effects#fix-a-connection-switch) ===> XO
-- [Challenge 5](https://react.dev/learn/lifecycle-of-reactive-effects#populate-a-chain-of-select-boxes) ===>O
+- [Challenge 1](https://react.dev/learn/lifecycle-of-reactive-effects#fix-reconnecting-on-every-keystroke) ===> XOX
+- [Challenge 4](https://react.dev/learn/lifecycle-of-reactive-effects#fix-a-connection-switch) ===> XOO
+- [Challenge 5](https://react.dev/learn/lifecycle-of-reactive-effects#populate-a-chain-of-select-boxes) ===>OOX
 - (C1) no a dependency array == runs after every re-render.
-- (C1) selectbox
+- (C1) useEffect - Always check **dependencies**
 - (C4) createConnection is a prop, so it’s a reactive value. It can change over time!
 - (C5) two async, two dropdown, fetch
-- 10/25
+- 10/25, 12/17(XOX)
 <hr />
 
 - [==Separating Events from Effects==](https://react.dev/learn/separating-events-from-effects)
