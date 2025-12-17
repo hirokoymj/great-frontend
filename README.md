@@ -274,14 +274,15 @@ const visibleTodos = useMemo(
 
 - [==Separating Events from Effects==](https://react.dev/learn/separating-events-from-effects)
 - [My Summary](./src/Escape-Hatches/Separating-events-from-effect.md)
-- [Challenge 1](https://react.dev/learn/separating-events-from-effects#fix-a-variable-that-doesnt-update) ===>O
-- [Challenge 2](https://react.dev/learn/separating-events-from-effects#fix-a-freezing-counter) ===> XXXO
+- [Challenge 1](https://react.dev/learn/separating-events-from-effects#fix-a-variable-that-doesnt-update) ===>OOO
+- [Challenge 2](https://react.dev/learn/separating-events-from-effects#fix-a-freezing-counter) ===> XXX
 - (C1) missing dependency. [] -> [increment], []/runs onmount -> [increment]/onMount and increment is changed.
 - (C2) const onEvent = useEffectEvent(callback)
 - (C2) Effect uses the increment state variable, which is the dependency of Effect.
 - (C2) Every change to increment causes the Effect to re-synchronize, which causes the interval to clear.
 - (C2) Use EffectEvent and remove increment dependency, so the increment does not trigger any Effects.
-- 10/23, 10/25
+- (C2) `const onSomething = useEffectEvent(callback)`
+- 10/23, 10/25, 12/17(OX)
 
 <hr />
 
