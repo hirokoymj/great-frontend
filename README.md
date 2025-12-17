@@ -73,24 +73,6 @@
 - 10/2, 12/16(0XX), 12/17(OOO)
 
 ```js
-//WRONG CODE
-//ANSWER 1
-//Hint: map to produce a new array, and then filter to remove products with a count set to 0:
-const handleDecreaseClick = (productId) => {
-  const output = products.map((product) => {
-    if (product.id === productId) {
-      return {
-        ...product,
-        count: product.count - 1,
-      };
-    }
-    return product;
-  });
-  const filtered = output.filter((d) => d.count !== 0);
-  setProducts(filtered);
-};
-
-//ANSWER 2
 const handleDecreaseClick = (productId) => {
   setProducts(
     products
