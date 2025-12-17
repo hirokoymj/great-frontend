@@ -298,14 +298,14 @@ const visibleTodos = useMemo(
 
 - [==Reusing Logic with Custom Hooks==](https://react.dev/learn/reusing-logic-with-custom-hooks)
 - [My Sunmary](./src/Escape-Hatches/CustomHooks.md)
-- [Challenge 1](https://react.dev/learn/reusing-logic-with-custom-hooks#extract-a-usecounter-hook) ===>O
-- [Challenge 2](https://react.dev/learn/reusing-logic-with-custom-hooks#make-the-counter-delay-configurable) ===>O
-- [Challenge 3](https://react.dev/learn/reusing-logic-with-custom-hooks#extract-useinterval-out-of-usecounter) ===> XOX
+- [Challenge 1](https://react.dev/learn/reusing-logic-with-custom-hooks#extract-a-usecounter-hook) ===>OO
+- [Challenge 2](https://react.dev/learn/reusing-logic-with-custom-hooks#make-the-counter-delay-configurable) ===>OO
+- [Challenge 3](https://react.dev/learn/reusing-logic-with-custom-hooks#extract-useinterval-out-of-usecounter) ===> XOXX
 - (C1) App.js doesn’t need to import useState or useEffect.
 - (C2) Pass the delay to the Hook with `useCounter(delay)`.
 - (C2) `<input type=range value=delay min=10 max=2000 onChange={e => setDelay(Number(e.target.value))}/>`
 - (C3) Move the Effect to useInterval including a clear function.
-- 10/9, 10/10, 10/25
+- 10/9, 10/10, 10/25, 12/17(OOX)
 <hr />
 
 ## JavaScript
