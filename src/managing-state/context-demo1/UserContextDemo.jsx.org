@@ -3,8 +3,6 @@ import { createContext, useContext, useState } from 'react';
 const CurrentUserContext = createContext(null);
 
 export default function UserContextDemo() {
-  console.log('UserContextDemo');
-  //TODO
   const [currentUser, setCurrentUser] = useState(null);
   return (
     <CurrentUserContext
@@ -28,25 +26,19 @@ function Form({ children }) {
 function LoginButton() {
   //TODO
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
+
+  if (currentUser !== null) {
+    return <p>You logged in as {currentUser.name}.</p>;
+  }
+
   return (
-    <div>
-      {currentUser !== null ? (
-        <div>
-          {' '}
-          <p>You logged in as {currentUser.name}.</p>
-          <button onClick={() => setCurrentUser(null)}>logout</button>
-        </div>
-      ) : (
-        <div>
-          login
-          <Button
-            //TODO ex. name:  "Hiroko"
-            onClick={() => setCurrentUser({ name: 'Hiroko' })}>
-            Log in as Hiroko
-          </Button>
-        </div>
-      )}
-    </div>
+    <Button
+      //TODO ex. name:  "Hiroko"
+      onClick={() => {
+        setCurrentUser({ name: 'Advika' });
+      }}>
+      Log in as Advika
+    </Button>
   );
 }
 

@@ -182,26 +182,21 @@ const [products, setProducts] = useState(initialProducts);
 ### [Passing Data Deeply with Context](https://react.dev/learn/passing-data-deeply-with-context)
 
 - [My Summary](./src/managing-state/Context.md)
-- [Challenge 1](https://react.dev/learn/passing-data-deeply-with-context#replace-prop-drilling-with-context) ===>XXO
-- [Q1](https://github.com/hirokoymj/great-frontend/blob/main/src/managing-state/Context.md#ex3---updating-a-context-value-object) ===>XO
+- [Challenge 1](https://react.dev/learn/passing-data-deeply-with-context#replace-prop-drilling-with-context) ===>XXOX
+- [Q1](https://github.com/hirokoymj/great-frontend/blob/main/src/managing-state/Context.md#ex3---updating-a-context-value-object) ===>XOO
 - (C1) useContext, createContext, value, Place the context on the top of the render.
+- (C1) I didn't know how to pass -> `const imageSize = useContext(ImageSizeContext), not "ImageSizeContext" `;
 - (Q1) how to update a context value. => uses a state value and a setter function.
 - (Q1) http://localhost:5173/context-example
-- 9/29, 10/3, 10/27
+
+  ```js
+  <ImageSizeContext value={imageSize} />
+  <UserContext value={{user, setUser}} />
+  ```
+
+- 9/29, 10/3, 10/27, 12/17(XO)
 
 <hr />
-
-## Describing the UI
-
-- [Your First Component](https://react.dev/learn/your-first-component)
-- [Importing and Exporting Components](https://react.dev/learn/importing-and-exporting-components)
-- [Writing Markup with JSX](https://react.dev/learn/writing-markup-with-jsx)
-- [JavaScript in JSX with Curly Braces](https://react.dev/learn/javascript-in-jsx-with-curly-braces)
-- [Passing Props to a Component](https://react.dev/learn/passing-props-to-a-component)
-- [Conditional Rendering](https://react.dev/learn/conditional-rendering)
-- [Rendering Lists](https://react.dev/learn/rendering-lists)
-- [Keeping Components Pure](https://react.dev/learn/keeping-components-pure)
-- [Understanding Your UI as a Tree](https://react.dev/learn/understanding-your-ui-as-a-tree)
 
 # Escape Hatches
 
