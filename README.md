@@ -26,7 +26,7 @@
 ### [Render and Commit](https://react.dev/learn/render-and-commit)
 
 - [My Summary](./src/Interactivity/Render-and-commit.md)
-- Initial render ==> what is the function name?
+- Initial render ==> what is the function name? Initial render => route => calling mapped componennt
 - 10/2, 11/22, 12/16(X)
 <hr />
 

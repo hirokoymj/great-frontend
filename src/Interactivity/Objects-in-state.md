@@ -15,6 +15,8 @@ function handleChange(e) {
     [e.target.name]: e.target.value,
   });
 }
+<button onClick={handlePlusClick}>
+<input value={player.firstName} onChange={handleFirstNameChange} />
 ```
 
 <hr />
