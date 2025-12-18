@@ -27,6 +27,7 @@ import EditProfile from './managing-state/edit-profile/EditProfile';
 import ClockDemo from './managing-state/clock/ClockDemo';
 import MailClient from './managing-state/multi-selection/MailClient';
 import Menu from './managing-state/menu/Menu';
+import Airport from './managing-state/airport/Airport';
 
 const Home = () => {
   return (
@@ -111,6 +112,12 @@ const Home = () => {
           <Link to="/user-context-demo">User Context demo</Link>
         </li>
       </ul>
+      <p style={{ fontWeight: 'bold' }}>Others</p>
+      <ul>
+        <li>
+          <Link to="/airport">Airport Board</Link>
+        </li>
+      </ul>
     </div>
   );
 };
@@ -145,6 +152,7 @@ export default function App() {
         <Route path="clock-demo" element={<ClockDemo />} />
         <Route path="multi-selection" element={<MailClient />} />
         <Route path="multi-selection" element={<Menu />} />
+        <Route path="airport" element={<Airport />} />
       </Routes>
     </BrowserRouter>
   );

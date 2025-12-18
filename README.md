@@ -388,99 +388,29 @@ const data = [
     city: 'MANCHESTER',
   },
 ];
-//display: list: 12:40, LONDON/LGW
-//=====Ex.1 - Array or not
-Array.isArray();
-const myArray = [1, 2, 3];
-const myObject = { a: 1, b: 2 };
-const myString = 'hello';
-console.log(Array.isArray(myArray)); // true
-console.log(Array.isArray(myObject)); // false
-console.log(Array.isArray(myString)); // false
-//======Ex.2
-const displayData = (data) => {
-  if (Array.isArray(data)) {
-    return (
+```
+
+```js
+const Airport = () => {
+  const [items] = useState(data);
+
+  return (
+    <div>
+      <h1>Airport</h1>
       <ul>
-        {data.map((item, i) => (
-          <li key={i}>{Object.values(item).join(', ')}</li>
+        {items.map(({ time, city }) => (
+          <li key={`${time}-${city}`}>
+            {time}, {city}
+          </li>
         ))}
       </ul>
-    );
-  }
-  return data;
+    </div>
+  );
 };
-//=====Ex.3
-const object = {
-  a: 'some string',
-  b: 42,
-  c: false,
-};
-
-console.log(Object.values(object));
-// Expected output: Array ["some string", 42, false]
-```
-
-# Today
-
-```js
-// export default function Picture() {
-//   let bgStyle = 'background';
-//   let imgStyle = 'picture';
-
-//   const updateCSS = (e) => {
-//     e.stopPropergation();
-//     if (bgStyle.includes('active')) {
-//       bgStyle = `background`;
-//     } else {
-//       bgStyle += ` active--background`;
-//     }
-
-//     if (imgStyle.includes('active')) {
-//       imgStyle = 'picture';
-//     } else {
-//       imgStyle += ' active--picture';
-//     }
-//   };
-
-//   return (
-//     <div className={bgStyle} onClick={(e) => updateCSS()}>
-//       <img
-//         className={imgStyle}
-//         alt="Rainbow houses in Kampung Pelangi, Indonesia"
-//         src="https://i.imgur.com/5qwVYb1.jpeg"
-//         onClick={(e) => updateCSS()}
-//       />
-//     </div>
-//   );
-// }
-const [isActive, setIsActive] = useState(false);
-
-let backgroundClassName = 'background';
-let pictureClassName = 'picture';
-if (isActive) {
-  pictureClassName += ' picture--active';
-} else {
-  backgroundClassName += ' background--active';
-}
-
-return (
-  <div className={backgroundClassName} onClick={() => setIsActive(false)}>
-    <img
-      onClick={(e) => {
-        e.stopPropagation();
-        setIsActive(true);
-      }}
-      className={pictureClassName}
-      alt="Rainbow houses in Kampung Pelangi, Indonesia"
-      src="https://i.imgur.com/5qwVYb1.jpeg"
-    />
-  </div>
-);
 ```
 
 ```js
-const [selectedIds, setSelectedIds] = useState([]);
+const [selectedIds, setSelectedIds] = useState([]); //[0, 1, 2]
 function handleToggle(toggledId) {
   if (selectedIds.includes(toggledId)) {
     setSelectedIds(selectedIds.filter((id) => id !== toggledId));
