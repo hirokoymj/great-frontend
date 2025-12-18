@@ -221,17 +221,29 @@ const [products, setProducts] = useState(initialProducts);
 - [Challenge 2](https://react.dev/learn/synchronizing-with-effects#focus-a-field-conditionally) ===>OX
 - [Challenge 3](https://react.dev/learn/synchronizing-with-effects#fix-an-interval-that-fires-twice) ===>OX
 - [Challenge 4](https://react.dev/learn/synchronizing-with-effects#fix-fetching-inside-an-effect) ===>XOX
-- (C1) Calling ref.current.focus() during render is wrong.
-- (C1) this Effect runs only on mount rather than after every render.
 - (C2) Adding conditional logic inside useEffect. Check/Add dependencies.
-- (C3) setInverval should be clearInteval(id) in a cleanup function.
-- (C4) fech, async
+- (C3) `setInverval` <==> `clearInteval(id)` in a clean up function.
+- (C3) useEffect(() => {}, []) - run once when the component mounts.
+
+```text
+1. Component mounts
+2. useEffect runs once
+3. setInterval is created
+4. Every 1000ms:
+	- onTick runs
+	- setCount(c => c + 1) updates state
+5. State update → component re-renders
+6. useEffect does NOT re-run
+7. Interval keeps running in the background
+So what repeats every second is the interval callback, not the effect itself.
+```
+
 - (C4) race conditions because two asynchronous operations are “racing”, Clean-up function
 - (C4) mounts” means a component appears on the screen for the first time.
 - (C4) React will call your cleanup function each time before the Effect runs again, and one final time when the component unmounts.
 - (C4) Add cleanup if needed. Some Effects need to specify how to stop, undo, or clean up whatever they were doing. e.g, **connect/disconnect**, subscribe/unsubscribe, and **fetch/cancel(ignore)**.
 - (C4) if an Effect gets cleaned up (such as when you select a different person), its ignore variable becomes true.
-- 10/6, 10/24, 12/17(OXXX)
+- 10/6, 10/24, 12/17(OXXX | OOOO)
 
 <hr />
 

@@ -2,10 +2,28 @@
 
 **Summary (FINAL)**
 
+| Dependency array | When effect runs         |
+| ---------------- | ------------------------ |
+| `[]`             | Once (mount only)        |
+| `[a]`            | Mount + when `a` changes |
+
 ```js
-useEffect(() => {}); //========== Runs after every render.
-useEffect(() => {}, []); //====== Runs only on mount (when the component appears).
-useEffect(() => {}, [a]); //== Runs on mount AND "a" have changed since the last render.
+useEffect(() => {});
+//=== initial render + every re-render
+=======================
+useEffect(() => { return () => xxx;}, []);
+// Effect: runs once on mount
+// Cleanup: runs once on unmount
+// The effect itself does NOT run on unmount. Only the returned function (cleanup) runs on unmount.
+=======================
+useEffect(() => {
+  return () => xxx;
+}, [x]);
+// Effect: runs on mount AND whenever x changes
+// Cleanup: runs BEFORE the effect re-runs (when x changes) AND runs on unmount
+
+
+
 //=====Infinate loop (State setter triggers render, useEffect runs after every render)
 const [count, setCount] = useState(0);
 useEffect(() => {
