@@ -1,181 +1,99 @@
-import React, { useState, useEffect } from 'react';
-//import './users.css';
+import { useState, useEffect } from 'react';
+
+const url = `https://jsonplaceholder.typicode.com/users`;
+//const url1 = `https://jsonplaceholder.typicode.com/users/${id}`;
 
 interface User {
-  id: number;
+  id: string;
   name: string;
+  email: string;
 }
 
 export const UsersView = () => {
-  const [users, setUsers] = useState<User[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<null | string>(null);
-  const [message, setMessage] = useState<string>('');
-  const [name, setName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
+  const [data, setData] = useState<User[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
 
   useEffect(() => {
     setLoading(true);
-    fetch('https://jsonplaceholder.typicode.com/users')
+    fetch(url)
       .then((response) => {
-        if (!response.ok) throw new Error('Failed to get users data.');
+        if (!response.ok) throw new Error(`HTTP error ${response.status}`);
         return response.json();
       })
-      .then((data) => {
-        setUsers(data);
+      .then((data) => setData(data))
+      .catch((error) => {
+        setError(error.message);
       })
-      .catch((e) => {
-        setError(e);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+      .finally(() => setLoading(false));
   }, []);
 
-  const handleDelete = (id: number) => {
+  const onDeleteUser = (id: string) => {
     fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
       method: 'DELETE',
     })
       .then((response) => {
-        if (!response.ok) throw new Error('');
-        return response.json();
+        if (!response.ok) throw new Error(`HTTP error ${response.status}`);
       })
-      .then((_) => {
-        setMessage('Item deleted successfully:');
-        setUsers((values) => values.filter((item) => item.id !== id));
+      .then(() => {
+        setData((prev) => prev.filter((user) => user.id !== id));
       })
-      .catch((e) => {
-        setError('Delete failed');
-        console.log(e);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+      .catch((error) => setError(error.message))
+      .finally(() => setLoading(false));
+  };
 
-    const deleteUser = async () => {
-      try {
-        const response = await fetch(
-          `https://jsonplaceholder.typicode.com/users/${id}`,
-          {
-            method: 'DELETE',
-          }
-        );
-        const data = await response.json();
-        setMessage('Item deleted successfully:');
-        setUsers((values) => values.filter((item) => item.id !== id));
-        setLoading(false);
-      } catch (e) {
-        setError('Delete failed');
-        setLoading(false);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email }),
+      });
+      if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+      const newUser: User = await response.json();
+      setData((prev) => [...prev, newUser]);
+    } catch (error) {
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError('Unknown error occurred');
       }
-    };
-
-    deleteUser();
+    }
+    setLoading(false);
   };
-
-  const handleSubmit = async (event: React.FormEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    fetch('https://jsonplaceholder.typicode.com/users', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ name, email }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setUsers([...users, data]);
-      })
-      .catch((error) => {
-        setError(error);
-      })
-      .finally(() => {
-        setName('');
-        setEmail('');
-        setLoading(false);
-      });
-  };
-
-  const handleUpdate = (id: number) => {
-    const user = users.find((user) => user.id === id);
-    fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...user, name: 'dummy' }),
-    })
-      .then((response) => {
-        if (!response.ok) throw new Error('');
-        return response.json();
-      })
-      .then((data) => {
-        setMessage('User updated successfully:');
-        setUsers((values) =>
-          values.map((item) => (item.id === id ? data : item))
-        );
-      })
-      .catch((error) => {
-        setError(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
-
   return (
-    <div className="App">
-      <h1>User list</h1>
-      <p style={{ color: 'red' }}>{message}</p>
-      <div>
-        <span>Name:</span>
+    <div>
+      UserViewDemo
+      <div> {loading && <p>...loading</p>}</div>
+      <form onSubmit={handleSubmit}>
+        <label>Name:</label>
         <input
           type="text"
-          name="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <span>email:</span>
+        <label>email:</label>
         <input
           type="text"
-          name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <button onClick={handleSubmit}>Submit</button>
-      </div>
-      <hr />
-      <table className="table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>DELETE</th>
-            <th>Update</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <tr key={user.id}>
-              <td>{user.id}</td>
-              <td>{user.name}</td>
-              <td>
-                <button onClick={() => handleDelete(user.id)}>Delete</button>
-              </td>
-              <td>
-                <button onClick={() => handleUpdate(user.id)}>Update</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <hr />
+        <button type="submit">Submit</button>
+      </form>
+      <ul>
+        {data.map(({ id, name, email }) => (
+          <li key={name}>
+            {id}, {name}, {email}
+            <button onClick={() => onDeleteUser(id)}>delete</button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

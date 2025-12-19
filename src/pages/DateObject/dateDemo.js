@@ -3,34 +3,34 @@
 // Date objects - Objects that contain dates and times.
 
 // Date(year, month, day, hour, minute, second, ms)
-// const date = new Date(); //current time
-// const date1 = new Date(2024, 0, 1, 2, 3, 4, 5); //2024-01-01T08:03:04.005Z
-// const date2 = new Date('2024-01-01T12:00:00Z'); //2024-01-01T12:00:00.000Z (T=time, Z=UTC)
-// console.log(date);
-// console.log(date1);
-// console.log(date2);
+const date = new Date(); //current time
+const date1 = new Date(2024, 0, 1, 2, 3, 4, 5); //2024-01-01T08:03:04.005Z
+const date2 = new Date('2024-01-01T12:00:00Z'); //2024-01-01T12:00:00.000Z (T=time, Z=UTC)
+console.log(date);
+console.log(date1);
+console.log(date2);
 
-// const year = date.getFullYear();
-// const month = date.getMonth(); //between 0 and 11 (0=January)
-// const day = date.getDate();
-// const hours = date.getHours();
-// const minutes = date.getMinutes();
-// const seconds = date.getSeconds();
-// const dayOfWeek = date.getDay(); //between 0 and 6 (0=Sunday)
-// console.log(year);
-// console.log(month);
-// console.log(day);
-// console.log(minutes);
-// console.log(dayOfWeek);
+const year = date.getFullYear();
+const month = date.getMonth(); //between 0 and 11 (0=January)
+const day = date.getDate();
+const hours = date.getHours();
+const minutes = date.getMinutes();
+const seconds = date.getSeconds();
+const dayOfWeek = date.getDay(); //between 0 and 6 (0=Sunday)
+console.log(year);
+console.log(month);
+console.log(day);
+console.log(minutes);
+console.log(dayOfWeek);
 
-// const date3 = new Date();
-// date3.setFullYear(2024);
-// date3.setMonth(0);
-// date3.setDate(1);
-// date3.setHours(2);
-// date3.setHours(3);
-// date3.setSeconds(4);
-// console.log(date3.toLocaleString()); //1/1/2024, 3:12:04 AM
+const date3 = new Date();
+date3.setFullYear(2024);
+date3.setMonth(0);
+date3.setDate(1);
+date3.setHours(2);
+date3.setHours(3);
+date3.setSeconds(4);
+console.log(date3.toLocaleString()); //1/1/2024, 3:12:04 AM
 
 // //=== Example 1 (today, tomorrow and yesterday)
 // const today = new Date();

@@ -45,6 +45,9 @@ const deleteUser = (id) =>{}
 // useEffect(()=>{}, [])
 ```
 
+- `onSubmit={handleSubmit}`
+- `const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) `
+
 ## Example - GET
 
 - async/await/try-catch

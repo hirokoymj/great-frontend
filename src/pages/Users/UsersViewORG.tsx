@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
+//import './users.css';
 
 interface User {
   id: number;
   name: string;
 }
 
-export const UsersViewTest = () => {
+export const UsersView = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<null | string>(null);
@@ -13,40 +14,23 @@ export const UsersViewTest = () => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
 
-  //   useEffect(() => {
-  //     setLoading(true);
-  //     fetch('https://jsonplaceholder.typicode.com/users')
-  //       .then((response) => {
-  //         if (!response.ok) throw new Error('Failed to get users data.');
-  //         return response.json();
-  //       })
-  //       .then((data) => {
-  //         setUsers(data);
-  //       })
-  //       .catch((e) => {
-  //         setError(e);
-  //       })
-  //       .finally(() => {
-  //         setLoading(false);
-  //       });
-  //   }, []);
-
-  //06/29 1:43
+	
   useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await fetch(
-          'https://jsonplaceholder.typicode.com/users'
-        );
-        if (!response.ok) new Error('');
-        const data = await response.json();
+    setLoading(true);
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((response) => {
+        if (!response.ok) throw new Error('Failed to get users data.');
+        return response.json();
+      })
+      .then((data) => {
         setUsers(data);
-      } catch (e) {
-        console.error(e);
-      }
-    };
-    getData();
-    setLoading(false);
+      })
+      .catch((e) => {
+        setError(e);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   const handleDelete = (id: number) => {
@@ -68,6 +52,26 @@ export const UsersViewTest = () => {
       .finally(() => {
         setLoading(false);
       });
+
+    const deleteUser = async () => {
+      try {
+        const response = await fetch(
+          `https://jsonplaceholder.typicode.com/users/${id}`,
+          {
+            method: 'DELETE',
+          }
+        );
+        const data = await response.json();
+        setMessage('Item deleted successfully:');
+        setUsers((values) => values.filter((item) => item.id !== id));
+        setLoading(false);
+      } catch (e) {
+        setError('Delete failed');
+        setLoading(false);
+      }
+    };
+
+    deleteUser();
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLButtonElement>) => {
@@ -128,7 +132,7 @@ export const UsersViewTest = () => {
 
   return (
     <div className="App">
-      <h1>User list - Coding test</h1>
+      <h1>User list</h1>
       <p style={{ color: 'red' }}>{message}</p>
       <div>
         <span>Name:</span>

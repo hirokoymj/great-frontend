@@ -27,12 +27,15 @@ import EditProfile from './managing-state/edit-profile/EditProfile';
 import ClockDemo from './managing-state/clock/ClockDemo';
 import MailClient from './managing-state/multi-selection/MailClient';
 import Menu from './managing-state/menu/Menu';
-import Airport from './managing-state/airport/Airport';
+import Airport from './pages/airport/Airport';
 
 const Home = () => {
   return (
     <div>
       <ul>
+        <li>
+          <Link to="/checkbox-demo">checkbox demo</Link>
+        </li>
         <li>
           <Link to="/test1">Like Button</Link>
         </li>
