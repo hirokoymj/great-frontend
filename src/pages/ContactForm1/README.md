@@ -1,6 +1,6 @@
-# Contact Form
+# React Form
 
-## Summary
+**Summary (Final)**
 
 ```js
 Text: <input>, value, setState(e.target.value)
@@ -8,6 +8,53 @@ Checkbox: <input>, checked, setState(e.target.checked)
 Radio group: <input>, checked, setState(e.target.value)
 Textarea: <textarea>, value, setState(e.target.value)
 Dropdown: <select>, value, setState(e.tartget.value)
+```
+
+## Error handling (onBlur) 12/21/2025
+
+```js
+const [errors, setErrors] = useState({
+  name: false,
+  email: false,
+});
+const handleBlur = (field, value) => {
+  setErrors((prev) => ({
+    ...prev,
+    [field]: value.trim() === '',
+  }));
+};
+<input
+  type="text"
+  value={name}
+  onChange={(e) => setName(e.target.value)}
+  onBlur={() => handleBlur('name', name)}
+/>;
+{
+  errors.name && <p>'Required field'</p>;
+}
+```
+
+## Function reference vs Arrow function wrapper, Function call
+
+- React event handlers must receive a function
+- Use function reference when **no arguments** are needed
+- Use arrow function wrapper when **arguments are needed**
+- Avoid calling functions directly in JSX
+
+| Pattern                | Example                           | Correct |
+| ---------------------- | --------------------------------- | ------- |
+| Function reference     | `onClick={handleClick}`           | ✅      |
+| Arrow function wrapper | `onClick={() => handleClick(id)}` | ✅      |
+| Function call          | `onClick={handleClick(id)}`       | ❌      |
+
+**Example 1**
+
+```js
+//==React calls it later, when blur happens
+<input onBlur={() => handleBlur('name', name)} />
+
+//This calls handleBlur immediately during render, not on blur.
+<input onBlur={handleBlur('name', name)} />
 ```
 
 ## Tutorial
@@ -139,3 +186,24 @@ setSubjects((prev) => ({
 <form onSubmit={handleSubmit}></form>
 <button type="submit">Submit</button>
 ```
+
+## Summary draft
+
+```js
+const [errors, setErrors] = useState({
+  name: false,
+  email: false,
+});
+const handleBlur = (field, value) => {
+  setErrors((prev) => ({
+    ...prev,
+    [field]: value.trim() === '',
+  }));
+};
+<input onBlur={() => handleBlur('name', name)} />;
+errors.name && <p>'Required field'</p>;
+```
+
+## References:
+
+- https://www.greatfrontend.com/react-interview-playbook/react-forms#summary

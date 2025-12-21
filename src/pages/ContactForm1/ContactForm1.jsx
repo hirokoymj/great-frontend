@@ -4,11 +4,19 @@ const url = 'https://jsonplaceholder.typicode.com/users';
 //const url = 'https://questions.greatfrontend.com/api/questions/contact-form';
 
 const ContactForm1 = () => {
+  console.log('ContactForm1');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [errors, setErrors] = useState({
+    name: false,
+    email: false,
+  });
 
-  const onSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    //Validation
+    if (errors.includes('name') || errors.includes('email')) return;
+
     const jsonString = JSON.stringify({ name, email });
     console.log(jsonString);
     fetch(url, {
@@ -26,13 +34,20 @@ const ContactForm1 = () => {
       .finally(() => {
         setName('');
         setEmail('');
+        setErrors({ name: false, email: false });
       });
+  };
+  const handleBlur = (field, value) => {
+    setErrors((prev) => ({
+      ...prev,
+      [field]: value.trim() === '',
+    }));
   };
 
   return (
     <div>
       <h1>ContactForm 1</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>
           Name
           <input
@@ -40,7 +55,9 @@ const ContactForm1 = () => {
             name="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            onBlur={() => handleBlur('name', name)}
           />
+          {errors.name && <p>'Required field'</p>}
         </label>
         <label>
           Email
@@ -51,7 +68,7 @@ const ContactForm1 = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </label>
-        <button onClick={onSubmit}>Send</button>
+        <button type="submit">Send</button>
       </form>
     </div>
   );
