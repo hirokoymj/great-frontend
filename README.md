@@ -125,6 +125,16 @@ function handleDeleteTodo(todoId) {
 }
 ```
 
+```js
+const handleDecreaseClick = (productId) => {
+  setProducts(
+    products
+      .map((p) => (p.id === productId ? { ...p, count: p.count - 1 } : p))
+      .filter((p) => p.count !== 0)
+  );
+};
+```
+
 <hr />
 
 ## Managing State
@@ -159,10 +169,7 @@ function handleDeleteTodo(todoId) {
 - (!!C2!!) generating checkboxes Add (...), Edit(Map id, checked), Delete(filter), [PackingList.jsx](./src/managing-state/packing-list/PackingList.jsx)
 - (C4) Wrong, selectedIds `[0, 3]`
 - (C4) stores only selected item ID. `selectedIds.filter((id) => id !== toggledId)`
-- `onChange={handleChange}` vs `onChange={(e) => handleChange(e, 'maths')}`
-  - `onChange={handleChange}` - React automatically passes the event object to an hander.
-  - `onChange={(e) => handleChange(e, 'maths')}`- Extra arguments == inline: (onChange={(e) => handleCheckboxChange(e, 'maths')})
-- 9/29, 10/26, 11/1, 11/4, 12/17(OOX - C4,uncheck did't work)
+- 9/29, 10/26, 11/1, 11/4, 12/17(OOX - C4,uncheck did't work), 12/18, 12/22
 <hr />
 
 ### [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components)
