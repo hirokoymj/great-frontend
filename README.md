@@ -73,42 +73,56 @@
 - 10/2, 12/16(0XX), 12/17(OOO)
 
 ```js
+//C1
+function handleIncreaseClick(productId) {
+  const output = products.map((d) => {
+    return d.id === productId ? { ...d, count: d.count + 1 } : d;
+  });
+  setProducts([...output]);
+}
+//C2
 const handleDecreaseClick = (productId) => {
-  setProducts(
-    products
-      .map((p) => (p.id === productId ? { ...p, count: p.count - 1 } : p))
-      .filter((p) => p.count !== 0)
-  );
-};
-```
+  const output = products
+    .map((product) => {
+      return product.id === productId
+        ? { ...product, count: product.count - 1 }
+        : product;
+    })
+    .filter((d) => d.count !== 0);
 
-```js
-//Todos
-const initialTodos = [
-  { id: 0, title: 'Buy milk', done: true },
-  { id: 1, title: 'Eat tacos', done: false },
-  { id: 2, title: 'Brew tea', done: false },
-];
-const [todos, setTodos] = useState(initialTodos);
-//==Shopping cart
-const initialProducts = [
-  {
-    id: 0,
-    name: 'Baklava',
-    count: 1,
-  },
-  {
-    id: 1,
-    name: 'Cheese',
-    count: 5,
-  },
-  {
-    id: 2,
-    name: 'Spaghetti',
-    count: 2,
-  },
-];
-const [products, setProducts] = useState(initialProducts);
+  setProducts([...output]);
+};
+const handleDecreaseClick = (productId) => {
+  const output = products
+    .map((product) =>
+      product.id === productId
+        ? { ...product, count: product.count - 1 }
+        : product
+    )
+    .filter((d) => d.count !== 0);
+  setProducts([...output]);
+};
+function handleAddTodo(title) {
+  setTodos([
+    ...todos,
+    {
+      id: nextId++,
+      title: title,
+      done: false,
+    },
+  ]);
+}
+
+function handleChangeTodo(nextTodo) {
+  const output = todos.map((todo) => {
+    return todo.id === nextTodo.id ? nextTodo : todo;
+  });
+  setTodos([...output]);
+}
+function handleDeleteTodo(todoId) {
+  const output = todos.filter((d) => d.id !== todoId);
+  setTodos([...output]);
+}
 ```
 
 <hr />

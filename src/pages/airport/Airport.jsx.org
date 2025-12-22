@@ -56,12 +56,13 @@ const data = [
 ];
 
 const Airport = () => {
-  const [flights, setFlights] = useState(data);
+  const [items] = useState(data);
+
   return (
     <div>
-      <h1>test</h1>
+      <h1>Airport</h1>
       <ul>
-        {flights.map(({ time, city }) => (
+        {items.map(({ time, city }) => (
           <li key={`${time}-${city}`}>
             {time}, {city}
           </li>
