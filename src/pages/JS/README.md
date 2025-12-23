@@ -35,9 +35,6 @@
 | **String**       | String char access                         |          | Strings are **array-like**, read-only            |
 | **String**       | `text[index]`                              |          | `"tree"[0] → "t"`                                |
 | ---------------- | ------------------------------------------ | -------- | ------------------------------------------------ |
-| **Control Flow** | `switch()`                                 |          | Control statement                                |
-| **Control Flow** | `switch(true)`                             |          | Conditional switch                               |
-| ---------------- | ------------------------------------------ | -------- | ------------------------------------------------ |
 | **Math**         | Division                                   |          | `const result = 10 / 3`                          |
 | **Math**         | Remainder (`%`)                            |          | `const remainder = 10 % 3`                       |
 | **Math**         | Even number check                          |          | `(a % 2 === 0)`                                  |
@@ -53,6 +50,8 @@
 | **Math**         | `Math.pow()`                               |          | `Math.pow(10, 5) → 100000`                       |
 | **Math**         | `Math.random()`                            |          | `Math.floor(Math.random() * arr.length)`         |
 | ---------------- | ------------------------------------------ | -------- | ------------------------------------------------ |
+| **Misc**         | `switch()`                                 |          | Control statement                                |
+| **Misc**         | `switch(true)`                             |          | Conditional switch                               |
 | **Misc**         | `return` (end function)                    |          | Ends function execution                          |
 | **Misc**         | `return` (return value)                    |          | `return 0`, `return true`, `return 123`          |
 | **Misc**         | `typeof {}`                                |          | Returns `"object"`                               |
