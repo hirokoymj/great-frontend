@@ -151,7 +151,7 @@ for (const key in hackedEmojis) {
 | **Object** | Object merge (`concat`) | ❌ Invalid – `concat` works on arrays      |
 | **String** | `String.padStart()`     | `"5".padStart(2, "0") → "05"`              |
 
-## FINAL
+## FINAL (draft 1)
 
 | Category         | Topic / Method                             | Mutates? | Notes                                           |
 | ---------------- | ------------------------------------------ | -------- | ----------------------------------------------- |
@@ -200,3 +200,58 @@ for (const key in hackedEmojis) {
 | **String**       | `String.startsWith()`                      |          | `str.startsWith(":") → true/false`              |
 | **String**       | String char access                         |          | Strings are **array-like**, read-only           |
 | **String**       | `text[index]`                              |          | `"tree"[0] → "t"`                               |
+
+- `return`, Misc, ends function execution. `const handleSubmit = (e) => if(name === "") return;`
+- `return`, Misc, Returns value. `return 0, return true, return xxx`
+
+## Final
+
+| Category         | Topic / Method                             | Mutates? | Notes                                                       |
+| ---------------- | ------------------------------------------ | -------- | ----------------------------------------------------------- |
+| **Array**        | `Array.filter(callback)`                   |          | Returns a **new array** (`[a]` or `[]`)                     |
+| **Array**        | `Array.find(callback)`                     |          | Stops early, returns **element or `undefined`**             |
+| **Array**        | `Array.forEach()`                          |          | No early termination                                        |
+| **Array**        | `Array.includes(value)`                    |          | Returns `true / false`                                      |
+| **Array**        | `Array.indexOf(value)`                     |          | Returns index `n` or `-1`                                   |
+| **Array**        | `Array.join()`                             |          | Array → string                                              |
+| **Array**        | `Array.map()`                              |          | No early termination                                        |
+| **Array**        | `Array.pop()`                              | ✅ Yes   | Removes last element                                        |
+| **Array**        | `Array.reduce((acc, data) => {}, 0)`       |          | Reducer may mutate accumulator                              |
+| **Array**        | `Array.shift()`                            | ✅ Yes   | Removes first element                                       |
+| **Array**        | `Array.sort()`                             | ✅ Yes   | Sorts in place                                              |
+| **Array**        | `Array.splice()`                           | ✅ Yes   | Adds/removes items                                          |
+| **Control Flow** | `switch()`                                 |          | Control statement                                           |
+| **Control Flow** | `switch(true)`                             |          | Conditional switch                                          |
+| **Loop**         | `for` loop                                 |          | `for (let i = 0; i < max; i++) {}`                          |
+| **Loop**         | `for (let i = 0; i < text.length; i++) {}` |          | Classic index-based loop                                    |
+| **Math**         | Division                                   |          | `const result = 10 / 3`                                     |
+| **Math**         | Even number check                          |          | `(a % 2 === 0)`                                             |
+| **Math**         | Float check                                |          | `(a % 1 !== 0)`                                             |
+| **Math**         | Integer check                              |          | `(a % 1 === 0)`                                             |
+| **Math**         | `Math.abs()`                               |          | Absolute value                                              |
+| **Math**         | `Math.ceil(1.4)`                           |          | `→ 2`                                                       |
+| **Math**         | `Math.floor(1.6)`                          |          | `→ 1`                                                       |
+| **Math**         | `Math.max(...array)`                       |          | Returns max value                                           |
+| **Math**         | `Math.min(...array)`                       |          | Returns min value                                           |
+| **Math**         | Odd number check                           |          | `(a % 2 !== 0)`                                             |
+| **Math**         | Random index                               |          | `Math.floor(Math.random() * array.length)`                  |
+| **Math**         | `Math.pow()`                               |          | `Math.pow(10, 5) → 100000`                                  |
+| **Math**         | `Math.random()`                            |          | `0–99 → Math.floor(Math.random() * 100)`                    |
+| **Math**         | Remainder (`%`)                            |          | `const remainder = 10 % 3`                                  |
+| **Math**         | `Math.round(2.4)`                          |          | `→ 2`                                                       |
+| **Misc**         | `return` (end function)                    |          | Ends function execution, e.g. `if(name === "") return;`     |
+| **Misc**         | `return` (return value)                    |          | Returns value, e.g. `return 0`, `return true`, `return xxx` |
+| **Misc**         | `typeof {}`                                |          | Returns `"object"`                                          |
+| **Misc**         | `typeof null`                              |          | Returns `"object"` (JS quirk)                               |
+| **Object**       | `for...in`                                 |          | `for (const key in obj)`                                    |
+| **Object**       | `hasOwnProperty()`                         |          | Checks own property only                                    |
+| **Object**       | Object merge (spread)                      |          | `const output = { ...o1, ...o2 }`                           |
+| **Object**       | Object merge (`concat`)                    |          | ❌ Invalid – `concat` works on arrays                       |
+| **String**       | `String.endsWith()`                        |          | `str.endsWith(":") → true/false`                            |
+| **String**       | `String.padStart()`                        |          | `"5".padStart(2, "0") → "05"`                               |
+| **String**       | `String.replace()`                         |          | `str.replace(/\\+s/i, '')`                                  |
+| **String**       | `String.slice()`                           |          | `":cry:".slice(1, -1) → "cry"`                              |
+| **String**       | `String.split("")`                         |          | Returns array                                               |
+| **String**       | `String.startsWith()`                      |          | `str.startsWith(":") → true/false`                          |
+| **String**       | String char access                         |          | Strings are **array-like**, read-only                       |
+| **String**       | `text[index]`                              |          | `"tree"[0] → "t"`                                           |
