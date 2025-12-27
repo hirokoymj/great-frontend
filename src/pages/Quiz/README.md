@@ -3,10 +3,13 @@
 **Summary(final)**
 
 ```js
-const { rank, ...rest } = prev;
-return rest;
-if ('rank' in prev) return prev;
-return { ...prev, rank: 'Beginner' };
+- Avoiding mutation
+- const { rank, ...rest } = prev;
+- return rest;
+- if ('rank' in prev) return prev;
+- return { ...prev, rank: 'Beginner' };
+- React state updates are asynchronous and can be batched.
+- setState form gives me the latest state value.
 ```
 
 ## My note
@@ -58,5 +61,27 @@ console.log(rest); // Output: [3, 4, 5, 6]
 - if ('rank' in prev) return prev;
 - return {  ...prev,  rank: 'Beginner',};
 ```
+
+- Directly reading state can lead to stale values because React state updates are asynchronous and batched.
+  Using prev guarantees I’m updating from the latest state, even if multiple updates happen before a re-render.
+- React State Is a Snapshot
+- React’s render lifecycle
+- State immutability
+- Concurrency & batching
+- Not just syntax, but behavior
+- React state updates are **asynchronous** and can be **batched**.
+  If I read state directly, I might be reading a stale snapshot from the current render.
+  Using the functional setState form gives me the latest state value, so updates are predictable and safe, especially when multiple updates happen quickly.
+
+Real-World Situations Where This Breaks
+
+**Direct access fails when:**
+
+- Multiple button clicks
+- Rapid user interactions
+- Event handlers firing quickly
+- Async callbacks
+- Concurrent React rendering
+- Strict Mode (double render in dev)
 
 <hr />
