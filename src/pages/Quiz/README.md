@@ -1,6 +1,18 @@
 # React.js Quiz
 
-- PlayerProfile (12/26/2025)
+**Summary(final)**
+
+```js
+const { rank, ...rest } = prev;
+return rest;
+if ('rank' in prev) return prev;
+return { ...prev, rank: 'Beginner' };
+```
+
+## My note
+
+### PlayerProfile (12/26/2025)
+
 - [in operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in)
 - [...rest](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring)
 - Add/Remove a property for a state object
@@ -38,7 +50,7 @@ console.log(two); // Output: 2
 console.log(rest); // Output: [3, 4, 5, 6]
 ```
 
-**Summary(final)**
+**Summary(draft)**
 
 ```js
 - const { rank, ...rest } = prev;
