@@ -1,5 +1,27 @@
 # Learn React
 
+# Master table (Draft)
+
+- `e.stopPropagation()`
+- event handler- Function reference, Arrow Function Wrapper, Function call (!!Wrong!!)
+- Initial render(React.createRoot())
+- [Updating Objects in State](https://react.dev/learn/updating-objects-in-state#fix-incorrect-state-updates)
+- [Array of objects in State: shopping cart](https://react.dev/learn/updating-arrays-in-state#remove-an-item-from-the-shopping-cart)
+- [Array of objects in State: Todos](https://react.dev/learn/updating-arrays-in-state#fix-the-mutations-using-non-mutative-methods)
+- [Add and remove a CSS class]()
+- [redundant state variable, listItems, checkboxes](https://react.dev/learn/choosing-the-state-structure#fix-a-broken-packing-list)
+- Form - FirstName, lastName, checkbox, textarea
+- Display data from RESTFUL api.(https://codesandbox.io/p/sandbox/football-matches-data-react-3ihv2)
+- [Cache, useMemo](https://react.dev/learn/you-might-not-need-an-effect#cache-a-calculation-without-effects)
+- [multi checkbox](https://react.dev/learn/choosing-the-state-structure#implement-multiple-selection)
+- [Sharing State btw components](https://react.dev/learn/sharing-state-between-components#filtering-a-list)
+- [useRef](https://react.dev/learn/referencing-values-with-refs#fix-a-broken-chat-input)
+- Fetch
+  - Users API: https://jsonplaceholder.typicode.com/users'
+  - Football Match API: https://jsonmock.hackerrank.com/api/football_competitions?year=${year}
+  - [Football Match UI](https://codesandbox.io/p/sandbox/football-matches-data-react-3ihv2?file=%2Fsrc%2Fcomponents%2Ffootball-data%2Findex.js%3A19%2C12-19%2C101)
+  - [Airline data](./src/pages/airport/data.js)
+
 ## Adding Interactivity
 
 ### [Responding to Events](https://react.dev/learn/responding-to-events)
@@ -7,10 +29,16 @@
 - [My Summary](./src/Interactivity/Responding-to-events.md)
 - [Challenge 1](https://react.dev/learn/responding-to-events#fix-an-event-handler) - O, O
 - [Challenge 2](https://react.dev/learn/responding-to-events#wire-up-the-events) - X, X
-- (C1) onClick={handleClick} - an event handler must be passed or inline.
-- (C1) onClicke={() => handleClick()}
-- (C2) The event propagates up, and some handler above does it. -> `e.stopPropagation()`
-- 10/2,11/22, 12/16
+- (C1)
+
+  ```js
+  - Function reference: `onClick={handleClick}`
+  - Function wrapper: `onClick={()=> handleClick(id)}`
+  - Function call (!!Wrong!!):  `onClick={handleClick()}`
+  ```
+
+- (C2) `e.stopPropagation()`
+- 10/2,11/22, 12/16, 12/24(OO)
 
 <hr />
 
@@ -20,13 +48,15 @@
 - [Challenge 1](https://react.dev/learn/state-a-components-memory#complete-the-gallery) - O,O
 - [Challenge 2](https://react.dev/learn/state-a-components-memory#fix-stuck-form-inputs) - O,O
 - [Challenge 3](https://react.dev/learn/state-a-components-memory#fix-a-crash) - O,O
+- (C1) image gallery (next, prev)
 - 10/2, 11/22, 12/16(OOO)
+
 <hr />
 
 ### [Render and Commit](https://react.dev/learn/render-and-commit)
 
 - [My Summary](./src/Interactivity/Render-and-commit.md)
-- Initial render ==> what is the function name? Initial render => route => calling mapped componennt
+- Initial render ==> what is the function name? Initial render => route => calling mapped component
 - 10/2, 11/22, 12/16(X)
 <hr />
 
@@ -48,8 +78,8 @@
 
 - [My Summary](./src/Interactivity/Objects-in-state.md)
 - [Challenge 1](https://react.dev/learn/updating-objects-in-state#fix-incorrect-state-updates) - XO
-- (C1) - state value is an object. Update state object using a setter function.
-- 10/3, 12/16(X), 12/17(O)
+- (C1) - the state value is an object. [player, setPlayer] = useState({})
+- 10/3, 12/16(X), 12/17(O), 12/22(O), 12/24(O)
 <hr />
 
 ### [Updating Arrays in State](https://react.dev/learn/updating-arrays-in-state)
@@ -58,11 +88,10 @@
 - [Challenge 1](https://react.dev/learn/updating-arrays-in-state#update-an-item-in-the-shopping-cart) - OO
 - [Challenge 2](https://react.dev/learn/updating-arrays-in-state#remove-an-item-from-the-shopping-cart) - XO
 - [Challenge 3](https://react.dev/learn/updating-arrays-in-state#fix-the-mutations-using-non-mutative-methods) - XO
-- (C1) Shopping cart, state is an array of object, Update a count. --> Array.map
+- (C1) Shopping cart, Array of objects in state. `[...arr, newItem]`, `filter() and map()`
 - (C1) [Fork](https://codesandbox.io/p/sandbox/6glq6s)
-- (C2) Shopping cart +(add) -(decrease and delete)
+- (C2) Shopping cart, Array of objects in state
 - (C2) [Fork](https://codesandbox.io/p/sandbox/ztdx3l)
-- (C2) map to produce a new array, and then filter to remove products with a count set to 0:
 - (C3) Todos, array of object, add/delete/edit
 - (C3) Array of object => add(array spread operator + newObj), delete(filter), edit(array spread operator + map)
 - (C3) [fork](https://codesandbox.io/p/sandbox/pj3rfc?file=%2Fsrc%2FApp.js)
@@ -70,70 +99,7 @@
   - You **omit** {}
   - You return a **single expression**
   - Block body {} → needs **return**
-- 10/2, 12/16(0XX), 12/17(OOO)
-
-```js
-//C1
-function handleIncreaseClick(productId) {
-  const output = products.map((d) => {
-    return d.id === productId ? { ...d, count: d.count + 1 } : d;
-  });
-  setProducts([...output]);
-}
-//C2
-const handleDecreaseClick = (productId) => {
-  const output = products
-    .map((product) => {
-      return product.id === productId
-        ? { ...product, count: product.count - 1 }
-        : product;
-    })
-    .filter((d) => d.count !== 0);
-
-  setProducts([...output]);
-};
-const handleDecreaseClick = (productId) => {
-  const output = products
-    .map((product) =>
-      product.id === productId
-        ? { ...product, count: product.count - 1 }
-        : product
-    )
-    .filter((d) => d.count !== 0);
-  setProducts([...output]);
-};
-function handleAddTodo(title) {
-  setTodos([
-    ...todos,
-    {
-      id: nextId++,
-      title: title,
-      done: false,
-    },
-  ]);
-}
-
-function handleChangeTodo(nextTodo) {
-  const output = todos.map((todo) => {
-    return todo.id === nextTodo.id ? nextTodo : todo;
-  });
-  setTodos([...output]);
-}
-function handleDeleteTodo(todoId) {
-  const output = todos.filter((d) => d.id !== todoId);
-  setTodos([...output]);
-}
-```
-
-```js
-const handleDecreaseClick = (productId) => {
-  setProducts(
-    products
-      .map((p) => (p.id === productId ? { ...p, count: p.count - 1 } : p))
-      .filter((p) => p.count !== 0)
-  );
-};
-```
+- 10/2, 12/16(0XX), 12/17(OOO), 12/18, 12/22, 12/24(OOO)
 
 <hr />
 
@@ -157,8 +123,8 @@ const handleDecreaseClick = (productId) => {
 
 - [My Summary](./src/managing-state/Choosing-state.md)
 - [Challenge 1](https://react.dev/learn/choosing-the-state-structure#fix-a-component-thats-not-updating) ===>OO
-- [Challenge 2](https://react.dev/learn/choosing-the-state-structure#fix-a-broken-packing-list) ===>XXOO
-- [Challenge 4](https://react.dev/learn/choosing-the-state-structure#implement-multiple-selection) ===>XOX
+- [Challenge 2](https://react.dev/learn/choosing-the-state-structure#fix-a-broken-packing-list) ===>XXOOO
+- [Challenge 4](https://react.dev/learn/choosing-the-state-structure#implement-multiple-selection) ===>XOXOO
 - [Q1:Avoid duplication in state](https://react.dev/learn/choosing-the-state-structure#avoid-duplication-in-state)
   - [Q1:fork](https://codesandbox.io/p/sandbox/q832nk)
   - [A1:fork](https://codesandbox.io/p/sandbox/ql4dp7?file=%2Fsrc%2FApp.js) ===>XO
@@ -169,7 +135,7 @@ const handleDecreaseClick = (productId) => {
 - (!!C2!!) generating checkboxes Add (...), Edit(Map id, checked), Delete(filter), [PackingList.jsx](./src/managing-state/packing-list/PackingList.jsx)
 - (C4) Wrong, selectedIds `[0, 3]`
 - (C4) stores only selected item ID. `selectedIds.filter((id) => id !== toggledId)`
-- 9/29, 10/26, 11/1, 11/4, 12/17(OOX - C4,uncheck did't work), 12/18, 12/22
+- 9/29, 10/26, 11/1, 11/4, 12/17(OOX - C4,uncheck did't work), 12/18, 12/22, 12/24(OO)
 <hr />
 
 ### [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components)
@@ -181,7 +147,7 @@ const handleDecreaseClick = (productId) => {
 - (C2) A single source of true
 - (C2) Pass donw the event hander (handleChange=setQuery) so the children can change the parent's state.
 - (ALL) Parent/Children: SyncedInputs/Input, Accordion/Panel, FilterabeList/SearchBar
-- 9/29, 10/3, 10/26, 11/2, 12/17(OO)
+- 9/29, 10/3, 10/26, 11/2, 12/17(OO), 12/24(OO)
 <hr />
 
 - [Preserving and Resetting State](https://react.dev/learn/preserving-and-resetting-state)
@@ -223,13 +189,13 @@ const handleDecreaseClick = (productId) => {
 
 - [==Referencing Values with Refs==](https://react.dev/learn/referencing-values-with-refs)
 - [my summary](./src/Escape-Hatches/ReferencingValue-with-Refs.md)
-- [Challenge 1](https://react.dev/learn/referencing-values-with-refs#fix-a-broken-chat-input) ===>XX
+- [Challenge 1](https://react.dev/learn/referencing-values-with-refs#fix-a-broken-chat-input) ===>XXO
 - [Challenge 2](https://react.dev/learn/referencing-values-with-refs#fix-a-component-failing-to-re-render) ===>OOO
 - [Challenge 4](https://react.dev/learn/referencing-values-with-refs#read-the-latest-state) ===>O
 - (C1) - `const myRef = useRef, how to update - myRef.current`
 - (C2) - useRef does't effect UI change.
 - (C4) - useRef can survive.
-- 10/3, 10/23, 12/17(XOO)
+- 10/3, 10/23, 12/17(XOO), 12/24(O)
 
 <hr />
 
@@ -440,3 +406,10 @@ function handleToggle(toggledId) {
   }
 }
 ```
+
+##
+
+- Airport - two components
+- Fetch (Form)
+- Checkbox (multi)
+- Event handler

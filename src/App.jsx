@@ -28,6 +28,7 @@ import ClockDemo from './managing-state/clock/ClockDemo';
 import MailClient from './managing-state/multi-selection/MailClient';
 import Menu from './managing-state/menu/Menu';
 import Airport from './pages/airport/Airport';
+import GameProfile from './pages/Quiz/GameProfile';
 
 const Home = () => {
   return (
@@ -120,6 +121,9 @@ const Home = () => {
         <li>
           <Link to="/airport">Airport Board</Link>
         </li>
+        <li>
+          <Link to="/game-profile">Game Profile</Link>
+        </li>
       </ul>
     </div>
   );
@@ -156,6 +160,7 @@ export default function App() {
         <Route path="multi-selection" element={<MailClient />} />
         <Route path="multi-selection" element={<Menu />} />
         <Route path="airport" element={<Airport />} />
+        <Route path="game-profile" element={<GameProfile />} />
       </Routes>
     </BrowserRouter>
   );
