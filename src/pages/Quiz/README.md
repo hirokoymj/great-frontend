@@ -3,7 +3,7 @@
 **Summary(final)**
 
 ```js
-- Avoiding mutation
+- ❌ Direct State Access
 - const { rank, ...rest } = prev;
 - return rest;
 - if ('rank' in prev) return prev;
