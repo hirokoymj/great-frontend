@@ -4,7 +4,6 @@ import LikeBtn from './pages/LikeButton/LikeBtn';
 import ContactForm1 from './pages/ContactForm1/ContactForm1';
 import ContactForm2 from './pages/ContactForm2/ContactForm2';
 import RadioGroupExample from './pages/ContactForm2/RadioGroupExample';
-//import CheckboxExample from './pages/ContactForm2/CheckboxExample';
 import Tabs from './pages/Tabs/Tabs';
 import ProgresBar from './pages/ProgressBar/ProgressBar';
 import MorgageCalculator from './pages/Morgage/MorgageCalculator';
@@ -28,11 +27,26 @@ import ClockDemo from './managing-state/clock/ClockDemo';
 import MailClient from './managing-state/multi-selection/MailClient';
 import Menu from './managing-state/menu/Menu';
 import Airport from './pages/airport/Airport';
+//Coding demo
 import GameProfile from './pages/Quiz/GameProfile';
+import { UserList } from './pages/FetchData/UserList';
+import { FootballCompetitions } from './pages/Challenge/FootballCompetitions';
 
 const Home = () => {
   return (
     <div>
+      <p style={{ fontWeight: 'bold' }}>Coding Practice</p>
+      <ul>
+        <li>
+          <Link to="/airport">Airport Board</Link>
+        </li>
+        <li>
+          <Link to="/game-profile">Game Profile</Link>
+        </li>
+        <li>
+          <Link to="/user-list">User list</Link>
+        </li>
+      </ul>
       <ul>
         <li>
           <Link to="/checkbox-demo">checkbox demo</Link>
@@ -42,7 +56,7 @@ const Home = () => {
         </li>
         <li>
           {' '}
-          <Link to="/test3">Contact Form 1</Link>
+          <Link to="/contact-form-1">Contact Form 1</Link>
         </li>
         <li>
           {' '}
@@ -116,15 +130,6 @@ const Home = () => {
           <Link to="/user-context-demo">User Context demo</Link>
         </li>
       </ul>
-      <p style={{ fontWeight: 'bold' }}>Others</p>
-      <ul>
-        <li>
-          <Link to="/airport">Airport Board</Link>
-        </li>
-        <li>
-          <Link to="/game-profile">Game Profile</Link>
-        </li>
-      </ul>
     </div>
   );
 };
@@ -135,7 +140,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="test1" element={<LikeBtn />} />
-        <Route path="test3" element={<ContactForm1 />} />
+        <Route path="contact-form-1" element={<ContactForm1 />} />
         <Route path="test4" element={<ContactForm2 />} />
         <Route path="radio-demo" element={<RadioGroupExample />} />
         <Route path="test5" element={<Tabs />} />
@@ -161,6 +166,8 @@ export default function App() {
         <Route path="multi-selection" element={<Menu />} />
         <Route path="airport" element={<Airport />} />
         <Route path="game-profile" element={<GameProfile />} />
+        <Route path="user-list" element={<UserList />} />
+        <Route path="quiz-1" element={<FootballCompetitions />} />
       </Routes>
     </BrowserRouter>
   );

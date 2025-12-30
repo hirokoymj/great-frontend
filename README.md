@@ -1,27 +1,5 @@
 # Learn React
 
-# Master table (Draft)
-
-- `e.stopPropagation()`
-- event handler- Function reference, Arrow Function Wrapper, Function call (!!Wrong!!)
-- Initial render(React.createRoot())
-- [Updating Objects in State](https://react.dev/learn/updating-objects-in-state#fix-incorrect-state-updates)
-- [Array of objects in State: shopping cart](https://react.dev/learn/updating-arrays-in-state#remove-an-item-from-the-shopping-cart)
-- [Array of objects in State: Todos](https://react.dev/learn/updating-arrays-in-state#fix-the-mutations-using-non-mutative-methods)
-- [Add and remove a CSS class]()
-- [redundant state variable, listItems, checkboxes](https://react.dev/learn/choosing-the-state-structure#fix-a-broken-packing-list)
-- Form - FirstName, lastName, checkbox, textarea
-- Display data from RESTFUL api.(https://codesandbox.io/p/sandbox/football-matches-data-react-3ihv2)
-- [Cache, useMemo](https://react.dev/learn/you-might-not-need-an-effect#cache-a-calculation-without-effects)
-- [multi checkbox](https://react.dev/learn/choosing-the-state-structure#implement-multiple-selection)
-- [Sharing State btw components](https://react.dev/learn/sharing-state-between-components#filtering-a-list)
-- [useRef](https://react.dev/learn/referencing-values-with-refs#fix-a-broken-chat-input)
-- Fetch
-  - Users API: https://jsonplaceholder.typicode.com/users'
-  - Football Match API: https://jsonmock.hackerrank.com/api/football_competitions?year=${year}
-  - [Football Match UI](https://codesandbox.io/p/sandbox/football-matches-data-react-3ihv2?file=%2Fsrc%2Fcomponents%2Ffootball-data%2Findex.js%3A19%2C12-19%2C101)
-  - [Airline data](./src/pages/airport/data.js)
-
 ## Adding Interactivity
 
 ### [Responding to Events](https://react.dev/learn/responding-to-events)
