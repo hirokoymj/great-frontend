@@ -19,6 +19,7 @@
 | 11  | **Array**   | `Array.shift()`                  | ✅ Yes   | Removes first element                                    |
 | 12  | **Array**   | `Array.sort()`                   | ✅ Yes   | Sorts in place                                           |
 | 13  | **Array**   | `Array.splice()`                 | ✅ Yes   | Adds/removes items. `arr.splice(removeIndex,1)`          |
+| 13  | **Array**   | `Array.slice(start, end)`        | ❌ No    | Returns a portion of an array. `arr.slice(0, 10)`        |
 | --- | ----------- | -------------------------------- | -------- | -------------------------------------------------------- |
 | 14  | **Loop**    | `for` loop                       |          | `for (let i=0;i<max;i++) {}`                             |
 | 15  | **Obj**     | `for...in`                       |          | `for (const key in obj)`                                 |
@@ -106,6 +107,19 @@
 - [Cache, useMemo](https://react.dev/learn/you-might-not-need-an-effect#cache-a-calculation-without-effects)
 
 <hr />
+
+## pagination
+
+```js
+const [currentPage, setCurrentPage] = useState(1);
+const PAGE_SIZE = 10;
+const totalPage = Math.ceil(data.length / PAGE_SIZE);
+const start = (currentPage - 1) * PAGE_SIZE;
+const end = startIndex + PAGE_SIZE;
+const paginatedTodos = data.slice(start, end);
+<button onClick={() => setCurrentPage((p) => p - 1)} />
+<button onClick={() => setCurrentPage((p) => p + 1)} />
+```
 
 - Prompt template
 - Pleas create a React.js coding challenge. Here are the details:

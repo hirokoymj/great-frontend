@@ -31,6 +31,8 @@ import Airport from './pages/airport/Airport';
 import GameProfile from './pages/Quiz/GameProfile';
 import { UserList } from './pages/FetchData/UserList';
 import { FootballCompetitions } from './pages/Challenge/FootballCompetitions';
+import MyUserList from './pages/Challenge/MyUserList';
+import MyTodoList from './pages/Challenge/MyTodoList';
 
 const Home = () => {
   return (
@@ -45,6 +47,9 @@ const Home = () => {
         </li>
         <li>
           <Link to="/user-list">User list</Link>
+        </li>
+        <li>
+          <Link to="/quiz-3">MyTodoList</Link>
         </li>
       </ul>
       <ul>
@@ -168,6 +173,8 @@ export default function App() {
         <Route path="game-profile" element={<GameProfile />} />
         <Route path="user-list" element={<UserList />} />
         <Route path="quiz-1" element={<FootballCompetitions />} />
+        <Route path="quiz-2" element={<MyUserList />} />
+        <Route path="quiz-3" element={<MyTodoList />} />
       </Routes>
     </BrowserRouter>
   );
