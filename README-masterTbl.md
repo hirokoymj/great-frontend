@@ -4,60 +4,67 @@
 
 [draft](./src/pages/JS/README.md)
 
-| No. | Category    | Topic / Method                   | Mutates? | Notes                                                    |
-| --- | ----------- | -------------------------------- | -------- | -------------------------------------------------------- |
-| 1   | **Array**   | `Array.some(callback)`           |          | Stops early, returns boolean                             |
-| 2   | **Array**   | `Array.includes(value)`          |          | Returns `true / false`                                   |
-| 3   | **Array**   | `Array.filter(callback)`         |          | Returns a **new array** (`[a]` or `[]`)                  |
-| 4   | **Array**   | `Array.find(callback)`           |          | Stops early, returns **element or `undefined`**          |
-| 5   | **Array**   | `Array.reduce((acc,data)=>{},0)` |          | Reducer may mutate accumulator                           |
-| 6   | **Array**   | `Array.forEach()`                |          | 🚫 No early termination                                  |
-| 7   | **Array**   | `Array.map()`                    |          | 🚫 No early termination                                  |
-| 8   | **Array**   | `Array.indexOf(value)`           |          | Returns index `n` or `-1`                                |
-| 9   | **Array**   | `Array.join()`                   |          | Array → string                                           |
-| 10  | **Array**   | `Array.pop()`                    | ✅ Yes   | Removes last element                                     |
-| 11  | **Array**   | `Array.shift()`                  | ✅ Yes   | Removes first element                                    |
-| 12  | **Array**   | `Array.sort()`                   | ✅ Yes   | Sorts in place                                           |
-| 13  | **Array**   | `Array.splice()`                 | ✅ Yes   | Adds/removes items. `arr.splice(removeIndex,1)`          |
-| 13  | **Array**   | `Array.slice(start, end)`        | ❌ No    | Returns a portion of an array. `arr.slice(0, 10)`        |
-| --- | ----------- | -------------------------------- | -------- | -------------------------------------------------------- |
-| 14  | **Loop**    | `for` loop                       |          | `for (let i=0;i<max;i++) {}`                             |
-| 15  | **Obj**     | `for...in`                       |          | `for (const key in obj)`                                 |
-| 16  | **Obj**     | `in`                             |          | Checks whether a property exists. `"make" in car`        |
-| 17  | **Obj/Arr** | Spread operator (`...`)          |          | Expands items. `const newObj={...item}`                  |
-| 18  | **Obj/Arr** | Rest operator (`...rest`)        |          | **Collects** multiple items. `const [a,...rest]=[a,b,c]` |
-| --- | ----------- | -------------------------------- | -------- | -------------------------------------------------------- |
-| 19  | **Str**     | `String.replace()`               |          | `str.replace(/\s+/i,'')`                                 |
-| 20  | **Str**     | `String.slice()`                 |          | `":cry:".slice(1,-1) → "cry"`                            |
-| 21  | **Str**     | `String.split("")`               |          | Returns array                                            |
-| 22  | **Str**     | `String.startsWith()`            |          | `str.startsWith(":") → true/false`                       |
-| 23  | **Str**     | `String.endsWith()`              |          | `str.endsWith(":") → true/false`                         |
-| 24  | **Str**     | `String.padStart()`              |          | `"5".padStart(2,"0") → "05"`                             |
-| 25  | **Str**     | String char access               |          | Strings are **array-like**, read-only                    |
-| 26  | **Str**     | `text[index]`                    |          | `"tree"[0] → "t"`                                        |
-| --- | ----------- | -------------------------------- | -------- | -------------------------------------------------------- |
-| 27  | **Math**    | Division                         |          | `const result=10/3`                                      |
-| 28  | **Math**    | Remainder (`%`)                  |          | `const remainder=10%3`                                   |
-| 29  | **Math**    | Even number check                |          | `a%2===0`                                                |
-| 30  | **Math**    | Odd number check                 |          | `a%2!==0`                                                |
-| 31  | **Math**    | Float check                      |          | `a%1!==0`                                                |
-| 32  | **Math**    | Integer check                    |          | `a%1===0`                                                |
-| 33  | **Math**    | `Math.ceil(1.4)`                 |          | `→ 2`                                                    |
-| 34  | **Math**    | `Math.floor(1.6)`                |          | `→ 1`                                                    |
-| 35  | **Math**    | `Math.round(2.4)`                |          | `→ 2`                                                    |
-| 36  | **Math**    | `Math.max(...array)`             |          | Returns max value                                        |
-| 37  | **Math**    | `Math.min(...array)`             |          | Returns min value                                        |
-| 38  | **Math**    | `Math.abs()`                     |          | Absolute value                                           |
-| 39  | **Math**    | `Math.pow()`                     |          | `Math.pow(10,5) → 100000`                                |
-| 40  | **Math**    | `Math.random()`                  |          | `Math.floor(Math.random()*arr.length)`                   |
-| --- | ----------- | -------------------------------- | -------- | -------------------------------------------------------- |
-| 41  | **Misc**    | `switch()`                       |          | Control statement                                        |
-| 42  | **Misc**    | `switch(true)`                   |          | Conditional switch                                       |
-| 43  | **Misc**    | `return` (end function)          |          | Ends function execution                                  |
-| 44  | **Misc**    | `return` (return value)          |          | `return 0`, `return true`, `return 123`                  |
-| 45  | **Misc**    | `typeof {}`                      |          | Returns `"object"`                                       |
-| 46  | **Misc**    | `typeof null`                    |          | Returns `"object"` (JS quirk)                            |
-| --- | ----------- | -------------------------------- | -------- | -------------------------------------------------------- |
+| No. | Category    | Topic / Method                     | Mutates? | Notes                                                            |
+| --- | ----------- | ---------------------------------- | -------- | ---------------------------------------------------------------- |
+| 1   | **Array**   | `Array.some(callback)`             |          | Stops early, returns boolean                                     |
+| 2   | **Array**   | `Array.includes(value)`            |          | Returns `true / false`                                           |
+| 3   | **Array**   | `Array.filter(callback)`           |          | Returns a **new array** (`[a]` or `[]`)                          |
+| 4   | **Array**   | `Array.find(callback)`             |          | Stops early, returns **element or `undefined`**                  |
+| 5   | **Array**   | `Array.reduce((acc,data)=>{},0)`   |          | Reducer may mutate accumulator                                   |
+| 6   | **Array**   | `Array.forEach()`                  |          | 🚫 No early termination                                          |
+| 7   | **Array**   | `Array.map()`                      |          | 🚫 No early termination                                          |
+| 8   | **Array**   | `Array.indexOf(value)`             |          | Returns index `n` or `-1`                                        |
+| 9   | **Array**   | `Array.join()`                     |          | Array → string                                                   |
+| 10  | **Array**   | `Array.pop()`                      | ✅ Yes   | Removes last element                                             |
+| 11  | **Array**   | `Array.shift()`                    | ✅ Yes   | Removes first element                                            |
+| 12  | **Array**   | `Array.sort()`                     | ✅ Yes   | Sorts in place                                                   |
+| 13  | **Array**   | `Array.splice()`                   | ✅ Yes   | Adds/removes items. `arr.splice(removeIndex,1)`                  |
+| 13  | **Array**   | `Array.slice(start, end)`          | ❌ No    | Returns a portion of an array. `arr.slice(0, 10)`                |
+| --- | ----------- | --------------------------------   | -------- | --------------------------------------------------------         |
+| 14  | **Loop**    | `for` loop                         |          | `for (let i=0;i<max;i++) {}`                                     |
+| 15  | **Obj**     | `for...in`                         |          | `for (const key in obj)`                                         |
+| 16  | **Obj**     | `in`                               |          | Checks whether a property exists. `"make" in car`                |
+| 17  | **Obj/Arr** | Spread operator (`...`)            |          | Expands items. `const newObj={...item}`                          |
+| 18  | **Obj/Arr** | Rest operator (`...rest`)          |          | **Collects** multiple items. `const [a,...rest]=[a,b,c]`         |
+| --- | ----------- | --------------------------------   | -------- | --------------------------------------------------------         |
+| 19  | **Str**     | `String.replace()`                 |          | `str.replace(/\s+/i,'')`                                         |
+| 20  | **Str**     | `String.slice()`                   |          | `":cry:".slice(1,-1) → "cry"`                                    |
+| 21  | **Str**     | `String.split("")`                 |          | Returns array                                                    |
+| 22  | **Str**     | `String.startsWith()`              |          | `str.startsWith(":") → true/false`                               |
+| 23  | **Str**     | `String.endsWith()`                |          | `str.endsWith(":") → true/false`                                 |
+| 24  | **Str**     | `String.padStart()`                |          | `"5".padStart(2,"0") → "05"`                                     |
+| 25  | **Str**     | String char access                 |          | Strings are **array-like**, read-only                            |
+| 26  | **Str**     | `text[index]`                      |          | `"tree"[0] → "t"`                                                |
+| --- | ----------- | --------------------------------   | -------- | --------------------------------------------------------         |
+| 27  | **Math**    | Division                           |          | `const result=10/3`                                              |
+| 28  | **Math**    | Remainder (`%`)                    |          | `const remainder=10%3`                                           |
+| 29  | **Math**    | Even number check                  |          | `a%2===0`                                                        |
+| 30  | **Math**    | Odd number check                   |          | `a%2!==0`                                                        |
+| 31  | **Math**    | Float check                        |          | `a%1!==0`                                                        |
+| 32  | **Math**    | Integer check                      |          | `a%1===0`                                                        |
+| 33  | **Math**    | `Math.ceil(1.4)`                   |          | `→ 2`                                                            |
+| 34  | **Math**    | `Math.floor(1.6)`                  |          | `→ 1`                                                            |
+| 35  | **Math**    | `Math.round(2.4)`                  |          | `→ 2`                                                            |
+| 36  | **Math**    | `Math.max(...array)`               |          | Returns max value                                                |
+| 37  | **Math**    | `Math.min(...array)`               |          | Returns min value                                                |
+| 38  | **Math**    | `Math.abs()`                       |          | Absolute value                                                   |
+| 39  | **Math**    | `Math.pow()`                       |          | `Math.pow(10,5) → 100000`                                        |
+| 40  | **Math**    | `Math.random()`                    |          | `Math.floor(Math.random()*arr.length)`                           |
+| --- | ----------- | --------------------------------   | -------- | --------------------------------------------------------         |
+| 41  | **Misc**    | `switch()`                         |          | Control statement                                                |
+| 42  | **Misc**    | `switch(true)`                     |          | Conditional switch                                               |
+| 43  | **Misc**    | `return` (end function)            |          | Ends function execution                                          |
+| 44  | **Misc**    | `return` (return value)            |          | `return 0`, `return true`, `return 123`                          |
+| 45  | **Misc**    | `typeof {}`                        |          | Returns `"object"`                                               |
+| 46  | **Misc**    | `typeof null`                      |          | Returns `"object"` (JS quirk)                                    |
+| --- | ----------- | --------------------------------   | -------- | --------------------------------------------------------         |
+| 47  | **Date**    | `new Date(y, m, d, h, min, s, ms)` |          | Create Date object                                               |
+| 48  | **Date**    | `new Date('2024-01-01T12:00:00Z')` |          | T=time, Z=UTC`                                                   |
+| 49  | **Date**    | tomorrow                           |          | `new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1)` |
+| 50  | **Date**    | yesterday                          |          | `new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1)` |
+| 51  | **Date**    | UTC -> local time                  |          | `today.toLocaleDateString()` 12/19/2025                          |
+| 52  | **Date**    | Last month: start                  |          | `new Date(now.getFullYear(), now.getMonth() - 1, 1)`             |
+| 53  | **Date**    | Last month: end                    |          | `new Date(now.getFullYear(), now.getMonth(), 0)`                 |
 
 ## React
 
@@ -122,6 +129,7 @@ const paginatedTodos = data.slice(start, end);
 ```
 
 - Prompt template
+- Goal:
 - Pleas create a React.js coding challenge. Here are the details:
 - React.js
 - Test Duration: 15 minutes.
