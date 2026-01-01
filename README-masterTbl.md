@@ -60,13 +60,46 @@
 | --- | ----------- | --------------------------------   | -------- | --------------------------------------------------------         |
 | 47  | **Date**    | `new Date(y, m, d, h, min, s, ms)` |          | Create Date object                                               |
 | 48  | **Date**    | `new Date('2024-01-01T12:00:00Z')` |          | T=time, Z=UTC`                                                   |
-| 49  | **Date**    | tomorrow                           |          | `new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1)` |
+| 49  | **Date**    | setDate()                          |          | Change a date and returns new tei                                |
 | 50  | **Date**    | yesterday                          |          | `new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1)` |
 | 51  | **Date**    | UTC -> local time                  |          | `today.toLocaleDateString()` 12/19/2025                          |
 | 52  | **Date**    | Last month: start                  |          | `new Date(now.getFullYear(), now.getMonth() - 1, 1)`             |
 | 53  | **Date**    | Last month: end                    |          | `new Date(now.getFullYear(), now.getMonth(), 0)`                 |
 
 ## React
+
+**State management**
+
+**Infinite Loop Trigger**: Calling setUsers directly in the body of a component (outside of a useEffect or an event handler) triggers a re-render, which calls setUsers again, leading to a crash or an infinite loop.
+
+```js
+//❌ Calling setProducts during render
+export default function ProductList() {
+  const filteredProducts = setProducts((prev) =>
+    prev.filter((d) => d.category === selectedCategory)
+  );
+}
+```
+
+**A Custom hook**
+
+```js
+const useFetch = (url, enabled = true) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (!enabled) return;
+    const fetchData = async () => {};
+    fetchData();
+  }, [url, enabled]);
+
+  return { data, loading, error };
+};
+```
+
+<hr />
 
 **Initial render**
 

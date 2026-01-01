@@ -34,6 +34,8 @@ import { FootballCompetitions } from './pages/Challenge/FootballCompetitions';
 import MyUserList from './pages/Challenge/MyUserList';
 import MyTodoList from './pages/Challenge/MyTodoList';
 import PostList from './pages/Challenge/PostList';
+import ProductList from './pages/Challenge/ProductList';
+import ProductList2 from './pages/Challenge/ProductList2';
 
 const Home = () => {
   return (
@@ -177,6 +179,8 @@ export default function App() {
         <Route path="quiz-2" element={<MyUserList />} />
         <Route path="quiz-3" element={<MyTodoList />} />
         <Route path="quiz-4" element={<PostList />} />
+        <Route path="quiz-5" element={<ProductList />} />
+        <Route path="quiz-6" element={<ProductList2 />} />
       </Routes>
     </BrowserRouter>
   );

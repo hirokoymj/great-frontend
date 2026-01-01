@@ -27,23 +27,14 @@ export default function MyUserList() {
     fetchUsers();
   }, []);
 
-  // TODO: Filter users by company❌
-  //   const onSelectChange = (e) => {
-  //     setCompany(e.target.value);
-  //     setUsers((prev) => prev.filter(({ company }) => company.name === company));
-  //   };
-  //<select value={company} onChange={onSelectChange}>
-
-  //   const companyList = users.map(({ id, company }) => {
-  //     return {
-  //       id,
-  //       company: company.name,
-  //     };
-  //   });
-
   const companies = ['All', ...users.map(({ company }) => company.name)];
+
   const filteredUsers =
     company === 'All' ? users : users.filter((u) => u.company.name === company);
+
+  const filtered = setUsers((prev) =>
+    company === 'All' ? prev : prev.filter((u) => u.company.name === company)
+  );
 
   return (
     <div>
@@ -58,12 +49,8 @@ export default function MyUserList() {
         ))}
       </select>
 
-      {/* TODO: Loading State */}
       {loading && <p>...Loading</p>}
-
-      {/* TODO: Error State */}
       {error && <p>Failed to get the user data. </p>}
-      {/* TODO: Render User List */}
       {filteredUsers.map(({ id, name, email }) => (
         <li key={id}>
           {name}, {email}

@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 
 export default function PostList() {
   const [posts, setPosts] = useState([]);
-  const [selectedUser, setSelectedUser] = useState('all');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedUser, setSelectedUser] = useState('all');
 
   useEffect(() => {
     // TODO: fetch posts from the API

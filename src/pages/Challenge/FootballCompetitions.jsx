@@ -82,7 +82,7 @@ export const FootballCompetitions = () => {
 export default FootballCompetitions;
 
 ///❌
-//<select value={year} onChange={}></select>
+//<select value={year} onChange={() => setYear(e.target.value)}></select>
 //FootballCompetitions
 // ├── YearSelector
 // └── CompetitionList
