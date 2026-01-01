@@ -52,7 +52,7 @@ console.log('Last month');
 console.log(start);
 console.log(end);
 
-//--last month #2 (mutation using  setDate function)
+//--last month #2 (mutation using setDate function)
 const d1 = new Date(2026, 0, 1); // Local Midnight, Jan 1, 2026
 const end = new Date(d1);
 end.setDate(0);
