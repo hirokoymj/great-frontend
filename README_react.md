@@ -237,6 +237,25 @@ user.address.city;
 { ...prev, key: { ...prev.key, subKey: value } }
 ```
 
+<hr />
+
+### useReducer
+
+- `const [state, dispatch] = useReducer(reducer, initialState)`
+- dispatch(action) → reducer(state, action) → new state
+
+```js
+function reducer(state, action) {
+  switch (action.type) {
+    case 'ACTION_NAME':
+      return newState;
+
+    default:
+      return state;
+  }
+}
+```
+
 ## Draft
 
 - `e.stopPropagation()`

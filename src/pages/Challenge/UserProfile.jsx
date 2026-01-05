@@ -14,12 +14,10 @@ export default function UserProfile() {
   const handleChange = (e) => {
     // TODO: update user state correctly
     const { name, value } = e.target;
-    setUser((prev) => {
-      return {
-        ...prev,
-        [name]: value,
-      };
-    });
+    setUser((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const onReset = () => {
@@ -31,12 +29,10 @@ export default function UserProfile() {
   };
 
   const validateField = (field, value) => {
-    setError((prev) => {
-      return {
-        ...prev,
-        [field]: !value,
-      };
-    });
+    setError((prev) => ({
+      ...prev,
+      [field]: !value,
+    }));
   };
 
   return (
