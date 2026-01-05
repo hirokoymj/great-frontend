@@ -36,12 +36,27 @@
 // console.log('End:', end.toISOString().split('T')[0]); // 2025-12-31
 
 //---tomorrow (today is mutated)
-// const today = new Date();
+// console.log('-----Mutation version');
+// const today = new Date('2025-12-20');
 // today.setDate(today.getDate() + 1);
-// console.log(today); //tomorrow
+// console.log(today); //2025-12-21T00:00:00.000Z
 
 //---tomorrow (today is NOT mutated.)
-const t = new Date();
-const tomorrow = new Date(t.getFullYear(), t.getMonth(), t.getDate() + 1);
-console.log(t.toISOString()); //2026-01-01T17:32:57.420Z
-console.log(tomorrow.toISOString()); //2026-01-02T06:00:00.000Z
+// console.log('-----Non-mutation version');
+// const t = new Date('2025-12-20');
+// const tomorrow = new Date(t.getFullYear(), t.getMonth(), t.getDate() + 1);
+// console.log(t);
+// console.log(tomorrow.toISOString()); //2025-12-20T06:00:00.000Z
+
+//---tomorrow (today is mutated)
+const today = new Date('2025-12-20'); //UTC
+
+// 1. Create tomorrow by cloning 'today' and adding one day
+const tomorrow = new Date(today); //UTC
+tomorrow.setDate(today.getDate() + 1);
+
+console.log('Today:   ', today.toISOString()); // 2025-12-20T00:00:00.000Z
+console.log('Tomorrow:', tomorrow.toISOString()); // 2025-12-21T00:00:00.000Z
+
+// Today:    2025-12-20T00:00:00.000Z
+// Tomorrow: 2025-12-21T00:00:00.000Z

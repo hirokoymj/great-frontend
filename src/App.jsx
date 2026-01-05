@@ -36,6 +36,9 @@ import MyTodoList from './pages/Challenge/MyTodoList';
 import PostList from './pages/Challenge/PostList';
 import ProductList from './pages/Challenge/ProductList';
 import ProductList2 from './pages/Challenge/ProductList2';
+import FormDemo from './pages/Challenge/FormDemo';
+import UserProfile from './pages/Challenge/UserProfile';
+import UserProfile2 from './pages/Challenge/UserProfile2';
 
 const Home = () => {
   return (
@@ -181,6 +184,9 @@ export default function App() {
         <Route path="quiz-4" element={<PostList />} />
         <Route path="quiz-5" element={<ProductList />} />
         <Route path="quiz-6" element={<ProductList2 />} />
+        <Route path="quiz-7" element={<FormDemo />} />
+        <Route path="quiz-8" element={<UserProfile />} />
+        <Route path="quiz-9" element={<UserProfile2 />} />
       </Routes>
     </BrowserRouter>
   );

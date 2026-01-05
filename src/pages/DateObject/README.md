@@ -113,7 +113,6 @@ console.log(output);
 
 ### Q1 - Count business days
 
-- new Date("YYYY-MM-DD")
 - date.getDay() → 0 (Sun) to 6 (Sat)
 - move the next day: `date.setDate(date.getDate() + 1)`
 
@@ -123,7 +122,7 @@ countBusinessDays('2023-09-01', '2023-09-07');
 // Output: 5
 ```
 
-**Answer**
+**Q1:Answer**
 
 ```js
 function countBusinessDays(startDate, endDate) {
@@ -149,6 +148,51 @@ countBusinessDays('2023-09-01', '2023-09-07'); // 5
   The setDate() method performs two separate actions:
   Mutation: It changes the internal state of the existing Date object (start or current) "in place".
   Return: It returns the new date's timestamp as a number.
+
+<hr />
+
+### Q2 - Get the Next Weekday
+
+- date.getDay() → 0 (Sun) to 6 (Sat)
+
+```js
+function getNextWeekday(dateStr) {}
+getNextWeekday('2023-09-01'); // "2023-09-04" (Friday → Monday)
+getNextWeekday('2023-09-04'); // "2023-09-05" (Monday → Tuesday)
+getNextWeekday('2023-09-08'); // "2023-09-11" (Friday → Monday)
+```
+
+**Answer**
+
+```js
+function getNextWeekday(dateStr) {
+  const targetDate = new Date(dateStr);
+  const dayNum = targetDate.getDay();
+  console.log(`dayNum : ${dayNum}`);
+  switch (dayNum) {
+    case 5: // Friday → Monday
+      targetDate.setDate(targetDate.getDate() + 3);
+      break;
+    case 6: // Saturday → Monday
+      targetDate.setDate(targetDate.getDate() + 2);
+      break;
+    default: // Mon–Thu → next day
+      targetDate.setDate(targetDate.getDate() + 1);
+  }
+  return targetDate.toISOString().slice(0, 10);
+}
+```
+
+<hr />
+
+<!-->
+
+### Q - title
+
+**Answer**
+
+<hr />
+-->
 
 ### References
 

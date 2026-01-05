@@ -66,7 +66,17 @@
 | 52  | **Date**    | Last month: start                  |          | `new Date(now.getFullYear(), now.getMonth() - 1, 1)`             |
 | 53  | **Date**    | Last month: end                    |          | `new Date(now.getFullYear(), now.getMonth(), 0)`                 |
 
-## React
+# React
+
+| Topic                    |
+| ------------------------ |
+| RESTful API              |
+| Form Handling            |
+| State (Object)           |
+| State (Array of Objects) |
+| useMemo Hook             |
+| useRef Hook              |
+| Add / Remove CSS Class   |
 
 **State management**
 
@@ -99,6 +109,47 @@ const useFetch = (url, enabled = true) => {
 };
 ```
 
+```js
+const useForm = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    role: '',
+    gender: '',
+    subscribe: false,
+  });
+  const [errors, setErrors] = useState({
+    name: false,
+    email: false,
+  });
+
+  const handleChange = (event) => {
+    const { name, value, type, checked } = event.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value,
+    }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
+
+  const resetForm = () => {};
+
+  const validateField = (field, value) => {};
+  return {
+    formData,
+    errors,
+    handleChange,
+    validateField,
+    handleSubmit,
+    resetForm,
+  };
+};
+```
+
 <hr />
 
 **Initial render**
@@ -123,7 +174,7 @@ const useFetch = (url, enabled = true) => {
 
 <hr />
 
-**RESTful API + FORM**
+**RESTful API**
 
 - URL: https://jsonmock.hackerrank.com/api/football_competitions?year=${year} //2011, 2012, 2013
 - URL: https://jsonplaceholder.typicode.com/users
@@ -140,13 +191,30 @@ const useFetch = (url, enabled = true) => {
 - [multi checkbox](https://react.dev/learn/choosing-the-state-structure#implement-multiple-selection)
 - [redundant state variable, listItems, checkboxes](https://react.dev/learn/choosing-the-state-structure#fix-a-broken-packing-list)
 
+```js
+const [formData, setFormData] = useState({
+  name: '',
+  email: '',
+  role: '',
+  gender: '',
+  subscribe: false,
+});
+const handleChange = (event) => {
+  const { name, value, type, checked } = event.target;
+  setFormData((prev) => ({
+    ...prev,
+    [name]: type === 'checkbox' ? checked : value,
+  }));
+};
+```
+
 <hr />
 
 **useMemo**
 
 - [Cache, useMemo](https://react.dev/learn/you-might-not-need-an-effect#cache-a-calculation-without-effects)
 
-<hr />
+<hr /><hr />
 
 ## pagination
 
