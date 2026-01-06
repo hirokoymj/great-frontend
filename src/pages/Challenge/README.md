@@ -45,6 +45,8 @@
 | AM   | AI                   | AI                   | AI                    | AI                    | AI                    | AI                    | Work                |
 | PM   | RESTful API (Review) | RESTful API (Review) | State (Object) Review | State (Object) Review | Mock Coding Challenge | Mock Coding Challenge | Full Review / Notes |
 
+## Topic (details)
+
 **RESTful API**
 
 - URL: https://jsonmock.hackerrank.com/api/football_competitions?year=${year} //2011, 2012, 2013
