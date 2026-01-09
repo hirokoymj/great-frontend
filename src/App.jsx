@@ -40,6 +40,8 @@ import FormDemo from './pages/Challenge/FormDemo';
 import UserProfile from './pages/Challenge/UserProfile';
 import UserProfile2 from './pages/Challenge/UserProfile2';
 import UserProfileReducer from './pages/Challenge/UserProfileReducer';
+//import ProductListCached from './pages/Challenge/useCallback-useMemo/ProductListCached';
+import ProfilePage from './pages/Profile/ProfilePage';
 
 const Home = () => {
   return (
@@ -189,6 +191,8 @@ export default function App() {
         <Route path="quiz-8" element={<UserProfile />} />
         <Route path="quiz-9" element={<UserProfile2 />} />
         <Route path="quiz-10" element={<UserProfileReducer />} />
+        {/* <Route path="quiz-11" element={<ProductListCached />} /> */}
+        <Route path="demo-11" element={<ProfilePage />} />
       </Routes>
     </BrowserRouter>
   );

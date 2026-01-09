@@ -7,6 +7,7 @@
 | State (Object)           |
 | State (Array of Objects) |
 | useMemo Hook             |
+| useMemo vs useCallback   |
 | useRef Hook              |
 | Add / Remove CSS Class   |
 
@@ -257,6 +258,95 @@ function reducer(state, action) {
   }
 }
 ```
+
+### useCallback vs useMemo
+
+```js
+const handleDelete = useCallback((id) => {
+  setUsers((prev) => prev.filter((u) => u.id !== id));
+}, []);
+<Child onDelete={handleDelete} />;
+```
+
+Bonus Questions (Interview Gold)
+
+Q1. What happens if you remove useCallback?
+
+- When the state value ("theme") is updated, re-rendering happens and the handleSelect function is re-created, which is unnecessary.
+- (AI) Without useCallback, handleSelect is recreated on every render. Since ProductList receives a new function reference, React.memo cannot prevent re-rendering.
+
+2. Why does React.memo not help without stable props?
+
+- In JavaScript, a function () {} or () => {} always creates a different function. It means that props will never be the same, and your memo optimization won’t work. This is where useCallback comes in handy.
+- React.memo only does a shallow comparison of props
+
+```js
+Same values + same references = no re-render
+Same values + new references = re-render
+```
+
+- (AI) React.memo only prevents re-renders when prop references are stable. Without useMemo or useCallback, new references are created on each render, making memoization ineffective.
+
+3. When would this optimization be unnecessary?
+
+- if handleSelect doesn't pass to a Child component, and it stays in the parent component, useCallback is unnecessary.
+- The child is not memoized
+- Don’t optimize unless there is a measurable problem.
+- Props are not passed to children
+- The app does not suffer from performance issues”
+
+✅ Use when:
+
+- Function is passed as a prop
+- Child is wrapped in React.memo
+- Function depends on state/props
+
+❌ Don’t use when:
+
+- Function is local only
+- No memoized children
+
+❌ Useless useCallback
+
+```js
+const handleClick = useCallback(() => {
+  setCount(count + 1);
+}, [count]);
+```
+
+✅ Better
+
+```js
+const handleClick = useCallback(() => {
+  setCount((c) => c + 1);
+}, []);
+```
+
+🧠 How to Decide in 5 Seconds
+Ask yourself:
+
+```js
+“Am I passing a function or a value?”
+Function → useCallback
+Value → useMemo
+```
+
+2️⃣ Bonus Questions (Interview Gold)
+
+1. What happens if you remove useCallback?
+   When the state value ("theme") is updated, re-rendering happens and the handleSelect function is re-created, which is unnecessary.
+   The handleSelect should call only when selectedId changes.🚫 Functions are not called on re-render — they are re-created.
+
+✅ Correct Answer
+
+“Without useCallback, handleSelect is recreated on every render. Since ProductList receives a new function reference, React.memo cannot prevent re-rendering.”
+
+2. Why does React.memo not help without stable props?
+
+3.When would this optimization be unnecessary?
+if handleSelect doesn't pass to a Child component, and it stays in the parent component, useCallback is unnecessary.
+
+⚠️ This function still changes every render → no benefit
 
 ## Draft
 
