@@ -4,7 +4,7 @@ function Profile({ user }) {
   // 🔥 Throw error during render
   if (!user) {
     throw new Error(
-      'User data is missing. please check the database connection'
+      'User data is missing. Check the DB connection!! from Profile'
     );
   }
 

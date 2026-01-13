@@ -1,0 +1,19 @@
+.container {
+  padding: 30px;
+  border: 2px solid #333;
+  cursor: pointer;
+}
+
+.container.active {
+  background-color: #e0f2ff;
+}
+
+.btn {
+  padding: 10px 16px;
+  margin-top: 12px;
+}
+
+.btn.highlight {
+  background-color: orange;
+  color: white;
+}

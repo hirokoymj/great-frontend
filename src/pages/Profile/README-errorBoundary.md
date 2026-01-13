@@ -1,25 +1,47 @@
-🔄 Runtime Flow (Interview Gold)
+# Error Boundary
 
-Profile mounts
+Summary (draft)
 
-useEffect starts fetching data
+```text
+An Error Boundary is a React component that renders a fallback UI when a child component throws an error, by using static getDerivedStateFromError.
+```
 
-API fails (network / 500 / 404)
+- [Error Boundary](https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary)
+- An Error Boundary is a special component that lets you display some fallback UI
+- [static getDerivedStateFromError(error)](https://react.dev/reference/react/Component#static-getderivedstatefromerror)
+- **Returns**: state object including an error message
 
-.catch() runs → setError(err)
+- “For data fetching, I catch async errors, store them in state, and re-throw during render so Error Boundaries can handle them.”
+  Error Boundary = try/catch for the React component tree
 
-React re-renders
+```js
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
 
-if (error) throw error
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error }; //return state object
+  }
+  //...
+  render() {
+    return this.state.hasError ? (
+      <div>
+        {this.props.fallback}
+        <p>{this.state.error.message}</p>
+      </div>
+    ) : (
+      this.props.children
+    );
+  }
+}
+```
 
-Error Boundary catches it
+**Usage**
 
-Fallback UI rendered
-
-✔️ App doesn’t crash
-✔️ Error isolated
-✔️ Centralized logging
-
-🧩 One-sentence interview answer
-
-“For data fetching, I catch async errors, store them in state, and re-throw during render so Error Boundaries can handle them.”
+```js
+<ErrorBoundary fallback={<h2>Something went wrong.</h2>}>
+  <Profile user={user} />
+</ErrorBoundary>
+```
