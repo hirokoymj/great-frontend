@@ -1,3 +1,15 @@
+# useRef
+
+**Sumamry(final)**
+
+- A ref value can survive during rendering.
+- A ref persist across renders.
+- `const inputRef = useRef(0)`;
+- Returns mutable object with a single property - `current`.
+- `inputRef.current = 1`
+
+<hr />
+
 Q1. What does useRef return, and what is the shape of its value?
 
 A: `useRef` returns a mutable object with a single property { current }. `current` can hold any value (DOM element, number, object, function, etc.).

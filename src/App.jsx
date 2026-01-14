@@ -43,6 +43,7 @@ import UserProfileReducer from './pages/Challenge/UserProfileReducer';
 //import ProductListCached from './pages/Challenge/useCallback-useMemo/ProductListCached';
 import ProfilePage from './pages/Profile/ProfilePage';
 import LazyApp from './pages/Lazy/LazyApp';
+import SkillForm from './pages/Challenge/form-handling/SkillForm';
 
 const Home = () => {
   return (
@@ -195,6 +196,7 @@ export default function App() {
         {/* <Route path="quiz-11" element={<ProductListCached />} /> */}
         <Route path="demo-11" element={<ProfilePage />} />
         <Route path="demo-12" element={<LazyApp />} />
+        <Route path="demo-13" element={<SkillForm />} />
       </Routes>
     </BrowserRouter>
   );
