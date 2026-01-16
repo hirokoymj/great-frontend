@@ -59,8 +59,7 @@ if (type === 'checkbox') {
 } else {
   setFormData((prev) => ({ ...prev, [name]: value }));
 }
-type === 'checkbox' ?  setFormData((prev) => ({ ...prev, [name]: checked })) :
-setFormData((prev) => ({ ...prev, [name]: value }));
+
 
 ```
 

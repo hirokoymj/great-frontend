@@ -35,7 +35,6 @@ export default function SkillForm() {
           <input
             type="checkbox"
             value={skill}
-            // TODO: checked attribute
             checked={selected.includes(skill)} //❌ 2. Incorrect checked attribute
             onChange={handleChange}
           />

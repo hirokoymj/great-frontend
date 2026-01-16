@@ -38,3 +38,4 @@ const main = async (testDir) => {
 };
 
 main('./test');
+

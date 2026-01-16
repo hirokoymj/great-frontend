@@ -29,21 +29,36 @@
 **Form**
 
 - radio - Only the selected radio triggers onChange
+- checkbox: name, checked
+- multi-checkbox: name, checked, value
+- radio - name, value, checked
+- select - name, value
+- input - name, value
 
 ```js
+//radio
 <input
   type="radio"
   name="level"
   value="junior"
   checked={formData.level === 'junior'}
   onChange={handleChange}
-/>;
+/>
+//a checkbox
 <input
   type="checkbox"
   name="subscribe"
-  checked={formData.subscribe} //true/false
+  checked={formData.subscribe} //true or false
   onChange={handleChange}
-/>;
+/>
+//multi-checkbox (checked, value)
+SKILLS.map((skill) => (
+<input
+  type="checkbox"
+  value={skill} //
+  checked={selected.includes(skill)} //!!
+  onChange={handleChange}
+/>)
 ```
 
 ```js
