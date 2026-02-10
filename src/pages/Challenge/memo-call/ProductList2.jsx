@@ -1,65 +1,51 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo } from 'react';
 
-const PRODUCTS = [
-  { id: 1, name: 'Laptop', price: 1200 },
-  { id: 2, name: 'Phone', price: 800 },
-  { id: 3, name: 'Tablet', price: 600 },
-  { id: 4, name: 'Monitor', price: 400 },
+const USERS = [
+  { id: 1, name: 'Alice', age: 28, isActive: true },
+  { id: 2, name: 'Bob', age: 35, isActive: false },
+  { id: 3, name: 'Charlie', age: 42, isActive: true },
+  { id: 4, name: 'Diana', age: 30, isActive: false },
 ];
 
-const ProductList = React.memo(({ products, onSelect }) => {
-  ///if products, onSelect props are same, this child component will skip re-rendering.
-  console.log('ProductList rendered');
-
-  return (
-    <ul>
-      {products.map((product) => (
-        <li key={product.id}>
-          {product.name} - ${product.price}
-          <button onClick={() => onSelect(product.id)}>Select</button>
-        </li>
-      ))}
-    </ul>
-  );
-});
-
 export default function App() {
-  const [search, setSearch] = useState('');
-  const [selectedId, setSelectedId] = useState(null);
-  const [theme, setTheme] = useState('light'); // unrelated state
-  const [products, setProducts] = useState(PRODUCTS);
+  const [showActiveOnly, setShowActiveOnly] = useState(false);
 
-  const filteredProducts = useMemo(() => {
-    return products.filter((p) =>
-      p.name.toLowerCase().includes(search.toLowerCase())
+  // TODO: derive visibleUsers based on showActiveOnly
+  const visibleUsers = showActiveOnly
+    ? USERS.filter((d) => d.isActive === showActiveOnly)
+    : USERS;
+
+  const average = useMemo(() => {
+    if (visibleUsers.length === 0) return 0;
+    const total = visibleUsers.reduce(
+      (acc, currentVal) => (acc = acc + currentVal),
+      0
     );
-  }, [search, products]);
-
-  const handleSelect = useCallback(
-    (id) => {
-      setSelectedId(id);
-    },
-    [selectedId]
-  );
+    return Math.round(total / visibleUsers.length);
+  }, [visibleUsers]);
 
   return (
-    <div>
-      <h2>Products</h2>
+    <div style={{ padding: '20px' }}>
+      <h2>User List</h2>
 
-      <input
-        placeholder="Search..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+      <label>
+        <input
+          type="checkbox"
+          checked={showActiveOnly}
+          onChange={(e) => setShowActiveOnly(e.target.checked)}
+        />
+        Show active users only
+      </label>
 
-      <button
-        onClick={() => setTheme((t) => (t === 'light' ? 'dark' : 'light'))}>
-        Toggle Theme
-      </button>
+      <ul>
+        {visibleUsers.map(({ id, name, age }) => (
+          <li key={id}>
+            {name}, {age}
+          </li>
+        ))}
+      </ul>
 
-      <p>Selected Product ID: {selectedId}</p>
-
-      <ProductList products={filteredProducts} onSelect={handleSelect} />
+      <h3>Average Age: {average}</h3>
     </div>
   );
 }

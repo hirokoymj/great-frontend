@@ -7,30 +7,18 @@ const PRODUCTS = [
   { id: 4, name: 'Monitor', price: 400 },
 ];
 
-export default function ProductList() {
+export default function App() {
   const [search, setSearch] = useState('');
 
-  // TODO: Filter products based on search text⚠️
+  // TODO: Filter products based on search text
   const filtered = PRODUCTS.filter((d) =>
     d.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  // TODO: Use useMemo to calculate total price of filtered products⚠️
-  //   const total = useMemo(() => {
-  //     return (
-  //       filtered.reduce((acc, currentVal) => {
-  //         acc = currentVal.price + acc;
-  //         return acc;
-  //       }, 0),
-  //       [search]
-  //     );
-  //   });
-
-  //useMemo prevents recalculating the total price on every render and
-  // only recomputes it when the filtered product list changes,
-  // which is useful if the calculation is expensive or the list is large.”
+  // TODO: Use useMemo to calculate total price of filtered products
   const total = useMemo(() => {
-    return filtered.reduce((acc, product) => acc + product.price, 0);
+    if (filtered.length === 0) return 0;
+    return filtered.reduce((acc, currentVal) => (acc = acc + currentVal), 0);
   }, [filtered]);
 
   return (
@@ -45,14 +33,11 @@ export default function ProductList() {
       />
 
       <ul>
-        {
-          /* TODO: Render filtered products */
-          filtered.map(({ id, name, price }) => (
-            <li key={id}>
-              {name}, ${price}
-            </li>
-          ))
-        }
+        {filtered.map(({ id, name, price }) => (
+          <li key={id}>
+            {name} ${price.toFixed(2)}
+          </li>
+        ))}
       </ul>
 
       <h3>Total Price: ${total}</h3>

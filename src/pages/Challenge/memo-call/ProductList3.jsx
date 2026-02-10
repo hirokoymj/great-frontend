@@ -1,57 +1,69 @@
-import { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 
-const USERS = [
-  { id: 1, name: 'Alice', age: 28, isActive: true },
-  { id: 2, name: 'Bob', age: 35, isActive: false },
-  { id: 3, name: 'Charlie', age: 42, isActive: true },
-  { id: 4, name: 'Diana', age: 30, isActive: false },
+const PRODUCTS = [
+  { id: 1, name: 'Laptop', price: 1200 },
+  { id: 2, name: 'Phone', price: 800 },
+  { id: 3, name: 'Tablet', price: 600 },
+  { id: 4, name: 'Monitor', price: 400 },
 ];
 
-export default function ProductList3() {
-  const [showActiveOnly, setShowActiveOnly] = useState(false);
-  const [users, setUsers] = useState(USERS);
-
-  // TODO: derive visibleUsers based on showActiveOnly
-  const visibleUsers = showActiveOnly ? users.filter((d) => d.isActive) : users;
-
-  // TODO: use useMemo to calculate average age of visibleUsers
-  //✅ Better Version
-  const averageAge = useMemo(() => {
-    if (visibleUsers.length === 0) return 0;
-
-    const sum = visibleUsers.reduce((acc, currentVal) => {
-      acc = acc + currentVal.age;
-      return acc;
-    }, 0);
-    return (sum / visibleUsers.length).toFixed(2);
-  }, [visibleUsers]);
+// function ProductList({ products, onSelect }) {}
+// const ProductList = React.memo(()=>{})
+const ProductList = React.memo(({ products, onSelect }) => {
+  console.log('ProductList rendered');
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h2>User List</h2>
+    <ul>
+      {products.map((product) => (
+        <li key={product.id}>
+          {product.name} - ${product.price}
+          <button onClick={() => onSelect(product.id)}>Select</button>
+        </li>
+      ))}
+    </ul>
+  );
+});
 
-      <label>
-        <input
-          type="checkbox"
-          checked={showActiveOnly}
-          onChange={(e) => setShowActiveOnly(e.target.checked)}
-        />
-        Show active users only
-      </label>
+export default function ProductList3() {
+  const [search, setSearch] = useState('');
+  const [selectedId, setSelectedId] = useState(null); //1
+  const [theme, setTheme] = useState('light'); // unrelated state
 
-      <ul>
-        {
-          /* TODO: render visible users */
-          visibleUsers.map(({ id, name, age }) => (
-            <li key={id}>{`${id}, ${name}, ${age},`}</li>
-          ))
-        }
-      </ul>
+  //   const filteredProducts = PRODUCTS.filter((p) =>
+  //     p.name.toLowerCase().includes(search.toLowerCase())
+  //   );
 
-      <h3>Average Age: {averageAge}</h3>
+  const filteredProducts = useMemo(() => {
+    return PRODUCTS.filter((p) =>
+      p.name.toLowerCase().includes(search.toLowerCase())
+    );
+  }, [search]);
+
+  //   const handleSelect = (id) => {
+  //     setSelectedId(id);
+  //   };
+  const handleSelect = useCallback((id) => {
+    setSelectedId(id);
+  }, []);
+
+  return (
+    <div>
+      <h2>Products</h2>
+
+      <input
+        placeholder="Search..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+
+      <button
+        onClick={() => setTheme((t) => (t === 'light' ? 'dark' : 'light'))}>
+        Toggle Theme
+      </button>
+      <p>{theme}</p>
+      <p>Selected Product ID: {selectedId}</p>
+
+      <ProductList products={filteredProducts} onSelect={handleSelect} />
     </div>
   );
 }
-
-//“I memoized the average age because it’s derived data that depends on the
-// visible users list, and useMemo ensures the calculation only runs when that list changes.”

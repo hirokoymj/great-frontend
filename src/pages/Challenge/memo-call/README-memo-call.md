@@ -2,20 +2,22 @@
 
 **Summary (final)**
 
-- (useMemo) Prevents recalculating the value on every render.
+- (useMemo) Prevents recalculating a value on every render.
+- (useMemo) Recomputes only when dependencies change.
 - (useMemo) Derived data
-- (useCallback) Same values + same function references = NO re-render
-- (useCallback) Same values + new function references = re-render
-- (useCallback) `React.memo`
-- useMemo -> memorized value, useCallBack => function itself
+- (useCallback) A function is passed to a memorized child `React.memo`.
+- (useCallback) Do not use for local only functions.
+- (React.memo) Skips re-render when props references are unchanged.
+- (React.memo) `function TodoList({todos, onSelect}){}` -> `const TodoList = React.memo(({todos, onSelect}) =>{})`
+- (React.memo) - Check a function reference is same as a previous one.
+- useMemo memoizes values, useCallback memoizes function references, and React.memo skips re-renders when prop references stay the same.
 
 ```text
-const memorized = useMemo(() => { return num + 1;}, [num]);
 const memorized = useMemo(() => num + 1, [num]);
-
 const [a, setA] = useState(1);
 const memoFunc = useCallback(() => a + 1, [a]);
 <button onClick={memoFunc} />;
+React.memo(({onClick})=>{})
 ```
 
 | Feature     | `useMemo`                    | `useCallback`            |
@@ -23,6 +25,13 @@ const memoFunc = useCallback(() => a + 1, [a]);
 | Memoizes    | A **computed value**         | A **function reference** |
 | Returns     | The **result** of a function | The **function itself**  |
 | Common with | Derived data                 | `React.memo`             |
+
+## Index
+
+1. ProductList-starter.jsx
+2. ProductList2-starter.jsx
+3. ProductList3-starter.jsx
+4. UserList-starter.jsx
 
 ## starter 1 (useMemo)
 
@@ -85,13 +94,20 @@ const filtered = PRODUCTS.filter((product) =>
 
 ## Starter 3 (useMemo, useCallback)
 
+```js
+import React, { useMemo, useCallback } from 'react';
+
+//fuction ProductList({products, onSelect}){}
+const ProductList = React.memo(({ products, onSelect }) => {});
+```
+
 ## Quiz 1
 
 **Question 1**: Use when: (useMemo)
 
 **Answer**
 
-- Calculation is expensive
+- Calculation is expensive.
 - Result is derived from props/state.
 
 <hr />
@@ -101,8 +117,8 @@ Use when: (useCallback)
 
 **Answer**
 
-- Function is passed as a prop
-- Child is wrapped in React.memo
+- Function is passed as a prop.
+- Child is wrapped in React.memo.
 - Function depends on state/props
 - ❌ Don’t use when:
   - Function is local only.

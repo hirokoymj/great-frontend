@@ -1,4 +1,4 @@
-# Learn React
+# Learn React - This is Test
 
 ## Adding Interactivity
 
@@ -229,7 +229,7 @@ So what repeats every second is the interval callback, not the effect itself.
 
 const visibleTodos = useMemo(
   () => getVisibleTodos(todos, showActive),
-  [todos, showActive]
+  [todos, showActive],
 );
 ```
 

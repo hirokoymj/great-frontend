@@ -1,33 +1,85 @@
 import { useState, useMemo } from 'react';
 
-const PRODUCTS = [
-  { id: 1, name: 'Laptop', price: 1200 },
-  { id: 2, name: 'Phone', price: 800 },
-  { id: 3, name: 'Tablet', price: 600 },
-  { id: 4, name: 'Monitor', price: 400 },
+const USERS = [
+  { id: 1, name: 'Alice', age: 28, isActive: true },
+  { id: 2, name: 'Bob', age: 35, isActive: false },
+  { id: 3, name: 'Charlie', age: 42, isActive: true },
+  { id: 4, name: 'Diana', age: 30, isActive: false },
 ];
 
 export default function App() {
-  const [search, setSearch] = useState('');
+  const [showActiveOnly, setShowActiveOnly] = useState(false);
 
-  // TODO: Filter products based on search text
+  // TODO: derive visibleUsers based on showActiveOnly
 
-  // TODO: Use useMemo to calculate total price of filtered products
+  // TODO: use useMemo to calculate average age of visibleUsers
 
   return (
     <div style={{ padding: '20px' }}>
-      <h2>Product List</h2>
+      <h2>User List</h2>
 
-      <input
-        type="text"
-        placeholder="Search products..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+      <label>
+        <input
+          type="checkbox"
+          checked={showActiveOnly}
+          onChange={(e) => setShowActiveOnly(e.target.checked)}
+        />
+        Show active users only
+      </label>
 
-      <ul>{/* TODO: Render filtered products */}</ul>
+      <ul>{/* TODO: render visible users */}</ul>
 
-      <h3>Total Price: ${/* TODO */}</h3>
+      <h3>Average Age: {/* TODO */}</h3>
     </div>
   );
 }
+
+///Answer
+// import { useState, useMemo } from 'react';
+
+// const USERS = [
+//   { id: 1, name: 'Alice', age: 28, isActive: true },
+//   { id: 2, name: 'Bob', age: 35, isActive: false },
+//   { id: 3, name: 'Charlie', age: 42, isActive: true },
+//   { id: 4, name: 'Diana', age: 30, isActive: false },
+// ];
+
+// export default function App() {
+//   const [showActiveOnly, setShowActiveOnly] = useState(false);
+
+//   const visibleUsers = showActiveOnly
+//     ? USERS.filter((user) => user.isActive)
+//     : USERS;
+
+//   const averageAge = useMemo(() => {
+//     if (visibleUsers.length === 0) return 0;
+
+//     const sum = visibleUsers.reduce((acc, user) => acc + user.age, 0);
+//     return (sum / visibleUsers.length).toFixed(2);
+//   }, [visibleUsers]);
+
+//   return (
+//     <div style={{ padding: '20px' }}>
+//       <h2>User List</h2>
+
+//       <label>
+//         <input
+//           type="checkbox"
+//           checked={showActiveOnly}
+//           onChange={(e) => setShowActiveOnly(e.target.checked)}
+//         />
+//         Show active users only
+//       </label>
+
+//       <ul>
+//         {visibleUsers.map(({ id, name, age }) => (
+//           <li key={id}>
+//             {name} (Age: {age})
+//           </li>
+//         ))}
+//       </ul>
+
+//       <h3>Average Age: {averageAge}</h3>
+//     </div>
+//   );
+// }

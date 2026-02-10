@@ -1,10 +1,11 @@
 # Error Boundary
 
-Summary (draft)
-
 ```text
-An Error Boundary is a React component that renders a fallback UI when a child component throws an error, by using static getDerivedStateFromError.
+- A class component that renders a fallback UI when a child component throws an error.
+- Error Boundary = getDerivedStateFromError +　componentDidCatch
 ```
+
+## my note
 
 - [Error Boundary](https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary)
 - An Error Boundary is a special component that lets you display some fallback UI

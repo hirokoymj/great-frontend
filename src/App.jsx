@@ -44,6 +44,7 @@ import UserProfileReducer from './pages/Challenge/object-state/UserProfileReduce
 import ProfilePage from './pages/Profile/ProfilePage';
 import LazyApp from './pages/Lazy/LazyApp';
 import SkillForm from './pages/Challenge/form-handling/SkillForm';
+import ProductList3 from './pages/Challenge/memo-call/ProductList3';
 
 const Home = () => {
   return (
@@ -197,6 +198,7 @@ export default function App() {
         <Route path="demo-11" element={<ProfilePage />} />
         <Route path="demo-12" element={<LazyApp />} />
         <Route path="demo-13" element={<SkillForm />} />
+        <Route path="demo-14" element={<ProductList3 />} />
       </Routes>
     </BrowserRouter>
   );
