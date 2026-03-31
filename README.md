@@ -18,6 +18,7 @@ setProducts((prev) =>
 		: product
 	)
 );
+setPlayer((prev) => ({})) ## Object implicit returns
 ```
 
 https://codesandbox.io/p/sandbox/react-dev-forked-svm5lg?file=%2Fsrc%2FApp.js%3A32%2C1
@@ -36,7 +37,7 @@ https://codesandbox.io/p/sandbox/react-dev-forked-svm5lg?file=%2Fsrc%2FApp.js%3A
   ```
 
 - (C2) `e.stopPropagation()`
-- 10/2,11/22, 12/16, 12/24(OO)
+- 10/2,11/22, 12/16, 12/24(OO), 03/30(OX), 03/31(-O)
 
 <hr />
 
@@ -47,7 +48,7 @@ https://codesandbox.io/p/sandbox/react-dev-forked-svm5lg?file=%2Fsrc%2FApp.js%3A
 - [Challenge 2](https://react.dev/learn/state-a-components-memory#fix-stuck-form-inputs) - O,O
 - [Challenge 3](https://react.dev/learn/state-a-components-memory#fix-a-crash) - O,O
 - (C1) image gallery (next, prev)
-- 10/2, 11/22, 12/16(OOO)
+- 10/2, 11/22, 12/16(OOO), 03/30(XOO)
 
 <hr />
 
@@ -55,7 +56,7 @@ https://codesandbox.io/p/sandbox/react-dev-forked-svm5lg?file=%2Fsrc%2FApp.js%3A
 
 - [My Summary](./src/Interactivity/Render-and-commit.md)
 - Initial render ==> what is the function name? Initial render => route => calling mapped component
-- 10/2, 11/22, 12/16(X)
+- 10/2, 11/22, 12/16(X), 03/30(X)
 <hr />
 
 ### [State as a Snapshot](https://react.dev/learn/state-as-a-snapshot)
@@ -77,7 +78,7 @@ https://codesandbox.io/p/sandbox/react-dev-forked-svm5lg?file=%2Fsrc%2FApp.js%3A
 - [My Summary](./src/Interactivity/Objects-in-state.md)
 - [Challenge 1](https://react.dev/learn/updating-objects-in-state#fix-incorrect-state-updates) - XO
 - (C1) - the state value is an object. [player, setPlayer] = useState({})
-- 10/3, 12/16(X), 12/17(O), 12/22(O), 12/24(O)
+- 10/3, 12/16(X), 12/17(O), 12/22(O), 12/24(O), 03/30(X)
 <hr />
 
 ### [Updating Arrays in State](https://react.dev/learn/updating-arrays-in-state)
@@ -97,7 +98,7 @@ https://codesandbox.io/p/sandbox/react-dev-forked-svm5lg?file=%2Fsrc%2FApp.js%3A
   - You **omit** {}
   - You return a **single expression**
   - Block body {} → needs **return**
-- 10/2, 12/16(0XX), 12/17(OOO), 12/18, 12/22, 12/24(OOO)
+- 10/2, 12/16(0XX), 12/17(OOO), 12/18, 12/22, 12/24(OOO), 03/30(XXX)
 
 <hr />
 
@@ -168,16 +169,44 @@ https://codesandbox.io/p/sandbox/react-dev-forked-svm5lg?file=%2Fsrc%2FApp.js%3A
 
 - [My Summary](./src/managing-state/Context.md)
 - [Challenge 1](https://react.dev/learn/passing-data-deeply-with-context#replace-prop-drilling-with-context) ===>XXOX
-- [Q1](https://github.com/hirokoymj/great-frontend/blob/main/src/managing-state/Context.md#ex3---updating-a-context-value-object) ===>XOO
+- [Q1: Example 2 of 5: Updating an object via context](https://react.dev/reference/react/useContext#updating-an-object-via-context) ===>XOO
 - (C1) useContext, createContext, value, Place the context on the top of the render.
 - (C1) I didn't know how to pass -> `const imageSize = useContext(ImageSizeContext), not "ImageSizeContext" `;
 - (Q1) how to update a context value. => uses a state value and a setter function.
-- (Q1) http://localhost:5173/context-example
+- (Q1) Implement logout button.
 
-  ```js
-  <ImageSizeContext value={imageSize}></ImageSizeContext>
-  <UserContext value={{user, setUser}}></UserContext>
-  ```
+```js
+<ImageSizeContext value={imageSize}></ImageSizeContext>
+<UserContext value={{user, setUser}}></UserContext>
+```
+
+```js
+function LoginButton() {
+  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
+  return (
+    <div>
+      {currentUser !== null ? (
+        <p>
+          You logged in as {currentUser.name}.{' '}
+          <button
+            onClick={() => {
+              setCurrentUser(null);
+            }}>
+            Logout
+          </button>
+        </p>
+      ) : (
+        <Button
+          onClick={() => {
+            setCurrentUser({ name: 'Advika' });
+          }}>
+          Log in as Advika
+        </Button>
+      )}
+    </div>
+  );
+}
+```
 
 - 9/29, 10/3, 10/27, 12/17(XO)
 
