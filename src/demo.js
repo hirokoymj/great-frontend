@@ -1,55 +1,48 @@
-// let myObject = {
-//   name: 'Alice',
-//   age: 30,
-// };
+const array = [
+  {
+    item: 'Bluetooth Speaker',
+    price: 49.99,
+    isGift: true,
+  },
+  {
+    item: 'Office Chair',
+    price: 135.99,
+    isGift: true,
+  },
+];
 
-// //Add
-// myObject.city = 'New York';
+const output = array.filter((d) => d.isGift === true);
 
-// //Update
-// const updated = {
-//   ...myObject,
-//   age: 31,
-// };
-// console.log(updated);
+const testFunction = () => {};
 
-//Delete
-//delete myObject.age;
-// console.log(myObject);
-//const result = { age, ...myObject };
-//console.log(result);
-// Remove the 'age' property
-// const { age, ...newObj } = myObject;
-// console.log(newObj);
+function calculateCost(arr) {
+  const total = arr.reduce((acc, data) => {
+    if (data.isGift) acc = acc + data.price;
+    return acc;
+  }, 0); // Your code here!
+  console.log(total); //559.9300000000001
+  return Math.round(total * 100) / 100;
+}
 
-const person = {
-  name: 'Bob',
-  age: 25,
-  country: 'Canada',
+function calTotalCost(arr) {
+  const total = arr.reduce((acc, currentVal) => {
+    acc = currentVal.price + acc;
+    return acc;
+  }, 0);
+  return total;
+}
+
+const totalCost = (array) => {
+  const total = array.reduce((acc, currentVal) => {
+    acc = currentVal.price + acc;
+    return acc;
+  }, 0);
+  return total;
 };
-//Add
-// person.city = 'los Angeles';
-// console.log(person);
 
-// //Update
-// const result1 = { ...person, age: 30 };
-// console.log(result1);
-
-// //Delete
-// delete person.age;
-// console.log(person);
-
-//Delete 2
-// person.age = 40;
-// console.log(person);
-// let output = {};
-// Object.keys(person).forEach((key) => {
-//   if (key !== 'age') {
-//     output[key] = person[key];
-//   }
-// });
-// console.log(output);
-
-//console.log(Object.values(person)); //[ 'Bob', 25, 'Canada' ]
-//console.log(Object.keys(person)); //[ 'name', 'age', 'country' ]
-console.log(Object.entries(person)); //[ [ 'name', 'Bob' ], [ 'age', 25 ], [ 'country', 'Canada' ] ]
+const totalPrice = () => {
+  const total = array.reduce((acc, currentVal) => {
+    acc = acc + currentVal.price;
+    return acc;
+  }, 0);
+};

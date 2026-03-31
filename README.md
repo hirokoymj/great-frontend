@@ -1,6 +1,26 @@
-# Learn React - aaa, bbb, ccc, eee, ddd, eee, fff
+# Learn React
 
-## Adding Interactivity
+## Adding Interactivity (03/30)
+
+```js
+# 03/30
+- e.stopPropagation()
+- initial render -> createRoot(DOM)  -> root.render(reactNODE)
+- stateUpdate = Object, spread + new value, setTodo((prev)=> {...prev, count: 10}))
+- stateUpdate = Array, Add: spread+ newObj, Edit: Map, Delete; FIlter
+- Hooks - can be called at the top of the function component.
+- .map() must return a value for each item
+- {} requires return
+setProducts((prev) =>
+	prev.map((product) =>
+		product.id === productId
+		? { ...product, count: product.count + 1 }
+		: product
+	)
+);
+```
+
+https://codesandbox.io/p/sandbox/react-dev-forked-svm5lg?file=%2Fsrc%2FApp.js%3A32%2C1
 
 ### [Responding to Events](https://react.dev/learn/responding-to-events)
 

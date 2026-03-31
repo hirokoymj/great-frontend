@@ -9,17 +9,15 @@ https://react.dev/learn/state-a-components-memory
 - [Challenge 1 of 4: Complete the gallery ](https://codesandbox.io/p/sandbox/react-dev-forked-9vn9d6?file=%2Fsrc%2FApp.js%3A27%2C34)
 - [Fork](https://codesandbox.io/p/sandbox/q2ny7y)
 
+**Next button**
+
 ```js
 function handleNextClick() {
-  if (index < sculptureList.length - 1) {
-    setIndex(index + 1);
-  } else {
-    return;
-  }
+  setIndex((prev) => (prev < sculptureList.length - 1 ? prev + 1 : prev));
 }
+
 function handlePrevClick() {
-  if (index === 0) return;
-  setIndex(index - 1);
+  setIndex((prev) => (prev > 0 ? prev - 1 : prev));
 }
 ```
 
