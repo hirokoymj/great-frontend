@@ -149,7 +149,7 @@ https://codesandbox.io/p/sandbox/react-dev-forked-svm5lg?file=%2Fsrc%2FApp.js%3A
 - 9/29, 10/3, 10/26, 11/2, 12/17(OO), 12/24(OO)
 <hr />
 
-- [Preserving and Resetting State](https://react.dev/learn/preserving-and-resetting-state)
+## [Preserving and Resetting State](https://react.dev/learn/preserving-and-resetting-state)
 - [My Summary](./src/managing-state/Preserving-state.md)
 - [Challenge 1](https://react.dev/learn/preserving-and-resetting-state#fix-disappearing-input-text) ===>O
 - [Challenge 2](https://react.dev/learn/preserving-and-resetting-state#swap-two-form-fields) ===>X
