@@ -104,6 +104,24 @@ https://codesandbox.io/p/sandbox/react-dev-forked-svm5lg?file=%2Fsrc%2FApp.js%3A
 
 ## Managing State
 
+```js
+# 03/31
+const [selectedIds, setSelectedIds] = useState([]); //[0,1]
+selectedIds.includes(id) ==> true/false
+
+[state, dispatch] = useReducer()
+action == {type: xxx}
+dispatch(action)
+
+import {createContext, useContext, useState} from "react"
+Const ImageSizeContext = createContext(500);
+Const value = 100;
+<ImageSizeContext value={value}></ImageSizeContext>
+Const imageSize = useContext( ImageSizeContext )
+<img width={imageSize} />
+Ternary ->{ condition ? () : () }
+```
+
 ### [Reacting to Input with State](https://react.dev/learn/reacting-to-input-with-state)
 
 - [My Summary](./src/managing-state/Reacting-state.md)
@@ -150,6 +168,7 @@ https://codesandbox.io/p/sandbox/react-dev-forked-svm5lg?file=%2Fsrc%2FApp.js%3A
 <hr />
 
 ## [Preserving and Resetting State](https://react.dev/learn/preserving-and-resetting-state)
+
 - [My Summary](./src/managing-state/Preserving-state.md)
 - [Challenge 1](https://react.dev/learn/preserving-and-resetting-state#fix-disappearing-input-text) ===>O
 - [Challenge 2](https://react.dev/learn/preserving-and-resetting-state#swap-two-form-fields) ===>X
