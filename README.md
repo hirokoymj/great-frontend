@@ -108,6 +108,9 @@ https://codesandbox.io/p/sandbox/react-dev-forked-svm5lg?file=%2Fsrc%2FApp.js%3A
 # 03/31
 const [selectedIds, setSelectedIds] = useState([]); //[0,1]
 selectedIds.includes(id) ==> true/false
+selectedIds.includes(toggledId)
+  ? setSelectedIds((prev) => prev.filter((id) => id !== toggledId))
+  : setSelectedIds((prev) => [...prev, toggledId]);
 
 [state, dispatch] = useReducer()
 action == {type: xxx}
