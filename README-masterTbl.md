@@ -75,6 +75,6 @@
 | State (Object)           |
 | State (Array of Objects) |
 | useMemo                  |
-| useCache                 |
+| useCallBack              |
 | useRef                   |
 | Add / Remove CSS Class   |
