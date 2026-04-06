@@ -236,6 +236,23 @@ function LoginButton() {
 
 # Escape Hatches
 
+```js
+//4/1
+useEffect(()=>{}) //Effects run after *every* render.
+useEffect(() => {}, []) //Once (mount only)
+useEffect(() => {}, [a]) //Mount + when "a" changes
+useEffect(() => return ()=>{}) //Effect + a clean-up function (call every re-render)
+
+const [count, setCount] = useState(0);
+useEffect(() =>  setCount(count + 1));// !infinite loop
+useRef vs useState: A ref value can survive value during re-render, but a state value cannot.
+const cached = useMemo(()=>{}, [])
+useMemo vs useCallback
+	- useMemo returns memorized value. useCallback returns a function reference.
+```
+
+Every time your component renders, React will update the screen and then run the code inside useEffect. In other words, useEffect “delays” a piece of code from running until that render is reflected on the screen.
+
 - [==Referencing Values with Refs==](https://react.dev/learn/referencing-values-with-refs)
 - [my summary](./src/Escape-Hatches/ReferencingValue-with-Refs.md)
 - [Challenge 1](https://react.dev/learn/referencing-values-with-refs#fix-a-broken-chat-input) ===>XXO
