@@ -1,7 +1,7 @@
 # RESTful API
 
 ```js
-//=====[Async: async/await/try-catch]
+//=====[async: try-catch]
 const getUser = async () => {
   try {
     const response = await fetch(url);
@@ -10,7 +10,7 @@ const getUser = async () => {
     setUsers(data);
   } catch (e) {}
 };
-//=====[Async: then.catch]
+//=====[async: then.catch]
 const getUser = () =>{
 	fetch(url, option)
 	.then(response=>{ if(response.ok) return response.json()})
@@ -28,20 +28,6 @@ headers: {
 body: JSON.stringify({ user }) //POST
 body: JSON.stringify({ ...user, name: 'dummy' }) //PUT
 ------------------------------
-//=====[Promise, async function, pending/fullfilled/rejected]
-const promiseA = new Promise((resolve, reject) => {
-  resolve(777);
-}).then((val) => console.log(val)); //777
-//=====[QUIZ]
-const getUsers = async() =>{}
-const getUsers = () =>{}
-const createUser = async() =>{}
-const createUser = () =>{}
-const updateUser = async(id) =>{}
-const updateUser = (id) =>{}
-const deleteUser = async(id) =>{}
-const deleteUser = (id) =>{}
-///===React.j
 // useEffect(()=>{}, [])
 ```
 

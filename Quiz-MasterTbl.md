@@ -1,5 +1,27 @@
 # Technical Notes – Master Table
 
+- [Quiz-state.md](./Quiz-state.md)
+- [Quiz-state-array.md](./Quiz-state-array.md)
+- [Quiz-useMemo](./Quiz-useMemo.md)
+- [Quiz-useCallback](./Quiz-useCallback.md)
+- [Quiz-rendering](./Quiz-rendering.md)
+
+**draft**
+
+## React
+
+| Topic                    | Date  | Ref.                                              |
+| ------------------------ | ----- | ------------------------------------------------- |
+| RESTful API              |       | [RESTful](./Quiz-MasterTbl.md#restful-api-syntax) |
+| Form Handling            |       |                                                   |
+| State (Object)           |       |                                                   |
+| State (Array of Objects) |       |                                                   |
+| useMemo                  | 04/06 |                                                   |
+| useCallback              | 04/06 |                                                   |
+| useRef                   |       |                                                   |
+| Add / Remove CSS Class   |       |                                                   |
+| JSX rendering            | 04/07 |                                                   |
+
 ## JavaScript
 
 [draft](./src/pages/JS/README.md)
@@ -66,22 +88,35 @@
 | 52  | **Date**    | Last month: start                  |          | `new Date(now.getFullYear(), now.getMonth() - 1, 1)`             |
 | 53  | **Date**    | Last month: end                    |          | `new Date(now.getFullYear(), now.getMonth(), 0)`                 |
 
-# React
+## RESTful API syntax
 
-| Topic                    | Date  | Past Quiz |
-| ------------------------ | ----- | --------- |
-| RESTful API              |       |           |
-| Form Handling            |       |           |
-| State (Object)           |       |           |
-| State (Array of Objects) |       |           |
-| useMemo                  | 04/06 | Q1, Q2    |
-| useCallback              | 04/06 | Q1, Q2    |
-| useRef                   |       |           |
-| Add / Remove CSS Class   |       |           |
-| JSX rendering            | 04/07 |           |
-
-### Past Quiz
-
-- [useMemo](./pastQuiz-useMemo.md)
-- [useCallback](./pastQuiz-useCallback.md)
-- [state: object, array](./pastQuiz-state.md)
+```js
+//=====[async: try-catch]
+const getUser = async () => {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error();
+    const data = await response.json();
+    setUsers(data);
+  } catch (e) {}
+};
+//=====[async: then.catch]
+const getUser = () =>{
+	fetch(url, option)
+	.then(response=>{ if(response.ok) return response.json()})
+	.then(data=>{})
+	.catch(e=>{})
+	.finally(()=>{})
+}
+//=====[HTTP Options]
+------------------------------
+method: 'GET/POST/PUT/DELETE'
+headers: {
+	'Authorization': `Bearer ${token}`,
+	'Content-Type': 'application/json'
+},
+body: JSON.stringify({ user }) //POST
+body: JSON.stringify({ ...user, name: 'dummy' }) //PUT
+------------------------------
+// useEffect(()=>{}, [])
+```
