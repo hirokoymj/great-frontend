@@ -47,6 +47,9 @@ import SkillForm from './pages/Challenge/form-handling/SkillForm';
 import ProductList3 from './pages/Challenge/memo-call/ProductList3';
 //Coding Quiz
 import EditItemDemo from './pages/Quiz1/EditItemDemo';
+import App5UseMemo from './pages/Quiz1/App5UseMemo';
+import App7UseCallback from './pages/Quiz1/App7UseCallback';
+import App9 from './pages/Quiz1/App9';
 
 const Home = () => {
   return (
@@ -207,6 +210,9 @@ export default function App() {
         <Route path="demo-13" element={<SkillForm />} />
         <Route path="demo-14" element={<ProductList3 />} />
         <Route path="edit-item-demo" element={<EditItemDemo />} />
+        <Route path="app5-usememo" element={<App5UseMemo />} />
+        <Route path="app7-usecallback" element={<App7UseCallback />} />
+        <Route path="app9" element={<App9 />} />
       </Routes>
     </BrowserRouter>
   );
