@@ -1,19 +1,30 @@
 # Quiz - State (array of object)
 
-<!-- create index  Cmd+Shift+P -->
+<!-- create index  cmd+Shift+P -->
 
-<!--
+- [Quiz - State (array of object)](#quiz---state-array-of-object) - [Q1: State (Array of Objects)- 04/06](#q1-state-array-of-objects--0406) - [Answer](#answer) - [Improvement (draft)](#improvement-draft) - [Q2: Edit Item (Array of Objects)- 04/06](#q2-edit-item-array-of-objects--0406) - [Answer](#answer-1) - [Improvement (draft)](#improvement-draft-1)
+  <!-- create index  cmd+Shift+P -->
+  <!--
+
 ## Q: State (Objects)- mm/dd
+
 **📋 Requirements**
+
 ```js
+
 ```
-## Answer
+
+### Answer
+
 ```js
+
 ```
-## Improvement (draft)
+
+### Improvement (draft)
+
 -->
 
-## Q1: State (Array of Objects)- mm/dd
+## Q1: State (Array of Objects)- 04/06
 
 **📋 Requirements**
 
@@ -107,7 +118,7 @@ export default function App() {
 }
 ```
 
-## Answer
+### Answer
 
 ```js
 //Clean corrected version
@@ -202,7 +213,7 @@ export default function App() {
 }
 ```
 
-## Improvement (draft)
+### Improvement (draft)
 
 There are 2 bugs to fix.
 
@@ -322,7 +333,7 @@ export default function App() {
 }
 ```
 
-## Answer
+### Answer
 
 ```js
 //Full corrected code
@@ -449,7 +460,7 @@ export default function EditItemDemo() {
 }
 ```
 
-## Improvement (draft)
+### Improvement (draft)
 
 - The checkbox was wired to the wrong handler.
 - The normal view was missing the Edit button that switches to edit mode.
