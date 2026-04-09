@@ -1,6 +1,7 @@
 # Quiz - useCallback
 
 - [Quiz - useCallback](#quiz---usecallback)
+  - [Q0: Learn React](#q0-learn-react)
   - [Q1: useCallback (Objects)- 04/06](#q1-usecallback-objects--0406)
     - [Answer](#answer)
     - [Improvement (draft)](#improvement-draft)
@@ -25,6 +26,12 @@ Pleas make a quiz for useCallback hook.  Here is the requirement.
 2. Use "import { useState, useCallback, memo } from 'react';".
 3. The one jsx file is important in order to review a quiz in my tech note
 ```
+
+✅❌
+
+## Q0: Learn React
+
+- [Escape Hatches](https://github.com/hirokoymj/great-frontend/tree/main?tab=readme-ov-file#escape-hatches)
 
 ## Q1: useCallback (Objects)- 04/06
 

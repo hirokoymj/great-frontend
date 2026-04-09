@@ -2,18 +2,16 @@
 
 <!-- create index  cmd+Shift+P -->
 
-- [Quiz - State (array of object)](#quiz---state-array-of-object) - [Q1: State (Array of Objects)- 04/06](#q1-state-array-of-objects--0406) - [Answer](#answer) - [Improvement (draft)](#improvement-draft) - [Q2: Edit Item (Array of Objects)- 04/06](#q2-edit-item-array-of-objects--0406) - [Answer](#answer-1) - [Improvement (draft)](#improvement-draft-1)
+- [Quiz - State (array of object)](#quiz---state-array-of-object)
+  - [Q0: Learn React](#q0-learn-react)
+  - [Q1: State (Array of Objects)- 04/06](#q1-state-array-of-objects--0406)
+    - [Answer](#answer)
+    - [Improvement (draft)](#improvement-draft)
+  - [Q2: Edit Item (Array of Objects)- 04/06](#q2-edit-item-array-of-objects--0406)
+    - [Answer](#answer-1)
+    - [Improvement (draft)](#improvement-draft-1)
 
-  <!-- create index  cmd+Shift+P -->
-
-<!-- ## Q: State (Objects)- mm/dd
-**📋 Requirements**
-```js
-```
-### Answer
-```js
-```
-### Improvement (draft) -->
+✅❌
 
 ## Q0: Learn React
 

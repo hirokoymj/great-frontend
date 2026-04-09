@@ -1,11 +1,11 @@
 # Quiz - Rendering
 
 - [Quiz - Rendering](#quiz---rendering)
-  - [Q1 (Products) 04/07](#q1-products-0407)
+  - [Q1: (Products) 04/07](#q1-products-0407)
   - [Q2 (Products) 04/07](#q2-products-0407)
   - [Q3 (Tasks) 04/07](#q3-tasks-0407)
-  - [Q4 (Rendering data + JS string manipulation) 04/07](#q4-rendering-data--js-string-manipulation-0407)
-  - [Q5: (Airport)](#q5-airport)
+  - [Q4 (Rendering data + JS string manipulation) 04/07 ❌](#q4-rendering-data--js-string-manipulation-0407-)
+  - [Q5: Airport data](#q5-airport-data)
 
 <!-- create index  Ctrl+Shift+P -->
 
@@ -20,7 +20,9 @@ const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
 console.log(animals.slice(0, -1));
 ```
 
-## Q1 (Products) 04/07
+✅❌
+
+## Q1: (Products) 04/07
 
 ```js
 import React from 'react';
@@ -112,7 +114,7 @@ export default function App() {
 }
 ```
 
-## Q4 (Rendering data + JS string manipulation) 04/07
+## Q4 (Rendering data + JS string manipulation) 04/07 ❌
 
 - Output
 
@@ -147,7 +149,7 @@ export default function App() {
 
 ---
 
-## Q5: (Airport)
+## Q5: Airport data
 
 ```js
 const data = [

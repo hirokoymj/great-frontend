@@ -18,6 +18,7 @@
 ## Q1: State (Objects)- mm/dd
 **📋 Requirements**
 -->
+✅❌
 
 ## Q0: Learn React (master note)
 

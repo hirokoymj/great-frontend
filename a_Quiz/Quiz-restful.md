@@ -10,14 +10,7 @@
 
 <!-- create index  cmd+Shift+P -->
 
-<!-- ## Q: State (Objects)- mm/dd
-**📋 Requirements**
-```js
-```
-### Answer
-```js
-```
-### Improvement (draft) -->
+✅❌
 
 ## Q1: Products API - mm/dd
 
