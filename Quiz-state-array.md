@@ -15,6 +15,10 @@
 ```
 ### Improvement (draft) -->
 
+## Q0: Learn React
+
+- [Updating Arrays in State](https://github.com/hirokoymj/great-frontend?tab=readme-ov-file#updating-arrays-in-state)
+
 ## Q1: State (Array of Objects)- 04/06
 
 **📋 Requirements**

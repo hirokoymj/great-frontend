@@ -253,7 +253,8 @@ useMemo vs useCallback
 
 Every time your component renders, React will update the screen and then run the code inside useEffect. In other words, useEffect “delays” a piece of code from running until that render is reflected on the screen.
 
-- [==Referencing Values with Refs==](https://react.dev/learn/referencing-values-with-refs)
+### [Referencing Values with Refs](https://react.dev/learn/referencing-values-with-refs)
+
 - [my summary](./src/Escape-Hatches/ReferencingValue-with-Refs.md)
 - [Challenge 1](https://react.dev/learn/referencing-values-with-refs#fix-a-broken-chat-input) ===>XXO
 - [Challenge 2](https://react.dev/learn/referencing-values-with-refs#fix-a-component-failing-to-re-render) ===>OOO
@@ -268,7 +269,8 @@ Every time your component renders, React will update the screen and then run the
 - [Manipulating the DOM with Refs](https://react.dev/learn/manipulating-the-dom-with-refs)
 <hr />
 
-- [==Synchronizing with Effects==](https://react.dev/learn/synchronizing-with-effects)
+### [Synchronizing with Effects](https://react.dev/learn/synchronizing-with-effects)
+
 - [My Summary](./src/Escape-Hatches/useEffect.md)
 - [Challenge 1:](https://react.dev/learn/synchronizing-with-effects#focus-a-field-on-mount) ===>OO
 - [Challenge 2](https://react.dev/learn/synchronizing-with-effects#focus-a-field-conditionally) ===>OX
@@ -300,7 +302,8 @@ So what repeats every second is the interval callback, not the effect itself.
 
 <hr />
 
-- [==You Might Not Need an Effect==](https://react.dev/learn/you-might-not-need-an-effect)
+### [You Might Not Need an Effect](https://react.dev/learn/you-might-not-need-an-effect)
+
 - [My Summary](./src/Escape-Hatches/not-need-useEffect.md)
 - [Challenge 1](https://react.dev/learn/you-might-not-need-an-effect#transform-data-without-effects) ===>OO
 - [Challenge 2](https://react.dev/learn/you-might-not-need-an-effect#cache-a-calculation-without-effects) ===>XXO
@@ -325,7 +328,8 @@ const visibleTodos = useMemo(
 
 <hr />
 
-- [==Lifecycle of Reactive Effects==](https://react.dev/learn/lifecycle-of-reactive-effects)
+### [Lifecycle of Reactive Effects](https://react.dev/learn/lifecycle-of-reactive-effects)
+
 - [My Summary](./src/Escape-Hatches/lifecycle.md)
 - [Challenge 1](https://react.dev/learn/lifecycle-of-reactive-effects#fix-reconnecting-on-every-keystroke) ===> XOX
 - [Challenge 4](https://react.dev/learn/lifecycle-of-reactive-effects#fix-a-connection-switch) ===> XOO
@@ -337,7 +341,8 @@ const visibleTodos = useMemo(
 - 10/25, 12/17(XOX)
 <hr />
 
-- [==Separating Events from Effects==](https://react.dev/learn/separating-events-from-effects)
+### [Separating Events from Effects](https://react.dev/learn/separating-events-from-effects)
+
 - [My Summary](./src/Escape-Hatches/Separating-events-from-effect.md)
 - [Challenge 1](https://react.dev/learn/separating-events-from-effects#fix-a-variable-that-doesnt-update) ===>OOO
 - [Challenge 2](https://react.dev/learn/separating-events-from-effects#fix-a-freezing-counter) ===> XXX
@@ -351,7 +356,8 @@ const visibleTodos = useMemo(
 
 <hr />
 
-- [==Removing Effect Dependencies==](https://react.dev/learn/removing-effect-dependencies)
+### [Removing Effect Dependencies](https://react.dev/learn/removing-effect-dependencies)
+
 - [My Summary](./src/Escape-Hatches/lifecycle.md)
 - [Challenge 1:Fix a variable that doesn’t update](https://react.dev/learn/removing-effect-dependencies#fix-a-resetting-interval) ===>XO
 - [Challenge 3:Chat](https://react.dev/learn/removing-effect-dependencies#fix-a-reconnecting-chat) ===>OO
@@ -361,7 +367,8 @@ const visibleTodos = useMemo(
 - 10/25, 12/17(OO)
 <hr />
 
-- [==Reusing Logic with Custom Hooks==](https://react.dev/learn/reusing-logic-with-custom-hooks)
+### [Reusing Logic with Custom Hooks](https://react.dev/learn/reusing-logic-with-custom-hooks)
+
 - [My Sunmary](./src/Escape-Hatches/CustomHooks.md)
 - [Challenge 1](https://react.dev/learn/reusing-logic-with-custom-hooks#extract-a-usecounter-hook) ===>OO
 - [Challenge 2](https://react.dev/learn/reusing-logic-with-custom-hooks#make-the-counter-delay-configurable) ===>OO
@@ -372,5 +379,3 @@ const visibleTodos = useMemo(
 - (C3) Move the Effect to useInterval including a clear function.
 - 10/9, 10/10, 10/25, 12/17(OOX)
 <hr />
-
-

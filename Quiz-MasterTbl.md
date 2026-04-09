@@ -1,26 +1,25 @@
-# Technical Notes – Master Table
+# Technical Master Note (A note)
 
-- [Quiz-state.md](./Quiz-state.md)
+## Quiz - A note
+
+- [Quiz-state-object.md](./Quiz-state-object.md)
 - [Quiz-state-array.md](./Quiz-state-array.md)
 - [Quiz-useMemo](./Quiz-useMemo.md)
 - [Quiz-useCallback](./Quiz-useCallback.md)
 - [Quiz-rendering](./Quiz-rendering.md)
-
-**draft**
 
 ## React
 
 | Topic                    | Date  | Ref.                                              |
 | ------------------------ | ----- | ------------------------------------------------- |
 | RESTful API              |       | [RESTful](./Quiz-MasterTbl.md#restful-api-syntax) |
-| Form Handling            |       |                                                   |
-| State (Object)           |       |                                                   |
+| State (Object) + Form    |       |                                                   |
 | State (Array of Objects) |       |                                                   |
 | useMemo                  | 04/06 |                                                   |
 | useCallback              | 04/06 |                                                   |
 | useRef                   |       |                                                   |
 | Add / Remove CSS Class   |       |                                                   |
-| JSX rendering            | 04/07 |                                                   |
+| Rendering                | 04/07 |                                                   |
 
 ## JavaScript
 
@@ -87,36 +86,3 @@
 | 51  | **Date**    | UTC -> local time                  |          | `today.toLocaleDateString()` 12/19/2025                          |
 | 52  | **Date**    | Last month: start                  |          | `new Date(now.getFullYear(), now.getMonth() - 1, 1)`             |
 | 53  | **Date**    | Last month: end                    |          | `new Date(now.getFullYear(), now.getMonth(), 0)`                 |
-
-## RESTful API syntax
-
-```js
-//=====[async: try-catch]
-const getUser = async () => {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error();
-    const data = await response.json();
-    setUsers(data);
-  } catch (e) {}
-};
-//=====[async: then.catch]
-const getUser = () =>{
-	fetch(url, option)
-	.then(response=>{ if(response.ok) return response.json()})
-	.then(data=>{})
-	.catch(e=>{})
-	.finally(()=>{})
-}
-//=====[HTTP Options]
-------------------------------
-method: 'GET/POST/PUT/DELETE'
-headers: {
-	'Authorization': `Bearer ${token}`,
-	'Content-Type': 'application/json'
-},
-body: JSON.stringify({ user }) //POST
-body: JSON.stringify({ ...user, name: 'dummy' }) //PUT
-------------------------------
-// useEffect(()=>{}, [])
-```

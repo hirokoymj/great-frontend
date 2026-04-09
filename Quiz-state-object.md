@@ -3,6 +3,7 @@
 <!-- create index  Cmd+Shift+P -->
 
 - [Quiz - State (object)](#quiz---state-object)
+  - [Q0: Learn React (master note)](#q0-learn-react-master-note)
   - [Q1: State (Objects)- 04/xx](#q1-state-objects--04xx)
     - [Answer](#answer)
     - [improvement (draft)](#improvement-draft)
@@ -17,6 +18,11 @@
 ## Q1: State (Objects)- mm/dd
 **📋 Requirements**
 -->
+
+## Q0: Learn React (master note)
+
+- [Managing State](https://github.com/hirokoymj/great-frontend/tree/main?tab=readme-ov-file#managing-state)
+- [Updating Objects in State](https://github.com/hirokoymj/great-frontend/tree/main?tab=readme-ov-file#updating-objects-in-state)
 
 ## Q1: State (Objects)- 04/xx
 
