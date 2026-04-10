@@ -16,9 +16,7 @@
 | useRef                   |       |
 | Add / Remove CSS Class   |       |
 | Rendering                | 04/07 |
-
-===Draft
-| useActionState | 04/09 |
+| useActionState           | 04/09 |
 
 ### Quiz
 
