@@ -4,7 +4,7 @@
   - [Q0: Learn React](#q0-learn-react)
   - [Q1: useCallback (Objects)- 04/06](#q1-usecallback-objects--0406)
     - [Answer](#answer)
-    - [Improvement (draft)](#improvement-draft)
+    - [Improvement](#improvement)
 
 <!-- create index  cmd+Shift+P -->
 <!--
@@ -143,8 +143,6 @@ export default function App() {
   const [darkMode, setDarkMode] = useState(false);
 
   // TODO:
-  // Wrap this function with useCallback
-  // With useCallback, ProductItem is not unnecessarily re-rendered when darkMode changes
   const handleSelect = useCallback((product) => {
     setSelectedProduct(product);
   }, []);
@@ -205,7 +203,7 @@ const ProductItem = memo(function ProductItem({ product, onSelect }) {
 });
 ```
 
-### Improvement (draft)
+### Improvement
 
 ```js
 - ProductItem is memoized, it can skip re-rendering when its props do not change.

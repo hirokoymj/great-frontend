@@ -7,6 +7,7 @@
   - [useRef](#useref)
   - [Rendering](#rendering)
   - [useCallback](#usecallback)
+  - [useCallback + React.memo](#usecallback--reactmemo)
   - [useActionState (React 19)](#useactionstate-react-19)
   - [RESTful](#restful)
 
@@ -124,14 +125,15 @@ const computedProducts = useMemo(() => {
 ```js
 - ✅ useRef returns a mutable object with a single property { current }.
 - ✅ current can hold any value (DOM element, number, object, function, etc.).
+- useRef vs useState: A ref value can survive a value during re-render, but a state value cannot.
 ```
 
-| Feature      | useState                            | useRef                                                    |
-| ------------ | ----------------------------------- | --------------------------------------------------------- |
-| Re-render    | Triggers re-render on value change. | Does not trigger re-render on value change.               |
-| Purpose      | Manages state that affects UI.      | Creates mutable references, often for DOM or non-UI data. |
-| Value Access | Accessed directly (e.g., count).    | Accessed via .current property (e.g., inputRef.current)   |
-| Mutability   | setter function                     | Ref.current property                                      |
+| Feature      | useState                            | useRef                                                         |
+| ------------ | ----------------------------------- | -------------------------------------------------------------- |
+| Re-render    | Triggers re-render on value change. | Does not trigger re-render on value change.                    |
+| Purpose      | Manages state that affects UI.      | Returns a mutable object, store any value( DOM or non-UI data) |
+| Value Access | Accessed directly (e.g., count).    | Accessed via .current (e.g., inputRef.current)                 |
+| Mutability   | setter function                     | myRef.current                                                  |
 
 ## Rendering
 
@@ -156,15 +158,33 @@ items.map(({ time, city }) => (
 const handleSelect = useCallback((product) => {
   setSelectedProduct(product);
 }, []);
+//
 <ProductList products={products} onSelect={handleSelect} />;
 ```
 
-```
-- const cachedFn = useCallback(fn, [])
-- useCallback returns a stable function reference.
+---
+
+## useCallback + React.memo
+
+- App → ProductList → ProductItem
+- An event handler will pass down to `App -> ProductList -> ProductItem with React.memo`
+- `const cachedFn = useCallback(()=>{}, [])`
+- Returns a stable function reference.
 - The function is passed to child components as a prop.
-- memo skips child re-render if props are unchanged.useCallback returns a stable function reference
-- By default, when a component re-renders, all children re-render.
+- React.memo skips child re-render if props are unchanged.
+
+```js
+//App → ProductList → ProductItem
+const handleSelect = useCallback(() => {}, []);
+<ProductList products={products} onSelect={handleSelect} />;
+
+function ProductList({ onSelect }) {
+  return <ProductItem onSelect={onSelect} />;
+}
+
+function ProductItem({ onSelect }) {
+  return <button onClick={() => onSelect(product)}>Select</button>;
+}
 ```
 
 ## useActionState (React 19)
