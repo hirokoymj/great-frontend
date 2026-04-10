@@ -1,13 +1,12 @@
-# React Reference (short notes)
+# React master reference
 
-- [React Reference (short notes)](#react-reference-short-notes)
+- [React master reference](#react-master-reference)
   - [useState (object)](#usestate-object)
   - [useState (array)](#usestate-array)
   - [useMemo](#usememo)
   - [useRef](#useref)
   - [Rendering](#rendering)
-  - [useCallback](#usecallback)
-  - [useCallback + React.memo](#usecallback--reactmemo)
+  - [useCallback + memo](#usecallback--memo)
   - [useActionState (React 19)](#useactionstate-react-19)
   - [RESTful](#restful)
 
@@ -152,39 +151,33 @@ items.map(({ time, city }) => (
 ));
 ```
 
-## useCallback
-
-```js
-const handleSelect = useCallback((product) => {
-  setSelectedProduct(product);
-}, []);
-//
-<ProductList products={products} onSelect={handleSelect} />;
-```
-
 ---
 
-## useCallback + React.memo
+## useCallback + memo
 
-- App → ProductList → ProductItem
-- An event handler will pass down to `App -> ProductList -> ProductItem with React.memo`
-- `const cachedFn = useCallback(()=>{}, [])`
+- App → ProductList → ProductItem with memo
+- An event handler will pass down to `App -> ProductList -> ProductItem`
+- `const cachedFn = useCallback(fn, [])`
+- `const ProductItem = React.memo(()=>{})`
 - Returns a stable function reference.
 - The function is passed to child components as a prop.
 - React.memo skips child re-render if props are unchanged.
 
 ```js
 //App → ProductList → ProductItem
-const handleSelect = useCallback(() => {}, []);
-<ProductList products={products} onSelect={handleSelect} />;
+// App
+const handleSelect = useCallback((product) => {}, []);
+<ProductList products={products} handleSelect={handleSelect} />;
 
-function ProductList({ onSelect }) {
-  return <ProductItem onSelect={onSelect} />;
+// ProductList
+function ProductList({ products, handleSelect }) {
+  return <ProductItem product={product} handleSelect={handleSelect} />;
 }
 
-function ProductItem({ onSelect }) {
-  return <button onClick={() => onSelect(product)}>Select</button>;
-}
+// ProductItem with memo (arrow syntax)
+const ProductItem = memo(({ product, handleSelect }) => {
+  return <button onClick={() => handleSelect(product)}>Select</button>;
+});
 ```
 
 ## useActionState (React 19)
