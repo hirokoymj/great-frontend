@@ -2,15 +2,17 @@
 
 - [React Reference (short notes)](#react-reference-short-notes)
   - [useState (object)](#usestate-object)
-  - [RESTful](#restful)
   - [useState (array)](#usestate-array)
   - [useMemo](#usememo)
   - [useRef](#useref)
   - [Rendering](#rendering)
   - [useCallback](#usecallback)
   - [useActionState (React 19)](#useactionstate-react-19)
+  - [RESTful](#restful)
 
 <!-- create index  cmd+Shift+P -->
+
+⭐
 
 ## useState (object)
 
@@ -33,42 +35,6 @@ function handleChange(e) {
     [e.target.name]: e.target.value,
   });
 }
-```
-
-## RESTful
-
-```js
-//✅ [async-await / try-catch]
-const getUser = async () => {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error();
-    const data = await response.json();
-    setUsers(data);
-  } catch (e) {}
-};
-//✅ [then.catch]
-const getUser = () =>{
-	fetch(url, option)
-	.then(response=>{ if(response.ok) return response.json()})
-	.then(data=>{})
-	.catch(e=>{})
-	.finally(()=>{})
-}
-//✅ [HTTP Options]
-------------------------------
-method: 'GET/POST/PUT/DELETE'
-headers: {
-	'Authorization': `Bearer ${token}`,
-	'Content-Type': 'application/json'
-},
-body: JSON.stringify({ user }) //POST
-body: JSON.stringify({ ...user, name: 'dummy' }) //PUT
-------------------------------
-useEffect(()=>{}, [])
-const [products, setProducts] = useState([]);
-const [loading, setLoading] = useState(false);
-const [error, setError] = useState(null);
 ```
 
 ## useState (array)
@@ -95,16 +61,62 @@ if (t.id === nextTodo.id) {
 
 ## useMemo
 
-```js
-- `const cached = useMemo(fn, [A, B, C])`
-- ❓ “How do I know which state changed?”
--  👉 You don’t check inside useMemo
-- ❗ useMemo does NOT tell you which state changed
+- `const cached = useMemo(() => {return xxx}, [A, B, C])`
+- Re-runs only when a dependency (A, B, C) changes. Otherwise returns the cached value.
+- “How do I know which state changed?” => You don’t check inside useMemo
+- `useMemo` → caches a **value**
+- `useCallback` → caches a **function**
+- **Use cases (deriving data)**
+  - Subtotal / total price in a shopping cart
+  - Filtered todo list by status
 
+```js
 const visibleTodos = useMemo(() => {
   const result = showActive ? todos.filter((todo) => !todo.completed) : todos;
   return result;
-}, [todos, showActive])
+}, [todos, showActive]);
+
+const initialCart = [
+  { id: 1, name: 'Laptop', price: 1200, qty: 1 },
+  { id: 2, name: 'Mouse', price: 25, qty: 2 },
+];
+
+const output = useMemo(() => {
+  let items = [...cart];
+
+  const subtotal = items.reduce((acc, currentVal) => {
+    return acc + currentVal.price * currentVal.qty;
+  }, 0);
+
+  let discountRate = 0;
+  if (discountCode === 'SAVE10') {
+    discountRate = 0.1;
+  } else if (discountCode === 'SAVE20') {
+    discountRate = 0.2;
+  }
+
+  const discount = subtotal * discountRate;
+  const tax = (subtotal - discount) * taxRate;
+  const total = subtotal - discount + tax;
+
+  return { subtotal, discount, tax, total };
+}, [cart, discountCode, taxRate]);
+
+const computedProducts = useMemo(() => {
+  let result = products.filter((product) =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase()),
+  );
+  if (category !== 'All') {
+    result = result.filter((product) => product.category === category);
+  }
+
+  if (sortBy === 'price-low-high') {
+    result = [...result].sort((a, b) => a.price - b.price);
+  } else if (sortBy === 'price-high-low') {
+    result = [...result].sort((a, b) => b.price - a.price);
+  }
+  return result;
+}, [searchTerm, category, sortBy]);
 ```
 
 ## useRef
@@ -166,3 +178,39 @@ const handleSelect = useCallback((product) => {
 - (Validation): On submit: Yup schema (`validateAt`)
 - (Validation - real-time): `useState` + `onBlur`
 - [SimpleForm.jsx](../src/pages/simpleForm/SimpleForm.jsx)
+
+## RESTful
+
+```js
+//✅ [async-await / try-catch]
+const getUser = async () => {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error();
+    const data = await response.json();
+    setUsers(data);
+  } catch (e) {}
+};
+//✅ [then.then.catch.finally]
+const getUser = () =>{
+	fetch(url, option)
+	.then(response=>{ if(response.ok) return response.json()})
+	.then(data=>{})
+	.catch(e=>{})
+	.finally(()=>{})
+}
+//✅ [HTTP Options]
+------------------------------
+method: 'GET/POST/PUT/DELETE'
+headers: {
+	'Authorization': `Bearer ${token}`,
+	'Content-Type': 'application/json'
+},
+body: JSON.stringify({ user }) //POST
+body: JSON.stringify({ ...user, name: 'dummy' }) //PUT
+------------------------------
+useEffect(()=>{}, [])
+const [products, setProducts] = useState([]);
+const [loading, setLoading] = useState(false);
+const [error, setError] = useState(null);
+```

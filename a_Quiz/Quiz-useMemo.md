@@ -2,10 +2,10 @@
 
 - [Quiz - useMemo](#quiz---usememo)
   - [Q0: Learn React - Escape Hatches](#q0-learn-react---escape-hatches)
-  - [Q1: useMemo (Products)- 04/06](#q1-usememo-products--0406)
+  - [Q1: useMemo (Products)- 04/06 ❌](#q1-usememo-products--0406-)
     - [Answer](#answer)
-    - [Improvement (draft)](#improvement-draft)
-  - [Q2: useMemo (Shopping Cart) - 04/06](#q2-usememo-shopping-cart---0406)
+    - [Improvement](#improvement)
+  - [Q2: useMemo (Shopping Cart) - 04/06 ❌](#q2-usememo-shopping-cart---0406-)
     - [Answer](#answer-1)
 
 ✅❌
@@ -15,7 +15,7 @@
 - [Escape Hatches](https://github.com/hirokoymj/great-frontend/tree/main?tab=readme-ov-file#escape-hatches)
 - [You Might Not Need an Effect](https://github.com/hirokoymj/great-frontend/tree/main?tab=readme-ov-file#you-might-not-need-an-effect)
 
-## Q1: useMemo (Products)- 04/06
+## Q1: useMemo (Products)- 04/06 ❌
 
 **📋 Requirements**
 
@@ -123,7 +123,7 @@ export default function App() {
 
 ```
 
-### Improvement (draft)
+### Improvement
 
 ```js
 - `useMemo(fn, [A, B, C])`
@@ -139,7 +139,7 @@ export default function App() {
 
 ---
 
-## Q2: useMemo (Shopping Cart) - 04/06
+## Q2: useMemo (Shopping Cart) - 04/06 ❌
 
 **📋 Requirements**
 
