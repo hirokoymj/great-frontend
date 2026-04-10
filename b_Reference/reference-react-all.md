@@ -14,11 +14,17 @@
 
 ## useState (object)
 
+- [state, setterFn] = useState()
+- Trigger re-render
+- Batch: not update immidiately
+- Update: (prev) => {(...prev, [name]: e.target.value)}
+- Update: (prev) => ({...prev, [name]: type === 'checkbox' ? checked : value})
+- const { name, type, value, checked } = e.target;
+
 ```js
-//====spread operator(...), []
 const [person, setPerson] = useState({
-  firstName: 'Barbara',
-  lastName: 'Hepworth',
+  firstName: 'David',
+  lastName: 'Smith',
 });
 
 function handleChange(e) {
@@ -27,14 +33,12 @@ function handleChange(e) {
     [e.target.name]: e.target.value,
   });
 }
-<button onClick={handlePlusClick}>
-<input value={player.firstName} onChange={handleFirstNameChange} />
 ```
 
 ## RESTful
 
 ```js
-//✅ [async: try-catch]
+//✅ [async-await / try-catch]
 const getUser = async () => {
   try {
     const response = await fetch(url);
@@ -43,7 +47,7 @@ const getUser = async () => {
     setUsers(data);
   } catch (e) {}
 };
-//✅ [async: then.catch]
+//✅ [then.catch]
 const getUser = () =>{
 	fetch(url, option)
 	.then(response=>{ if(response.ok) return response.json()})
@@ -61,7 +65,10 @@ headers: {
 body: JSON.stringify({ user }) //POST
 body: JSON.stringify({ ...user, name: 'dummy' }) //PUT
 ------------------------------
-// useEffect(()=>{}, [])
+useEffect(()=>{}, [])
+const [products, setProducts] = useState([]);
+const [loading, setLoading] = useState(false);
+const [error, setError] = useState(null);
 ```
 
 ## useState (array)

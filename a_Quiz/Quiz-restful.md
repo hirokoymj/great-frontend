@@ -2,11 +2,12 @@
 
 - [Quiz - Restful API](#quiz---restful-api)
   - [Q1: Products API - mm/dd](#q1-products-api---mmdd)
+    - [Answer - 1](#answer---1)
+    - [Answer (using .then method)](#answer-using-then-method)
+    - [Improvement (04/09) ❌](#improvement-0409-)
+  - [Q2: Posts API - mm/dd](#q2-posts-api---mmdd)
     - [Answer](#answer)
     - [Improvement (draft)](#improvement-draft)
-  - [Q2: Posts API - mm/dd](#q2-posts-api---mmdd)
-    - [Answer](#answer-1)
-    - [Improvement (draft)](#improvement-draft-1)
 
 <!-- create index  cmd+Shift+P -->
 
@@ -25,8 +26,9 @@
      - Price
 4. Show a loading state while fetching data.
 5. Handle API errors gracefully.
+6. Dropdown - Array of string `['electronics', 'jewelery', ...]`
 
-⭐ Bonus (If Time Allows)
+**⭐ Bonus (If Time Allows)**
 
 - Disable dropdown while loading
 - Format price as $12.99
@@ -79,9 +81,10 @@ export default function App() {
 }
 ```
 
-### Answer
+### Answer - 1
 
 ```js
+//✅ Clean & Corrected Version (Recommended)
 import { useEffect, useState } from 'react';
 
 export default function App() {
@@ -173,7 +176,107 @@ export default function App() {
 }
 ```
 
-### Improvement (draft)
+### Answer (using .then method)
+
+```js
+import { useEffect, useState } from 'react';
+
+export default function App() {
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    setLoading(true);
+    setError(null);
+
+    fetch('https://fakestoreapi.com/products/categories')
+      .then((response) => {
+        if (!response.ok) throw new Error('Failed to fetch categories');
+        return response.json();
+      })
+      .then((data) => {
+        setCategories(data);
+      })
+      .catch((e) => {
+        setError(e.message); //❌
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (!selectedCategory) return;
+
+    setLoading(true);
+    setError(null);
+
+    fetch(`https://fakestoreapi.com/products/category/${selectedCategory}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch products for this category');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setProducts(data);
+      })
+      .catch((e) => {
+        setError(e.message); //❌
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [selectedCategory]);
+
+  return (
+    <div style={{ padding: '1rem' }}>
+      <h2>Product List</h2>
+
+      <select
+        value={selectedCategory}
+        onChange={(e) => setSelectedCategory(e.target.value)}
+        disabled={loading}> //❌
+        <option value="">Select a category</option>
+        {categories.map((category) => ( //❌
+          <option key={category} value={category}>
+            {category}
+          </option>
+        ))}
+      </select>
+
+      {loading && <p>Loading...</p>}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+
+      <ul>
+        {products.map(({ id, price, title }) => (
+          <li key={id}>
+            {title}, ${price.toFixed(2)}
+          </li>
+        ))}
+      </ul>
+
+      {!loading && selectedCategory && products.length === 0 && ( ## ❌
+        <p>No products found</p>
+      )}
+    </div>
+  );
+}
+```
+
+### Improvement (04/09) ❌
+
+- Your .then() flow is good.
+- categories are strings, not objects
+  - `categories.map(({ category }) => ...) ==> categories.map((category)=>)`
+- catch should set error state
+  - `console.log(e.message) ===> setError(e.message);`
+- disabled / toFixed spelling
+  - `price.toFix(2) ===> price.toFixed(2)`
+  - `disable ===> disabled <select ... disabled={loading}>`
 
 ---
 
