@@ -9,6 +9,7 @@
   - [useCallback + memo](#usecallback--memo)
   - [useActionState (React 19)](#useactionstate-react-19)
   - [RESTful](#restful)
+  - [Propagation](#propagation)
 
 <!-- create index  cmd+Shift+P -->
 
@@ -18,7 +19,7 @@
 
 - [state, setterFn] = useState()
 - Trigger re-render
-- Batch: not update immidiately
+- Batch: not update immidiately === State as a snapshot
 - Update: (prev) => {(...prev, [name]: e.target.value)}
 - Update: (prev) => ({...prev, [name]: type === 'checkbox' ? checked : value})
 - const { name, type, value, checked } = e.target;
@@ -226,4 +227,20 @@ useEffect(()=>{}, [])
 const [products, setProducts] = useState([]);
 const [loading, setLoading] = useState(false);
 const [error, setError] = useState(null);
+```
+
+## Propagation
+
+- ` e.stopPropagation()`
+- `<div><img onClick={(e) => e.stopPropagation()}></img></div>`
+
+```js
+<div onClick={() => setIsActive(false)}>
+  <img
+    onClick={(e) => {
+      e.stopPropagation();
+      setIsActive(true);
+    }}
+  />
+</div>
 ```

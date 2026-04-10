@@ -14,7 +14,7 @@
 | useMemo                  | 04/06 |
 | useCallback              | 04/06 |
 | useRef                   |       |
-| Add / Remove CSS Class   |       |
+| e.stopPropagation        | 04/10 |
 | Rendering                | 04/07 |
 | useActionState           | 04/09 |
 

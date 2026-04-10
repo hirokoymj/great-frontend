@@ -4,26 +4,84 @@
 
 - [Quiz - State (object)](#quiz---state-object)
   - [Q0: Learn React (master note)](#q0-learn-react-master-note)
-  - [Q1: State (Objects)- 04/xx](#q1-state-objects--04xx)
+  - [Q11: State as snapshot](#q11-state-as-snapshot)
     - [Answer](#answer)
+  - [Q1: State (Objects)- 04/xx](#q1-state-objects--04xx)
+    - [Answer](#answer-1)
     - [improvement (draft)](#improvement-draft)
   - [Q2: Form with Checkbox + Object State](#q2-form-with-checkbox--object-state)
-    - [Answer](#answer-1)
+    - [Answer](#answer-2)
     - [Improvement (draft)](#improvement-draft-1)
   - [Q2: Multiple Checkboxes (4/xx)](#q2-multiple-checkboxes-4xx)
-    - [Answer](#answer-2)
+    - [Answer](#answer-3)
     - [Improvement (draft)](#improvement-draft-2)
 
 <!--
 ## Q1: State (Objects)- mm/dd
 **📋 Requirements**
 -->
+
 ✅❌
 
 ## Q0: Learn React (master note)
 
 - [Managing State](https://github.com/hirokoymj/great-frontend/tree/main?tab=readme-ov-file#managing-state)
 - [Updating Objects in State](https://github.com/hirokoymj/great-frontend/tree/main?tab=readme-ov-file#updating-objects-in-state)
+
+## Q11: State as snapshot
+
+- [State as Snapshot](https://github.com/hirokoymj/great-frontend/blob/main/src/Interactivity/Snapshot.md)
+- you might expect that clicking the “+3” button would increment the counter three times because it calls setNumber(number + 1) three times.
+
+```js
+import { useState } from 'react';
+
+export default function Counter() {
+  const [number, setNumber] = useState(0);
+
+  return (
+    <>
+      <h1>{number}</h1>
+      <button
+        onClick={() => {
+          setNumber(number + 1);
+          setNumber(number + 1);
+          setNumber(number + 1);
+        }}>
+        +3
+      </button>
+    </>
+  );
+}
+```
+
+### Answer
+
+```js
+import { useState } from 'react';
+
+export default function AppQuizDemo() {
+  const [number, setNumber] = useState(0);
+
+  return (
+    <>
+      <h1>{number}</h1>
+      <button
+        onClick={() => {
+          setNumber((number) => number + 1);
+          setNumber((number) => number + 1);
+          setNumber((number) => number + 1);
+        }}>
+        +3
+      </button>
+    </>
+  );
+}
+```
+
+- Even though you called setNumber(number + 1) three times, in this render’s event handler number is always 0, so you set the state to 1 three times.
+
+---
 
 ## Q1: State (Objects)- 04/xx
 
