@@ -28,6 +28,24 @@ await Promise.all(
 );
 ```
 
+Summary(drft)
+
+```js
+readdir, stat from "fs/promise"
+path
+//async-await - try-catch
+files = await readdir(dir)
+
+files.map((file) => console.log(file));
+
+files.map((async file) => (
+	filepath = path.join(dir, file);
+	info = await stat()
+	console.log(`${info.size}`)
+))
+const filepath = path.join(dir, file)
+```
+
 #### Synchronous approach:
 
 - They are called **blocking functions** as it **waits** for each operation to complete,
