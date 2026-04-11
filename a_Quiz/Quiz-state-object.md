@@ -6,6 +6,7 @@
   - [Q0: Learn React (master note)](#q0-learn-react-master-note)
   - [Q11: State as snapshot](#q11-state-as-snapshot)
     - [Answer](#answer)
+    - [Improved](#improved)
   - [Q1: State (Objects)- 04/xx](#q1-state-objects--04xx)
     - [Answer](#answer-1)
     - [improvement (draft)](#improvement-draft)
@@ -80,6 +81,24 @@ export default function AppQuizDemo() {
 ```
 
 - Even though you called setNumber(number + 1) three times, in this render’s event handler number is always 0, so you set the state to 1 three times.
+
+### Improved
+
+```js
+const [number, setNumber] = useState(0);
+
+onClick={() => {
+  setNumber(number + 1);
+  setNumber(number + 1);
+  setNumber(number + 1);
+} //RESULT : 1
+
+onClick={() => {
+  setNumber((number) => number + 1);
+  setNumber((number) => number + 1);
+  setNumber((number) => number + 1);
+}} // RESULT : 3
+```
 
 ---
 

@@ -1,9 +1,37 @@
-# File System
+# Node.js File System (fs/promises)
 
-https://nodejs.org/api/fs.html
+- https://nodejs.org/api/fs.html
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
 
-Synchronous approach:
+**Summary**
+
+```js
+import { readdir, stat } from 'fs/promises';
+import path from 'path';
+
+//Read a directory
+const files = await readdir(dir);
+files.forEach((file) => console.log(file));
+
+// A file path
+const filePath = path.join(dir, file);
+
+//Print a file info - async/await with Promise.all
+await Promise.all(
+  files.map(async (file) => {
+    const filePath = path.join(dir, file);
+    const info = await stat(filePath);
+
+    console.log(`Size     : ${info.size} bytes`);
+    console.log(`Created At : ${info.birthtime}`);
+  }),
+);
+```
+
+#### Synchronous approach:
+
 - They are called **blocking functions** as it **waits** for each operation to complete,
 
-Asynchronous approach:
+#### Asynchronous approach:
+
 - They are called **non-blocking functions** as it never waits for each operation to complete,

@@ -1,5 +1,18 @@
 # Quiz - useEffect
 
+- [Quiz - useEffect](#quiz---useeffect)
+  - [Q0: Learn React - Escape Hatches](#q0-learn-react---escape-hatches)
+    - [Summary](#summary)
+  - [Q1 - Fetch inside Effect 1 (setBio)](#q1---fetch-inside-effect-1-setbio)
+    - [Hint](#hint)
+    - [Answer](#answer)
+  - [Q2: Fetch inside Effect 2 (PlanetId and PlaceId)](#q2-fetch-inside-effect-2-planetid-and-placeid)
+    - [Hint](#hint-1)
+    - [Answer](#answer-1)
+  - [Q3: useEffect clean-up function](#q3-useeffect-clean-up-function)
+    - [Hint](#hint-2)
+    - [Answer](#answer-2)
+
 ✅❌
 
 ## Q0: Learn React - Escape Hatches
@@ -12,22 +25,23 @@
 useEffect(()=>{}) //Effects run after *every* render.
 useEffect(() => {}, []) //Once (mount only)
 useEffect(() => {}, [a]) //Mount + when "a" changes
-useEffect(() => return ()=>{}) //Effect + a clean-up function (call every re-render)
+useEffect(() => return ()=>{}) //Clean-up function (call every re-render)
 
-const [count, setCount] = useState(0);
-useEffect(() =>  setCount(count + 1));// !infinite loop
-//=====race condition
+//=====useEffect and Async
 useEffect(() => {
-  let ignore = false;
-  setBio(null);
-  fetchBio(person).then((result) => {
-    if (!ignore) setBio(result);
-  });
-  return () => (ignore = true);
+  fetchBio(person).then((result) => {});
 }, [person]);
+
+useEffect(() => {
+  fetchData('/planets').then((result) => {}});
+}, []);
+
+//===Clean up
+const intervalId = setInterval(onTick, 1000);
+return () => clearInterval(intervalId); //✅
 ```
 
-## Q1 - Fetch inside Effect 1
+## Q1 - Fetch inside Effect 1 (setBio)
 
 - [Challenge 4 of 4: Fix fetching inside an Effect](https://react.dev/learn/synchronizing-with-effects#fix-fetching-inside-an-effect)
 

@@ -1,5 +1,11 @@
 # Technical Master Note (A note)
 
+- [Technical Master Note (A note)](#technical-master-note-a-note)
+	- [React Topic](#react-topic)
+		- [Quiz](#quiz)
+	- [JavaScript](#javascript)
+	- [Node.js](#nodejs)
+
 ## React Topic
 
 **MUST check references BEFORE starging a QUIZ.**
@@ -17,6 +23,8 @@
 | e.stopPropagation        | 04/10 |
 | Rendering                | 04/07 |
 | useActionState           | 04/09 |
+| useContext               | 04/09 |
+| useEffect                | 04/09 |
 
 ### Quiz
 
@@ -92,3 +100,14 @@
 | 51  | **Date**    | UTC -> local time                  |          | `today.toLocaleDateString()` 12/19/2025                          |
 | 52  | **Date**    | Last month: start                  |          | `new Date(now.getFullYear(), now.getMonth() - 1, 1)`             |
 | 53  | **Date**    | Last month: end                    |          | `new Date(now.getFullYear(), now.getMonth(), 0)`                 |
+
+## Node.js
+
+- [File system: fs/promise](../src/pages/Node/README.md)
+
+| Topic         | Date  |
+| ------------- | ----- |
+| readdir       | 04/10 |
+| stat          | 04/10 |
+| path          | 04/10 |
+| Promise.all() | 04/10 |

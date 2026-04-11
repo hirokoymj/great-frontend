@@ -1,7 +1,7 @@
 # React master reference
 
 - [React master reference](#react-master-reference)
-  - [useState (object)](#usestate-object)
+  - [useState](#usestate)
   - [useState (array)](#usestate-array)
   - [useMemo](#usememo)
   - [useRef](#useref)
@@ -10,12 +10,14 @@
   - [useActionState (React 19)](#useactionstate-react-19)
   - [RESTful](#restful)
   - [Propagation](#propagation)
+  - [useEffect](#useeffect)
+  - [useContext](#usecontext)
 
 <!-- create index  cmd+Shift+P -->
 
 ⭐
 
-## useState (object)
+## useState
 
 - [state, setterFn] = useState()
 - Trigger re-render
@@ -36,6 +38,18 @@ function handleChange(e) {
     [e.target.name]: e.target.value,
   });
 }
+const [number, setNumber] = useState(0);
+onClick={() => {
+  setNumber(number + 1);
+  setNumber(number + 1);
+  setNumber(number + 1);
+} //RESULT : 1
+
+onClick={() => {
+  setNumber((number) => number + 1);
+  setNumber((number) => number + 1);
+  setNumber((number) => number + 1);
+}} // RESULT : 3
 ```
 
 ## useState (array)
@@ -243,4 +257,54 @@ const [error, setError] = useState(null);
     }}
   />
 </div>
+```
+
+---
+
+## useEffect
+
+```js
+useEffect(() => {}); //Effects run after *every* render.
+useEffect(() => {}, []); //Once (mount only)
+useEffect(() => {}, [a]); //Mount + when "a" changes
+// Cleanup: runs before next effect + on unmount
+useEffect(() => {
+  return () => {};
+});
+
+//=====useEffect and Async
+useEffect(() => {
+  fetchBio(person).then((result) => {});
+}, [person]);
+
+useEffect(() => {
+  fetchData('/planets').then((result) => {});
+}, []);
+
+//=== Clean up
+useEffect(() => {
+  const intervalId = setInterval(onTick, 1000);
+  return () => clearInterval(intervalId); // ✅
+}, []);
+```
+
+## useContext
+
+-Instead of passing down props in nested components, a child component can directly receive data from a parent component.
+
+```js
+import {createContext, useContext, useState} from "react"
+
+//===EX1
+const ThemeContext = createContext(null)
+<ThemeContext value="dark"><App /></ThemeContext>
+const theme = useContext(ThemeContext)
+
+//===EX2
+const UserContext = createContext(null)
+const [user, setUser] = useState(null);
+<UserContext value={{user, setUser}}></UserContext> ✅
+const {user, setUser} = useContext(UserContext);
+<p>You logged in as {user.name}.</p>
+onClick={() => setUser({ name: 'Advika' }) }
 ```

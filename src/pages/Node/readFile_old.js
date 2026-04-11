@@ -12,7 +12,7 @@ async function readFileExample(testDir) {
     const createdAt = stats.birthtime.toISOString().split('T')[0]; //YYYY-MM-DD
     const isDirectry = stats.isDirectory();
     console.log(
-      `size: ${size}, createdAt: ${createdAt}, isDirectry: ${isDirectry}`
+      `size: ${size}, createdAt: ${createdAt}, isDirectry: ${isDirectry}`,
     );
   } catch (err) {
     console.error('Error reading file:', err);
@@ -26,3 +26,5 @@ readFileExample('test');
 // // Formatting UTC Date to YYYY-MM-DD
 // createdAt: stats.birthtime.toISOString().split('T')[0],
 // isDirectry: stats.isDirectory(),
+
+//https://www.youtube.com/watch?v=msnTtrx2C4s

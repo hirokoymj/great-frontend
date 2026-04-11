@@ -165,7 +165,6 @@ export default async function Page({
 - Hooks are just JavaScript functions
 - Only call Hooks at the top level of your component. Do not call inside a function.
 
-
 **Microservices Architecture**
 
 https://cloud.google.com/learn/what-is-microservices-architecture?hl=en
