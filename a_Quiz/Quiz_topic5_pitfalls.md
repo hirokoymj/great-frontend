@@ -240,25 +240,16 @@ function App() {
 ### Answer
 
 - The key is timing — useEffect runs **after** the render and paint.
+- 🙌`useEffect` is always last — after the user already sees the screen.
+- 🙌Render → useLayoutEffect → Paint → useEffect
 
 ```text
-## Initial mount:
-- count: 0
-- useEffect runs: prevCountRef.current = 0
-- Display: Current: 0, Previous: 0
+## Initial Mount:
+count=0, prevCount=0 -> Render -> Runs Effect: prevCountRef.current = 0
 
-## Click 1 (count = 1):
-- render runs -> prevCount = prevCountRef.current = 0
-- Display: Current: 1, Previous: 0
-- useEffect runs AFTER paint: prevCountRef.current = 1
+## Count==1
+The button clicked -> count=1 -> Re-render: count=1, prevCount=0 -> runs Effect: prevCountRef.current=1
 
-## Click 2 (count = 2):
-- render runs -> prevCount = prevCountRef.current = 1
-- Display: Current: 2, Previous: 1
-- useEffect runs AFTER paint: prevCountRef.curent = 2
+## Count==2
+the button clicked -> count=2 -> Re-render: count=2, prevCount=1 -> runs Effect: prevCountRef.current=2
 ```
-
-🙌
-
-- `useEffect` is always last — after the user already sees the screen.
-- Render → useLayoutEffect → Paint → useEffect
