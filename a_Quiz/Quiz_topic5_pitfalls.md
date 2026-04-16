@@ -8,14 +8,15 @@
 	- [Q3. Memory leak on unmount ⚠️](#q3-memory-leak-on-unmount-️)
 		- [Answer](#answer-2)
 	- [Q4. Missing dependency array ✅💀](#q4-missing-dependency-array-)
+		- [Answer](#answer-3)
 	- [Q5. Unnecessary dependencies ✅](#q5-unnecessary-dependencies-)
 	- [Q6. Missing setTimeout cleanup ✅](#q6-missing-settimeout-cleanup-)
 	- [Q7. exhaustive-deps ESLint rule ✅](#q7-exhaustive-deps-eslint-rule-)
 	- [Q8. Circuit breaker in useEffect ✅💀](#q8-circuit-breaker-in-useeffect-)
 	- [Q9. Async useEffect pattern ❌](#q9-async-useeffect-pattern-)
-		- [Answer](#answer-3)
-	- [Q10. useRef previous value timing ❌](#q10-useref-previous-value-timing-)
 		- [Answer](#answer-4)
+	- [Q10. useRef previous value timing ❌](#q10-useref-previous-value-timing-)
+		- [Answer](#answer-5)
 
 ## Q1. Stale closure in setInterval ⚠️
 
@@ -116,17 +117,35 @@ useEffect(() => {
 B) Missing dependency array — useEffect runs after every render, which may cause performance issues
 
 ```js
+function App() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (count > 0) {
+      console.log('count is:', count);
+    }
+  });
+
+  return <button onClick={() => setCount(count + 1)}>Increment</button>;
+}
+```
+
+### Answer
+
+```js
+// ❌ Runs after every render — wasteful
 useEffect(() => {
   if (count > 0) {
     console.log('count is:', count);
   }
 });
-```
 
-```js
+// ✅ Runs only when count changes
 useEffect(() => {
-  setCount(count + 1); // triggers re-render → effect runs again forever!
-});
+  if (count > 0) {
+    console.log('count is:', count);
+  }
+}, [count]);
 ```
 
 💀 Infinite loop -> state update → re-render → effect runs → state update...
@@ -191,6 +210,12 @@ useEffect(() => {
 
 ## Q10. useRef previous value timing ❌
 
+What is displayed as "Previous" after clicking the button twice (count = 2)?
+
+A) Previous: 0 — useRef never updates after mount
+B) Previous: 2 — useRef always matches the current value
+C) Previous: 1 — useRef stores the previous render's value ✅
+
 ```js
 function App() {
   const [count, setCount] = useState(0);
@@ -232,3 +257,8 @@ function App() {
 - Display: Current: 2, Previous: 1
 - useEffect runs AFTER paint: prevCountRef.curent = 2
 ```
+
+🙌
+
+- `useEffect` is always last — after the user already sees the screen.
+- Render → useLayoutEffect → Paint → useEffect
