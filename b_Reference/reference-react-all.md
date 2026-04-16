@@ -136,18 +136,14 @@ const computedProducts = useMemo(() => {
 
 ## useRef
 
-```js
-- ✅ useRef returns a mutable object with a single property { current }.
-- ✅ current can hold any value (DOM element, number, object, function, etc.).
-- useRef vs useState: A ref value can survive a value during re-render, but a state value cannot.
-```
+- `const ref = useRef(v)`
+- Returns a mutable object with a single property `current`.
+- ref values can survive during re-rendering. No resetting
+- ✅ No re-render happens.
+- ✅ No affect UI.
+- useState happens re-render.
 
-| Feature      | useState                            | useRef                                                         |
-| ------------ | ----------------------------------- | -------------------------------------------------------------- |
-| Re-render    | Triggers re-render on value change. | Does not trigger re-render on value change.                    |
-| Purpose      | Manages state that affects UI.      | Returns a mutable object, store any value( DOM or non-UI data) |
-| Value Access | Accessed directly (e.g., count).    | Accessed via .current (e.g., inputRef.current)                 |
-| Mutability   | setter function                     | myRef.current                                                  |
+---
 
 ## Rendering
 
@@ -267,7 +263,7 @@ const [error, setError] = useState(null);
 useEffect(() => {}); //Effects run after *every* render.
 useEffect(() => {}, []); //Once (mount only)
 useEffect(() => {}, [a]); //Mount + when "a" changes
-// Cleanup: runs before next effect + on unmount
+// Cleanup: runs before next effect + on unmount, Use case: race condition
 useEffect(() => {
   return () => {};
 });
@@ -281,7 +277,7 @@ useEffect(() => {
   fetchData('/planets').then((result) => {});
 }, []);
 
-//=== Clean up
+//=== Clean up (race condition)
 useEffect(() => {
   const intervalId = setInterval(onTick, 1000);
   return () => clearInterval(intervalId); // ✅

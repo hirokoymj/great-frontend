@@ -51,7 +51,7 @@ import App5UseMemo from './pages/Quiz1/App5UseMemo';
 import App7UseCallback from './pages/Quiz1/App7UseCallback';
 import App9 from './pages/Quiz1/App9';
 import SimpleForm from './pages/simpleForm/SimpleForm';
-import AppCallback from './quiz-demo/AppCallback';
+import AppDemo from './quiz-demo/AppDemo';
 
 const Home = () => {
   return (
@@ -216,7 +216,7 @@ export default function App() {
         <Route path="app7-usecallback" element={<App7UseCallback />} />
         <Route path="app9" element={<App9 />} />
         <Route path="simple-form" element={<SimpleForm />} />
-        <Route path="quiz-demo" element={<AppCallback />} />
+        <Route path="quiz-demo" element={<AppDemo />} />
       </Routes>
     </BrowserRouter>
   );

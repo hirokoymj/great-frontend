@@ -6,6 +6,7 @@
   - [Q3 (Tasks) 04/07](#q3-tasks-0407)
   - [Q4 (Rendering data + JS string manipulation) 04/07 ❌](#q4-rendering-data--js-string-manipulation-0407-)
   - [Q5: Airport data](#q5-airport-data)
+  - [Q6: falsy value ❌](#q6-falsy-value-) - [Answer](#answer)
 
 <!-- create index  Ctrl+Shift+P -->
 
@@ -226,3 +227,34 @@ const Airport = () => {
   );
 };
 ```
+
+## Q6: falsy value ❌
+
+**What is rendered on screen when count is 0?**
+
+A) Nothing — the `<p>` is hidden when count is 0 ❌
+
+B) The number 0 is rendered on screen ✅
+
+C) An empty `<p>` tag is rendered
+
+```js
+function App() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      {count && <p>Count is: {count}</p>}
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+}
+```
+
+#### Answer
+
+- ❌ This is one of the classic JSX traps.
+- In JavaScript, 0 is indeed falsy — but the issue is how React renders it.
+- 👉 0 is falsy in JS, but still rendered in React
+- 👉 `{count && <p>...</p>}` → returns 0 when count = 0
+- ✅ Fix: `count > 0 && ...` OR `!!count && ...`

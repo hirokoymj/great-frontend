@@ -1,12 +1,15 @@
 # Quiz - useMemo
 
 - [Quiz - useMemo](#quiz---usememo)
-  - [Q0: Learn React - Escape Hatches](#q0-learn-react---escape-hatches)
-  - [Q1: useMemo (Products)- 04/06 ❌](#q1-usememo-products--0406-)
-    - [Answer](#answer)
-    - [Improvement](#improvement)
-  - [Q2: useMemo (Shopping Cart) - 04/06 ❌](#q2-usememo-shopping-cart---0406-)
-    - [Answer](#answer-1)
+	- [Q0: Learn React - Escape Hatches](#q0-learn-react---escape-hatches)
+	- [Q1: useMemo (Products)- 04/06 ❌](#q1-usememo-products--0406-)
+		- [Answer](#answer)
+		- [Improvement](#improvement)
+	- [Q2: useMemo (Shopping Cart) - 04/06 ❌](#q2-usememo-shopping-cart---0406-)
+		- [Answer](#answer-1)
+	- [Q3:React.memo + object props ❌](#q3reactmemo--object-props-)
+		- [Answer](#answer-2)
+	- [Q4: useMemo dependency array ❌](#q4-usememo-dependency-array-)
 
 ✅❌
 
@@ -302,4 +305,80 @@ export default function App() {
     </div>
   );
 }
+```
+
+## Q3:React.memo + object props ❌
+
+**Is there a problem with this useMemo usage?**
+
+A) No problem — items never changes so an empty dependency array is correct ❌
+B) Yes — items should be in the dependency array since it's used inside useMemo ✅
+C) Yes — useMemo cannot be used with reduce, use useCallback instead
+D) Yes — useMemo requires at least one dependency, empty array is invalid
+
+```js
+function App() {
+  const [count, setCount] = useState(0);
+
+  const items = [1, 2, 3, 4, 5]; // a new array reference each time! ⚠️
+
+  // useMemo with [] never re-runs even if items changed
+  const total = useMemo(() => {
+    console.log('calculating total...');
+    return items.reduce((acc, item) => acc + item, 0);
+  }, []);
+
+  return (
+    <div>
+      <p>Total: {total}</p>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+}
+```
+
+### Answer
+
+- items is defined inside the component, which means it's recreated as a new array reference on every render.
+
+```js
+// ✅ Option 1 — add items to deps
+const total = useMemo(() => {
+  return items.reduce((acc, item) => acc + item, 0);
+}, [items]);
+
+// ✅ Option 2 — move items outside component (truly never changes)
+const items = [1, 2, 3, 4, 5]; // defined outside, stable reference
+```
+
+- The golden rule: always list every variable used inside useMemo/useEffect in the dependency array — even if you think it won't change!
+
+## Q4: useMemo dependency array ❌
+
+**Why does Child re-render every time "Increment" is clicked, despite using React.memo?**
+
+A) React.memo doesn't work with object props ❌
+B) style is a new object reference on every render, so React.memo's shallow comparison sees it as changed ✅
+C) React.memo only prevents re-renders when no props are passed
+D) The color property inside style changes on every render
+
+```js
+function Parent() {
+  const [count, setCount] = useState(0);
+
+  const style = { color: 'red' }; // new reference each time! ⚠️
+
+  return (
+    <>
+      <Child style={style} />
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </>
+  );
+}
+
+const Child = React.memo(({ style }) => {
+  console.log('Child rendered');
+  return <p style={style}>Hello</p>;
+});
 ```

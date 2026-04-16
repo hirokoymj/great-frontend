@@ -45,6 +45,10 @@ return () => clearInterval(intervalId); //✅
 
 - [Challenge 4 of 4: Fix fetching inside an Effect](https://react.dev/learn/synchronizing-with-effects#fix-fetching-inside-an-effect)
 
+**📋 Requirements**
+
+- Start by selecting “Alice”. Then select “Bob” and then immediately after that select “Taylor”. If you do this fast enough, you will notice that bug: Taylor is selected, but the paragraph below says “This is Bob’s bio.”
+
 ```js
 import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
@@ -54,10 +58,16 @@ export default function Page() {
   const [bio, setBio] = useState(null);
 
   useEffect(() => {
+    let ignore = false;
     setBio(null);
-    fetchBio(person).then((result) => {
-      setBio(result);
-    });
+
+      fetchBio(person).then((result) => {
+            if (!ignore) setBio(result);
+      });
+    }
+    return () => {
+      ignore = true; // clean-up function calls every time before Effect call again.
+    };
   }, [person]);
 
   return (
