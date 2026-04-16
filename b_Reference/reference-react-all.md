@@ -304,3 +304,9 @@ const {user, setUser} = useContext(UserContext);
 <p>You logged in as {user.name}.</p>
 onClick={() => setUser({ name: 'Advika' }) }
 ```
+
+## Reac.memo
+
+- React.memo uses **shallow comparison** to check if each props reference is the same as the previous render. If all props are unchanged, the re-render is skipped. If any props has a new reference the component re-renders.
+
+- useMemo/useCallback -> stabilize their references

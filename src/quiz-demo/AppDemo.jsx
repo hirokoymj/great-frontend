@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function AppDemo() {
   const [count, setCount] = useState(0);
 
-  return (
-    <div>
-      {count > 0 && <p>Count is: {count}</p>}
-      <button onClick={() => setCount(count + 1)}>Increment</button>
-    </div>
-  );
+  useEffect(() => {
+    const timer = setInterval(() => {
+      console.log(count);
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []); //runs onmount only
+
+  return <button onClick={() => setCount(count + 1)}>{count}</button>;
 }
