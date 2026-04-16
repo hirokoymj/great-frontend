@@ -165,8 +165,7 @@ useEffect(() => {
 
 ## Q8. Circuit breaker in useEffect ✅💀
 
-- count = 6 → effect runs → count > 5 is true → setCount(0)
-- count = 0 → effect runs → count > 5 is false → nothing happens ✅ stops here!
+- count = 6 → effect runs → count > 5 is true → setCount(0) -> count = 0 → effect runs → count > 5 is false → nothing happens ✅ stops here!
 - with the same condition?" If yes → infinite loop. If no → safe! 🎯
 
 ```js
