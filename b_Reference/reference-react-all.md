@@ -1,17 +1,18 @@
 # React master reference
 
 - [React master reference](#react-master-reference)
-  - [useState](#usestate)
-  - [useState (array)](#usestate-array)
-  - [useMemo](#usememo)
-  - [useRef](#useref)
-  - [Rendering](#rendering)
-  - [useCallback + memo](#usecallback--memo)
-  - [useActionState (React 19)](#useactionstate-react-19)
-  - [RESTful](#restful)
-  - [Propagation](#propagation)
-  - [useEffect](#useeffect)
-  - [useContext](#usecontext)
+	- [useState](#usestate)
+	- [useState (array)](#usestate-array)
+	- [useMemo](#usememo)
+	- [useRef](#useref)
+	- [Rendering](#rendering)
+	- [useCallback + memo](#usecallback--memo)
+	- [useActionState (React 19)](#useactionstate-react-19)
+	- [RESTful](#restful)
+	- [Propagation](#propagation)
+	- [useEffect](#useeffect)
+	- [useContext](#usecontext)
+	- [Reac.memo](#reacmemo)
 
 <!-- create index  cmd+Shift+P -->
 
@@ -308,5 +309,13 @@ onClick={() => setUser({ name: 'Advika' }) }
 ## Reac.memo
 
 - React.memo uses **shallow comparison** to check if each props reference is the same as the previous render. If all props are unchanged, the re-render is skipped. If any props has a new reference the component re-renders.
+- **useMemo/useCallback** -> stabilize their references
 
-- useMemo/useCallback -> stabilize their references
+```js
+const App = () => {
+  // new reference each time! ⚠️
+  const style = { color: 'red' };
+  // Same reference across renders unless deps change
+  const style = useMemo(() => ({ color: 'red' }), []);
+};
+```
