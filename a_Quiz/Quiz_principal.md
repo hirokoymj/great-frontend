@@ -24,7 +24,7 @@ export default function Accordion() {
         aaa
       </Panel>
       <Panel
-        title="Etymology"
+        title="Profile"
         isActive={activeIndex === 1}
         onShow={() => setActiveIndex(1)}>
         bb
