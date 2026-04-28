@@ -22,6 +22,15 @@ React ships a nearly empty HTML file + a JavaScript bundle. When a user accesses
 
 The Virtual DOM is a lightweight, in-memory copy of the real DOM that React uses to calculate what changed — the real DOM is the actual HTML elements the browser renders on screen.
 
+|                    | CSR              | SSR                  | SSG                 |
+| ------------------ | ---------------- | -------------------- | ------------------- |
+| **HTML built**     | In browser       | On each request      | At build time       |
+| **SEO**            | ❌ Poor          | ✅ Great             | ✅ Great            |
+| **Initial load**   | Slow             | Fast                 | Fastest             |
+| **Data freshness** | Always fresh     | Always fresh         | Stale until rebuild |
+| **Server cost**    | Low              | High                 | Near zero           |
+| **Best for**       | Dashboards, SPAs | Dynamic public pages | Static content      |
+
 ---
 
 ### SSR — Server-Side Rendering (getServerSideProps)

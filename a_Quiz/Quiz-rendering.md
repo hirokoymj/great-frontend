@@ -7,6 +7,9 @@
   - [Q4 (Rendering data + JS string manipulation) 04/07 ❌](#q4-rendering-data--js-string-manipulation-0407-)
   - [Q5: Airport data](#q5-airport-data)
   - [Q6: falsy value ❌](#q6-falsy-value-) - [Answer](#answer)
+  - [Q7 Ternary vs if condition](#q7-ternary-vs-if-condition) - [Answer](#answer-1)
+    - [Q8 - Prop management](#q8---prop-management)
+    - [Virtual DOM](#virtual-dom)
 
 <!-- create index  Ctrl+Shift+P -->
 
@@ -258,3 +261,92 @@ function App() {
 - 👉 0 is falsy in JS, but still rendered in React
 - 👉 `{count && <p>...</p>}` → returns 0 when count = 0
 - ✅ Fix: `count > 0 && ...` OR `!!count && ...`
+
+## Q7 Ternary vs if condition
+
+```js
+const UserStatus = ({ isLoggedIn }) => {
+  return <div></div>;
+};
+
+//<p>Welcome back!</p>
+// <p>Please log in.</p>
+```
+
+#### Answer
+
+```js
+//Ternary - works inside JSX ✅ because it returns a value.
+export default function UserStatus({ isLoggedIn }) {
+  return (
+    <div>
+      {isLoggedIn ? <p>Welcome back!</p> : <p>Please log in.</p>}
+    </div>
+  );
+}
+
+// IF condition - must live outside JSX it doesn't return anything
+export default function UserStatus({ isLoggedIn }) {
+  // if statement must be OUTSIDE the return
+  let message;
+  if (isLoggedIn) {
+    message = <p>Welcome back!</p>;
+  } else {
+    message = <p>Please log in.</p>;
+  }
+
+  return (
+    <div>
+      {message}
+    </div>
+  );
+}
+```
+
+### Q8 - Prop management
+
+- Props drilling - When data has to be passed through a deeply nested child — that's called props drilling. Context API and Redux both solve this.
+- Redux is a simple global JavaScript object.
+- createContext, value, useContext, useState
+
+      ```js
+      const count = useSelector((state) => state.counter.value); // read
+      const dispatch = useDispatch();
+      ```
+
+- useCallback + React.memo ✅
+- useCallback returns a stable function reference (instead of a new function reference) on every render.
+-
+
+```js
+jsx; // Parent — useCallback prevents new function reference on every render
+const handleClick = useCallback(() => {
+  console.log('clicked');
+}, []);
+
+// Child — React.memo skips re-render if props didn't change
+const Child = React.memo(({ onClick }) => {
+  return <button onClick={onClick}>Click</button>;
+});
+```
+
+Without useCallback, even React.memo won't help — because a new function reference is created on every Parent render, making the prop always look "changed" to React.memo.
+
+- Prop drilling
+
+- Context API - a child component can receive data directly from Context (useContext hook) instead of passing data from Parent component. It is useful in the nested component structure.
+
+- Redux. - A redux store is a global JavaScript object, and a child component can access directly using useSelector() hook.
+- Memory (Caching) - useCallback + React.memo - When an event hander has to pass down a child component from Parent, we should consider to use useCallback + React.memo - because useCallback returns a stable function reference, and it can skip unnecessary render when re-render happens.
+
+### Virtual DOM
+
+- Simple rule: React owns the Virtual DOM, the browser owns the real DOM.
+
+- React ships a nearly empty HTML file + a JavaScript bundle. When a user accesses the site, the browser downloads the JS and React mounts the app using createRoot(). React then builds a Virtual DOM — when state changes, React compares old vs. new and only updates the parts of the real DOM that actually changed.
+
+- The Virtual DOM is a lightweight, in-memory copy of the real DOM that React uses to calculate what changed — the real DOM is the actual HTML elements the browser renders on screen.
+
+React generates the Virtual DOM and compare old and new when state change, and then . Virtual DOM is a lightweight, in-memory copy of the real DOM that React generate using createRoot() and React update only difference
+
+The browser only knows about the real DOM. React keeps its own lightweight copy (Virtual DOM) in memory (JavaScript object), compares old vs. new when state changes, and then tells the browser exactly which real DOM nodes to update.
