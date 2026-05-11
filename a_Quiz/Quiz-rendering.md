@@ -1,15 +1,19 @@
 # Quiz - Rendering
 
 - [Quiz - Rendering](#quiz---rendering)
-  - [Q1: (Products) 04/07](#q1-products-0407)
-  - [Q2 (Products) 04/07](#q2-products-0407)
-  - [Q3 (Tasks) 04/07](#q3-tasks-0407)
-  - [Q4 (Rendering data + JS string manipulation) 04/07 ❌](#q4-rendering-data--js-string-manipulation-0407-)
+  - [Q1: Products - 04/07](#q1-products---0407)
+  - [Q2: Products - 04/07](#q2-products---0407)
+  - [Q3: Tasks - 04/07](#q3-tasks---0407)
+  - [Q4: Rendering Image List ❌❌](#q4-rendering-image-list-)
+    - [Answer](#answer)
   - [Q5: Airport data](#q5-airport-data)
-  - [Q6: falsy value ❌](#q6-falsy-value-) - [Answer](#answer)
-  - [Q7 Ternary vs if condition](#q7-ternary-vs-if-condition) - [Answer](#answer-1)
-    - [Q8 - Prop management](#q8---prop-management)
-    - [Virtual DOM](#virtual-dom)
+    - [Answer](#answer-1)
+  - [Q6: falsy value ❌](#q6-falsy-value-)
+    - [Answer](#answer-2)
+  - [Q7: Ternary vs if condition](#q7-ternary-vs-if-condition)
+    - [Answer](#answer-3)
+  - [Q8: Prop management](#q8-prop-management)
+  - [Virtual DOM](#virtual-dom)
 
 <!-- create index  Ctrl+Shift+P -->
 
@@ -24,9 +28,7 @@ const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
 console.log(animals.slice(0, -1));
 ```
 
-✅❌
-
-## Q1: (Products) 04/07
+## Q1: Products - 04/07
 
 ```js
 import React from 'react';
@@ -54,7 +56,7 @@ Notebook - $5 - Stationery;
 
 ---
 
-## Q2 (Products) 04/07
+## Q2: Products - 04/07
 
 - green → In Stock
 - red → Out of Stock
@@ -82,7 +84,7 @@ export default function App() {
 }
 ```
 
-## Q3 (Tasks) 04/07
+## Q3: Tasks - 04/07
 
 **📋 Requirements**
 
@@ -118,8 +120,9 @@ export default function App() {
 }
 ```
 
-## Q4 (Rendering data + JS string manipulation) 04/07 ❌
+## Q4: Rendering Image List ❌❌
 
+- 04/07, 05/11
 - Output
 
 ```js
@@ -146,6 +149,37 @@ export default function App() {
         - extract file name from url
         - render file name
       */}
+    </div>
+  );
+}
+```
+
+### Answer
+
+```js
+export default function App() {
+  const displayImage = () => {
+    if (data.length === 0) {
+      return <p>No data</p>;
+    }
+    return (
+      <ul style={{ textAlign: 'left' }}>
+        {data.map(({ id, url }) => {
+          const filename = url.split('/').pop(); // !!IMPORTANT
+          const [name, ext] = filename.split('.'); //!! IMPORTANT
+          return (
+            <li key={id}>
+              {name} ({ext})
+            </li>
+          );
+        })}
+      </ul>
+    );
+  };
+  return (
+    <div style={{ fontFamily: 'Arial', padding: '20px' }}>
+      <h1>Image List</h1>
+      {displayImage()}
     </div>
   );
 }
@@ -212,6 +246,8 @@ const data = [
 ];
 ```
 
+### Answer
+
 ```js
 const Airport = () => {
   const [items] = useState(data);
@@ -235,11 +271,9 @@ const Airport = () => {
 
 **What is rendered on screen when count is 0?**
 
-A) Nothing — the `<p>` is hidden when count is 0 ❌
-
-B) The number 0 is rendered on screen ✅
-
-C) An empty `<p>` tag is rendered
+- A) Nothing — the `<p>` is hidden when count is 0 ❌
+- B) The number 0 is rendered on screen ✅
+- C) An empty `<p>` tag is rendered
 
 ```js
 function App() {
@@ -254,7 +288,7 @@ function App() {
 }
 ```
 
-#### Answer
+### Answer
 
 - ❌ This is one of the classic JSX traps.
 - In JavaScript, 0 is indeed falsy — but the issue is how React renders it.
@@ -262,7 +296,7 @@ function App() {
 - 👉 `{count && <p>...</p>}` → returns 0 when count = 0
 - ✅ Fix: `count > 0 && ...` OR `!!count && ...`
 
-## Q7 Ternary vs if condition
+## Q7: Ternary vs if condition
 
 ```js
 const UserStatus = ({ isLoggedIn }) => {
@@ -273,7 +307,7 @@ const UserStatus = ({ isLoggedIn }) => {
 // <p>Please log in.</p>
 ```
 
-#### Answer
+### Answer
 
 ```js
 //Ternary - works inside JSX ✅ because it returns a value.
@@ -303,7 +337,7 @@ export default function UserStatus({ isLoggedIn }) {
 }
 ```
 
-### Q8 - Prop management
+## Q8: Prop management
 
 - Props drilling - When data has to be passed through a deeply nested child — that's called props drilling. Context API and Redux both solve this.
 - Redux is a simple global JavaScript object.
@@ -316,7 +350,6 @@ export default function UserStatus({ isLoggedIn }) {
 
 - useCallback + React.memo ✅
 - useCallback returns a stable function reference (instead of a new function reference) on every render.
--
 
 ```js
 jsx; // Parent — useCallback prevents new function reference on every render
@@ -339,7 +372,7 @@ Without useCallback, even React.memo won't help — because a new function refer
 - Redux. - A redux store is a global JavaScript object, and a child component can access directly using useSelector() hook.
 - Memory (Caching) - useCallback + React.memo - When an event hander has to pass down a child component from Parent, we should consider to use useCallback + React.memo - because useCallback returns a stable function reference, and it can skip unnecessary render when re-render happens.
 
-### Virtual DOM
+## Virtual DOM
 
 - Simple rule: React owns the Virtual DOM, the browser owns the real DOM.
 

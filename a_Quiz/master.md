@@ -1,9 +1,13 @@
+# React.js application Architecture
+
 ### 1. State Management
 
-- Lifting state up - Parent manage state.
-- Inverse data flow — Child updates Parent's state via a callback prop
-- Parent name convention - xxxManager or xxxLayout
+- Lifting state up - Parent manages state.
+- Inverse data flow — Child updates Parent's state via a callback props.
+- Parent name convention - xxxManager or xxxLayout. [CategoryLayout.tsx](./src/layouts/CategoryLayout.tsx)
 - Custom Hooks - complex logic is moved to the outside of Parent componet - e.g. submitForm)
+  - [useCategoryForm.ts](./src/hooks/useCategoryForm.ts)
+  - [CategoryForm.tsx](./src/pages/category/CategoryForm.tsx)
 
 ### 2. Props Management
 
@@ -45,7 +49,7 @@ useEffect(() => {}, [])
 
 - React Hook Form + Yup (schema-base validation) + MUI
 
-### Sample
+#### Sample
 
 ```js
 import React, { lazy, Suspense } from 'react';
@@ -62,12 +66,8 @@ import { WeatherLayout } from './layouts/WeatherLayout';
 
 // ✅ Pages become lazy — only loads when user navigates there
 const WeatherView = lazy(() => import('./pages/weather/WeatherView'));
-const CategoryEditView = lazy(
-  () => import('./pages/category/CategoryEditView'),
-);
-const SubCategoryEditView = lazy(
-  () => import('./pages/subCategory/SubCategoryEditView'),
-);
+const CategoryEditView = lazy(() => import('./pages/category/CategoryEditView'));
+const SubCategoryEditView = lazy(() => import('./pages/subCategory/SubCategoryEditView'));
 const TopicEditView = lazy(() => import('./pages/topic/TopicEditView'));
 const TechView = lazy(() => import('./pages/tech/TechView'));
 const LoginView = lazy(() => import('./pages/auth/LoginView'));
@@ -77,13 +77,9 @@ const NotFound = lazy(() => import('./pages/base/NotFound'));
 // ✅ AI pages — heavy components, perfect for lazy loading
 const SummaryPage = lazy(() => import('./pages/ai-summary/SummaryPage'));
 const ImageEditPage = lazy(() => import('./pages/ai-image-edit/ImageEditPage'));
-const ImageGenPage = lazy(
-  () => import('./pages/ai-image-generator/ImageGenPage'),
-);
+const ImageGenPage = lazy(() => import('./pages/ai-image-generator/ImageGenPage'));
 const RecipePage = lazy(() => import('./pages/ai-recipe/RecipePage'));
-const WeatherChatPage = lazy(
-  () => import('./pages/ai-weather/WeatherChatPage'),
-);
+const WeatherChatPage = lazy(() => import('./pages/ai-weather/WeatherChatPage'));
 const TextGenPage = lazy(() => import('./pages/ai-text-generator/TextGenPage'));
 const FileChatPage = lazy(() => import('./pages/ai-file-chat/FileChatPage'));
 
@@ -115,16 +111,10 @@ export default function App() {
                 <Route path=":categoryId" element={<CategoryEditView />} />
               </Route>
               <Route path="subCategory" element={<SubCategoryLayout />}>
-                <Route
-                  path=":subCategoryId"
-                  element={<SubCategoryEditView />}
-                />
+                <Route path=":subCategoryId" element={<SubCategoryEditView />} />
               </Route>
               <Route path="topic" element={<TopicLayout />}>
-                <Route
-                  path=":topicId/:categoryId"
-                  element={<TopicEditView />}
-                />
+                <Route path=":topicId/:categoryId" element={<TopicEditView />} />
               </Route>
               <Route path="login" element={<LoginView />} />
               <Route path="signup" element={<SignupView />} />
