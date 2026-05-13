@@ -5,9 +5,8 @@
     - [Answer - 1](#answer---1)
     - [Answer (using .then method)](#answer-using-then-method)
     - [Improvement (04/09) ❌](#improvement-0409-)
-  - [Q2: Posts API - mm/dd](#q2-posts-api---mmdd)
+  - [Q2: Posts API - 05/12](#q2-posts-api---0512)
     - [Answer](#answer)
-    - [Improvement (draft)](#improvement-draft)
 
 <!-- create index  cmd+Shift+P -->
 
@@ -280,36 +279,29 @@ export default function App() {
 
 ---
 
-## Q2: Posts API - mm/dd
+## Q2: Posts API - 05/12
 
 **📋 Requirements**
 
-- https://jsonplaceholder.typicode.com/posts
-
-1. Fetch Data
-   - Fetch posts when the component mounts.
-   - Handle loading and error states.
-
+1. Fetch Data - https://jsonplaceholder.typicode.com/posts
 2. Dropdown (Form)
-   - Create a dropdown to filter posts by userId.
-   - Default option: “All Users”
-
-3. Display Data
-   - Post title
-   - Post body
-   - User ID
-
-**⭐ Bonus (Optional)**
-
-- Sort posts alphabetically by title
-- Limit display to first 10 results
-- Extract the dropdown into a reusable component
+3. Mock data
 
 ```js
-// App.jsx
+const mockPosts = [
+  { id: 1, userId: 1, title: 'Post one' },
+  { id: 2, userId: 1, title: 'Post two' },
+  { id: 3, userId: 2, title: 'Post three' },
+  { id: 4, userId: 2, title: 'Post four' },
+];
+```
+
+**Template**
+
+```js
 import { useEffect, useState } from 'react';
 
-export default function App() {
+export default function PostList() {
   const [posts, setPosts] = useState([]);
   const [selectedUser, setSelectedUser] = useState('all');
   const [loading, setLoading] = useState(true);
@@ -329,17 +321,14 @@ export default function App() {
     <div style={{ padding: '1rem' }}>
       <h2>Post List</h2>
 
-      {/* Dropdown */}
       <select value={selectedUser} onChange={handleUserChange}>
         <option value="all">All Users</option>
         {/* TODO: render userId options */}
       </select>
 
-      {/* Loading / Error */}
       {loading && <p>Loading...</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
-      {/* Post List */}
       <ul>{/* TODO: render posts */}</ul>
     </div>
   );
@@ -348,23 +337,71 @@ export default function App() {
 
 ### Answer
 
-✅ Final Corrected Snippets (Only What Matters)
-
 ```js
-<select value={selectedUser} onChange={handleUserChange}>
-  <option value="all">All Users</option>
-  {userIdList.map((userId) => (
-    <option key={userId} value={userId}>
-      {userId}
-    </option>
-  ))}
-</select>;
+import { useEffect, useState } from 'react';
 
-//Filter
-const filtered =
-  selectedUser === 'all'
-    ? posts
-    : posts.filter((d) => d.userId === Number(selectedUser));
+export default function PostList() {
+  const [posts, setPosts] = useState([]);
+  const [selectedUser, setSelectedUser] = useState('all');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const getPosts = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await fetch(
+          'https://jsonplaceholder.typicode.com/posts',
+        );
+        if (!response.ok) throw new Error('internal error');
+        const data = await response.json();
+        setPosts(data);
+      } catch (error) {
+        console.log(error.message);
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    getPosts();
+  }, []); //onmount only
+
+  const handleUserChange = (e) => {
+    setSelectedUser(e.target.value);
+  };
+
+  const filtered =
+    selectedUser === 'all'
+      ? posts
+      : posts.filter((d) => d.userId === Number(selectedUser));
+
+  return (
+    <div style={{ padding: '1rem' }}>
+      <h2>Post List</h2>
+
+      <select value={selectedUser} onChange={handleUserChange}>
+        <option value="all">All Users</option>
+        {[...new Set(posts.map((p) => p.userId))].map((userId) => (
+          <option value={userId} key={userId}>
+            {userId}
+          </option>
+        ))}
+      </select>
+
+      {/* Loading / Error */}
+      {loading && <p>Loading...</p>}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+
+      {/* Post List */}
+      <ul>
+        {filtered.map(({ id, userId, title }) => (
+          <ul key={`${id}-${userId}`} style={{ textAlign: 'left' }}>
+            {userId}, {id}, {title}
+          </ul>
+        ))}
+      </ul>
+    </div>
+  );
+}
 ```
-
-### Improvement (draft)
