@@ -1,11 +1,7 @@
 # Quiz - Principal
 
-Where does state live? → Single Source of Truth
-How do children update it? → Inverse Data Flow
-
 ## Q0: Pattern
 
-- both
 - Where does state live? → Single Source of Truth
 - How do children update it? → Inverse Data Flow
 
@@ -118,3 +114,8 @@ function Child({ onIncrement }) {
 #### Answer
 
 In this code, the state was never in Child to begin with — count lives in Parent from the start. Child simply receives onIncrement as a prop and calls it to update the Parent's state.
+
+## Q3: - Where does state live? How do children update it?
+
+- Where does state live? → Single Source of Truth
+- How do children update it? → Inverse Data Flow
