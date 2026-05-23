@@ -1,35 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function ProfileFetch() {
-  const [user, setUser] = useState(null);
+  const [users, setUsers] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/profile') // pretend endpoint
-      .then((res) => {
-        const contentType = res.headers.get('content-type');
-
-        if (!res.ok) {
-          throw new Error(`HTTP error: ${res.status}`);
+    fetch('/api/profile', {
+      headers: {
+        Accept: 'application/json',
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            `Failed to load profile (${response.status}). Please try again later.`,
+          );
         }
-
-        if (!contentType || !contentType.includes('application/json')) {
-          throw new Error('Response is not JSON (API endpoint missing)');
-        }
-        return res.json();
+        return response.json();
       })
       .then((data) => {
-        setUser(data);
-        setLoading(false);
+        setUsers(data);
       })
       .catch((err) => {
-        setError(err); // ✅ store error in state
+        setError(err);
+      })
+      .finally(() => {
         setLoading(false);
       });
   }, []);
 
-  // 🔥 THROW DURING RENDER
+  // store error in state, then throw during render so ErrorBoundary can catch it
   if (error) {
     throw error;
   }
@@ -41,8 +42,11 @@ function ProfileFetch() {
   return (
     <div>
       <h1>Profile</h1>
-      <p>Name: {user.name}</p>
-      <p>Email: {user.email}</p>
+      {users.map(({ id, name, email }) => (
+        <li key={id}>
+          {name}, {email}
+        </li>
+      ))}
     </div>
   );
 }

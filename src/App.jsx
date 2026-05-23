@@ -1,4 +1,6 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import React, { lazy, Suspense } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ErrorBoundary from './pages/Lazy/ErrorBoundary';
 
 import LikeBtn from './pages/LikeButton/LikeBtn';
 import ContactForm1 from './pages/ContactForm1/ContactForm1';
@@ -41,7 +43,8 @@ import UserProfile from './pages/Challenge/object-state/UserProfile';
 import UserProfile2 from './pages/Challenge/object-state/UserProfile2';
 import UserProfileReducer from './pages/Challenge/object-state/UserProfileReducer';
 //import ProductListCached from './pages/Challenge/useCallback-useMemo/ProductListCached';
-import ProfilePage from './pages/Profile/ProfilePage';
+// lazy-loaded: bundle is split — code loads only when route is visited
+const ProfilePage = lazy(() => import('./pages/Profile/ProfilePage'));
 import LazyApp from './pages/Lazy/LazyApp';
 import SkillForm from './pages/Challenge/form-handling/SkillForm';
 import ProductList3 from './pages/Challenge/memo-call/ProductList3';
@@ -51,173 +54,78 @@ import App5UseMemo from './pages/Quiz1/App5UseMemo';
 import App7UseCallback from './pages/Quiz1/App7UseCallback';
 import App9 from './pages/Quiz1/App9';
 import SimpleForm from './pages/simpleForm/SimpleForm';
-import AppDemo from './quiz-demo/AppDemo';
+import Home from './pages/Home/Home';
 
-const Home = () => {
-  return (
-    <div>
-      <p style={{ fontWeight: 'bold' }}>Coding Practice/QUiz</p>
-      <ul>
-        <li>
-          <Link to="/edit-item-demo">
-            React Quiz: Edit Item (Array of Objects)
-          </Link>
-        </li>
-        <li>
-          <Link to="/airport">Airport Board</Link>
-        </li>
-        <li>
-          <Link to="/game-profile">Game Profile</Link>
-        </li>
-        <li>
-          <Link to="/user-list">User list</Link>
-        </li>
-        <li>
-          <Link to="/quiz-3">MyTodoList</Link>
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <Link to="/checkbox-demo">checkbox demo</Link>
-        </li>
-        <li>
-          <Link to="/test1">Like Button</Link>
-        </li>
-        <li>
-          {' '}
-          <Link to="/contact-form-1">Contact Form 1</Link>
-        </li>
-        <li>
-          {' '}
-          <Link to="/test4">Contact Form 2</Link>
-        </li>
-        <li>
-          {' '}
-          <Link to="/radio-demo">RadioGroupExample</Link>
-        </li>
-        <li>
-          <Link to="/test12">TodoList</Link>
-        </li>
-        <li>
-          <Link to="/test11">User View</Link>
-        </li>
-      </ul>
-      <h2>Managing State</h2>
-      <p style={{ fontWeight: 'bold' }}>Reacting</p>
-      <ul>
-        <li>
-          <Link to="/picture">Picture (add/remove css)</Link>
-        </li>
-        <li>
-          <Link to="/edit-profile">Edit Profile</Link>
-        </li>
-      </ul>
-      <p style={{ fontWeight: 'bold' }}>Choosing state</p>
-      <ul>
-        <li>
-          <Link to="/clock-demo">(C1) Clock</Link>
-        </li>
-        <li>
-          <Link to="/packing-list">(C2) Generating checkboxes</Link>
-        </li>
-        <li>
-          <Link to="/multi-selection">(C4) Multi selection</Link>
-        </li>
-        <li>
-          <Link to="/menu">(Q1) Menu</Link>
-        </li>
-        <li>
-          <Link to="/checkbox-demo">(Q2) Multi checkboxes</Link>
-        </li>
-      </ul>
-      <p style={{ fontWeight: 'bold' }}>Sharing state</p>
-      <ul>
-        <li>
-          <Link to="/synced-input">
-            Synced Input (lifting a state up to a parent comp.)
-          </Link>
-        </li>
-        <li>
-          <Link to="/accordion">Accordion (ex1)</Link>
-        </li>
-        <li>
-          <Link to="/filterable-list">Filterable List</Link>
-        </li>
-      </ul>
-      <p style={{ fontWeight: 'bold' }}>Reducer</p>
-      <ul>
-        <li>
-          <Link to="/reducer-demo">Reducer</Link>
-        </li>
-      </ul>
-      <p style={{ fontWeight: 'bold' }}>Context</p>
-      <ul>
-        <li>
-          <Link to="/image-context-demo">Image Context demo</Link>
-        </li>
-        <li>
-          <Link to="/user-context-demo">User Context demo</Link>
-        </li>
-      </ul>
-    </div>
-  );
-};
+// Wraps a lazy route: ErrorBoundary catches load failures, Suspense shows loading state
+const SuspenseRoute = ({ children }) => (
+  <ErrorBoundary>
+    <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
+  </ErrorBoundary>
+);
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="test1" element={<LikeBtn />} />
-        <Route path="contact-form-1" element={<ContactForm1 />} />
-        <Route path="test4" element={<ContactForm2 />} />
-        <Route path="radio-demo" element={<RadioGroupExample />} />
-        <Route path="test5" element={<Tabs />} />
-        <Route path="test6" element={<ProgresBar />} />
-        <Route path="test7" element={<MorgageCalculator />} />
-        <Route path="test8" element={<Posts />} />
-        <Route path="test9" element={<StopWatch />} />
-        <Route path="test10" element={<ToDo />} />
-        <Route path="test11" element={<UsersView />} />
-        <Route path="test12" element={<TodoList />} />
-        <Route path="packing-list" element={<PackingMyList />} />
-        <Route path="picture" element={<PicturePage />} />
-        <Route path="checkbox-demo" element={<CheckboxDemo />} />
-        <Route path="synced-input" element={<SyncedInputs />} />
-        <Route path="filterable-list" element={<FilterableList />} />
-        <Route path="reducer-demo" element={<Messenger />} />
-        <Route path="image-context-demo" element={<ImageSizeContextDemo />} />
-        <Route path="user-context-demo" element={<UserContextDemo />} />
-        <Route path="accordion" element={<Accordion />} />
-        <Route path="edit-profile" element={<EditProfile />} />
-        <Route path="clock-demo" element={<ClockDemo />} />
-        <Route path="multi-selection" element={<MailClient />} />
-        <Route path="multi-selection" element={<Menu />} />
-        <Route path="airport" element={<Airport />} />
-        <Route path="game-profile" element={<GameProfile />} />
-        <Route path="user-list" element={<UserList />} />
-        <Route path="quiz-1" element={<FootballCompetitions />} />
-        <Route path="quiz-2" element={<MyUserList />} />
-        <Route path="quiz-3" element={<MyTodoList />} />
-        <Route path="quiz-4" element={<PostList />} />
-        <Route path="quiz-5" element={<ProductList />} />
-        <Route path="quiz-6" element={<ProductList2 />} />
-        <Route path="quiz-7" element={<FormDemo />} />
-        <Route path="quiz-8" element={<UserProfile />} />
-        <Route path="quiz-9" element={<UserProfile2 />} />
-        <Route path="quiz-10" element={<UserProfileReducer />} />
-        {/* <Route path="quiz-11" element={<ProductListCached />} /> */}
-        <Route path="demo-11" element={<ProfilePage />} />
-        <Route path="demo-12" element={<LazyApp />} />
-        <Route path="demo-13" element={<SkillForm />} />
-        <Route path="demo-14" element={<ProductList3 />} />
-        <Route path="edit-item-demo" element={<EditItemDemo />} />
-        <Route path="app5-usememo" element={<App5UseMemo />} />
-        <Route path="app7-usecallback" element={<App7UseCallback />} />
-        <Route path="app9" element={<App9 />} />
-        <Route path="simple-form" element={<SimpleForm />} />
-        <Route path="quiz-demo" element={<AppDemo />} />
-      </Routes>
-    </BrowserRouter>
+    // Global boundary — catches any crash not caught by a per-route boundary
+    <ErrorBoundary>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="test1" element={<LikeBtn />} />
+          <Route path="contact-form-1" element={<ContactForm1 />} />
+          <Route path="test4" element={<ContactForm2 />} />
+          <Route path="radio-demo" element={<RadioGroupExample />} />
+          <Route path="test5" element={<Tabs />} />
+          <Route path="test6" element={<ProgresBar />} />
+          <Route path="test7" element={<MorgageCalculator />} />
+          <Route path="test8" element={<Posts />} />
+          <Route path="test9" element={<StopWatch />} />
+          <Route path="test10" element={<ToDo />} />
+          <Route path="test11" element={<UsersView />} />
+          <Route path="test12" element={<TodoList />} />
+          <Route path="packing-list" element={<PackingMyList />} />
+          <Route path="picture" element={<PicturePage />} />
+          <Route path="checkbox-demo" element={<CheckboxDemo />} />
+          <Route path="synced-input" element={<SyncedInputs />} />
+          <Route path="filterable-list" element={<FilterableList />} />
+          <Route path="reducer-demo" element={<Messenger />} />
+          <Route path="image-context-demo" element={<ImageSizeContextDemo />} />
+          <Route path="user-context-demo" element={<UserContextDemo />} />
+          <Route path="accordion" element={<Accordion />} />
+          <Route path="edit-profile" element={<EditProfile />} />
+          <Route path="clock-demo" element={<ClockDemo />} />
+          <Route path="multi-selection" element={<MailClient />} />
+          <Route path="multi-selection" element={<Menu />} />
+          <Route path="airport" element={<Airport />} />
+          <Route path="game-profile" element={<GameProfile />} />
+          <Route path="user-list" element={<UserList />} />
+          <Route path="quiz-1" element={<FootballCompetitions />} />
+          <Route path="quiz-2" element={<MyUserList />} />
+          <Route path="quiz-3" element={<MyTodoList />} />
+          <Route path="quiz-4" element={<PostList />} />
+          <Route path="quiz-5" element={<ProductList />} />
+          <Route path="quiz-6" element={<ProductList2 />} />
+          <Route path="quiz-7" element={<FormDemo />} />
+          <Route path="quiz-8" element={<UserProfile />} />
+          <Route path="quiz-9" element={<UserProfile2 />} />
+          <Route path="quiz-10" element={<UserProfileReducer />} />
+          <Route
+            path="demo-11"
+            element={
+              <SuspenseRoute>
+                <ProfilePage />
+              </SuspenseRoute>
+            }
+          />
+          <Route path="demo-12" element={<LazyApp />} />
+          <Route path="demo-13" element={<SkillForm />} />
+          <Route path="demo-14" element={<ProductList3 />} />
+          <Route path="edit-item-demo" element={<EditItemDemo />} />
+          <Route path="app5-usememo" element={<App5UseMemo />} />
+          <Route path="app7-usecallback" element={<App7UseCallback />} />
+          <Route path="app9" element={<App9 />} />
+          <Route path="simple-form" element={<SimpleForm />} />
+        </Routes>
+      </BrowserRouter>
+    </ErrorBoundary>
   );
 }
