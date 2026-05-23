@@ -87,10 +87,10 @@ const ProfilePage = lazy(() => import('./pages/Profile/ProfilePage'));
 
 ## Ultra-short summary
 
+- ErrorBoundary => catches render errors and shows fallback UI.
 - lazy() => defers component loading
 - Suspense => shows fallback UI while loading
 - lazy + Suspense ==> route-based code splitting
-- ErrorBoundary => catches render errors and shows fallback UI.
 
 ## Sample Code
 
