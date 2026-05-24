@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(xargs ls -la)"
+      "Bash(xargs ls -la)",
+      "Bash(node /Users/hiroko/Documents/LocalDocuments/works2026/great-frontend/src/pages/Node/readDir.js)"
     ]
   }
 }

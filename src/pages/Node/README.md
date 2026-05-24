@@ -1,22 +1,26 @@
 # Node.js File System (fs/promises)
 
-- https://nodejs.org/api/fs.html
-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
-
-**Summary**
+## readdir()
 
 ```js
 import { readdir, stat } from 'fs/promises';
-import path from 'path';
-
-//Read a directory
 const files = await readdir(dir);
-files.forEach((file) => console.log(file));
+```
 
-// A file path
+## stat
+
+```js
 const filePath = path.join(dir, file);
+const info = await stat(filePath);
+console.log(`Size     : ${info.size} bytes`);
+console.log(`Created At : ${info.birthtime}`);
+```
 
-//Print a file info - async/await with Promise.all
+## Promise.all
+
+- Promise.all() is a static method used to execute multiple asynchronous operations concurrently and wait for all of them to complete.
+
+```js
 await Promise.all(
   files.map(async (file) => {
     const filePath = path.join(dir, file);
@@ -28,28 +32,46 @@ await Promise.all(
 );
 ```
 
-Summary(drft)
+**Example 2**
 
 ```js
-readdir, stat from "fs/promise"
-path
-//async-await - try-catch
-files = await readdir(dir)
+const promise1 = fetch('/api/user');
+const promise2 = fetch('/api/settings');
 
-files.map((file) => console.log(file));
-
-files.map((async file) => (
-	filepath = path.join(dir, file);
-	info = await stat()
-	console.log(`${info.size}`)
-))
-const filepath = path.join(dir, file)
+Promise.all([promise1, promise2])
+  .then((results) => {
+    const [user, settings] = results;
+    console.log('Both loaded!');
+  })
+  .catch((error) => {
+    console.error('One failed:', error); // Catches the FIRST rejection
+  });
 ```
 
-#### Synchronous approach:
+**Example 3**
 
-- They are called **blocking functions** as it **waits** for each operation to complete,
+```js
+const promise1 = Promise.resolve(3);
+const promise2 = 42;
+const promise3 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 100, 'foo');
+});
 
-#### Asynchronous approach:
+Promise.all([promise1, promise2, promise3]).then((values) => {
+  console.log(values);
+});
+// Expected output: Array [3, 42, "foo"]
+```
 
-- They are called **non-blocking functions** as it never waits for each operation to complete,
+## Synchronous approach:
+
+- **blocking functions**: **waits** for each operation to complete,
+
+## Asynchronous approach:
+
+- **non-blocking functions**: it never waits for each operation to complete,
+
+## References:
+
+- https://nodejs.org/api/fs.html
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all

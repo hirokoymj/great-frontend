@@ -7,6 +7,7 @@
   - [ErrorBoundary + Async](#errorboundary--async)
 - [lazy + Suspense](#lazy--suspense)
   - [Ultra-short summary](#ultra-short-summary)
+  - [Sample Code](#sample-code)
   - [References](#references)
 
 ## Summary
@@ -90,6 +91,8 @@ const ProfilePage = lazy(() => import('./pages/Profile/ProfilePage'));
 - Suspense => shows fallback UI while loading
 - lazy + Suspense ==> route-based code splitting
 - ErrorBoundary => catches render errors and shows fallback UI.
+
+## Sample Code
 
 ## References
 

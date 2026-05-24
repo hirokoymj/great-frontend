@@ -92,6 +92,12 @@ const ProfilePage = lazy(() => import('./pages/Profile/ProfilePage'));
 - Suspense => shows fallback UI while loading
 - lazy + Suspense ==> route-based code splitting
 
+```
+<ErrorBoundary fallback=xxx>
+ <Route
+  ele=<Suspense fallback=xxx>
+```
+
 ## Sample Code
 
 - [App.jsx](./src/App.jsx)
