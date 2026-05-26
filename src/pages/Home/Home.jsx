@@ -1,14 +1,23 @@
 import { Link } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Home = () => {
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
+
   return (
-    <div>
-      <p style={{ fontWeight: 'bold' }}>Coding Quiz</p>
-      <ul>
-        <li>
-          <Link to="/demo">Demo - check a coding quiz challenge</Link>
-        </li>
-      </ul>
+    <div style={{ maxWidth: 480, margin: '60px auto', fontFamily: 'sans-serif' }}>
+      <h1>Welcome to My App</h1>
+      <p>A coding quiz and practice platform.</p>
+      {isAuthenticated ? (
+        <Link to="/dashboard">Go to Dashboard</Link>
+      ) : (
+        <div style={{ display: 'flex', gap: 12, marginTop: 24 }}>
+          <Link to="/sign-up">
+            <button>Sign Up</button>
+          </Link>
+          <button onClick={() => loginWithRedirect()}>Login</button>
+        </div>
+      )}
     </div>
   );
 };

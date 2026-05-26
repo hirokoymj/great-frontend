@@ -1,10 +1,12 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
+import { Auth0ProviderWrapper } from './providers/Auth0ProviderWrapper.jsx';
 
-//import App from './Context/App';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
-  </StrictMode>
+    <Auth0ProviderWrapper>
+      <App />
+    </Auth0ProviderWrapper>
+  </StrictMode>,
 );
