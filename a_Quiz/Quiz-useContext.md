@@ -2,11 +2,13 @@
 
 - [Quiz - useContext](#quiz---usecontext)
   - [Q0: Learn React](#q0-learn-react)
-  - [Q1: Replace prop drilling with context](#q1-replace-prop-drilling-with-context)
+  - [Q1: Replace prop drilling with context ✅(05/25)](#q1-replace-prop-drilling-with-context-0525)
     - [Hint](#hint)
     - [Answer](#answer)
   - [Q2: Update Context](#q2-update-context)
     - [Answer](#answer-1)
+
+✅❌
 
 ## Q0: Learn React
 
@@ -14,7 +16,7 @@
 - [Passing Data Deeply with Context](https://github.com/hirokoymj/great-frontend?tab=readme-ov-file#passing-data-deeply-with-context)
 - [Context](https://github.com/hirokoymj/great-frontend/blob/main/src/managing-state/Context.md)
 
-## Q1: Replace prop drilling with context
+## Q1: Replace prop drilling with context ✅(05/25)
 
 - [Challenge 1](https://react.dev/learn/passing-data-deeply-with-context#challenges)
 

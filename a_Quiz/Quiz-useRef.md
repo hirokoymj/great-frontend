@@ -6,7 +6,7 @@
 
 - [Referencing Values with Refs](https://github.com/hirokoymj/great-frontend/tree/main?tab=readme-ov-file#referencing-values-with-refs)
 
-## Q1: useRef
+## Q1: useRef ✅ (5/25)
 
 If you click "Update Ref" 3 times, then "Update State" once, what appears on screen for
 
@@ -16,7 +16,9 @@ If you click "Update Ref" 3 times, then "Update State" once, what appears on scr
 - D) Ref: 1 — only the last ref update is kept
 
 ```js
-function App() {
+import { useState, useRef } from 'react';
+
+export default function Demo() {
   const [count, setCount] = useState(0);
   const ref = useRef(0);
 
@@ -38,6 +40,14 @@ function App() {
     </>
   );
 }
+
+//1. Clicl on the Update Ref button three times:.
+// State: 0
+// Ref: 0
+
+//2. Click the Update stet button
+// State: 1
+// Ref: 3
 ```
 
 ### Description

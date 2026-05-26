@@ -1,15 +1,15 @@
 # Quiz - useMemo
 
 - [Quiz - useMemo](#quiz---usememo)
-	- [Q0: Learn React - Escape Hatches](#q0-learn-react---escape-hatches)
-	- [Q1: useMemo (Products)- 04/06 ❌](#q1-usememo-products--0406-)
-		- [Answer](#answer)
-		- [Improvement](#improvement)
-	- [Q2: useMemo (Shopping Cart) - 04/06 ❌](#q2-usememo-shopping-cart---0406-)
-		- [Answer](#answer-1)
-	- [Q3:React.memo + object props ❌](#q3reactmemo--object-props-)
-		- [Answer](#answer-2)
-	- [Q4: useMemo dependency array ❌](#q4-usememo-dependency-array-)
+  - [Q0: Learn React - Escape Hatches](#q0-learn-react---escape-hatches)
+  - [Q1: useMemo (Products)- ❌(04/06), ❌(05/25)](#q1-usememo-products--0406-0525)
+    - [Answer](#answer)
+    - [Improvement](#improvement)
+  - [Q2: useMemo (Shopping Cart) - 04/06 ❌](#q2-usememo-shopping-cart---0406-)
+    - [Answer](#answer-1)
+  - [Q3:React.memo + object props ❌](#q3reactmemo--object-props-)
+    - [Answer](#answer-2)
+  - [Q4: useMemo dependency array ❌](#q4-usememo-dependency-array-)
 
 ✅❌
 
@@ -18,7 +18,7 @@
 - [Escape Hatches](https://github.com/hirokoymj/great-frontend/tree/main?tab=readme-ov-file#escape-hatches)
 - [You Might Not Need an Effect](https://github.com/hirokoymj/great-frontend/tree/main?tab=readme-ov-file#you-might-not-need-an-effect)
 
-## Q1: useMemo (Products)- 04/06 ❌
+## Q1: useMemo (Products)- ❌(04/06), ❌(05/25)
 
 **📋 Requirements**
 

@@ -2,23 +2,9 @@
 
 - [Quiz - useCallback](#quiz---usecallback)
   - [Q0: Learn React](#q0-learn-react)
-  - [Q1: useCallback (Objects)- 04/06](#q1-usecallback-objects--0406)
+  - [Q1: useCallback (Objects)- ❌(04/06), ❌(05/25)](#q1-usecallback-objects--0406-0525)
     - [Answer](#answer)
     - [Improvement](#improvement)
-
-<!-- create index  cmd+Shift+P -->
-<!--
-## Q: State (Objects)- mm/dd
-**📋 Requirements**
-```js
-```
-### Answer
-```js
-```
-### Improvement (draft)
--->
-
-**Prompt**
 
 ```
 Pleas make a quiz for useCallback hook.  Here is the requirement.
@@ -33,7 +19,7 @@ Pleas make a quiz for useCallback hook.  Here is the requirement.
 
 - [Escape Hatches](https://github.com/hirokoymj/great-frontend/tree/main?tab=readme-ov-file#escape-hatches)
 
-## Q1: useCallback (Objects)- 04/06
+## Q1: useCallback (Objects)- ❌(04/06), ❌(05/25)
 
 **📋 Requirements**
 
@@ -205,8 +191,7 @@ const ProductItem = memo(function ProductItem({ product, onSelect }) {
 
 ### Improvement
 
-```js
+- const cachedFn = useCallback(fn, dependencies)
 - ProductItem is memoized, it can skip re-rendering when its props do not change.
 - memo can skip unnecessary re-render
 - With useCallback, ProductItem is not unnecessarily re-rendered when darkMode changes.
-```

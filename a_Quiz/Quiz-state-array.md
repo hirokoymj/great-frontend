@@ -3,13 +3,13 @@
 <!-- create index  cmd+Shift+P -->
 
 - [Quiz - State (array of object)](#quiz---state-array-of-object)
-  - [Q0: Learn React](#q0-learn-react)
-  - [Q1: State (Array of Objects)- 04/06](#q1-state-array-of-objects--0406)
-    - [Answer](#answer)
-    - [Improvement (draft)](#improvement-draft)
-  - [Q2: Edit Item (Array of Objects)- 04/06](#q2-edit-item-array-of-objects--0406)
-    - [Answer](#answer-1)
-    - [Improvement (draft)](#improvement-draft-1)
+	- [Q0: Learn React](#q0-learn-react)
+	- [Q1: State (Array of Objects) - ❌(04/06), ❌(05/25)](#q1-state-array-of-objects---0406-0525)
+		- [Answer](#answer)
+		- [Improvement (draft)](#improvement-draft)
+	- [Q2: Edit Item (Array of Objects)- 04/06](#q2-edit-item-array-of-objects--0406)
+		- [Answer](#answer-1)
+		- [Improvement (draft)](#improvement-draft-1)
 
 ✅❌
 
@@ -17,7 +17,7 @@
 
 - [Updating Arrays in State](https://github.com/hirokoymj/great-frontend?tab=readme-ov-file#updating-arrays-in-state)
 
-## Q1: State (Array of Objects)- 04/06
+## Q1: State (Array of Objects) - ❌(04/06), ❌(05/25)
 
 **📋 Requirements**
 
@@ -114,7 +114,6 @@ export default function App() {
 ### Answer
 
 ```js
-//Clean corrected version
 import { useState } from 'react';
 
 let nextId = 3;
@@ -127,28 +126,25 @@ const initialTasks = [
 export default function App() {
   const [tasks, setTasks] = useState(initialTasks);
   const [newTitle, setNewTitle] = useState('');
-
+  //✅
   function handleAddTask() {
-    if (newTitle.trim() === '') return;
-
-    const newObj = {
-      id: nextId++,
-      title: newTitle.trim(),
-      done: false,
-    };
-
-    setTasks((prev) => [...prev, newObj]);
+    if (newTitle === '') return;
+    const newTask = { id: nextId++, title: newTitle, done: false };
+    setTasks((prev) => [
+      ...prev,
+      { id: nextId + 1, title: newTitle, done: false },
+    ]);
     setNewTitle('');
   }
-
+  //❌ missing return
   function handleToggleTask(taskId) {
     setTasks((prev) =>
-      prev.map((task) =>
-        task.id === taskId ? { ...task, done: !task.done } : task,
-      ),
+      prev.map((task) => {
+        return task.id === taskId ? { ...task, done: !task.done } : task;
+      }),
     );
   }
-
+  //✅
   function handleDeleteTask(taskId) {
     setTasks((prev) => prev.filter((task) => task.id !== taskId));
   }

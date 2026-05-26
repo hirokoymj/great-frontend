@@ -3,7 +3,7 @@
 - [Quiz - useEffect](#quiz---useeffect)
   - [Q0: Learn React - Escape Hatches](#q0-learn-react---escape-hatches)
     - [Summary](#summary)
-  - [Q1 - Fetch inside Effect 1 (setBio)](#q1---fetch-inside-effect-1-setbio)
+  - [Q1 - Fetch inside Effect 1 (setBio) ❌(5/25)](#q1---fetch-inside-effect-1-setbio-525)
     - [Hint](#hint)
     - [Answer](#answer)
   - [Q2: Fetch inside Effect 2 (PlanetId and PlaceId)](#q2-fetch-inside-effect-2-planetid-and-placeid)
@@ -41,7 +41,7 @@ const intervalId = setInterval(onTick, 1000);
 return () => clearInterval(intervalId); //✅
 ```
 
-## Q1 - Fetch inside Effect 1 (setBio)
+## Q1 - Fetch inside Effect 1 (setBio) ❌(5/25)
 
 - [Challenge 4 of 4: Fix fetching inside an Effect](https://react.dev/learn/synchronizing-with-effects#fix-fetching-inside-an-effect)
 
@@ -58,16 +58,10 @@ export default function Page() {
   const [bio, setBio] = useState(null);
 
   useEffect(() => {
-    let ignore = false;
     setBio(null);
-
-      fetchBio(person).then((result) => {
-            if (!ignore) setBio(result);
-      });
-    }
-    return () => {
-      ignore = true; // clean-up function calls every time before Effect call again.
-    };
+    fetchBio(person).then((result) => {
+      setBio(result);
+    });
   }, [person]);
 
   return (
@@ -92,7 +86,8 @@ export default function Page() {
 
 ### Hint
 
-If an Effect fetches something asynchronously, it usually needs cleanup.
+- If an Effect fetches something asynchronously, it usually needs cleanup.
+- Each render’s Effect has its own ignore variable. Initially, the ignore variable is set to false. However, if an Effect gets cleaned up (such as when you select a different person), its ignore variable becomes true. So now it doesn’t matter in which order the requests complete.
 
 ### Answer
 

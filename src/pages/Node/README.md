@@ -1,5 +1,13 @@
 # Node.js File System (fs/promises)
 
+- [Node.js File System (fs/promises)](#nodejs-file-system-fspromises)
+  - [readdir()](#readdir)
+  - [stat](#stat)
+  - [Promise.all](#promiseall)
+  - [Synchronous approach:](#synchronous-approach)
+  - [Asynchronous approach:](#asynchronous-approach)
+  - [References:](#references)
+
 ## readdir()
 
 ```js

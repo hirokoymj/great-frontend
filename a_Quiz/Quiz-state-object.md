@@ -3,19 +3,19 @@
 <!-- create index  Cmd+Shift+P -->
 
 - [Quiz - State (object)](#quiz---state-object)
-  - [Q0: Learn React (master note)](#q0-learn-react-master-note)
-  - [Q11: State as snapshot](#q11-state-as-snapshot)
-    - [Answer](#answer)
-    - [Improved](#improved)
-  - [Q1: State (Objects)- 04/xx](#q1-state-objects--04xx)
-    - [Answer](#answer-1)
-    - [improvement (draft)](#improvement-draft)
-  - [Q2: Form with Checkbox + Object State](#q2-form-with-checkbox--object-state)
-    - [Answer](#answer-2)
-    - [Improvement (draft)](#improvement-draft-1)
-  - [Q2: Multiple Checkboxes (4/xx)](#q2-multiple-checkboxes-4xx)
-    - [Answer](#answer-3)
-    - [Improvement (draft)](#improvement-draft-2)
+	- [Q0: Learn React (master note)](#q0-learn-react-master-note)
+	- [Q11: State as snapshot ✅(05/25)](#q11-state-as-snapshot-0525)
+		- [Answer](#answer)
+		- [Improved](#improved)
+	- [Q1: State (Objects)- ❌(04/xx),❌(05/25)](#q1-state-objects--04xx0525)
+		- [Answer](#answer-1)
+		- [improvement (draft)](#improvement-draft)
+	- [Q2: Form with Checkbox + Object State ❌(05/25)](#q2-form-with-checkbox--object-state-0525)
+		- [Answer](#answer-2)
+		- [Improvement (draft)](#improvement-draft-1)
+	- [Q2: Multiple Checkboxes (4/xx)](#q2-multiple-checkboxes-4xx)
+		- [Answer](#answer-3)
+		- [Improvement (draft)](#improvement-draft-2)
 
 <!--
 ## Q1: State (Objects)- mm/dd
@@ -29,7 +29,7 @@
 - [Managing State](https://github.com/hirokoymj/great-frontend/tree/main?tab=readme-ov-file#managing-state)
 - [Updating Objects in State](https://github.com/hirokoymj/great-frontend/tree/main?tab=readme-ov-file#updating-objects-in-state)
 
-## Q11: State as snapshot
+## Q11: State as snapshot ✅(05/25)
 
 - [State as Snapshot](https://github.com/hirokoymj/great-frontend/blob/main/src/Interactivity/Snapshot.md)
 - you might expect that clicking the “+3” button would increment the counter three times because it calls setNumber(number + 1) three times.
@@ -81,6 +81,8 @@ export default function AppQuizDemo() {
 ```
 
 - Even though you called setNumber(number + 1) three times, in this render’s event handler number is always 0, so you set the state to 1 three times.
+- `setNumber((prev) => prev + 1)`; //Updater Function
+- `setNumber(number + 1)` - Direct Value Update
 
 ### Improved
 
@@ -102,7 +104,7 @@ onClick={() => {
 
 ---
 
-## Q1: State (Objects)- 04/xx
+## Q1: State (Objects)- ❌(04/xx),❌(05/25)
 
 **📋 Requirements**
 
@@ -300,9 +302,6 @@ export default function App() {
           />
         </label>
 
-        <br />
-        <br />
-
         <button type="button" onClick={handleReset}>
           Reset
         </button>
@@ -321,7 +320,7 @@ export default function App() {
 
 ### improvement (draft)
 
-## Q2: Form with Checkbox + Object State
+## Q2: Form with Checkbox + Object State ❌(05/25)
 
 **📋 Tasks**
 
@@ -346,14 +345,14 @@ export default function App() {
   const [form, setForm] = useState(initialForm);
 
   function handleChange(e) {
-    // TODO:
+    // TODO:❌
     // If the input is a checkbox, use e.target.checked
     // Otherwise use e.target.value
     // Update the correct property using e.target.name
   }
 
   function handleReset() {
-    // TODO:
+    // TODO:✅
     // Reset form back to initialForm
   }
 
@@ -387,8 +386,8 @@ export default function App() {
           <input
             type="email"
             name="email"
-            // TODO: value
-            // TODO: onChange
+            // TODO: value✅
+            // TODO: onChange✅
           />
         </label>
 
