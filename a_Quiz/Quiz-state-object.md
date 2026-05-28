@@ -3,19 +3,19 @@
 <!-- create index  Cmd+Shift+P -->
 
 - [Quiz - State (object)](#quiz---state-object)
-	- [Q0: Learn React (master note)](#q0-learn-react-master-note)
-	- [Q11: State as snapshot ✅(05/25)](#q11-state-as-snapshot-0525)
-		- [Answer](#answer)
-		- [Improved](#improved)
-	- [Q1: State (Objects)- ❌(04/xx),❌(05/25)](#q1-state-objects--04xx0525)
-		- [Answer](#answer-1)
-		- [improvement (draft)](#improvement-draft)
-	- [Q2: Form with Checkbox + Object State ❌(05/25)](#q2-form-with-checkbox--object-state-0525)
-		- [Answer](#answer-2)
-		- [Improvement (draft)](#improvement-draft-1)
-	- [Q2: Multiple Checkboxes (4/xx)](#q2-multiple-checkboxes-4xx)
-		- [Answer](#answer-3)
-		- [Improvement (draft)](#improvement-draft-2)
+  - [Q0: Learn React (master note)](#q0-learn-react-master-note)
+  - [Q11: State as snapshot ✅(05/25)](#q11-state-as-snapshot-0525)
+    - [Answer](#answer)
+    - [Improved](#improved)
+  - [Q1: State (Objects)- ❌(04/xx),❌(05/25)](#q1-state-objects--04xx0525)
+    - [Answer](#answer-1)
+    - [improvement (draft)](#improvement-draft)
+  - [Q2: Form Checkbox, state and validation ❌(05/25), ❌(05/28)](#q2-form-checkbox-state-and-validation-0525-0528)
+    - [Answer](#answer-2)
+    - [Improvement (draft)](#improvement-draft-1)
+  - [Q2: Multiple Checkboxes (4/xx)](#q2-multiple-checkboxes-4xx)
+    - [Answer](#answer-3)
+    - [Improvement (draft)](#improvement-draft-2)
 
 <!--
 ## Q1: State (Objects)- mm/dd
@@ -320,7 +320,7 @@ export default function App() {
 
 ### improvement (draft)
 
-## Q2: Form with Checkbox + Object State ❌(05/25)
+## Q2: Form Checkbox, state and validation ❌(05/25), ❌(05/28)
 
 **📋 Tasks**
 
@@ -342,7 +342,7 @@ const initialForm = {
 };
 
 export default function App() {
-  const [form, setForm] = useState(initialForm);
+  const [formValues, setFormValues] = useState(initialForm);
 
   function handleChange(e) {
     // TODO:❌
@@ -350,6 +350,11 @@ export default function App() {
     // Otherwise use e.target.value
     // Update the correct property using e.target.name
   }
+
+  //TODO
+  const handleBlur = (name, value) => {
+    setFieldErrors((prev) => ({ ...prev, [name]: !value }));
+  };
 
   function handleReset() {
     // TODO:✅
@@ -364,7 +369,6 @@ export default function App() {
   return (
     <div style={{ fontFamily: 'sans-serif', padding: 20, maxWidth: 500 }}>
       <h1>Registration Form</h1>
-
       <form onSubmit={handleSubmit}>
         <label>
           Name:
@@ -374,12 +378,11 @@ export default function App() {
             name="name"
             // TODO: value
             // TODO: onChange
+            //TODO: onBlur
           />
+          <p>{//ERROR }</p>
         </label>
-
         <br />
-        <br />
-
         <label>
           Email:
           <br />
@@ -388,27 +391,23 @@ export default function App() {
             name="email"
             // TODO: value✅
             // TODO: onChange✅
+            // TODO: onBlur
           />
         </label>
-
-        <br />
-        <br />
-
+        <hr />
         <label>
           <input
             type="checkbox"
             name="agreeToTerms"
             // TODO: checked
             // TODO: onChange
+            // TODO: onBlur
           />
           I agree to the terms
         </label>
-
-        <br />
-        <br />
+        <hr />
 
         <button type="submit">Submit</button>
-
         <button type="button" onClick={handleReset} style={{ marginLeft: 8 }}>
           Reset
         </button>
@@ -430,7 +429,7 @@ export default function App() {
 ### Answer
 
 ```js
-//Clean corrected version
+//Starter Boilerplate
 import { useState } from 'react';
 
 const initialForm = {
@@ -439,24 +438,46 @@ const initialForm = {
   agreeToTerms: false,
 };
 
-export default function App() {
-  const [form, setForm] = useState(initialForm);
+export default function Demo() {
+  const [formValues, setFormValues] = useState(initialForm);
+  const [fieldErrors, setFieldErrors] = useState({});
 
   function handleChange(e) {
     const { name, type, value, checked } = e.target;
-
-    setForm((prev) => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value,
-    }));
+    setFormValues((prev) => {
+      return { ...prev, [name]: type === 'checkbox' ? checked : value };
+    });
   }
 
+  //❌ empty check
+  // !value ==> if value is empty -> false -> turn on true
+  // !value ==> if value isn't empty -> true -> turn on false
+  //   const handleBlur = (name, value) => {
+  //     setFieldErrors((prev) => {
+  //       return { ...prev, [name]: !value };
+  //     });
+  //   };
+  // ❌ Email format validation
+  const handleBlur = (name, value) => {
+    let message = '';
+    if (value === '') {
+      message = `${name} field is required`;
+    } else if (name === 'email' && !value.includes('@')) {
+      message = 'Email format is incorrect';
+    }
+
+    setFieldErrors((prev) => {
+      return { ...prev, [name]: message };
+    });
+  };
+
   function handleReset() {
-    setForm(initialForm);
+    setFormValues(initialForm);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
+    if (formValues.name === '' || formValues.email === '') return;
     alert('Submitted!');
   }
 
@@ -467,49 +488,43 @@ export default function App() {
       <form onSubmit={handleSubmit}>
         <label>
           Name:
-          <br />
           <input
             type="text"
             name="name"
-            value={form.name}
+            value={formValues.name}
             onChange={handleChange}
+            onBlur={() => handleBlur('name', formValues.name)}
           />
+          {fieldErrors.name && (
+            <p style={{ color: 'red' }}>{fieldErrors.name}</p>
+          )}
         </label>
-
-        <br />
-        <br />
-
+        <hr />
         <label>
           Email:
-          <br />
           <input
             type="email"
             name="email"
-            value={form.email}
+            value={formValues.email}
             onChange={handleChange}
+            onBlur={() => handleBlur('email', formValues.email)}
           />
+          {fieldErrors.email && (
+            <p style={{ color: 'red' }}>{fieldErrors.email}</p>
+          )}
         </label>
-
-        <br />
-        <br />
-
+        <hr />
         <label>
           <input
             type="checkbox"
             name="agreeToTerms"
-            checked={form.agreeToTerms}
+            checked={formValues.agreeToTerms}
             onChange={handleChange}
           />
           I agree to the terms
         </label>
-
-        <br />
-        <br />
-
-        <button type="submit" disabled={!form.agreeToTerms}>
-          Submit
-        </button>
-
+        <hr />
+        <button type="submit">Submit</button>
         <button type="button" onClick={handleReset} style={{ marginLeft: 8 }}>
           Reset
         </button>
@@ -518,11 +533,11 @@ export default function App() {
       <hr />
 
       <h2>Preview</h2>
-      <p>Name: {form.name}</p>
-      <p>Email: {form.email}</p>
-      <p>Agreed: {form.agreeToTerms ? 'Yes' : 'No'}</p>
+      <p>Name: {formValues.name}</p>
+      <p>Email: {formValues.email}</p>
+      <p>Agreed: {String(formValues.agreeToTerms)}</p>
 
-      <pre>{JSON.stringify(form, null, 2)}</pre>
+      <pre>{JSON.stringify(formValues, null, 2)}</pre>
     </div>
   );
 }

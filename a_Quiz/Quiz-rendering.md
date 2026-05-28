@@ -1,19 +1,20 @@
 # Quiz - Rendering
 
 - [Quiz - Rendering](#quiz---rendering)
-	- [Q1: Products - 04/07](#q1-products---0407)
-	- [Q2: Products - 04/07](#q2-products---0407)
-	- [Q3: Tasks - 04/07](#q3-tasks---0407)
-	- [Q4: Rendering Image List ❌❌✅(05/25)](#q4-rendering-image-list-0525)
-		- [Answer](#answer)
-	- [Q5: Airport data](#q5-airport-data)
-		- [Answer](#answer-1)
-	- [Q6: falsy value ❌](#q6-falsy-value-)
-		- [Answer](#answer-2)
-	- [Q7: Ternary vs if condition](#q7-ternary-vs-if-condition)
-		- [Answer](#answer-3)
-	- [Q8: Prop management](#q8-prop-management)
-	- [Virtual DOM](#virtual-dom)
+  - [Q1: Products - 04/07✅, 05/27✅](#q1-products---0407-0527)
+    - [Answer✅](#answer)
+  - [Q2: Products - 04/07](#q2-products---0407)
+  - [Q3: Tasks - 04/07](#q3-tasks---0407)
+  - [Q4: Rendering Image List ❌❌✅(05/25)](#q4-rendering-image-list-0525)
+    - [Answer](#answer-1)
+  - [Q5: Airport data ✅05/28,](#q5-airport-data-0528)
+    - [Answer](#answer-2)
+  - [Q6: falsy value ❌](#q6-falsy-value-)
+    - [Answer](#answer-3)
+  - [Q7: Ternary vs if condition](#q7-ternary-vs-if-condition)
+    - [Answer](#answer-4)
+  - [Q8: Prop management](#q8-prop-management)
+  - [Virtual DOM](#virtual-dom)
 
 **improvement**
 
@@ -26,7 +27,16 @@ const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
 console.log(animals.slice(0, -1));
 ```
 
-## Q1: Products - 04/07
+❌✅
+
+## Q1: Products - 04/07✅, 05/27✅
+
+```
+//===OUTPUT
+Laptop - $1200 - Electronics;
+Chair - $150 - Furniture;
+Notebook - $5 - Stationery;
+```
 
 ```js
 import React from 'react';
@@ -46,10 +56,32 @@ export default function App() {
     </div>
   );
 }
-//===OUTPUT
-Laptop - $1200 - Electronics;
-Chair - $150 - Furniture;
-Notebook - $5 - Stationery;
+```
+
+### Answer✅
+
+```js
+import React from 'react';
+
+const products = [
+  { id: 1, name: 'Laptop', price: 1200, category: 'Electronics' },
+  { id: 2, name: 'Chair', price: 150, category: 'Furniture' },
+  { id: 3, name: 'Notebook', price: 5, category: 'Stationery' },
+];
+
+export default function Demo() {
+  return (
+    <div style={{ fontFamily: 'Arial', padding: '20px' }}>
+      <h1>Product List</h1>
+
+      {products.map(({ id, name, price, category }) => (
+        <li key={id}>
+          {name} - ${price.toFixed(2)} - {category}
+        </li>
+      ))}
+    </div>
+  );
+}
 ```
 
 ---
@@ -185,9 +217,10 @@ export default function App() {
 
 ---
 
-## Q5: Airport data
+## Q5: Airport data ✅05/28,
 
 ```js
+import { useState } from 'react';
 const data = [
   {
     time: '10:50',
@@ -242,27 +275,100 @@ const data = [
     city: 'MANCHESTER',
   },
 ];
+
+const Demo = () => {
+  const [items] = useState(data);
+
+  return (
+    <div>
+      <h1>Airport</h1>
+      <ul>{}</ul>
+    </div>
+  );
+};
 ```
 
 ### Answer
 
 ```js
-const Airport = () => {
+import { useState } from 'react';
+const data = [
+  {
+    time: '10:50',
+    city: 'MOSCOW/SVO',
+  },
+  {
+    time: '11:05',
+    city: 'EDINBURGH',
+  },
+  {
+    time: '11:05',
+    city: 'LONDON/LHR',
+  },
+  {
+    time: '11:10',
+    city: 'BUCHAREST/OTP',
+  },
+  {
+    time: '11:30',
+    city: 'KIEV/BORISPOL',
+  },
+  {
+    time: '11:35',
+    city: 'DUBLIN',
+  },
+  {
+    time: '11:45',
+    city: 'EAST MIDLANDS',
+  },
+  {
+    time: '12:15',
+    city: 'SOFIA',
+  },
+  {
+    time: '12:30',
+    city: 'LONDON/LGW',
+  },
+  {
+    time: '12:30',
+    city: 'NEWCASTLE',
+  },
+  {
+    time: '12:40',
+    city: 'ST PETERSBURG',
+  },
+  {
+    time: '12:40',
+    city: 'LONDON/LGW',
+  },
+  {
+    time: '12:45',
+    city: 'MANCHESTER',
+  },
+];
+
+const Demo = () => {
   const [items] = useState(data);
 
   return (
     <div>
       <h1>Airport</h1>
       <ul>
-        {items.map(({ time, city }) => (
-          <li key={`${time}-${city}`}>
+        {items.map(({ time, city }, index) => (
+          <li key={index}>
             {time}, {city}
           </li>
         ))}
+
+        {items.map(({ time, city }, index) => {
+          return <li key={index}>{time}</li>;
+        })}
       </ul>
     </div>
   );
 };
+
+export default Demo;
 ```
 
 ## Q6: falsy value ❌

@@ -1,18 +1,19 @@
 # Quiz - Restful API
 
 - [Quiz - Restful API](#quiz---restful-api)
-  - [Q1: Products API - mm/dd](#q1-products-api---mmdd)
+  - [Q1: Products API - ❌(05/27)](#q1-products-api---0527)
     - [Answer - 1](#answer---1)
     - [Answer (using .then method)](#answer-using-then-method)
     - [Improvement (04/09) ❌](#improvement-0409-)
-  - [Q2: Posts API - 05/12](#q2-posts-api---0512)
-    - [Answer](#answer)
+  - [Q2: Posts API - ❌05/12, ❌05/27](#q2-posts-api---0512-0527)
+    - [Answer 1](#answer-1)
+    - [Answer 2 ✅❌](#answer-2-)
 
 <!-- create index  cmd+Shift+P -->
 
 ✅❌
 
-## Q1: Products API - mm/dd
+## Q1: Products API - ❌(05/27)
 
 **📋 Requirements**
 
@@ -68,7 +69,7 @@ export default function App() {
         value={selectedCategory}
         onChange={(e) => setSelectedCategory(e.target.value)}>
         <option value="">Select a category</option>
-        {/* TODO: Render category options */}
+        {/* ❌TODO: Render category options */}
       </select>
 
       {loading && <p>Loading...</p>}
@@ -240,7 +241,7 @@ export default function App() {
         onChange={(e) => setSelectedCategory(e.target.value)}
         disabled={loading}> //❌
         <option value="">Select a category</option>
-        {categories.map((category) => ( //❌
+        {categories.map((category) => ( //❌❌
           <option key={category} value={category}>
             {category}
           </option>
@@ -268,18 +269,16 @@ export default function App() {
 
 ### Improvement (04/09) ❌
 
-- Your .then() flow is good.
-- categories are strings, not objects
-  - `categories.map(({ category }) => ...) ==> categories.map((category)=>)`
-- catch should set error state
-  - `console.log(e.message) ===> setError(e.message);`
-- disabled / toFixed spelling
-  - `price.toFix(2) ===> price.toFixed(2)`
-  - `disable ===> disabled <select ... disabled={loading}>`
+- ❌❌categories are strings, not objects
+- ❌`categories.map(({ category }) => ...) ==> categories.map((category)=>)`
+- ✅ catch should set error state
+- ✅`console.log(e.message) ===> setError(e.message);`
+- ✅ `price.toFix(2) ===> price.toFixed(2)`
+- ✅ `disable ===> disabled <select ... disabled={loading}>`
 
 ---
 
-## Q2: Posts API - 05/12
+## Q2: Posts API - ❌05/12, ❌05/27
 
 **📋 Requirements**
 
@@ -315,7 +314,7 @@ export default function PostList() {
     setSelectedUser(e.target.value);
   };
 
-  // TODO: filter posts based on selectedUser
+  // ❌TODO: filter posts based on selectedUser
 
   return (
     <div style={{ padding: '1rem' }}>
@@ -323,7 +322,7 @@ export default function PostList() {
 
       <select value={selectedUser} onChange={handleUserChange}>
         <option value="all">All Users</option>
-        {/* TODO: render userId options */}
+        {/* ❌TODO: render userId options */}
       </select>
 
       {loading && <p>Loading...</p>}
@@ -335,7 +334,7 @@ export default function PostList() {
 }
 ```
 
-### Answer
+### Answer 1
 
 ```js
 import { useEffect, useState } from 'react';
@@ -400,6 +399,87 @@ export default function PostList() {
             {userId}, {id}, {title}
           </ul>
         ))}
+      </ul>
+    </div>
+  );
+}
+```
+
+### Answer 2 ✅❌
+
+```js
+import { useEffect, useState } from 'react';
+
+// 1. Fetch Data - https://jsonplaceholder.typicode.com/posts
+// 2. Dropdown (Form)
+// 3. Mock data
+
+export default function Demo() {
+  const [posts, setPosts] = useState([]);
+  const [selectedUser, setSelectedUser] = useState('all');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    // ✅TODO: fetch posts from the API
+    setLoading(true);
+    setError(null);
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then((response) => {
+        if (!response.ok) throw new Error('failed to get posts');
+        return response.json();
+      })
+      .then((data) => {
+        setPosts(data);
+      })
+      .catch((e) => {
+        setError(e.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  const handleUserChange = (e) => {
+    setSelectedUser(e.target.value);
+  };
+
+  // ❌TODO: filter posts based on selectedUser
+  const filtered =
+    selectedUser === 'all'
+      ? posts
+      : posts.filter((post) => post.userId === Number(selectedUser));
+  // ❌UserId List
+  const userIdList = [...new Set(posts.map((post) => post.userId))];
+
+  return (
+    <div style={{ padding: '1rem' }}>
+      <h2>Post List</h2>
+
+      <select value={selectedUser} onChange={handleUserChange}>
+        <option value="all">All Users</option>
+        {
+          /* TODO: render userId options */
+          userIdList.map((userId) => (
+            <option key={userId} value={userId}>
+              {userId}
+            </option>
+          ))
+        }
+      </select>
+
+      {loading && <p>Loading...</p>}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+
+      <ul>
+        {
+          /* TODO: render posts */
+          filtered.map(({ userId, title, id }) => (
+            <li key={id}>
+              User ID: {userId}, {title}
+            </li>
+          ))
+        }
       </ul>
     </div>
   );

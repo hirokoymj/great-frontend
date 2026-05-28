@@ -3,13 +3,13 @@
 <!-- create index  cmd+Shift+P -->
 
 - [Quiz - State (array of object)](#quiz---state-array-of-object)
-	- [Q0: Learn React](#q0-learn-react)
-	- [Q1: State (Array of Objects) - ❌(04/06), ❌(05/25)](#q1-state-array-of-objects---0406-0525)
-		- [Answer](#answer)
-		- [Improvement (draft)](#improvement-draft)
-	- [Q2: Edit Item (Array of Objects)- 04/06](#q2-edit-item-array-of-objects--0406)
-		- [Answer](#answer-1)
-		- [Improvement (draft)](#improvement-draft-1)
+  - [Q0: Learn React](#q0-learn-react)
+  - [Q1: State (Array of Objects) - ❌(04/06), ❌(05/25), ✅(5/28)](#q1-state-array-of-objects---0406-0525-528)
+    - [Answer](#answer)
+    - [Improvement (draft)](#improvement-draft)
+  - [Q2: Edit Item (Array of Objects)- ❌04/06, ❌05/28](#q2-edit-item-array-of-objects--0406-0528)
+    - [Answer](#answer-1)
+    - [Improvement (draft)](#improvement-draft-1)
 
 ✅❌
 
@@ -17,7 +17,7 @@
 
 - [Updating Arrays in State](https://github.com/hirokoymj/great-frontend?tab=readme-ov-file#updating-arrays-in-state)
 
-## Q1: State (Array of Objects) - ❌(04/06), ❌(05/25)
+## Q1: State (Array of Objects) - ❌(04/06), ❌(05/25), ✅(5/28)
 
 **📋 Requirements**
 
@@ -208,12 +208,10 @@ There are 2 bugs to fix.
 
 ```js
 - X task.id === taskId ? { ...task, done: !prev.done } : task
-- task.id === taskId ? { ...task, done: !task.done } : task
+- OK: task.id === taskId ? { ...task, done: !task.done } : task
 ```
 
-## Q2: Edit Item (Array of Objects)- 04/06
-
-**📋 Requirements**
+## Q2: Edit Item (Array of Objects)- ❌04/06, ❌05/28
 
 - click Edit
 - modify the task title
