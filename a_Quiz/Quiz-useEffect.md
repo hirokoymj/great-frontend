@@ -1,340 +1,212 @@
-# Quiz - useEffect
+# Quiz - useEffect + Async
 
-- [Quiz - useEffect](#quiz---useeffect)
-  - [Q0: Learn React - Escape Hatches](#q0-learn-react---escape-hatches)
-    - [Summary](#summary)
-  - [Q1 - Fetch inside Effect 1 (setBio) ❌(5/25)](#q1---fetch-inside-effect-1-setbio-525)
-    - [Hint](#hint)
-    - [Answer](#answer)
-  - [Q2: Fetch inside Effect 2 (PlanetId and PlaceId)](#q2-fetch-inside-effect-2-planetid-and-placeid)
-    - [Hint](#hint-1)
-    - [Answer](#answer-1)
-  - [Q3: useEffect clean-up function](#q3-useeffect-clean-up-function)
-    - [Hint](#hint-2)
-    - [Answer](#answer-2)
+- [Quiz - useEffect + Async](#quiz---useeffect--async)
+	- [Summary](#summary)
+	- [Q1: useEffect + Async + Filter + race condition - ❌(05/27)](#q1-useeffect--async--filter--race-condition---0527)
+		- [Answer](#answer)
+	- [Q2: new Set()](#q2-new-set)
+		- [Answer](#answer-1)
 
 ✅❌
 
-## Q0: Learn React - Escape Hatches
+## Summary
 
-- [Escape Hatches](https://github.com/hirokoymj/great-frontend/tree/main?tab=readme-ov-file#escape-hatches)
-
-### Summary
-
-```js
+```
 useEffect(()=>{}) //Effects run after *every* render.
 useEffect(() => {}, []) //Once (mount only)
 useEffect(() => {}, [a]) //Mount + when "a" changes
 useEffect(() => return ()=>{}) //Clean-up function (call every re-render)
-
-//=====useEffect and Async
-useEffect(() => {
-  fetchBio(person).then((result) => {});
-}, [person]);
-
-useEffect(() => {
-  fetchData('/planets').then((result) => {}});
-}, []);
-
-//===Clean up
-const intervalId = setInterval(onTick, 1000);
-return () => clearInterval(intervalId); //✅
 ```
 
-## Q1 - Fetch inside Effect 1 (setBio) ❌(5/25)
+## Q1: useEffect + Async + Filter + race condition - ❌(05/27)
 
-- [Challenge 4 of 4: Fix fetching inside an Effect](https://react.dev/learn/synchronizing-with-effects#fix-fetching-inside-an-effect)
-
-**📋 Requirements**
-
-- Start by selecting “Alice”. Then select “Bob” and then immediately after that select “Taylor”. If you do this fast enough, you will notice that bug: Taylor is selected, but the paragraph below says “This is Bob’s bio.”
+1. Displays categories in a dropdown.
+   https://fakestoreapi.com/products/categories
+   `['electronics', 'jewelery', ...]`
+2. When a category is selected:
+   - Fetch products for that category.
+     https://fakestoreapi.com/products/category/{category}
 
 ```js
-import { useState, useEffect } from 'react';
-import { fetchBio } from './api.js';
+//Starter Boilerplate (Provided)
+import { useEffect, useState } from 'react';
 
-export default function Page() {
-  const [person, setPerson] = useState('Alice');
-  const [bio, setBio] = useState(null);
+export default function App() {
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    setBio(null);
-    fetchBio(person).then((result) => {
-      setBio(result);
-    });
-  }, [person]);
+    // TODO: Fetch categories on mount
+    // https://fakestoreapi.com/products/categories
+  }, []);
+
+  useEffect(() => {
+    if (!selectedCategory) return;
+
+    // TODO: Fetch products when category changes
+    //	https://fakestoreapi.com/products/category/{category}
+    //  https://fakestoreapi.com/products/category/jewelery
+  }, [selectedCategory]);
 
   return (
-    <>
+    <div style={{ padding: '1rem' }}>
+      <h2>Product List</h2>
+
       <select
-        value={person}
-        onChange={(e) => {
-          setPerson(e.target.value);
-        }}>
-        <option value="Alice">Alice</option>
-        <option value="Bob">Bob</option>
-        <option value="Taylor">Taylor</option>
+        value={selectedCategory}
+        onChange={(e) => setSelectedCategory(e.target.value)}>
+        <option value="">Select a category</option>
+        {/* ❌TODO: Render category options */}
       </select>
-      <hr />
-      <p>
-        <i>{bio ?? 'Loading...'}</i>
-      </p>
-    </>
+
+      {loading && <p>Loading...</p>}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+
+      <ul>{/* TODO: Render products */}</ul>
+    </div>
   );
 }
 ```
 
-### Hint
-
-- If an Effect fetches something asynchronously, it usually needs cleanup.
-- Each render’s Effect has its own ignore variable. Initially, the ignore variable is set to false. However, if an Effect gets cleaned up (such as when you select a different person), its ignore variable becomes true. So now it doesn’t matter in which order the requests complete.
-
 ### Answer
 
 ```js
-import { useState, useEffect } from 'react';
-import { fetchBio } from './api.js';
+import { useEffect, useState } from 'react';
+export default function App() {
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-export default function Page() {
-  const [person, setPerson] = useState('Alice');
-  const [bio, setBio] = useState(null);
   useEffect(() => {
-    let ignore = false;
-    setBio(null);
-    fetchBio(person).then((result) => {
-      if (!ignore) {
-        setBio(result);
-      }
-    });
-    return () => {
-      ignore = true;
-    };
-  }, [person]);
+    const url = 'https://fakestoreapi.com/products/categories';
+    setLoading(true);
+    setError(null);
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) throw new Error('failed to get categories');
+        return response.json();
+      })
+      .then((data) => {
+        setCategories(data);
+      })
+      .catch((e) => {
+        setError(e.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (!selectedCategory) return;
+    const controller = new AbortController();
+    setLoading(true);
+    setError(null);
+    const url = `https://fakestoreapi.com/products/category/${selectedCategory}`;
+    fetch(url, { signal: controller.signal })
+      .then((response) => {
+        if (!response.ok)
+          throw new Error('Failed to get product by a category');
+        return response.json();
+      })
+      .then((data) => {
+        setProducts(data);
+      })
+      .catch((e) => {
+        if (e.name !== 'AbortError') setError(e.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+
+    return () => controller.abort(); // cleanup: cancel
+  }, [selectedCategory]);
 
   return (
-    <>
+    <div style={{ padding: '1rem' }}>
+      <h2>Product List</h2>
+
       <select
-        value={person}
-        onChange={(e) => {
-          setPerson(e.target.value);
-        }}>
-        <option value="Alice">Alice</option>
-        <option value="Bob">Bob</option>
-        <option value="Taylor">Taylor</option>
+        value={selectedCategory}
+        onChange={(e) => setSelectedCategory(e.target.value)}>
+        <option value="">Select a category</option>
+        {categories.map((category, index) => {
+          return (
+            <option key={index} value={category}>
+              {category}
+            </option>
+          );
+        })}
       </select>
-      <hr />
-      <p>
-        <i>{bio ?? 'Loading...'}</i>
-      </p>
-    </>
+
+      {loading && <p>Loading...</p>}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+
+      <ul>
+        {products.map(({ id, title, price }) => {
+          return (
+            <li key={id}>
+              {id}, {title}, ${price.toFixed(2)}
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 }
 ```
 
----
+## Q2: new Set()
 
-## Q2: Fetch inside Effect 2 (PlanetId and PlaceId)
-
-- [Challenge 5 of 5: Populate a chain of select boxes](https://react.dev/learn/lifecycle-of-reactive-effects#populate-a-chain-of-select-boxes)
+1. Fetch Data - https://jsonplaceholder.typicode.com/posts
+2. Dropdown (Form)
+3. new Set() - flatten a duplicate user Ids
 
 ```js
-import { useState, useEffect } from 'react';
-import { fetchData } from './api.js';
+import { useState } from 'react';
+const mockPosts = [
+  { id: 1, userId: 1, title: 'Post one' },
+  { id: 2, userId: 1, title: 'Post two' },
+  { id: 3, userId: 2, title: 'Post three' },
+  { id: 4, userId: 2, title: 'Post four' },
+  { id: 3, userId: 3, title: 'Post three' },
+  { id: 4, userId: 3, title: 'Post four' },
+];
 
-export default function Page() {
-  const [planetList, setPlanetList] = useState([]);
-  const [planetId, setPlanetId] = useState('');
-
-  const [placeList, setPlaceList] = useState([]);
-  const [placeId, setPlaceId] = useState('');
-
-  useEffect(() => {
-    let ignore = false;
-    fetchData('/planets').then((result) => {
-      if (!ignore) {
-        console.log('Fetched a list of planets.');
-        setPlanetList(result);
-        setPlanetId(result[0].id); // Select the first planet
-      }
-    });
-    return () => {
-      ignore = true;
-    };
-  }, []);
+export default function Demo() {
+  const [userId, setUserId] = useState('all');
+  const userList = [...new Set(mockPosts.map((data) => data.userId))];
 
   return (
-    <>
-      <label>
-        Pick a planet:{' '}
-        <select
-          value={planetId}
-          onChange={(e) => {
-            setPlanetId(e.target.value);
-          }}>
-          {planetList.map((planet) => (
-            <option key={planet.id} value={planet.id}>
-              {planet.name}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label>
-        Pick a place:{' '}
-        <select
-          value={placeId}
-          onChange={(e) => {
-            setPlaceId(e.target.value);
-          }}>
-          {placeList.map((place) => (
-            <option key={place.id} value={place.id}>
-              {place.name}
-            </option>
-          ))}
-        </select>
-      </label>
-      <hr />
-      <p>
-        You are going to: {placeId || '???'} on {planetId || '???'}{' '}
-      </p>
-    </>
+    <select value={userId} onChange={(e) => setUserId(e.target.value)}>
+      <option value="all">All Users</option>
+      {userList.map((id) => (
+        <option key={id}>{id}</option>
+      ))}
+    </select>
   );
 }
 ```
-
-### Hint
-
-- If you have two independent synchronization processes, you need to write two separate Effects
 
 ### Answer
 
 ```js
-import { useState, useEffect } from 'react';
-import { fetchData } from './api.js';
-
-export default function Page() {
-  const [planetList, setPlanetList] = useState([]);
-  const [planetId, setPlanetId] = useState('');
-
-  const [placeList, setPlaceList] = useState([]);
-  const [placeId, setPlaceId] = useState('');
-
-  useEffect(() => {
-    let ignore = false;
-    fetchData('/planets').then((result) => {
-      if (!ignore) {
-        console.log('Fetched a list of planets.');
-        setPlanetList(result);
-        setPlanetId(result[0].id); // Select the first planet
-      }
-    });
-    return () => {
-      ignore = true;
-    };
-  }, []);
-
-  useEffect(() => {
-    if (planetId === '') {
-      // Nothing is selected in the first box yet
-      return;
-    }
-
-    let ignore = false;
-    fetchData('/planets/' + planetId + '/places').then((result) => {
-      if (!ignore) {
-        console.log('Fetched a list of places on "' + planetId + '".');
-        setPlaceList(result);
-        setPlaceId(result[0].id); // Select the first place
-      }
-    });
-    return () => {
-      ignore = true;
-    };
-  }, [planetId]);
+export default function Demo() {
+  const [userId, setUserId] = useState('all');
+  const userList = [...new Set(mockPosts.map((data) => data.userId))];
 
   return (
-    <>
-      <label>
-        Pick a planet:{' '}
-        <select
-          value={planetId}
-          onChange={(e) => {
-            setPlanetId(e.target.value);
-          }}>
-          {planetList.map((planet) => (
-            <option key={planet.id} value={planet.id}>
-              {planet.name}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label>
-        Pick a place:{' '}
-        <select
-          value={placeId}
-          onChange={(e) => {
-            setPlaceId(e.target.value);
-          }}>
-          {placeList.map((place) => (
-            <option key={place.id} value={place.id}>
-              {place.name}
-            </option>
-          ))}
-        </select>
-      </label>
-      <hr />
-      <p>
-        You are going to: {placeId || '???'} on {planetId || '???'}{' '}
-      </p>
-    </>
+    <select value={userId} onChange={(e) => setUserId(e.target.value)}>
+      <option value="all">All Users</option>
+      {userList.map((id) => (
+        <option key={id}>{id}</option>
+      ))}
+    </select>
   );
-}
-```
-
----
-
-## Q3: useEffect clean-up function
-
--[Challenge 3 of 4](https://react.dev/learn/synchronizing-with-effects#fix-an-interval-that-fires-twice)
-
-```js
-import { useState, useEffect } from 'react';
-
-export default function Counter() {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    function onTick() {
-      setCount((c) => c + 1);
-    }
-
-    setInterval(onTick, 1000);
-  }, []);
-
-  return <h1>{count}</h1>;
-}
-```
-
-### Hint
-
-Keep in mind that setInterval returns an interval ID, which you can pass to clearInterval to stop the interval.
-
-### Answer
-
-```js
-import { useState, useEffect } from 'react';
-
-export default function Counter() {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    function onTick() {
-      setCount((c) => c + 1);
-    }
-
-    const intervalId = setInterval(onTick, 1000);
-    return () => clearInterval(intervalId); //✅
-  }, []);
-
-  return <h1>{count}</h1>;
 }
 ```
