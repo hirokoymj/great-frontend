@@ -1,54 +1,26 @@
 # Quiz - Filter
 
-- [Quiz - Filter](#quiz---filter) - [POINT](#point)
-  - [Q1: Filter by date ❌(05/28)](#q1-filter-by-date-0528)
+- [Quiz - Filter](#quiz---filter)
+  - [Summary:](#summary)
+  - [Q1: Filter by date ❌(05/28), ❌(05/29)](#q1-filter-by-date-0528-0529)
     - [Answer](#answer)
   - [Q2: Todo list filter ✅(05/28)](#q2-todo-list-filter-0528)
     - [Answer](#answer-1)
+  - [Q3: TypeScript](#q3-typescript)
 
 ❌✅
 
-## Summary: Derive, Don't Store
-
-> Store only the user's **decision** in state. Compute the filtered list **inline during render**.
+## Summary:
 
 ```
-state    = user's decision  (a date, a boolean flag, etc.)
-filtered = derived from data + state  ← computed inline, NOT stored
+- Filter state: e.g. searchTerm, Date, Category ==> UI
+- Filtered list - Computed with props or state
+- Sort state: true/false ==> UI
+- Sorted list: Computed with props or state
+- TypeScript infers them from the initial value. `useState(false)`
 ```
 
-| Store in state         | Derive inline |
-| ---------------------- | ------------- |
-| User's filter value    | Filtered list |
-| Sort flag (true/false) | Sorted list   |
-| Show/hide toggle       | Visible list  |
-
-**React doc:** [Don't mirror props in state](https://react.dev/learn/choosing-the-state-structure)
-
----
-
-### POINT — Q1
-
-```js
-let filtered = filterDate
-  ? products.filter((product) => new Date(product.date) < new Date(filterDate))
-  : products;
-
-if (isSorted) {
-  filtered = [...filtered].sort((a, b) => a.price - b.price);
-}
-```
-
-### POINT — Q2
-
-```js
-const activeTodos = todos.filter((todo) => !todo.completed);
-const visibleTodos = showActive ? activeTodos : todos;
-```
-
----
-
-## Q1: Filter by date ❌(05/28)
+## Q1: Filter by date ❌(05/28), ❌(05/29)
 
 ```js
 import { useState } from 'react';
@@ -81,9 +53,7 @@ export default function Demo({ products = [] }) {
             <th onClick={sort}>price</th>
           </tr>
         </thead>
-        <tbody>
-          {//TODO}
-        </tbody>
+        <tbody></tbody>
       </table>
     </div>
   );
@@ -94,30 +64,31 @@ export default function Demo({ products = [] }) {
 
 ```js
 import { useState } from 'react';
-import './styles.css';
 
-export default function Demo({ products = [] }) {
-  const [selectedDate, setSelectedDate] = useState('');
-  const [filterDate, setFilterDate] = useState('');
-  const [isSorted, setIsSorted] = useState(false);
+interface Product {
+  id: number;
+  name: string;
+  date: string;
+  price: number;
+}
 
-  const handleFilter = () => {
-    setFilterDate(selectedDate);
-  };
+interface TransactionProps {
+  products: Product[];
+}
 
-  const sort = () => {
-    setIsSorted(!isSorted);
-  };
+export default function Transaction({ products }: TransactionProps) {
+  const [selectedDate, setSelectedDate] = useState<string>(''); //UI
+  const [filterDate, setFilterDate] = useState<string>('');
+  const [sortBy, setSortBy] = useState<boolean>(false); //UI
 
-  let filtered = filterDate
+  let filtered: Product[] = filterDate
     ? products.filter(
         (product) => new Date(product.date) < new Date(filterDate),
       )
     : products;
-
-  if (isSorted) {
-    filtered = [...filtered].sort((a, b) => a.price - b.price);
-  }
+  filtered = sortBy
+    ? [...filtered].sort((a, b) => a.price - b.price)
+    : [...filtered].sort((a, b) => b.price - a.price);
 
   return (
     <div className="app">
@@ -127,25 +98,27 @@ export default function Demo({ products = [] }) {
         value={selectedDate}
         onChange={(e) => setSelectedDate(e.target.value)}
       />
-      <button onClick={handleFilter}>Filter</button>
+      <button onClick={() => setFilterDate(selectedDate)}>Filter</button>
       <table>
         <thead>
           <tr>
-            <th>id</th>
-            <th>name</th>
-            <th>date</th>
-            <th onClick={sort}>price</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th onClick={() => setSortBy((prev) => !prev)}>Price</th>
           </tr>
         </thead>
         <tbody>
-          {filtered.map(({ id, name, date, price }) => (
-            <tr key={id}>
-              <td>{id}</td>
-              <td>{name}</td>
-              <td>{date}</td>
-              <td>{price}</td>
-            </tr>
-          ))}
+          {filtered.map(({ id, name, date, price }) => {
+            return (
+              <tr key={id}>
+                <td>{id}</td>
+                <td>{name}</td>
+                <td>{date}</td>
+                <td>{price}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
@@ -160,57 +133,53 @@ export default function Demo({ products = [] }) {
 ```js
 import { useState } from 'react';
 
-const initialTodos = [
+interface Todo {
+  id: number;
+  text: string;
+  completed: boolean;
+}
+
+interface TodoListProps {
+  todos: Todo[];
+  showActive: boolean;
+}
+
+const initialTodos: Todo[] = [
   { id: 1, text: 'Get apples', completed: true },
   { id: 2, text: 'Get oranges', completed: true },
   { id: 3, text: 'Get carrots', completed: false },
 ];
 
-export default function TodoList() {
-  const [todos, setTodos] = useState(initialTodos);
-  const [showActive, setShowActive] = useState(false);
+let nextId = 4;
 
-  //const activeTodos
-  //const visibleTodos
+// TODO: Checkbox: check/uncheck
+// TODO: input -> Add a new task
+// TODO: Filter based on a checkbox status
+export default function Demo() {
+  const [todos, setTodos] = useState(initialTodos);
+
+  const handleAddClick = () => {
+    const newTask = { id: nextId++, text: text, completed: false };
+    setTodos((prev) => {
+      return [...prev, newTask];
+    });
+    setText('');
+  };
 
   return (
     <>
       <label>
-        <input
-          type="checkbox"
-          checked={showActive}
-          onChange={(e) => setShowActive(e.target.checked)}
-        />
+        <input type="checkbox" checked={showActive} onChange={} />
         Show only active todos
       </label>
-      <NewTodo onAdd={(newTodo) => setTodos([...todos, newTodo])} />
-      <ul>
-        {visibleTodos.map((todo) => (
-          <li key={todo.id}>
-            {todo.completed ? <s>{todo.text}</s> : todo.text}
-          </li>
-        ))}
-      </ul>
-      <footer>{activeTodos.length} todos left</footer>
-    </>
-  );
-}
-
-function NewTodo({ onAdd }) {
-  const [text, setText] = useState('');
-
-  function handleAddClick() {
-    setText('');
-    onAdd(createTodo(text));
-  }
-
-  return (
-    <>
-      <input value={text} onChange={(e) => setText(e.target.value)} />
+      <input value={text} onChange={} />
       <button onClick={handleAddClick}>Add</button>
+      <TodoList todos={todos} showActive={showActive} />
     </>
   );
 }
+
+function TodoList() {}
 ```
 
 ### Answer
@@ -218,18 +187,36 @@ function NewTodo({ onAdd }) {
 ```js
 import { useState } from 'react';
 
-const initialTodos = [
+interface Todo {
+  id: number;
+  text: string;
+  completed: boolean;
+}
+
+interface TodoListProps {
+  todos: Todo[];
+  showActive: boolean;
+}
+
+const initialTodos: Todo[] = [
   { id: 1, text: 'Get apples', completed: true },
   { id: 2, text: 'Get oranges', completed: true },
   { id: 3, text: 'Get carrots', completed: false },
 ];
 
-export default function TodoList() {
+let nextId = 4;
+export default function Demo() {
   const [todos, setTodos] = useState(initialTodos);
   const [showActive, setShowActive] = useState(false);
+  const [text, setText] = useState('');
 
-  const activeTodos = todos.filter((todo) => !todo.completed);
-  const visibleTodos = showActive ? todos.filter((todo) => todo) : todos;
+  const handleAddClick = () => {
+    const newTask = { id: nextId++, text: text, completed: false };
+    setTodos((prev) => {
+      return [...prev, newTask];
+    });
+    setText('');
+  };
 
   return (
     <>
@@ -241,34 +228,31 @@ export default function TodoList() {
         />
         Show only active todos
       </label>
-      <NewTodo onAdd={(newTodo) => setTodos([...todos, newTodo])} />
-      <ul>
-        {visibleTodos.map((todo) => (
-          <li key={todo.id}>
-            {todo.completed ? <s>{todo.text}</s> : todo.text}
-          </li>
-        ))}
-      </ul>
-      <footer>{activeTodos.length} todos left</footer>
+      <input value={text} onChange={(e) => setText(e.target.value)} />
+      <button onClick={handleAddClick}>Add</button>
+      <TodoList todos={todos} showActive={showActive} />
     </>
   );
 }
 
-function NewTodo({ onAdd }) {
-  const [text, setText] = useState('');
-
-  function handleAddClick() {
-    setText('');
-    onAdd(createTodo(text));
-  }
+function TodoList({ todos, showActive }: TodoListProps) {
+  const visibleTodos = showActive
+    ? todos.filter((todo) => !todo.completed)
+    : todos;
 
   return (
     <>
-      <input value={text} onChange={(e) => setText(e.target.value)} />
-      <button onClick={handleAddClick}>Add</button>
+      <ul>
+        {visibleTodos.map(({ id, completed, text }) => (
+          <li key={id}>{completed ? <s>{text}</s> : text}</li>
+        ))}
+      </ul>
     </>
   );
 }
+
 ```
 
 https://codesandbox.io/p/sandbox/mpf5wm?file=%2Fsrc%2FApp.js
+
+## Q3: TypeScript

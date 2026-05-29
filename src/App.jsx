@@ -3,11 +3,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import ErrorBoundary from './pages/Profile/ErrorBoundary';
 import Home from './pages/Home/Home';
-import Demo from './pages/Quiz/Demo';
 import SignupPage from './pages/Auth/SignupPage';
 import DashboardPage from './pages/Auth/DashboardPage';
 import ProtectedRoute from './pages/Auth/ProtectedRoute';
 import Layout from './components/Layout';
+import Transaction from './pages/Quiz/Transaction';
+import Demo from './pages/Quiz/Demo';
 
 const ProfilePage = lazy(() => import('./pages/Profile/ProfilePage'));
 
@@ -42,7 +43,11 @@ export default function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="demo" element={<Demo products={products} />} />
+            <Route path="demo" element={<Demo />} />
+            <Route
+              path="demo-1"
+              element={<Transaction products={products} />}
+            />
             <Route
               path="demo-11"
               element={
