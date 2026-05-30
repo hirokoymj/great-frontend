@@ -1,85 +1,165 @@
-import { useEffect, useState } from 'react';
-export default function App() {
-  const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+import { useState } from 'react';
 
-  useEffect(() => {
-    const url = 'https://fakestoreapi.com/products/categories';
-    setLoading(true);
-    setError(null);
-    fetch(url)
-      .then((response) => {
-        if (!response.ok) throw new Error('failed to get categories');
-        return response.json();
-      })
-      .then((data) => {
-        setCategories(data);
-      })
-      .catch((e) => {
-        setError(e.message);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
+const initialForm = {
+  name: '',
+  email: '',
+  agreed: false,
+  hobbies: [],
+  gender: '',
+  country: '',
+};
 
-  useEffect(() => {
-    if (!selectedCategory) return;
-    const controller = new AbortController();
-    setLoading(true);
-    setError(null);
-    const url = `https://fakestoreapi.com/products/category/${selectedCategory}`;
-    fetch(url, { signal: controller.signal })
-      .then((response) => {
-        if (!response.ok)
-          throw new Error('Failed to get product by a category');
-        return response.json();
-      })
-      .then((data) => {
-        setProducts(data);
-      })
-      .catch((e) => {
-        if (e.name !== 'AbortError') setError(e.message);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+const hobbyOptions = ['Reading', 'Music', 'Sports'];
+const countryOptions = ['USA', 'Japan', 'Canada', 'UK', 'Other'];
 
-    return () => controller.abort(); // cleanup: cancel
-  }, [selectedCategory]);
+export default function Demo() {
+  const [formValues, setFormValues] = useState(initialForm);
+  const [formErrors, setFormErrors] = useState({});
+
+  const handleChange = (e) => {
+    // TODO: destructure name and value from e.target
+    // TODO: update formValues using name as the key
+  };
+
+  const handleHobbyChange = (e) => {
+    // TODO: destructure value and checked from e.target
+    // TODO: if checked, add value to hobbies; if unchecked, remove it
+    // TODO: set formErrors.hobbies to true if newHobbies is empty
+  };
+
+  const handleReset = () => {
+    // TODO: reset formValues back to initialForm
+  };
+
+  const handleBlur = (name, value) => {
+    // TODO: set formErrors[name] to true if value is falsy
+  };
+
+  const handleSubmit = (e) => {
+    // TODO: prevent default
+    // TODO: alert 'Submitted!'
+  };
 
   return (
-    <div style={{ padding: '1rem' }}>
-      <h2>Product List</h2>
+    <div style={{ fontFamily: 'sans-serif', padding: 20, maxWidth: 500 }}>
+      <h1>Registration Form</h1>
+      <form onSubmit={handleSubmit}>
+        {/* 1. Text inputs */}
+        <label>
+          Name:
+          <input
+            type="text"
+            name="name"
+            // TODO: value
+            // TODO: onChange
+            // TODO: onBlur
+          />
+        </label>
+        {formErrors.name && <p style={{ color: 'red' }}>Name is required</p>}
+        <br />
+        <label>
+          Email:
+          <input
+            type="email"
+            name="email"
+            // TODO: value
+            // TODO: onChange
+            // TODO: onBlur
+          />
+        </label>
+        {formErrors.email && <p style={{ color: 'red' }}>Email is required</p>}
+        <hr />
+        {/* 2. Simple checkbox — validate on onChange */}
+        <label>
+          <input
+            type="checkbox"
+            name="agreed"
+            // TODO: checked
+            onChange={(e) => {
+              // TODO: get checked from e.target
+              // TODO: update formValues.agreed
+              // TODO: set formErrors.agreed to !checked
+            }}
+          />{' '}
+          Agreed
+        </label>
+        {formErrors.agreed && (
+          <p style={{ color: 'red' }}>agreed is required</p>
+        )}
+        <hr />
+        {/* 3. Multi-checkbox */}
+        <p>Hobbies:</p>
+        {hobbyOptions.map((hobby) => (
+          <label key={hobby} style={{ display: 'block', marginBottom: 8 }}>
+            <input
+              type="checkbox"
+              name="hobbies"
+              value={hobby}
+              // TODO: checked
+              // TODO: onChange
+            />{' '}
+            {hobby}
+          </label>
+        ))}
+        {formErrors.hobbies && (
+          <p style={{ color: 'red' }}>At least one hobby is required</p>
+        )}
+        <hr />
+        {/* 4. Radio buttons */}
+        <p>Gender:</p>
+        {['Male', 'Female'].map((option) => (
+          <label key={option} style={{ marginRight: 16 }}>
+            <input
+              type="radio"
+              name="gender"
+              value={option}
+              // TODO: checked
+              onChange={(e) => {
+                // TODO: call handleChange
+                // TODO: set formErrors.gender to false
+              }}
+              // TODO: onBlur
+            />{' '}
+            {option}
+          </label>
+        ))}
+        {formErrors.gender && (
+          <p style={{ color: 'red' }}>Gender is required</p>
+        )}
+        <hr />
+        {/* 5. Dropdown */}
+        <label>
+          Country:{' '}
+          <select
+            name="country"
+            // TODO: value
+            onChange={(e) => {
+              // TODO: call handleChange
+              // TODO: set formErrors.country to !e.target.value
+            }}
+            // TODO: onBlur
+          >
+            <option value="">-- Select --</option>
+            {countryOptions.map((c) => (
+              <option key={c} value={c}>
+                {c}
+              </option>
+            ))}
+          </select>
+        </label>
+        {formErrors.country && (
+          <p style={{ color: 'red' }}>Country is required</p>
+        )}
+        <hr />
+        <button type="submit">Submit</button>
+        <button type="button" onClick={handleReset} style={{ marginLeft: 8 }}>
+          Reset
+        </button>
+      </form>
 
-      <select
-        value={selectedCategory}
-        onChange={(e) => setSelectedCategory(e.target.value)}>
-        <option value="">Select a category</option>
-        {categories.map((category, index) => {
-          return (
-            <option key={index} value={category}>
-              {category}
-            </option>
-          );
-        })}
-      </select>
-
-      {loading && <p>Loading...</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-
-      <ul>
-        {products.map(({ id, title, price }) => {
-          return (
-            <li key={id}>
-              {id}, {title}, ${price.toFixed(2)}
-            </li>
-          );
-        })}
-      </ul>
+      <hr />
+      <h2>Preview</h2>
+      <pre>{JSON.stringify(formValues, null, 2)}</pre>
     </div>
   );
 }

@@ -3,88 +3,20 @@
 <!-- create index  Cmd+Shift+P -->
 
 - [Quiz - State (object)](#quiz---state-object)
-  - [Q0: Learn React (master note)](#q0-learn-react-master-note)
-  - [Q11: State as snapshot ✅(05/25)](#q11-state-as-snapshot-0525)
+  - [Q1: Learn React](#q1-learn-react)
+  - [Q2: Form (Input, Checkbox, multi-checkbox, radio, dropdown), and validation ❌(05/25), ❌(05/28)](#q2-form-input-checkbox-multi-checkbox-radio-dropdown-and-validation-0525-0528)
     - [Answer](#answer)
-    - [Improved](#improved)
-  - [Q1: State (Objects)- ❌(04/xx),❌(05/25)](#q1-state-objects--04xx0525)
-    - [Answer](#answer-1)
-    - [improvement (draft)](#improvement-draft)
-  - [Q2: Form Checkbox, state and validation ❌(05/25), ❌(05/28)](#q2-form-checkbox-state-and-validation-0525-0528)
-    - [Answer](#answer-2)
-    - [Improvement (draft)](#improvement-draft-1)
-  - [Q2: Multiple Checkboxes (4/xx)](#q2-multiple-checkboxes-4xx)
-    - [Answer](#answer-3)
-    - [Improvement (draft)](#improvement-draft-2)
-
-<!--
-## Q1: State (Objects)- mm/dd
-**📋 Requirements**
--->
+  - [Form Validation Strategy by Field Type](#form-validation-strategy-by-field-type)
 
 ✅❌
 
-## Q0: Learn React (master note)
+## Q1: Learn React
 
 - [Managing State](https://github.com/hirokoymj/great-frontend/tree/main?tab=readme-ov-file#managing-state)
 - [Updating Objects in State](https://github.com/hirokoymj/great-frontend/tree/main?tab=readme-ov-file#updating-objects-in-state)
-
-## Q11: State as snapshot ✅(05/25)
-
 - [State as Snapshot](https://github.com/hirokoymj/great-frontend/blob/main/src/Interactivity/Snapshot.md)
-- you might expect that clicking the “+3” button would increment the counter three times because it calls setNumber(number + 1) three times.
-
-```js
-import { useState } from 'react';
-
-export default function Counter() {
-  const [number, setNumber] = useState(0);
-
-  return (
-    <>
-      <h1>{number}</h1>
-      <button
-        onClick={() => {
-          setNumber(number + 1);
-          setNumber(number + 1);
-          setNumber(number + 1);
-        }}>
-        +3
-      </button>
-    </>
-  );
-}
-```
-
-### Answer
-
-```js
-import { useState } from 'react';
-
-export default function AppQuizDemo() {
-  const [number, setNumber] = useState(0);
-
-  return (
-    <>
-      <h1>{number}</h1>
-      <button
-        onClick={() => {
-          setNumber((number) => number + 1);
-          setNumber((number) => number + 1);
-          setNumber((number) => number + 1);
-        }}>
-        +3
-      </button>
-    </>
-  );
-}
-```
-
-- Even though you called setNumber(number + 1) three times, in this render’s event handler number is always 0, so you set the state to 1 three times.
 - `setNumber((prev) => prev + 1)`; //Updater Function
 - `setNumber(number + 1)` - Direct Value Update
-
-### Improved
 
 ```js
 const [number, setNumber] = useState(0);
@@ -104,309 +36,162 @@ onClick={() => {
 
 ---
 
-## Q1: State (Objects)- ❌(04/xx),❌(05/25)
-
-**📋 Requirements**
-
-- Use one state object to store all form values.
-- Make all inputs controlled components.
-- When the user types, update only the correct field.
-- Show the current state in a preview section.
-- Add a Reset button to restore the initial values.
+## Q2: Form (Input, Checkbox, multi-checkbox, radio, dropdown), and validation ❌(05/25), ❌(05/28)
 
 ```js
-import { useState } from 'react';
-
-const initialProfile = {
-  firstName: '',
-  lastName: '',
-  email: '',
-  jobTitle: '',
-};
-
-export default function App() {
-  const [profile, setProfile] = useState(initialProfile);
-
-  function handleChange(e) {
-    // TODO:
-    // Update the correct property in the profile object
-    // based on the input's name and value
-  }
-
-  function handleReset() {
-    // TODO:
-    // Reset profile back to initialProfile
-  }
-
-  return (
-    <div
-      style={{ fontFamily: 'sans-serif', padding: '20px', maxWidth: '500px' }}>
-      <h1>Profile Form</h1>
-
-      <form>
-        <label>
-          First Name:
-          <input
-            type="text"
-            name="firstName"
-            // TODO: value
-            // TODO: onChange
-          />
-        </label>
-
-        <br />
-        <br />
-
-        <label>
-          Last Name:
-          <input
-            type="text"
-            name="lastName"
-            // TODO: value
-            // TODO: onChange
-          />
-        </label>
-
-        <br />
-        <br />
-
-        <label>
-          Email:
-          <input
-            type="email"
-            name="email"
-            // TODO: value
-            // TODO: onChange
-          />
-        </label>
-
-        <br />
-        <br />
-
-        <label>
-          Job Title:
-          <input
-            type="text"
-            name="jobTitle"
-            // TODO: value
-            // TODO: onChange
-          />
-        </label>
-
-        <br />
-        <br />
-
-        <button type="button" onClick={handleReset}>
-          Reset
-        </button>
-      </form>
-
-      <hr />
-
-      <h2>Preview</h2>
-      <p>
-        {/* TODO:
-          Hello, I am FIRSTNAME LASTNAME.
-          My email is EMAIL and I work as JOBTITLE.
-        */}
-      </p>
-
-      <pre>{JSON.stringify(profile, null, 2)}</pre>
-    </div>
-  );
-}
-```
-
-### Answer
-
-```js
-//Here is your cleaned-up version:
-import { useState } from 'react';
-
-const initialProfile = {
-  firstName: '',
-  lastName: '',
-  email: '',
-  jobTitle: '',
-};
-
-export default function App() {
-  const [profile, setProfile] = useState(initialProfile);
-
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setProfile((prev) => ({ ...prev, [name]: value }));
-  }
-
-  function handleReset() {
-    setProfile(initialProfile);
-  }
-
-  function previewText() {
-    const { firstName, lastName, email, jobTitle } = profile;
-    return `Hello, I am ${firstName} ${lastName}. My email is ${email} and I work as ${jobTitle}.`;
-  }
-
-  return (
-    <div
-      style={{ fontFamily: 'sans-serif', padding: '20px', maxWidth: '500px' }}>
-      <h1>Profile Form</h1>
-
-      <form>
-        <label>
-          First Name:
-          <input
-            type="text"
-            name="firstName"
-            value={profile.firstName}
-            onChange={handleChange}
-          />
-        </label>
-
-        <br />
-        <br />
-
-        <label>
-          Last Name:
-          <input
-            type="text"
-            name="lastName"
-            value={profile.lastName}
-            onChange={handleChange}
-          />
-        </label>
-
-        <br />
-        <br />
-
-        <label>
-          Email:
-          <input
-            type="email"
-            name="email"
-            value={profile.email}
-            onChange={handleChange}
-          />
-        </label>
-
-        <br />
-        <br />
-
-        <label>
-          Job Title:
-          <input
-            type="text"
-            name="jobTitle"
-            value={profile.jobTitle}
-            onChange={handleChange}
-          />
-        </label>
-
-        <button type="button" onClick={handleReset}>
-          Reset
-        </button>
-      </form>
-
-      <hr />
-
-      <h2>Preview</h2>
-      <p>{previewText()}</p>
-
-      <pre>{JSON.stringify(profile, null, 2)}</pre>
-    </div>
-  );
-}
-```
-
-### improvement (draft)
-
-## Q2: Form Checkbox, state and validation ❌(05/25), ❌(05/28)
-
-**📋 Tasks**
-
-1. Make all form fields controlled.
-2. Update text inputs correctly.
-3. Update the checkbox correctly.
-4. Show a live preview under the form.
-5. Disable the Submit button unless the checkbox is checked.
-6. Add a Reset button.
-
-```js
-//Starter Boilerplate
 import { useState } from 'react';
 
 const initialForm = {
   name: '',
   email: '',
-  agreeToTerms: false,
+  agreed: false,
+  hobbies: [],
+  gender: '',
+  country: '',
 };
 
-export default function App() {
+const hobbyOptions = ['Reading', 'Music', 'Sports'];
+const countryOptions = ['USA', 'Japan', 'Canada', 'UK', 'Other'];
+
+export default function Demo() {
   const [formValues, setFormValues] = useState(initialForm);
+  const [formErrors, setFormErrors] = useState({});
 
-  function handleChange(e) {
-    // TODO:❌
-    // If the input is a checkbox, use e.target.checked
-    // Otherwise use e.target.value
-    // Update the correct property using e.target.name
-  }
-
-  //TODO
-  const handleBlur = (name, value) => {
-    setFieldErrors((prev) => ({ ...prev, [name]: !value }));
+  const handleChange = (e) => {
+    // TODO: destructure name and value from e.target
+    // TODO: update formValues using name as the key
   };
 
-  function handleReset() {
-    // TODO:✅
-    // Reset form back to initialForm
-  }
+  const handleHobbyChange = (e) => {
+    // TODO: destructure value and checked from e.target
+    // TODO: if checked, add value to hobbies; if unchecked, remove it
+    // TODO: set formErrors.hobbies to true if newHobbies is empty
+  };
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    alert('Submitted!');
-  }
+  const handleReset = () => {
+    // TODO: reset formValues back to initialForm
+  };
+
+  const handleBlur = (name, value) => {
+    // TODO: set formErrors[name] to true if value is falsy
+  };
+
+  const handleSubmit = (e) => {
+    // TODO: prevent default
+    // TODO: alert 'Submitted!'
+  };
 
   return (
     <div style={{ fontFamily: 'sans-serif', padding: 20, maxWidth: 500 }}>
       <h1>Registration Form</h1>
       <form onSubmit={handleSubmit}>
+        {/* 1. Text inputs */}
         <label>
           Name:
-          <br />
           <input
             type="text"
             name="name"
             // TODO: value
             // TODO: onChange
-            //TODO: onBlur
+            // TODO: onBlur
           />
-          <p>{//ERROR }</p>
         </label>
+        {formErrors.name && <p style={{ color: 'red' }}>Name is required</p>}
         <br />
         <label>
           Email:
-          <br />
           <input
             type="email"
             name="email"
-            // TODO: value✅
-            // TODO: onChange✅
-            // TODO: onBlur
-          />
-        </label>
-        <hr />
-        <label>
-          <input
-            type="checkbox"
-            name="agreeToTerms"
-            // TODO: checked
+            // TODO: value
             // TODO: onChange
             // TODO: onBlur
           />
-          I agree to the terms
         </label>
+        {formErrors.email && <p style={{ color: 'red' }}>Email is required</p>}
         <hr />
-
+        {/* 2. Simple checkbox — validate on onChange */}
+        <label>
+          <input
+            type="checkbox"
+            name="agreed"
+            // TODO: checked
+            onChange={(e) => {
+              // TODO: get checked from e.target
+              // TODO: update formValues.agreed
+              // TODO: set formErrors.agreed to !checked
+            }}
+          />{' '}
+          Agreed
+        </label>
+        {formErrors.agreed && (
+          <p style={{ color: 'red' }}>agreed is required</p>
+        )}
+        <hr />
+        {/* 3. Multi-checkbox */}
+        <p>Hobbies:</p>
+        {hobbyOptions.map((hobby) => (
+          <label key={hobby} style={{ display: 'block', marginBottom: 8 }}>
+            <input
+              type="checkbox"
+              name="hobbies"
+              value={hobby}
+              // TODO: checked
+              // TODO: onChange
+            />{' '}
+            {hobby}
+          </label>
+        ))}
+        {formErrors.hobbies && (
+          <p style={{ color: 'red' }}>At least one hobby is required</p>
+        )}
+        <hr />
+        {/* 4. Radio buttons */}
+        <p>Gender:</p>
+        {['Male', 'Female'].map((option) => (
+          <label key={option} style={{ marginRight: 16 }}>
+            <input
+              type="radio"
+              name="gender"
+              value={option}
+              // TODO: checked
+              onChange={(e) => {
+                // TODO: call handleChange
+                // TODO: set formErrors.gender to false
+              }}
+              // TODO: onBlur
+            />{' '}
+            {option}
+          </label>
+        ))}
+        {formErrors.gender && (
+          <p style={{ color: 'red' }}>Gender is required</p>
+        )}
+        <hr />
+        {/* 5. Dropdown */}
+        <label>
+          Country:{' '}
+          <select
+            name="country"
+            // TODO: value
+            onChange={(e) => {
+              // TODO: call handleChange
+              // TODO: set formErrors.country to !e.target.value
+            }}
+            // TODO: onBlur
+          >
+            <option value="">-- Select --</option>
+            {countryOptions.map((c) => (
+              <option key={c} value={c}>
+                {c}
+              </option>
+            ))}
+          </select>
+        </label>
+        {formErrors.country && (
+          <p style={{ color: 'red' }}>Country is required</p>
+        )}
+        <hr />
         <button type="submit">Submit</button>
         <button type="button" onClick={handleReset} style={{ marginLeft: 8 }}>
           Reset
@@ -414,13 +199,8 @@ export default function App() {
       </form>
 
       <hr />
-
       <h2>Preview</h2>
-      <p>Name: {/* TODO */}</p>
-      <p>Email: {/* TODO */}</p>
-      <p>Agreed: {/* TODO */}</p>
-
-      <pre>{JSON.stringify(form, null, 2)}</pre>
+      <pre>{JSON.stringify(formValues, null, 2)}</pre>
     </div>
   );
 }
@@ -429,63 +209,61 @@ export default function App() {
 ### Answer
 
 ```js
-//Starter Boilerplate
 import { useState } from 'react';
 
 const initialForm = {
   name: '',
   email: '',
-  agreeToTerms: false,
+  agreed: false,
+  hobbies: [],
+  gender: '',
+  country: '',
 };
+
+const hobbyOptions = ['Reading', 'Music', 'Sports'];
+const countryOptions = ['USA', 'Japan', 'Canada', 'UK', 'Other'];
 
 export default function Demo() {
   const [formValues, setFormValues] = useState(initialForm);
-  const [fieldErrors, setFieldErrors] = useState({});
+  const [formErrors, setFormErrors] = useState({});
 
-  function handleChange(e) {
-    const { name, type, value, checked } = e.target;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleHobbyChange = (e) => {
+    const { value, checked } = e.target;
     setFormValues((prev) => {
-      return { ...prev, [name]: type === 'checkbox' ? checked : value };
-    });
-  }
-
-  //❌ empty check
-  // !value ==> if value is empty -> false -> turn on true
-  // !value ==> if value isn't empty -> true -> turn on false
-  //   const handleBlur = (name, value) => {
-  //     setFieldErrors((prev) => {
-  //       return { ...prev, [name]: !value };
-  //     });
-  //   };
-  // ❌ Email format validation
-  const handleBlur = (name, value) => {
-    let message = '';
-    if (value === '') {
-      message = `${name} field is required`;
-    } else if (name === 'email' && !value.includes('@')) {
-      message = 'Email format is incorrect';
-    }
-
-    setFieldErrors((prev) => {
-      return { ...prev, [name]: message };
+      const newHobbies = checked
+        ? [...prev.hobbies, value]
+        : prev.hobbies.filter((hobby) => hobby !== value);
+      setFormErrors((errPrev) => ({
+        ...errPrev,
+        hobbies: newHobbies.length === 0,
+      }));
+      return { ...prev, hobbies: newHobbies };
     });
   };
 
-  function handleReset() {
+  const handleReset = () => {
     setFormValues(initialForm);
-  }
+  };
 
-  function handleSubmit(e) {
+  const handleBlur = (name, value) => {
+    setFormErrors((prev) => ({ ...prev, [name]: !value }));
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (formValues.name === '' || formValues.email === '') return;
     alert('Submitted!');
-  }
+  };
 
   return (
     <div style={{ fontFamily: 'sans-serif', padding: 20, maxWidth: 500 }}>
       <h1>Registration Form</h1>
-
       <form onSubmit={handleSubmit}>
+        {/* 1. Text inputs */}
         <label>
           Name:
           <input
@@ -495,11 +273,9 @@ export default function Demo() {
             onChange={handleChange}
             onBlur={() => handleBlur('name', formValues.name)}
           />
-          {fieldErrors.name && (
-            <p style={{ color: 'red' }}>{fieldErrors.name}</p>
-          )}
         </label>
-        <hr />
+        {formErrors.name && <p style={{ color: 'red' }}>Name is required</p>}
+        <br />
         <label>
           Email:
           <input
@@ -509,21 +285,96 @@ export default function Demo() {
             onChange={handleChange}
             onBlur={() => handleBlur('email', formValues.email)}
           />
-          {fieldErrors.email && (
-            <p style={{ color: 'red' }}>{fieldErrors.email}</p>
-          )}
         </label>
+        {formErrors.email && <p style={{ color: 'red' }}>Email is required</p>}
         <hr />
+
+        {/* 2. Simple checkbox */}
         <label>
           <input
             type="checkbox"
-            name="agreeToTerms"
-            checked={formValues.agreeToTerms}
-            onChange={handleChange}
-          />
+            name="agreed"
+            checked={formValues.agreed}
+            onChange={(e) => {
+              const checked = e.target.checked;
+              setFormValues((prev) => ({ ...prev, agreed: checked }));
+              setFormErrors((prev) => ({ ...prev, agreed: !checked }));
+            }}
+          />{' '}
           I agree to the terms
         </label>
+        {formErrors.agreed && (
+          <p style={{ color: 'red' }}>agreed is required</p>
+        )}
+
         <hr />
+
+        {/* 3. Multi-checkbox */}
+        <p>Hobbies:</p>
+        {hobbyOptions.map((hobby) => (
+          <label key={hobby} style={{ display: 'block', marginBottom: 8 }}>
+            <input
+              type="checkbox"
+              name="hobbies"
+              value={hobby}
+              checked={formValues.hobbies.includes(hobby)}
+              onChange={handleHobbyChange}
+            />{' '}
+            {hobby}
+          </label>
+        ))}
+        {formErrors.hobbies && (
+          <p style={{ color: 'red' }}>At least one hobby is required</p>
+        )}
+        <hr />
+
+        {/* 4. Radio buttons */}
+        <p>Gender:</p>
+        {['Male', 'Female'].map((option) => (
+          <label key={option} style={{ marginRight: 16 }}>
+            <input
+              type="radio"
+              name="gender"
+              value={option}
+              checked={formValues.gender === option}
+              onChange={(e) => {
+                handleChange(e);
+                setFormErrors((prev) => ({ ...prev, gender: false }));
+              }}
+              onBlur={() => handleBlur('gender', formValues.gender)}
+            />{' '}
+            {option}
+          </label>
+        ))}
+        {formErrors.gender && (
+          <p style={{ color: 'red' }}>Gender is required</p>
+        )}
+        <hr />
+
+        {/* 5. Dropdown */}
+        <label>
+          Country:{' '}
+          <select
+            name="country"
+            value={formValues.country}
+            onChange={(e) => {
+              handleChange(e);
+              setFormErrors((prev) => ({ ...prev, country: !e.target.value }));
+            }}
+            onBlur={() => handleBlur('country', formValues.country)}>
+            <option value="">-- Select --</option>
+            {countryOptions.map((c) => (
+              <option key={c} value={c}>
+                {c}
+              </option>
+            ))}
+          </select>
+        </label>
+        {formErrors.country && (
+          <p style={{ color: 'red' }}>Country is required</p>
+        )}
+        <hr />
+
         <button type="submit">Submit</button>
         <button type="button" onClick={handleReset} style={{ marginLeft: 8 }}>
           Reset
@@ -531,219 +382,18 @@ export default function Demo() {
       </form>
 
       <hr />
-
       <h2>Preview</h2>
-      <p>Name: {formValues.name}</p>
-      <p>Email: {formValues.email}</p>
-      <p>Agreed: {String(formValues.agreeToTerms)}</p>
-
       <pre>{JSON.stringify(formValues, null, 2)}</pre>
     </div>
   );
 }
 ```
 
-### Improvement (draft)
+## Form Validation Strategy by Field Type
 
-**Score: 8/10**
-
-```js
-function handleChange(e) {
-  const { name, type, value, checked } = e.target;
-
-  setForm((prev) => ({
-    ...prev,
-    [name]: type === 'checkbox' ? checked : value,
-  }));
-}
-<button type="submit" disabled={!form.agreeToTerms}>
-```
-
-## Q2: Multiple Checkboxes (4/xx)
-
-**📋 Tasks**
-Build a form where the user can select multiple hobbies using checkboxes.
-
-1. Make the text input controlled.
-2. Make all checkboxes controlled.
-3. When a checkbox is checked, add that hobby to the array.
-4. When a checkbox is unchecked, remove that hobby from the array.
-5. Show the selected hobbies in the preview.
-6. Add a Reset button.
-
-```js
-import { useState } from 'react';
-
-const initialForm = {
-  name: '',
-  hobbies: [],
-};
-
-const hobbyOptions = ['Reading', 'Music', 'Sports', 'Coding'];
-
-export default function App() {
-  const [form, setForm] = useState(initialForm);
-
-  function handleNameChange(e) {
-    // TODO:
-    // update form.name
-  }
-
-  function handleHobbyChange(e) {
-    // TODO:
-    // if checked, add the hobby to form.hobbies
-    // if unchecked, remove the hobby from form.hobbies
-  }
-
-  function handleReset() {
-    // TODO:
-    // reset form back to initialForm
-  }
-
-  return (
-    <div style={{ fontFamily: 'sans-serif', padding: 20, maxWidth: 500 }}>
-      <h1>Hobby Form</h1>
-
-      <label>
-        Name:
-        <br />
-        <input
-          type="text"
-          name="name"
-          // TODO: value
-          // TODO: onChange
-        />
-      </label>
-
-      <br />
-      <br />
-
-      <p>Select your hobbies:</p>
-
-      {hobbyOptions.map((hobby) => (
-        <label key={hobby} style={{ display: 'block', marginBottom: 8 }}>
-          <input
-            type="checkbox"
-            name="hobbies"
-            value={hobby}
-            // TODO: checked
-            // TODO: onChange
-          />
-          {hobby}
-        </label>
-      ))}
-
-      <br />
-
-      <button type="button" onClick={handleReset}>
-        Reset
-      </button>
-
-      <hr />
-
-      <h2>Preview</h2>
-      <p>Name: {/* TODO */}</p>
-      <p>
-        Hobbies:
-        {/* TODO: show selected hobbies joined by comma */}
-      </p>
-
-      <pre>{JSON.stringify(form, null, 2)}</pre>
-    </div>
-  );
-}
-```
-
-### Answer
-
-```js
-import { useState } from 'react';
-
-const initialForm = {
-  name: '',
-  hobbies: [],
-};
-
-const hobbyOptions = ['Reading', 'Music', 'Sports', 'Coding'];
-
-export default function App3() {
-  const [form, setForm] = useState(initialForm);
-
-  function handleNameChange(e) {
-    setForm((prev) => ({ ...prev, name: e.target.value }));
-  }
-
-  function handleHobbyChange(e) {
-    const { checked, value } = e.target;
-
-    checked
-      ? setForm((prev) => ({ ...prev, hobbies: [...prev.hobbies, value] }))
-      : setForm((prev) => ({
-          ...prev,
-          hobbies: prev.hobbies.filter((hobby) => hobby !== value),
-        }));
-  }
-
-  function handleReset() {
-    setForm(initialForm);
-  }
-
-  return (
-    <div style={{ fontFamily: 'sans-serif', padding: 20, maxWidth: 500 }}>
-      <h1>Hobby Form</h1>
-
-      <label>
-        Name:
-        <br />
-        <input
-          type="text"
-          name="name"
-          value={form.name}
-          onChange={handleNameChange}
-        />
-      </label>
-
-      <br />
-      <br />
-
-      <p>Select your hobbies:</p>
-
-      {hobbyOptions.map((hobby) => (
-        <label key={hobby} style={{ display: 'block', marginBottom: 8 }}>
-          <input
-            type="checkbox"
-            name="hobbies"
-            value={hobby}
-            checked={form.hobbies.includes(hobby)}
-            onChange={handleHobbyChange}
-          />
-          {hobby}
-        </label>
-      ))}
-
-      <br />
-
-      <button type="button" onClick={handleReset}>
-        Reset
-      </button>
-
-      <hr />
-
-      <h2>Preview</h2>
-      <p>Name: {form.name}</p>
-      <p>
-        Hobbies: {form.hobbies.length > 0 ? form.hobbies.join(', ') : 'None'}
-      </p>
-
-      <pre>{JSON.stringify(form, null, 2)}</pre>
-    </div>
-  );
-}
-```
-
-### Improvement (draft)
-
-``js
-
-<p>Hobbies: {form.hobbies.length > 0 ? form.hobbies.join(', ') : 'None'}</p>
-```
+| Field      | `onChange`  | `onBlur`          | Why                                                                   |
+| ---------- | ----------- | ----------------- | --------------------------------------------------------------------- |
+| Text input | —           | validate          | User types then leaves; blur is the natural "done" signal             |
+| Checkbox   | validate    | —                 | Binary click; feedback should be instant                              |
+| Radio      | clear error | validate if empty | Can't unselect; once picked, error clears immediately                 |
+| Select     | validate    | validate if empty | Same as radio — selection is instant, but blur catches "skipped" case |
