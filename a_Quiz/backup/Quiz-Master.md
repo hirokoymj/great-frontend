@@ -1,10 +1,9 @@
 # Technical Master Note (A note)
 
 - [Technical Master Note (A note)](#technical-master-note-a-note)
-	- [React Topic](#react-topic)
-		- [Quiz](#quiz)
-	- [JavaScript](#javascript)
-	- [Node.js](#nodejs)
+  - [React Topic](#react-topic)
+  - [JavaScript](#javascript)
+  - [Node.js](#nodejs)
 
 ## React Topic
 
@@ -25,15 +24,6 @@
 | useActionState           | 04/09 |
 | useContext               | 04/09 |
 | useEffect                | 04/09 |
-
-### Quiz
-
-- [Quiz-state-object.md](./Quiz-state-object.md)
-- [Quiz-state-array.md](./Quiz-state-array.md)
-- [Quiz-useMemo](./Quiz-useMemo.md)
-- [Quiz-useCallback](./Quiz-useCallback.md)
-- [Quiz-rendering](./Quiz-rendering.md)
-- [Quiz-RESTful](./Quiz-restful.md)
 
 ## JavaScript
 
