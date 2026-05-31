@@ -1,12 +1,12 @@
 # Quiz - Filter
 
 - [Quiz - Filter](#quiz---filter)
-  - [Summary:](#summary)
-  - [Q1: Filter by date ❌(05/28), ❌(05/29)](#q1-filter-by-date-0528-0529)
-    - [Answer](#answer)
-  - [Q2: Todo list filter ✅(05/28)](#q2-todo-list-filter-0528)
-    - [Answer](#answer-1)
-  - [Q3: TypeScript](#q3-typescript)
+	- [Summary:](#summary)
+	- [Q1: Filter by date ❌(05/28), ❌(05/29)](#q1-filter-by-date-0528-0529)
+		- [Answer](#answer)
+	- [Q2: Todo list filter ✅(05/28)](#q2-todo-list-filter-0528)
+		- [Answer](#answer-1)
+	- [Q3: TypeScript](#q3-typescript)
 
 ❌✅
 

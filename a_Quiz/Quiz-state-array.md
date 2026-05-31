@@ -1,11 +1,11 @@
-# Quiz - State (array of object)
+# Quiz - State (array)
 
 <!-- create index  cmd+Shift+P -->
 
-- [Quiz - State (array of object)](#quiz---state-array-of-object)
-  - [Q1: Learn React](#q1-learn-react)
-  - [Q2: State (Array of Objects) - ❌(04/06), ❌(05/25), ✅(5/28)](#q2-state-array-of-objects---0406-0525-528)
-    - [Answer](#answer)
+- [Quiz - State (array)](#quiz---state-array)
+	- [Q1: Learn React](#q1-learn-react)
+	- [Q2: State (add, edit and deltete todos) - ❌(04/06), ❌(05/25), ✅(5/28), ✅(5/31)](#q2-state-add-edit-and-deltete-todos---0406-0525-528-531)
+		- [Answer](#answer)
 
 ✅❌
 
@@ -13,7 +13,13 @@
 
 - [Updating Arrays in State](https://github.com/hirokoymj/great-frontend?tab=readme-ov-file#updating-arrays-in-state)
 
-## Q2: State (Array of Objects) - ❌(04/06), ❌(05/25), ✅(5/28)
+```text
+- add: ..., [...prev, newObj]
+- delete: filter
+- edit: map
+```
+
+## Q2: State (add, edit and deltete todos) - ❌(04/06), ❌(05/25), ✅(5/28), ✅(5/31)
 
 - Add, edit and delete a task
 
@@ -27,7 +33,7 @@ const initialTasks = [
   { id: 2, title: 'Study React', done: true },
 ];
 
-export default function App() {
+export default function Demo() {
   const [tasks, setTasks] = useState(initialTasks);
   const [newTitle, setNewTitle] = useState('');
 
