@@ -1,11 +1,11 @@
 # Quiz - useEffect + Async
 
 - [Quiz - useEffect + Async](#quiz---useeffect--async)
-	- [Summary](#summary)
-	- [Q1: useEffect + Async + Filter + race condition - ❌(05/27)](#q1-useeffect--async--filter--race-condition---0527)
-		- [Answer](#answer)
-	- [Q2: new Set()](#q2-new-set)
-		- [Answer](#answer-1)
+  - [Summary](#summary)
+  - [Q1: useEffect + Async + Filter - ❌(05/27)](#q1-useeffect--async--filter---0527)
+    - [Answer](#answer)
+  - [Q2: new Set()](#q2-new-set)
+    - [Answer](#answer-1)
 
 ✅❌
 
@@ -18,38 +18,39 @@ useEffect(() => {}, [a]) //Mount + when "a" changes
 useEffect(() => return ()=>{}) //Clean-up function (call every re-render)
 ```
 
-## Q1: useEffect + Async + Filter + race condition - ❌(05/27)
+## Q1: useEffect + Async + Filter - ❌(05/27)
 
-1. Displays categories in a dropdown.
-   https://fakestoreapi.com/products/categories
-   `['electronics', 'jewelery', ...]`
-2. When a category is selected:
-   - Fetch products for that category.
-     https://fakestoreapi.com/products/category/{category}
+- All products:
+  - https://fakestoreapi.com/products
+- Category dropdown:
+  - https://fakestoreapi.com/products/categories
+  - `['electronics', 'jewelery', ...]`
+- Filter by a category
 
 ```js
-//Starter Boilerplate (Provided)
 import { useEffect, useState } from 'react';
-
 export default function App() {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [categoriesLoading, setCategoriesLoading] = useState(false);
+  const [productsLoading, setProductsLoading] = useState(false);
+
+  const loading = categoriesLoading || productsLoading;
 
   useEffect(() => {
-    // TODO: Fetch categories on mount
-    // https://fakestoreapi.com/products/categories
+    const url = 'https://fakestoreapi.com/products/categories';
   }, []);
 
   useEffect(() => {
-    if (!selectedCategory) return;
+    const url = `https://fakestoreapi.com/products/`;
+  }, []);
 
-    // TODO: Fetch products when category changes
-    //	https://fakestoreapi.com/products/category/{category}
-    //  https://fakestoreapi.com/products/category/jewelery
-  }, [selectedCategory]);
+  //const computed =
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p style={{ color: 'red' }}>{error}</p>;
 
   return (
     <div style={{ padding: '1rem' }}>
@@ -59,13 +60,9 @@ export default function App() {
         value={selectedCategory}
         onChange={(e) => setSelectedCategory(e.target.value)}>
         <option value="">Select a category</option>
-        {/* ❌TODO: Render category options */}
+        {TODO}
       </select>
-
-      {loading && <p>Loading...</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-
-      <ul>{/* TODO: Render products */}</ul>
+      <ul>{TODO}</ul>
     </div>
   );
 }
@@ -79,12 +76,15 @@ export default function App() {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [categoriesLoading, setCategoriesLoading] = useState(false);
+  const [productsLoading, setProductsLoading] = useState(false);
+
+  const loading = categoriesLoading || productsLoading;
 
   useEffect(() => {
     const url = 'https://fakestoreapi.com/products/categories';
-    setLoading(true);
+    setCategoriesLoading(true);
     setError(null);
     fetch(url)
       .then((response) => {
@@ -98,34 +98,37 @@ export default function App() {
         setError(e.message);
       })
       .finally(() => {
-        setLoading(false);
+        setCategoriesLoading(false);
       });
   }, []);
 
   useEffect(() => {
-    if (!selectedCategory) return;
-    const controller = new AbortController();
-    setLoading(true);
+    setProductsLoading(true);
     setError(null);
-    const url = `https://fakestoreapi.com/products/category/${selectedCategory}`;
-    fetch(url, { signal: controller.signal })
+    const url = `https://fakestoreapi.com/products/`;
+    fetch(url)
       .then((response) => {
-        if (!response.ok)
-          throw new Error('Failed to get product by a category');
+        if (!response.ok) throw new Error('Failed to get products');
         return response.json();
       })
       .then((data) => {
         setProducts(data);
       })
       .catch((e) => {
-        if (e.name !== 'AbortError') setError(e.message);
+        setError(e.message);
       })
       .finally(() => {
-        setLoading(false);
+        setProductsLoading(false);
       });
+  }, []);
 
-    return () => controller.abort(); // cleanup: cancel
-  }, [selectedCategory]);
+  const computed =
+    selectedCategory !== ''
+      ? products.filter((product) => product.category === selectedCategory)
+      : products;
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p style={{ color: 'red' }}>{error}</p>;
 
   return (
     <div style={{ padding: '1rem' }}>
@@ -143,12 +146,8 @@ export default function App() {
           );
         })}
       </select>
-
-      {loading && <p>Loading...</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-
       <ul>
-        {products.map(({ id, title, price }) => {
+        {computed.map(({ id, title, price }) => {
           return (
             <li key={id}>
               {id}, {title}, ${price.toFixed(2)}
