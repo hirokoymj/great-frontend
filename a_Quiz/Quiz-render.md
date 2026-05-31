@@ -4,18 +4,25 @@
 	- [Sumamry](#sumamry)
 	- [Q1: Rendering Image List ❌❌✅(05/25),✅(05/31)](#q1-rendering-image-list-05250531)
 		- [Answer](#answer)
-	- [Q2: Airport data ✅05/28,](#q2-airport-data-0528)
-		- [Answer](#answer-1)
-	- [Q3: Ternary vs if condition](#q3-ternary-vs-if-condition)
+	- [Q2: Ternary vs if condition](#q2-ternary-vs-if-condition)
 		- [Answer - if condition](#answer---if-condition)
+	- [Q3: If condition - dynamic CSS ✅(05/31)](#q3-if-condition---dynamic-css-0531)
+		- [Answer](#answer-1)
 
 ## Sumamry
 
 ```js
 const fileName = '/images/airport-board.png'.split('/').pop();
 const [file, ext] = fileName.split('.');
-const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
-console.log(animals.slice(0, -1));
+
+items.map(({ id, name }) => {
+  return <p></p>;
+});
+let message = <p>test</p>;
+let imgClass=""
+<div onClick={}>
+	<img onClick={ e.stopPropagation()}>
+</div>
 ```
 
 ❌✅
@@ -79,106 +86,7 @@ export default function App() {
 }
 ```
 
----
-
-## Q2: Airport data ✅05/28,
-
-```js
-import { useState } from 'react';
-const data = [
-  {
-    time: '10:50',
-    city: 'MOSCOW/SVO',
-  },
-  {
-    time: '11:05',
-    city: 'EDINBURGH',
-  },
-  {
-    time: '11:05',
-    city: 'LONDON/LHR',
-  },
-  {
-    time: '11:10',
-    city: 'BUCHAREST/OTP',
-  },
-  {
-    time: '11:30',
-    city: 'KIEV/BORISPOL',
-  },
-  {
-    time: '11:35',
-    city: 'DUBLIN',
-  },
-  {
-    time: '11:45',
-    city: 'EAST MIDLANDS',
-  },
-  {
-    time: '12:15',
-    city: 'SOFIA',
-  },
-  {
-    time: '12:30',
-    city: 'LONDON/LGW',
-  },
-  {
-    time: '12:30',
-    city: 'NEWCASTLE',
-  },
-  {
-    time: '12:40',
-    city: 'ST PETERSBURG',
-  },
-  {
-    time: '12:40',
-    city: 'LONDON/LGW',
-  },
-  {
-    time: '12:45',
-    city: 'MANCHESTER',
-  },
-];
-
-const Demo = () => {
-  const [items] = useState(data);
-
-  return (
-    <div>
-      <h1>Airport</h1>
-      <ul>{}</ul>
-    </div>
-  );
-};
-```
-
-### Answer
-
-```js
-const Demo = () => {
-  const [items] = useState(data);
-  return (
-    <div>
-      <h1>Airport</h1>
-      <ul>
-        {items.map(({ time, city }, index) => (
-          <li key={index}>
-            {time}, {city}
-          </li>
-        ))}
-
-        {items.map(({ time, city }, index) => {
-          return <li key={index}>{time}</li>;
-        })}
-      </ul>
-    </div>
-  );
-};
-
-export default Demo;
-```
-
-## Q3: Ternary vs if condition
+## Q2: Ternary vs if condition
 
 ```js
 export default function Demo() {
@@ -214,4 +122,61 @@ const UserStatus = ({ isLoggedIn }) => {
   }
   return <div>{message}</div>;
 };
+```
+
+## Q3: If condition - dynamic CSS ✅(05/31)
+
+- [Challenge 1 of 3: Add and remove a CSS class](https://react.dev/learn/reacting-to-input-with-state#add-and-remove-a-css-class)
+- Two visual states: when the image is active, and when the image is inactive:
+- When the image is active, the CSS classes are background and picture picture--active.
+- When the image is inactive, the CSS classes are background background--active and picture.
+
+```js
+import { useState } from 'react';
+import './styles4.css';
+
+export default function Picture() {
+  return (
+    <div className="background background--active">
+      <img
+        className="picture"
+        alt="Rainbow houses"
+        src="https://react.dev/images/docs/scientists/5qwVYb1.jpeg"
+      />
+    </div>
+  );
+}
+```
+
+### Answer
+
+```js
+import { useState } from 'react';
+import './styles4.css';
+
+export default function Picture() {
+  const [isActive, setIsActive] = useState(false);
+
+  let backgroundClassName = 'background';
+  let pictureClassName = 'picture';
+  if (isActive) {
+    pictureClassName += ' picture--active';
+  } else {
+    backgroundClassName += ' background--active';
+  }
+
+  return (
+    <div className={backgroundClassName} onClick={() => setIsActive(false)}>
+      <img
+        onClick={(e) => {
+          e.stopPropagation();
+          setIsActive(true);
+        }}
+        className={pictureClassName}
+        alt="Rainbow houses"
+        src="https://react.dev/images/docs/scientists/5qwVYb1.jpeg"
+      />
+    </div>
+  );
+}
 ```

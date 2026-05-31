@@ -1,8 +1,8 @@
 # React re-render
 
 - [React re-render](#react-re-render)
-  - [Q1: In what situations will a React component re-render?](#q1-in-what-situations-will-a-react-component-re-render)
-  - [Q2: How to Prevent Unnecessary Re-renders](#q2-how-to-prevent-unnecessary-re-renders)
+	- [Q1: In what situations will a React component re-render?](#q1-in-what-situations-will-a-react-component-re-render)
+	- [Q2: How to Prevent Unnecessary Re-renders](#q2-how-to-prevent-unnecessary-re-renders)
 
 ## Q1: In what situations will a React component re-render?
 
